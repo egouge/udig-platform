@@ -17,6 +17,8 @@ package net.refractions.udig.project.render;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import net.refractions.udig.project.internal.render.RenderPackage;
 import net.refractions.udig.project.internal.render.Renderer;
@@ -119,9 +121,10 @@ public class Tile {
 	private TileStateChangedListener listener = null;
 	
 	/**
-	 * for locking on the SWT image to prevent creating it multiple times
-	 */
-	private Object SWTLock = new Object();
+	 * for locking on the SWT image to prevent
+	 * multiple threads modifying/accessing
+	 */	
+	private ReentrantReadWriteLock swtImageLock = new ReentrantReadWriteLock(); 
 	
 	public Tile(ReferencedEnvelope env, RenderExecutorComposite rec, int tileSize) {
 		this.env = env;
@@ -163,15 +166,16 @@ public class Tile {
 	 * Disposes of the swt image.
 	 */
 	public void disposeSWTImage() {
-		/**
-		 * synchronize this code to ensure we don't have concurrency issues
-		 */
-		synchronized (SWTLock) {
-			if (swtImage != null) {
-				swtImage.dispose();
-				swtImage = null;
-			}
-		}
+	    //get write lock before disposing of image
+	    swtImageLock.writeLock().lock();
+	    try{
+	        if (swtImage != null) {
+                swtImage.dispose();
+                swtImage = null;
+            }
+	    }finally{
+	        swtImageLock.writeLock().unlock();
+	    }
 		//can we assume that once the image is disposed it is offscreen?
 		setScreenState(ScreenState.OFFSCREEN);
 	}
@@ -192,13 +196,40 @@ public class Tile {
 	 * Gets the SWT image; if the image is null or disposed then
 	 * it tried to create it before it is returned.
 	 *
-	 * @return
+	 *<p>
+	 * Note: When using the resulting swtImage object 
+	 * you must first get a read lock, then ensure
+	 * it has not been disposed.  For example:
+	 * <pre>
+	 * <code>
+	 * Tile t = ....
+	 * Image swtImage = t.getSWTImage();
+	 * t.getSwtImageLock().readLock().lock();
+	 * try{
+	 *     if (swtImage != null && !swtImage.isDisposed()){
+	 *         //process the image
+	 *     }
+	 * }finally{
+	 *     t.getSwtImageLock().readLock().unlock();
+	 * }
+	 * </code>
+	 * </pre>
+	 * 
+	 * @return the swtImage Object
 	 */
 	public org.eclipse.swt.graphics.Image getSWTImage() {
 		if (swtImage == null || swtImage.isDisposed()) {
 			createSWTImage();
 		}
 		return swtImage;
+	}
+	
+	/**
+	 * 
+	 * @return the swt image lock object
+	 */
+	public ReadWriteLock getSwtImageLock(){
+	    return swtImageLock;
 	}
 	
 	/**
@@ -234,11 +265,9 @@ public class Tile {
 	 * Creates an swt image from the tiles buffered image.
 	 */
 	private void createSWTImage() {
-		/**
-		 * synchronize this code to prevent multiple threads from creating the
-		 * SWT image more times than needed
-		 */
-		synchronized (SWTLock) {
+	    //get write lock while creating image
+	    swtImageLock.writeLock().lock();
+	    try{
 			// if the SWTImage is created once the lock is gained, exit
 			if (swtImage != null && !swtImage.isDisposed()) {
 				return;
@@ -250,7 +279,9 @@ public class Tile {
 			} catch (Exception ex) {
 	            ex.printStackTrace();
 	        }
-		}
+	    }finally{
+	        swtImageLock.writeLock().unlock();
+	    }
 	}
 
 	/**

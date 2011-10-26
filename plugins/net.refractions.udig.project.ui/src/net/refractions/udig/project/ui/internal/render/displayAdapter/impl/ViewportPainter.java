@@ -13,6 +13,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.RenderedImage;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
 
 import net.refractions.udig.project.internal.render.ViewportModel;
 import net.refractions.udig.project.render.Tile;
@@ -158,7 +159,6 @@ public class ViewportPainter {
         		Set<ReferencedEnvelope> keySet = tiles.keySet();
             	for (ReferencedEnvelope env : keySet) {
             		Tile tile = tiles.get(env);
-            		//System.out.println("SWTImage: "+tile.getSWTImage());
             		ViewportModel viewportModelInternal = tile.getRenderExecutor().getRenderer().getContext().getViewportModelInternal();
             		java.awt.Point a = viewportModelInternal.worldToPixel(new Coordinate(env.getMinX(), env.getMinY()));
 		        	java.awt.Point b = viewportModelInternal.worldToPixel(new Coordinate(env.getMaxX(), env.getMaxY()));
@@ -170,11 +170,23 @@ public class ViewportPainter {
 	                    //this is OK in our case because another paint event should be coming soon
 	                    //which will fix the issue; so for now we just catch the errors
 	                    //and don't worry about them.
+		        	    
+		        	    //get image
+		        	    org.eclipse.swt.graphics.Image im = tile.getSWTImage();
+		        	    //get lock
+		        	    Lock imageLock =  tile.getSwtImageLock().readLock();
+		        	    imageLock.lock();
 	                    try{
-	                        org.eclipse.swt.graphics.Image im = tile.getSWTImage();
-	                        gc.drawImage(im, 0, 0, im.getBounds().width, im.getBounds().height, a.x, b.y, width, height);
+	                        //ensure image is still ok before processing
+	                        if (im != null && !im.isDisposed()){
+	                            gc.drawImage(im, 0, 0, im.getBounds().width, im.getBounds().height, a.x, b.y, width, height);
+	                        }
 	                    }catch (Exception ex){
-	                    }    
+//	                        ex.printStackTrace();
+//	                        System.err.println("ERROR HERE....");
+	                    } finally{
+	                        imageLock.unlock();
+	                    }
                     }
 		        	if( TESTING ){
                 		g.setColor(Color.BLUE);
