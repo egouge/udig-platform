@@ -19,11 +19,12 @@ import java.util.List;
 
 import net.refractions.udig.catalog.util.CRSUtil;
 import net.refractions.udig.internal.ui.UiPlugin;
+import net.refractions.udig.project.render.IViewportModelListener;
+import net.refractions.udig.project.render.ViewportModelEvent;
 import net.refractions.udig.project.ui.commands.AbstractDrawCommand;
 import net.refractions.udig.project.ui.render.displayAdapter.MapMouseEvent;
 import net.refractions.udig.project.ui.tool.SimpleTool;
 import net.refractions.udig.tool.info.internal.Messages;
-import net.refractions.udig.ui.PlatformGIS;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -31,25 +32,49 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.geotools.geometry.jts.JTS;
 import org.opengis.referencing.operation.TransformException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
+/**
+ * Distance tool for measuring distance on a map.
+ * 
+ * Points are tracked in map coordinates and not screen
+ * coordinates so users can zoom in and out while computing
+ * distance. 
+ * 
+ * @author Emily
+ *
+ */
 public class DistanceTool extends SimpleTool implements KeyListener {
-    public DistanceTool() {
+
+	//list of points selected by user
+	private List<Coordinate> points = new ArrayList<Coordinate>();
+	//current point
+	private Point currentPnt;
+	private DistanceFeedbackCommand command;
+	
+	private IViewportModelListener vpListener = new IViewportModelListener() {
+		
+		@Override
+		public void changed(ViewportModelEvent event) {
+			if (event.getType() == ViewportModelEvent.EventType.CRS){
+				disposeCommand();
+				points.clear();
+				displayResult();
+			}
+			
+		}
+	};
+	public DistanceTool() {
         super(MOUSE | MOTION);
     }
     
-    List<Point> points = new ArrayList<Point>();
-    DistanceFeedbackCommand command;
-    private Point now;
     
     @Override
     protected void onMouseMoved( MapMouseEvent e ) {
-        now = e.getPoint();
+        currentPnt = e.getPoint();
         if (command == null || points.isEmpty())
             return;
         Rectangle area = command.getValidArea();
@@ -60,10 +85,13 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         }
     }
 
+    @Override
     public void onMouseReleased( MapMouseEvent e ) {
         Point current = e.getPoint();
-        if (points.isEmpty() || !current.equals(points.get(points.size() - 1)))
-            points.add(current);
+        if (points.isEmpty() || !current.equals(points.get(points.size() - 1))){
+        	Coordinate c = getContext().getViewportModel().pixelToWorld(current.x, current.y);
+            points.add(c);
+        }
         if (command == null || !command.isValid()) {
             command = new DistanceFeedbackCommand();
             getContext().sendASyncCommand(command);
@@ -93,7 +121,7 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         }
     }
 
-    private void displayResult() {
+    protected void displayResult() {
         try {
             double distance = distance();
             displayOnStatusBar(distance);
@@ -109,6 +137,7 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         final IStatusLineManager statusBar = getContext().getActionBars().getStatusLineManager();
         
         disposeCommand();
+        points.clear();
         
         if (statusBar == null)
             return; // shouldn't happen if the tool is being used.
@@ -122,33 +151,37 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         if (active) {
             Control control = getContext().getViewportPane().getControl();
             control.addKeyListener(this);
+            
+            getContext().getViewportModel().addViewportModelListener(vpListener);
         }else{
             Control control = getContext().getViewportPane().getControl();
             control.removeKeyListener(this);
+            
+            getContext().getViewportModel().removeViewportModelListener(vpListener);
         }
         
     }
     
-    private double distance() throws TransformException {
+    protected double distance() throws TransformException {
         if (points.isEmpty())
             return 0;
-        Iterator<Point> iter = points.iterator();
-        Point start = iter.next();
+        Iterator<Coordinate> iter = points.iterator();
+        Coordinate start = iter.next();
         double distance = 0;
         while( iter.hasNext() ) {
-            Point current = iter.next();
-            Coordinate begin = getContext().pixelToWorld(start.x, start.y);
-            Coordinate end = getContext().pixelToWorld(current.x, current.y);
+            Coordinate current = iter.next();
+            Coordinate begin = start;
+            Coordinate end = current;
             distance += JTS.orthodromicDistance(begin, end, getContext().getCRS());
             start = current;
         }
 
-        if (now != null) {
-            Point current = now;
-            Coordinate begin = getContext().pixelToWorld(start.x, start.y);
+        if (this.currentPnt != null) {
+            Point current = this.currentPnt;
+            Coordinate begin = start;
             Coordinate end = getContext().pixelToWorld(current.x, current.y);
             distance += JTS.orthodromicDistance(begin, end, getContext().getCRS());
-            start = current;
+            start = end;
         }
         
         return distance;
@@ -173,16 +206,8 @@ public class DistanceTool extends SimpleTool implements KeyListener {
 
         if (statusBar == null)
             return; // shouldn't happen if the tool is being used.
-        String units = UiPlugin.getDefault().getPreferenceStore().getString(net.refractions.udig.ui.preferences.PreferenceConstants.P_DEFAULT_UNITS);
-        if (units.equals( net.refractions.udig.ui.preferences.PreferenceConstants.AUTO_UNITS) && CRSUtil.isCoordinateReferenceSystemImperial(context.getCRS())){
-            units = net.refractions.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS;
-        }
-        final String message;
-        if (units.equals( net.refractions.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS)){
-            message = createMessageImperial(distance);
-        }else{
-            message = createMessageMetric(distance);
-        }
+        
+        final String message = createMessage(distance);
 
         getContext().updateUI(new Runnable(){
             public void run() {
@@ -191,6 +216,27 @@ public class DistanceTool extends SimpleTool implements KeyListener {
             }
         });
     }
+    
+	protected String createMessage(double distance) {
+		String units = UiPlugin
+				.getDefault()
+				.getPreferenceStore()
+				.getString(net.refractions.udig.ui.preferences.PreferenceConstants.P_DEFAULT_UNITS);
+		if (units.equals(net.refractions.udig.ui.preferences.PreferenceConstants.AUTO_UNITS)
+				&& CRSUtil.isCoordinateReferenceSystemImperial(context.getCRS())) {
+			units = net.refractions.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS;
+		}
+		
+		String message;
+		if (units.equals(net.refractions.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS)) {
+			message = createMessageImperial(distance);
+		} else {
+			message = createMessageMetric(distance);
+		}
+		return message;
+	}
+    
+    
     /**
      * @param distance
      * @return
@@ -265,17 +311,21 @@ public class DistanceTool extends SimpleTool implements KeyListener {
             if (points.isEmpty())
                 return;
             graphics.setColor(Color.BLACK);
-            Iterator<Point> iter = points.iterator();
-            Point start = iter.next();
+            Iterator<Coordinate> iter = points.iterator();
+            Coordinate start = iter.next();
             while( iter.hasNext() ) {
-                Point current = iter.next();
-                graphics.drawLine(start.x, start.y, current.x, current.y);
+                Coordinate current = iter.next();
+                Point pstart = getContext().worldToPixel(start);
+                Point pend = getContext().worldToPixel(current);
+                graphics.drawLine(pstart.x, pstart.y, pend.x, pend.y);
                 start = current;
             }
-            if (start == null || now == null) 
+            if (start == null || currentPnt == null) 
                 return;
-            graphics.drawLine(start.x, start.y, now.x, now.y);
-
+            
+            Point pstart = getContext().worldToPixel(start);
+            Point pend = currentPnt;
+            graphics.drawLine(pstart.x, pstart.y, pend.x, pend.y);
             displayResult();
         }
 
