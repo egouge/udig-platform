@@ -134,13 +134,13 @@ public class DistanceTool extends SimpleTool implements KeyListener {
     @Override
     public void setActive( boolean active ) {
         super.setActive(active);
-        final IStatusLineManager statusBar = getContext().getActionBars().getStatusLineManager();
         
         disposeCommand();
         points.clear();
         
-        if (statusBar == null)
+        if (getContext().getActionBars() == null || getContext().getActionBars().getStatusLineManager() == null)
             return; // shouldn't happen if the tool is being used.
+        final IStatusLineManager statusBar = getContext().getActionBars().getStatusLineManager();
         getContext().updateUI(new Runnable(){
             public void run() {
                 statusBar.setErrorMessage(null);
@@ -151,12 +151,10 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         if (active) {
             Control control = getContext().getViewportPane().getControl();
             control.addKeyListener(this);
-            
             getContext().getViewportModel().addViewportModelListener(vpListener);
         }else{
             Control control = getContext().getViewportPane().getControl();
             control.removeKeyListener(this);
-            
             getContext().getViewportModel().removeViewportModelListener(vpListener);
         }
         
