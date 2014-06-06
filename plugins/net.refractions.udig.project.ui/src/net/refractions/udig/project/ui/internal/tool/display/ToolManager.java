@@ -64,6 +64,7 @@ import net.refractions.udig.project.ui.tool.options.PreferencesShortcutToolOptio
 import net.refractions.udig.project.ui.viewers.MapEditDomain;
 import net.refractions.udig.ui.IDropAction;
 import net.refractions.udig.ui.IDropHandlerListener;
+import net.refractions.udig.ui.PlatformGIS;
 import net.refractions.udig.ui.UDIGDragDropUtilities;
 import net.refractions.udig.ui.ViewerDropLocation;
 import net.refractions.udig.ui.operations.LazyOpFilter;
@@ -611,7 +612,7 @@ public class ToolManager implements IToolManager {
      * @param map
      * @param categories
      */
-    private void setEnabled( IMap map, Collection<? extends ToolCategory> categories) {
+    private void setEnabled( final IMap map, final Collection<? extends ToolCategory> categories) {
         
         if(selectedLayerListener == null)
         	selectedLayerListener = new EditManagerListener();
@@ -622,22 +623,25 @@ public class ToolManager implements IToolManager {
         if(!map.getEditManager().containsListener(selectedLayerListener))
         	map.getEditManager().addListener(selectedLayerListener);
         
-        for( ToolCategory cat : categories ) {
-            for( ModalItem item : cat ) {
-                OpFilter enablesFor = item.getEnablesFor();
-                ILayer selectedLayer = map.getEditManager().getSelectedLayer();
+        PlatformGIS.syncInDisplayThread(new Runnable(){
+			@Override
+			public void run() {
+				ILayer selectedLayer = map.getEditManager().getSelectedLayer();
+				for (ToolCategory cat : categories) {
+					for (ModalItem item : cat) {
+						OpFilter enablesFor = item.getEnablesFor();
+						// JG: I don't trust asserts in production code!
+						// assert enablesFor instanceof LazyOpFilter;
+						if (!(enablesFor instanceof LazyOpFilter)) {
+							enablesFor = new LazyOpFilter(item, enablesFor);
+						}
 
-                // JG: I don't trust asserts in production code!
-                // assert enablesFor instanceof LazyOpFilter;
-                
-                if( !(enablesFor instanceof LazyOpFilter) ){
-                    enablesFor = new LazyOpFilter(item, enablesFor);
-                }
-                
-                boolean accept = enablesFor.accept(selectedLayer);
-                item.setEnabled(accept);
-            }
-        }
+						boolean accept = enablesFor.accept(selectedLayer);
+						item.setEnabled(accept);
+					}
+				}
+			}});
+       
     }
 
     /**
