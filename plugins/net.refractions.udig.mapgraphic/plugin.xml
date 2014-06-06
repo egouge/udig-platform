@@ -198,7 +198,7 @@
             name="%mapgraphic.grid.name"/>
       <mapGraphic
             class="net.refractions.udig.mapgraphic.northarrow.NorthArrowMapGraphic"
-            icon="icons/obj16/graphic_obj.gif"
+            icon="icons/obj16/northarrow.png"
             id="net.refractions.udig.mapgraphic.NorthArrowMapGraphic"
             name="%mapgraphic.northarrow.name">
       </mapGraphic>
