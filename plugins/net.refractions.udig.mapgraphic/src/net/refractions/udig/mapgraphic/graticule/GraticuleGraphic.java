@@ -25,10 +25,10 @@ import net.refractions.udig.mapgraphic.MapGraphic;
 import net.refractions.udig.mapgraphic.MapGraphicContext;
 import net.refractions.udig.mapgraphic.MapGraphicPlugin;
 import net.refractions.udig.mapgraphic.internal.Messages;
+import net.refractions.udig.mapgraphic.style.FontStyle;
 import net.refractions.udig.project.ILayer;
 import net.refractions.udig.project.internal.Layer;
 import net.refractions.udig.ui.graphics.ViewportGraphics;
-
 import org.eclipse.swt.graphics.Path;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
@@ -83,7 +83,8 @@ public class GraticuleGraphic implements MapGraphic {
         // Initialize
         ILayer graticule = context.getLayer();
         GraticuleStyle style = GraticuleStyle.getStyle(graticule);
-
+        FontStyle fontStyle = GraticuleStyle.getFontStyle(context);
+        
         // Ensure CRS?
         if (graticule instanceof Layer) {
             // Initialize CRS?
@@ -262,7 +263,7 @@ public class GraticuleGraphic implements MapGraphic {
                 // Draw labels?
                 if (style.isShowLabels())
                     for (Label label : labels)
-                        label.draw(g, style);
+                        label.draw(g, fontStyle);
 
             }
 
@@ -689,9 +690,9 @@ public class GraticuleGraphic implements MapGraphic {
             this.anchor = anchor;
         }
 
-        public void draw(ViewportGraphics g, GraticuleStyle style) {
+        public void draw(ViewportGraphics g, FontStyle style) {
             Color old = g.getColor();
-            g.setColor(style.getFontColor());
+            g.setColor(style.getColor());
             g.setFont(font);
             g.drawString(text, anchor.x, anchor.y, ViewportGraphics.ALIGN_MIDDLE,
                     ViewportGraphics.ALIGN_MIDDLE);

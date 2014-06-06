@@ -155,6 +155,34 @@
           requires="net.refractions.udig.mapgraphic.graticule.GraticuleGraphic"
           styleId="net.refractions.udig.tool.edit.mapgraphic.graticule.style">
     </styleConfigurator>
+    <styleConfigurator
+          class="net.refractions.udig.mapgraphic.style.FontStyleConfigurator"
+          id="font"
+          label="%font.style.label"
+          requires="net.refractions.udig.mapgraphic.scale.ScaleDenomMapGraphic"
+          styleId="net.refractions.udig.mapgraphic.style.font">
+    </styleConfigurator>
+    <styleConfigurator
+          class="net.refractions.udig.mapgraphic.style.PositionStyleConfigurator"
+          id="position"
+          label="%printing.ui.location.config.label"
+          requires="net.refractions.udig.mapgraphic.scale.ScaleDenomMapGraphic"
+          styleId="org.locationtech.udig.printing.ui.positionStyle">
+    </styleConfigurator>
+    <styleConfigurator
+          class="net.refractions.udig.mapgraphic.scale.ScaleDenomStyleConfigurator"
+          id="mapscale"
+          label="Background"
+          requires="net.refractions.udig.mapgraphic.scale.ScaleDenomMapGraphic"
+          styleId="net.refractions.udig.mapgraphic.scaledenom.style">
+    </styleConfigurator>
+    <styleConfigurator
+          class="net.refractions.udig.mapgraphic.style.PositionStyleConfigurator"
+          id="northarrowposition"
+          label="%printing.ui.location.config.label"
+          requires="net.refractions.udig.mapgraphic.northarrow.NorthArrowMapGraphic"
+          styleId="org.locationtech.udig.printing.ui.positionStyle">
+    </styleConfigurator>
    </extension>
    <extension
          point="net.refractions.udig.mapgraphic.mapgraphic">
@@ -179,7 +207,13 @@
             icon="icons/etool16/graticule.png"
             id="graticule"
             name="Graticule">
-      </mapGraphic>      
+      </mapGraphic>
+ <mapGraphic
+       class="net.refractions.udig.mapgraphic.scale.ScaleDenomMapGraphic"
+       icon="icons/obj16/scale_obj.png"
+       id="org.locationtech.udig.mapgraphic.scaleDenom"
+       name="Map Scale">
+ </mapGraphic>      
     <!--  <mapGraphic
             class="net.refractions.udig.mapgraphic.scalebar.ScaleDenomMapGraphic"
             id="net.refractions.udig.mapgraphic.scalebar.ScaleDenomMapGraphic"

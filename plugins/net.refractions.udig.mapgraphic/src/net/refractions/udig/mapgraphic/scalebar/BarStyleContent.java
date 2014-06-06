@@ -31,7 +31,7 @@ import org.eclipse.ui.IMemento;
  */
 public class BarStyleContent extends StyleContent {
     /** extension id */
-    public static final String ID = "net.refractions.udig.mapgraphic.style.bartype"; //$NON-NLS-1$
+    public static final String ID = "org.locationtech.udig.mapgraphic.style.bartype"; //$NON-NLS-1$
     
     private static final String BARSTYLE = "BAR_STYLE"; //$NON-NLS-1$
     private static final String NUM_INTERVAL = "NUM_INTERVAL"; //$NON-NLS-1$

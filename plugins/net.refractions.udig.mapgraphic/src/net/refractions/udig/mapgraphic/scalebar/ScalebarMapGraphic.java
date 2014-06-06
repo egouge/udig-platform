@@ -9,10 +9,6 @@
  */
 package net.refractions.udig.mapgraphic.scalebar;
 
-import static net.refractions.udig.mapgraphic.scalebar.Unit.CENTIMETER;
-import static net.refractions.udig.mapgraphic.scalebar.Unit.KILOMETER;
-import static net.refractions.udig.mapgraphic.scalebar.Unit.METER;
-
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.GeneralPath;
@@ -91,8 +87,8 @@ public class ScalebarMapGraphic implements MapGraphic {
         return result;
     }
     /*
-     * @see net.refractions.udig.project.render.decorator.Decorator#draw(java.awt.Graphics2D,
-     *      net.refractions.udig.project.render.RenderContext)
+     * @see org.locationtech.udig.project.render.decorator.Decorator#draw(java.awt.Graphics2D,
+     *      org.locationtech.udig.project.render.RenderContext)
      */
     public void draw( MapGraphicContext context ) {
         // draw1(context);
@@ -129,7 +125,7 @@ public class ScalebarMapGraphic implements MapGraphic {
                         location.width / type.getNumintervals(), Unit.MILE, Unit.FOOT, Unit.YARD, Unit.INCHES);
             }else{ /* METRIC and AUTO both treated as metric, since auto is converted above in CRS search */
                 result2 = calculateUnitAndLength(inMeters,
-                        location.width / type.getNumintervals(), KILOMETER, METER, CENTIMETER);                
+                        location.width / type.getNumintervals(), Unit.KILOMETER, Unit.METER, Unit.CENTIMETER);                
             }
             
             int trueBarLength2 = result2.getLeft() * type.getNumintervals();

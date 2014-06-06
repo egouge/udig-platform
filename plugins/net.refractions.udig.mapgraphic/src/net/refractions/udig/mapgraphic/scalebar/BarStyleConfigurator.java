@@ -72,7 +72,7 @@ public class BarStyleConfigurator extends IStyleConfigurator
         final Table table = new Table(parent, SWT.BORDER | SWT.SINGLE |  SWT.V_SCROLL | SWT.H_SCROLL);
         table.setLinesVisible(false);
         table.setHeaderVisible(false);
-        table.setLayoutData(new GridData(235, 45));
+        table.setLayoutData(new GridData(235, 60));
         
         tViewer = new TableViewer(table);
 
@@ -89,7 +89,7 @@ public class BarStyleConfigurator extends IStyleConfigurator
             @Override
             public Image getImage(Object element){
                 BarType bt = (BarStyle.BarType) element;
-              return bt.getImage();
+                return bt.getImage();
             }
         });
        
@@ -123,7 +123,7 @@ public class BarStyleConfigurator extends IStyleConfigurator
         label.setText(Messages.BarStyleConfigurator_colorlable);
         label.setLayoutData(new GridData());
         chooser = new ColorEditor(parent);
-        chooser.addSelectionListener(this);
+        chooser.getButton().addSelectionListener(this);
         
         label = new Label(parent, SWT.RIGHT);
         label.setText(Messages.BarStyleConfigurator_UnitsLabel);
