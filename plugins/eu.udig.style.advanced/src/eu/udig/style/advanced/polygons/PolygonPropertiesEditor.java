@@ -61,7 +61,6 @@ import eu.udig.style.advanced.utils.Utilities;
  * 
  * @author Andrea Antonello (www.hydrologis.com)
  */
-@SuppressWarnings("nls")
 public class PolygonPropertiesEditor extends PropertiesEditor {
 
     private Composite propertiesComposite;
@@ -275,6 +274,7 @@ public class PolygonPropertiesEditor extends PropertiesEditor {
         addButton.setToolTipText(Messages.PolygonPropertiesEditor_6);
         addButton.addSelectionListener(new SelectionAdapter(){
             public void widgetSelected( SelectionEvent e ) {
+            	Object[] elements = groupRulesTreeViewer.getExpandedElements();
                 FeatureTypeStyleWrapper selectedFtsw = getSelectedFtsw();
                 if (selectedFtsw == null) {
                     RuleWrapper selectedRule = getSelectedRule();
@@ -294,6 +294,7 @@ public class PolygonPropertiesEditor extends PropertiesEditor {
 
                 reloadGroupsAndRules();
                 refreshPreviewCanvasOnStyle();
+                groupRulesTreeViewer.setExpandedElements(elements);
                 setRuleToSelected(addedRuleWrapper);
             }
         });
@@ -304,6 +305,7 @@ public class PolygonPropertiesEditor extends PropertiesEditor {
         deleteButton.setToolTipText(Messages.PolygonPropertiesEditor_10);
         deleteButton.addSelectionListener(new SelectionAdapter(){
             public void widgetSelected( SelectionEvent e ) {
+            	Object[] elements = groupRulesTreeViewer.getExpandedElements();
                 FeatureTypeStyleWrapper selectedFtsw = getSelectedFtsw();
                 RuleWrapper selectedRule = getSelectedRule();
                 if (selectedFtsw != null) {
@@ -317,6 +319,8 @@ public class PolygonPropertiesEditor extends PropertiesEditor {
 
                 reloadGroupsAndRules();
                 refreshPreviewCanvasOnStyle();
+                
+                groupRulesTreeViewer.setExpandedElements(elements);
             }
         });
 

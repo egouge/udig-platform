@@ -43,7 +43,7 @@ import eu.udig.style.advanced.utils.Utilities;
  * @author Andrea Antonello (www.hydrologis.com)
  */
 public class SimpleLineEditorPage extends StyleEditorPage {
-    public static final String ID = "eu.udig.style.advanced.editorpages.SimpleLineEditorPage"; //$NON-NLS-1$
+    public static final String ID = "org.locationtech.udig.style.advanced.editorpages.SimpleLineEditorPage"; //$NON-NLS-1$
 
     private Style style = null;
     private LinePropertiesEditor linesEditor;
@@ -143,9 +143,9 @@ public class SimpleLineEditorPage extends StyleEditorPage {
 
     private void applyStyle() {
         StyleLayer layer = getSelectedLayer();
+        if (linesEditor == null) return;
         
         Style newStyle = linesEditor.getStyle();
-        
         List<FeatureTypeStyle> featureTypeStyles = newStyle.featureTypeStyles();
         int ftsNum = featureTypeStyles.size();
         if (ftsNum < 1) {

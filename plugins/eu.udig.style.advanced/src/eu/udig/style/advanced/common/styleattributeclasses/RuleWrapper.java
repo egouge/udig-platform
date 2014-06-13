@@ -13,10 +13,6 @@ import static eu.udig.style.advanced.utils.Utilities.DEFAULT_MAXSCALE;
 import static eu.udig.style.advanced.utils.Utilities.DEFAULT_MINSCALE;
 import static eu.udig.style.advanced.utils.Utilities.sf;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +25,6 @@ import org.geotools.styling.RasterSymbolizer;
 import org.geotools.styling.Rule;
 import org.geotools.styling.Symbolizer;
 import org.geotools.styling.TextSymbolizer;
-import org.geotools.xml.Configuration;
-import org.geotools.xml.Encoder;
-import org.geotools.xml.Parser;
-import org.opengis.filter.Filter;
 
 import eu.udig.style.advanced.utils.Utilities;
 

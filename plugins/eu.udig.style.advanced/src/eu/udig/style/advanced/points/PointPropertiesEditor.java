@@ -62,7 +62,6 @@ import eu.udig.style.advanced.utils.Utilities;
  * 
  * @author Andrea Antonello (www.hydrologis.com)
  */
-@SuppressWarnings("nls")
 public class PointPropertiesEditor extends PropertiesEditor {
 
     private Composite propertiesComposite;
@@ -275,6 +274,8 @@ public class PointPropertiesEditor extends PropertiesEditor {
         addButton.setToolTipText(Messages.PointPropertiesEditor_6);
         addButton.addSelectionListener(new SelectionAdapter(){
             public void widgetSelected( SelectionEvent e ) {
+            	Object[] parent = groupRulesTreeViewer.getExpandedElements();
+            	
                 FeatureTypeStyleWrapper selectedFtsw = getSelectedFtsw();
                 if (selectedFtsw == null) {
                     RuleWrapper selectedRule = getSelectedRule();
@@ -294,6 +295,10 @@ public class PointPropertiesEditor extends PropertiesEditor {
 
                 reloadGroupsAndRules();
                 refreshPreviewCanvasOnStyle();
+                
+            	//maintain expanded states                
+                groupRulesTreeViewer.setExpandedElements(parent);
+                
                 setRuleToSelected(addedRuleWrapper);
             }
         });
@@ -304,7 +309,9 @@ public class PointPropertiesEditor extends PropertiesEditor {
         deleteButton.setToolTipText(Messages.PointPropertiesEditor_10);
         deleteButton.addSelectionListener(new SelectionAdapter(){
             public void widgetSelected( SelectionEvent e ) {
-                FeatureTypeStyleWrapper selectedFtsw = getSelectedFtsw();
+            	Object[] parent = groupRulesTreeViewer.getExpandedElements();
+
+            	FeatureTypeStyleWrapper selectedFtsw = getSelectedFtsw();
                 RuleWrapper selectedRule = getSelectedRule();
                 if (selectedFtsw != null) {
                     styleWrapper.removeFeatureTypeStyle(selectedFtsw);
@@ -317,6 +324,8 @@ public class PointPropertiesEditor extends PropertiesEditor {
 
                 reloadGroupsAndRules();
                 refreshPreviewCanvasOnStyle();
+            	//maintain expanded states                
+                groupRulesTreeViewer.setExpandedElements(parent);
             }
         });
 

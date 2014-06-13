@@ -14,8 +14,8 @@ import java.awt.Color;
 import net.refractions.udig.project.IBlackboard;
 import net.refractions.udig.project.internal.StyleBlackboard;
 import net.refractions.udig.style.sld.editor.StyleEditorPage;
+import net.refractions.udig.ui.ColorEditor;
 
-import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -28,7 +28,6 @@ import org.eclipse.swt.widgets.Group;
 import org.geotools.coverage.grid.GridCoverage2D;
 
 import eu.udig.style.advanced.internal.Messages;
-import eu.udig.style.advanced.utils.StolenColorEditor;
 
 /**
  * The style editor for single banded {@link GridCoverage2D coverages};
@@ -40,8 +39,7 @@ public class CoverageColorMaskStyleEditorPage extends StyleEditorPage implements
     public static String COVERAGE_COLORMASK_ID = "raster-color-mask"; //$NON-NLS-1$
 
     private Button colorMaskButton;
-    private boolean doColorMask;
-    private StolenColorEditor maskColorEditor;
+    private ColorEditor maskColorEditor;
 
     public CoverageColorMaskStyleEditorPage() {
         super();
@@ -62,20 +60,23 @@ public class CoverageColorMaskStyleEditorPage extends StyleEditorPage implements
         colorMaskButton.setText(Messages.CoverageColorMaskStyleEditorPage_1);
         colorMaskButton.addSelectionListener(this);
 
-        maskColorEditor = new StolenColorEditor(colorMaskGroup);
+        maskColorEditor = new ColorEditor(colorMaskGroup);
         if (maskColorString != null) {
             String[] colorSplit = maskColorString.split(":"); //$NON-NLS-1$
             Color color = new Color(Integer.parseInt(colorSplit[0]), Integer.parseInt(colorSplit[1]),
                     Integer.parseInt(colorSplit[2]));
             maskColorEditor.setColor(color);
             colorMaskButton.setSelection(true);
+        }else{
+        	colorMaskButton.setSelection(false);
+        	maskColorEditor.setEnabled(false);
         }
     }
 
     public void widgetSelected( SelectionEvent e ) {
         Object source = e.getSource();
         if (source.equals(colorMaskButton)) {
-            doColorMask = colorMaskButton.getSelection();
+            maskColorEditor.setEnabled(colorMaskButton.getSelection());
         }
     }
 

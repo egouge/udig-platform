@@ -29,7 +29,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.geotools.data.FeatureSource;
 import org.geotools.styling.FeatureTypeStyle;
+import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.PointSymbolizer;
+import org.geotools.styling.PolygonSymbolizer;
 import org.geotools.styling.Style;
 import org.geotools.styling.Symbolizer;
 import org.geotools.styling.visitor.DuplicatingStyleVisitor;
@@ -44,7 +46,7 @@ import eu.udig.style.advanced.utils.Utilities;
  * @author Andrea Antonello (www.hydrologis.com)
  */
 public class SimplePointEditorPage extends StyleEditorPage {
-    public static final String ID = "eu.udig.style.advanced.editorpages.SimplePointEditorPage"; //$NON-NLS-1$
+    public static final String ID = "org.locationtech.udig.style.advanced.editorpages.SimplePointEditorPage"; //$NON-NLS-1$
 
     private Style style = null;
     private PointPropertiesEditor propertiesEditor;
@@ -99,12 +101,18 @@ public class SimplePointEditorPage extends StyleEditorPage {
 
     private boolean isPointStyle( Style style ) {
         Symbolizer[] symbolizers = SLDs.symbolizers(style);
+        boolean pnt = false;
+        boolean other = false;
         for( Symbolizer symbolizer : symbolizers ) {
             if (symbolizer instanceof PointSymbolizer) {
-                return true;
+                pnt = true;
+            }else if (symbolizer instanceof PolygonSymbolizer || 
+            		symbolizer instanceof LineSymbolizer){
+            	//we don't want to use this style in these cases
+            	other = true;
             }
         }
-        return false;
+        return pnt && !other;	//can only style if only point symbolizer
     }
 
     @Override
@@ -144,7 +152,7 @@ public class SimplePointEditorPage extends StyleEditorPage {
 
     private void applyStyle() {
         StyleLayer layer = getSelectedLayer();
-
+        if (propertiesEditor == null) return;
         Style newStyle = propertiesEditor.getStyle();
         List<FeatureTypeStyle> featureTypeStyles = newStyle.featureTypeStyles();
         int ftsNum = featureTypeStyles.size();

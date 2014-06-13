@@ -9,6 +9,9 @@
  */
 package eu.udig.style.advanced.points;
 
+import static eu.udig.style.advanced.utils.Utilities.sb;
+import static eu.udig.style.advanced.utils.Utilities.wkMarkNames;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,14 +51,12 @@ import eu.udig.style.advanced.common.styleattributeclasses.SymbolizerWrapper;
 import eu.udig.style.advanced.common.styleattributeclasses.TextSymbolizerWrapper;
 import eu.udig.style.advanced.internal.Messages;
 import eu.udig.style.advanced.points.widgets.PointBoderParametersComposite;
-import eu.udig.style.advanced.points.widgets.PointFillParametersComposite;
 import eu.udig.style.advanced.points.widgets.PointCharacterChooserComposite;
+import eu.udig.style.advanced.points.widgets.PointFillParametersComposite;
 import eu.udig.style.advanced.points.widgets.PointGeneralParametersComposite;
 import eu.udig.style.advanced.points.widgets.PointLabelsParametersComposite;
 import eu.udig.style.advanced.utils.Utilities;
-import static eu.udig.style.advanced.utils.Utilities.*;
 
-@SuppressWarnings("nls")
 public class PointPropertiesComposite extends SelectionAdapter implements ModifyListener, IStyleChangesListener {
 
     private static final String[] POINT_STYLE_TYPES = {Messages.PointPropertiesComposite_0, Messages.PointPropertiesComposite_1, Messages.PointPropertiesComposite_2};
@@ -312,7 +313,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         propertiesGroup.setLayout(new GridLayout(1, false));
         propertiesGroup.setText(Messages.PointPropertiesComposite_8);
 
-        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.BORDER);
+        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.NONE);
         tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         generalParametersCompositeSIMPLE = new PointGeneralParametersComposite(tabFolder, numericAttributesArrays);
@@ -433,7 +434,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         propertiesGroup.setLayout(new GridLayout(1, false));
         propertiesGroup.setText(Messages.PointPropertiesComposite_19);
 
-        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.BORDER);
+        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.NONE);
         tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
         //TODO PointCharacterChooserComposite is loading in the ui this is holding up the dialog desplay

@@ -9,7 +9,9 @@
  */
 package eu.udig.style.advanced.common;
 
-import static eu.udig.style.advanced.utils.Utilities.*;
+import static eu.udig.style.advanced.utils.Utilities.checkSameNameFeatureTypeStyle;
+import static eu.udig.style.advanced.utils.Utilities.checkSameNameRule;
+import static eu.udig.style.advanced.utils.Utilities.rulesWrapperToImage;
 
 import java.awt.image.BufferedImage;
 import java.util.List;

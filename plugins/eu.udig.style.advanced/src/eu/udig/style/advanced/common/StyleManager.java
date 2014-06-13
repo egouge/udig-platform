@@ -9,6 +9,9 @@
  */
 package eu.udig.style.advanced.common;
 
+import static eu.udig.style.advanced.utils.Utilities.SLD_EXTENTION;
+import static eu.udig.style.advanced.utils.Utilities.readStyle;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -27,7 +30,6 @@ import eu.udig.style.advanced.common.styleattributeclasses.FeatureTypeStyleWrapp
 import eu.udig.style.advanced.common.styleattributeclasses.RuleWrapper;
 import eu.udig.style.advanced.common.styleattributeclasses.StyleWrapper;
 import eu.udig.style.advanced.common.styleattributeclasses.SymbolizerWrapper;
-import static eu.udig.style.advanced.utils.Utilities.*;
 
 /**
  * An abstract manager for styles.

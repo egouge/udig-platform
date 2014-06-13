@@ -20,8 +20,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
-import eu.udig.style.advanced.common.ParameterComposite;
 import eu.udig.style.advanced.common.IStyleChangesListener.STYLEEVENTTYPE;
+import eu.udig.style.advanced.common.ParameterComposite;
 import eu.udig.style.advanced.common.styleattributeclasses.RuleWrapper;
 import eu.udig.style.advanced.common.styleattributeclasses.SymbolizerWrapper;
 import eu.udig.style.advanced.internal.Messages;
@@ -35,7 +35,6 @@ import eu.udig.style.advanced.utils.Utilities;
 public class LineGeneralParametersComposite extends ParameterComposite {
 
     private final Composite parent;
-    private final String[] numericAttributesArrays;
 
     private Text nameText;
     private Spinner xOffsetSpinner;
@@ -45,9 +44,8 @@ public class LineGeneralParametersComposite extends ParameterComposite {
 
     private Composite mainComposite;
 
-    public LineGeneralParametersComposite( Composite parent, String[] numericAttributesArrays ) {
+    public LineGeneralParametersComposite( Composite parent ) {
         this.parent = parent;
-        this.numericAttributesArrays = numericAttributesArrays;
     }
 
     public Composite getComposite() {

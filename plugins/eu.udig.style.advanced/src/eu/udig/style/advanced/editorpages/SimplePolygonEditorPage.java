@@ -44,7 +44,7 @@ import eu.udig.style.advanced.utils.Utilities;
  * @author Andrea Antonello (www.hydrologis.com)
  */
 public class SimplePolygonEditorPage extends StyleEditorPage {
-    public static final String ID = "eu.udig.style.advanced.editorpages.SimplePolygonEditorPage"; //$NON-NLS-1$
+    public static final String ID = "org.locationtech.udig.style.advanced.editorpages.SimplePolygonEditorPage"; //$NON-NLS-1$
     
     private Style style = null;
     private PolygonPropertiesEditor propertiesEditor;
@@ -144,7 +144,7 @@ public class SimplePolygonEditorPage extends StyleEditorPage {
 
     private void applyStyle() {
        StyleLayer layer = getSelectedLayer();
-        
+        if (propertiesEditor == null) return;
         Style newStyle = propertiesEditor.getStyle();
         List<FeatureTypeStyle> featureTypeStyles = newStyle.featureTypeStyles();
         int ftsNum = featureTypeStyles.size();
