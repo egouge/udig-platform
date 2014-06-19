@@ -11,6 +11,7 @@
 package net.refractions.udig.mapgraphic.scale;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.text.NumberFormat;
 
@@ -18,7 +19,7 @@ import net.refractions.udig.mapgraphic.MapGraphic;
 import net.refractions.udig.mapgraphic.MapGraphicContext;
 import net.refractions.udig.mapgraphic.style.FontStyle;
 import net.refractions.udig.mapgraphic.style.FontStyleContent;
-import net.refractions.udig.mapgraphic.style.PositionStyleContent;
+import net.refractions.udig.mapgraphic.style.LocationStyleContent;
 import net.refractions.udig.project.IBlackboard;
 import net.refractions.udig.project.IStyleBlackboard;
 import net.refractions.udig.ui.graphics.ViewportGraphics;
@@ -103,11 +104,12 @@ public class ScaleDenomMapGraphic implements MapGraphic {
 	private Point getGraphicLocation(MapGraphicContext context) {
 		IStyleBlackboard styleBlackboard = context.getLayer()
 				.getStyleBlackboard();
-		Point point = (Point) styleBlackboard.get(PositionStyleContent.ID);
-		if (point == null) {
-			point = PositionStyleContent.createDefaultStyle();
-			styleBlackboard.put(PositionStyleContent.ID, point);
+		
+		Rectangle r = (Rectangle)styleBlackboard.get(LocationStyleContent.ID);
+		if (r == null){
+			r = LocationStyleContent.createDefaultStyle();
 		}
+		Point point = new Point(r.x,r.y);
 		return point;
 	}
 

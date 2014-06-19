@@ -105,6 +105,11 @@
           id="net.refractions.udig.mapgraphic.style.bartype"
           name="BarType Style">
     </style>
+    <style
+          class="org.locationtech.udig.mapgraphic.scale.ScaleDenomStyleContent"
+          id="org.locationtech.udig.mapgraphic.scaledenom.style"
+          name="Map Scale">
+    </style>
    </extension>
    <extension
          point="net.refractions.udig.style.styleConfigurator">
@@ -167,7 +172,7 @@
           id="position"
           label="%printing.ui.location.config.label"
           requires="net.refractions.udig.mapgraphic.scale.ScaleDenomMapGraphic"
-          styleId="org.locationtech.udig.printing.ui.positionStyle">
+          styleId="org.locationtech.udig.printing.ui.locationStyle">
     </styleConfigurator>
     <styleConfigurator
           class="net.refractions.udig.mapgraphic.scale.ScaleDenomStyleConfigurator"
@@ -181,7 +186,7 @@
           id="northarrowposition"
           label="%printing.ui.location.config.label"
           requires="net.refractions.udig.mapgraphic.northarrow.NorthArrowMapGraphic"
-          styleId="org.locationtech.udig.printing.ui.positionStyle">
+          styleId="org.locationtech.udig.printing.ui.locationStyle">
     </styleConfigurator>
    </extension>
    <extension
