@@ -402,6 +402,7 @@ public class LineLabelsParametersComposite extends ParameterComposite {
                 labelNameAttributecombo.select(index);
             } else {
                 labelNameText.setText(labelName);
+                labelNameAttributecombo.select(index);
             }
         } else {
             labelNameText.setText(""); //$NON-NLS-1$

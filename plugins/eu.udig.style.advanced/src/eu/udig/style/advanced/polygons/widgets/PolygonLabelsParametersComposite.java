@@ -342,6 +342,7 @@ public class PolygonLabelsParametersComposite extends ParameterComposite {
                 labelNameAttributecombo.select(index);
             } else {
                 labelNameText.setText(labelName);
+                labelNameAttributecombo.select(0);
             }
         } else {
             labelNameText.setText(""); //$NON-NLS-1$
