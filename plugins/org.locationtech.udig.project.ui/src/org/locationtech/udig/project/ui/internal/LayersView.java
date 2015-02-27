@@ -42,7 +42,6 @@ import org.locationtech.udig.project.ui.tool.IToolManager;
 import org.locationtech.udig.ui.PlatformGIS;
 import org.locationtech.udig.ui.UDIGDragDropUtilities;
 import org.locationtech.udig.ui.ZoomingDialog;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -51,6 +50,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -90,6 +90,7 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.part.IContributedContentsView;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 
@@ -530,7 +531,6 @@ public class LayersView extends ViewPart
     Adapter checkboxContextListener = new AdapterImpl(){
         @SuppressWarnings("unchecked")
         public void notifyChanged( final Notification msg ) {
-
             if (msg.getNotifier() instanceof ContextModel) {
                 ContextModel contextModel = (ContextModel) msg.getNotifier();
                 Map map = contextModel.getMap();
@@ -785,7 +785,7 @@ public class LayersView extends ViewPart
                 contextMenu.add(ApplicationGIS.getToolManager().getCOPYAction(LayersView.this));
                 contextMenu.add(ApplicationGIS.getToolManager().getPASTEAction(LayersView.this));
                 contextMenu.add(getDeleteAction());
-                contextMenu.add(new Separator());
+                contextMenu.add(new Separator("separator1"));
                 contextMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
                 // LayerApplicabilityMenuCreator creator = getApplicabilityMenu();
                 // if (creator != null)
