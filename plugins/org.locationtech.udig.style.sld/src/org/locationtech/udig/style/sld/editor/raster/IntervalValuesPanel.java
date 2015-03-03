@@ -437,7 +437,7 @@ public class IntervalValuesPanel implements IColorMapTypePanel{
 	}
 	
 	/**
-	 * @see net.refractions.udig.style.raster.ui.IColorMapTypePanel#init(org.geotools.styling.ColorMap)
+ 	 * @see org.locationtech.udig.style.raster.ui.IColorMapTypePanel#init(org.geotools.styling.ColorMap)
 	 */
 	@Override
 	public void init(ColorMap cm){
