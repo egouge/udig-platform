@@ -14,13 +14,15 @@ import static org.junit.Assert.assertTrue;
 
 import java.net.URL;
 
+import org.junit.Ignore;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.internal.wfs.WFSServiceImpl;
 
+@Ignore("because of access restriction for WFSServiceImpl")
 public class WFSCatalogImportTest extends CatalogImportTest {
 
 	@Override
-	Object getContext() throws Exception {
+	URL getContext() throws Exception {
 		return new URL("http://demo.opengeo.org/geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities"); //$NON-NLS-1$
 	}
 

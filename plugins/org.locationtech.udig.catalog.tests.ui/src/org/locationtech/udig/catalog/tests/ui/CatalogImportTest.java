@@ -13,6 +13,8 @@ package org.locationtech.udig.catalog.tests.ui;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,6 +26,7 @@ import org.locationtech.udig.catalog.IResolve;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.tests.ui.workflow.DummyMonitor;
 import org.locationtech.udig.catalog.ui.wizard.CatalogImport;
+import org.locationtech.udig.catalog.util.CatalogTestUtils;
 import org.locationtech.udig.ui.WaitCondition;
 import org.locationtech.udig.ui.tests.support.UDIGTestUtil;
 
@@ -31,15 +34,15 @@ public abstract class CatalogImportTest {
 
 	CatalogImport catalogImport;
 
-	@Before
-	public void setUp() throws Exception {
-		catalogImport = new CatalogImport();
-	}
+    @Before
+    public void setUp() throws Exception {
+        catalogImport = new CatalogImport();
+        CatalogTestUtils.assumeNoConnectionException(getContext(), 1000);
+    }
 
     @Test
 	public void testNormal() throws Exception{
-			Object context = getContext();
-
+			URL context = getContext();
 			final ICatalog catalog = CatalogPlugin.getDefault().getLocalCatalog();
 
 			List<IResolve> members = catalog.members(new DummyMonitor());
@@ -58,7 +61,7 @@ public abstract class CatalogImportTest {
 			catalogImport.run(new DummyMonitor(),context);
 
             //sleep for 10 seconds, if dialog still active by then kill it
-            UDIGTestUtil.inDisplayThreadWait(2000000, new WaitCondition(){
+            UDIGTestUtil.inDisplayThreadWait(10000, new WaitCondition(){
 
                 public boolean isTrue() {
                     try {
@@ -77,7 +80,7 @@ public abstract class CatalogImportTest {
 			}
 	}
 
-	abstract Object getContext() throws Exception;
+	abstract URL getContext() throws Exception;
 
 	abstract void assertServiceType(IService service);
 }

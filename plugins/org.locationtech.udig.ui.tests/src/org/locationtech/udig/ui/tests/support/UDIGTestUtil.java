@@ -3,8 +3,14 @@
  */
 package org.locationtech.udig.ui.tests.support;
 
-import org.locationtech.udig.ui.WaitCondition;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Assume;
+import org.locationtech.udig.ui.WaitCondition;
 import org.eclipse.swt.widgets.Display;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
@@ -27,7 +33,7 @@ import com.vividsolutions.jts.geom.Polygon;
  * @author jeichar
  */
 @SuppressWarnings("nls")
-public class UDIGTestUtil {
+public final class UDIGTestUtil {
 	/**
 	 * The features created have a polygon geometry and have the SimpleFeatureType:
 	 * "*geom:Geometry,name:String".
@@ -129,8 +135,8 @@ public class UDIGTestUtil {
 	 * The method will throw an exception if the current thread is not in the
 	 * display thread.
 	 * 
-	 * @param maxWait
-	 *            The maximum time to wait
+	 * @param maxWaitInMilliSeconds
+	 *            The maximum time to wait in Milliseconds
 	 * @param condition
 	 *            the condition that will cause the method to return early.
      * @param throwExceptionOnTimeout if true an exception will be thrown if a 
@@ -138,11 +144,11 @@ public class UDIGTestUtil {
 	 * @throws Exception 
 	 * @throws Exception
 	 */
-	public static void inDisplayThreadWait(long maxWait,
+	public static void inDisplayThreadWait(long maxWaitInMilliSeconds,
 			WaitCondition condition, boolean throwExceptionOnTimeout) throws Exception {
 		long startTime = System.currentTimeMillis();
         long lastTime=System.currentTimeMillis();
-		while (startTime + maxWait > lastTime
+		while (startTime + maxWaitInMilliSeconds > lastTime
 				&& !condition.isTrue()) {
             Thread.yield();
 			if (!Display.getCurrent().readAndDispatch()){
@@ -156,9 +162,9 @@ public class UDIGTestUtil {
             lastTime=System.currentTimeMillis();
 		}
 		while(Display.getCurrent().readAndDispatch());
-		if (throwExceptionOnTimeout && !condition.isTrue() && startTime + maxWait < lastTime){
+		if (throwExceptionOnTimeout && !condition.isTrue() && startTime + maxWaitInMilliSeconds < lastTime){
             throw new IllegalStateException("condition is false!  Condition that failed is:"+ condition);  //$NON-NLS-1$
-        }
+            }
 	}
 
 }

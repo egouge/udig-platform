@@ -14,14 +14,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Set;
-
-import org.locationtech.udig.catalog.tests.wmsc.Activator;
 
 import org.geotools.data.ResourceInfo;
 import org.geotools.data.ServiceInfo;
@@ -31,33 +27,20 @@ import org.geotools.data.wms.WMS1_1_1;
 import org.geotools.ows.ServiceException;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.locationtech.udig.catalog.tests.wmsc.Activator;
+import org.locationtech.udig.catalog.util.CatalogTestUtils;
 
 public class TileImageReadWriterTest {
     
-    static URL serverURL = null; // default to offline
+    private static URL serverURL = null; // default to offline
     
-    @BeforeClass 
-    public static void available() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         URL url = new URL( "http://localhost:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities");
-        
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        
-        try {
-            int responseCode = connection.getResponseCode();
-            if( 200 == responseCode ){
-                serverURL = url;
-            }
-            else {
-                System.out.println("Unable to run TileImageReadWriterTest: HTTP Response Code "+responseCode+" "+url);
-                serverURL = null;
-            }
-        }
-        catch( ConnectException refused ){
-            System.out.println("Unable to run TileImageReadWriterTest: "+refused );
-            serverURL = null;
-        }
-        
+        CatalogTestUtils.assumeNoConnectionException(url, 1000);
+        serverURL = url;
     }
+
     @Test
     public void testIsStale() throws Exception {
         Activator instance = Activator.getDefault();
