@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.locationtech.udig</groupId>
@@ -8,7 +9,8 @@
         <relativePath>../../pom-libs.xml</relativePath>
     </parent>
 
-    <!-- This script was created to automagically download the external libs 
+    <!-- 
+        This script was created to automagically download the external libs 
         required for uDig to build and export correctly. 
 
         To download the required libraries, use: 
@@ -18,8 +20,23 @@
         After they have downloaded, make sure you:
           - refresh the org.locationtech.udig.libs project in Eclipse;
           - verify the classpath (Manfiest Runtime tab) references the libs;
-          - ensure the lib versions in the classpath are also correct. -->
+          - ensure the lib versions in the classpath are also correct. 
+     -->
 
+    <artifactId>pom-libs.download.geotools</artifactId>
+    <name>uDig 3rd-Party Core libraries Download</name>
+    
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- see geotools root pom for details -->
+        <geotools.version>14.1</geotools.version>
+        <imageio-ext.version>1.1.12</imageio-ext.version>
+        <jfreechart.version>1.0.13</jfreechart.version>
+        <jt.version>1.4.0</jt.version>
+        <lib.dir>${basedir}/lib</lib.dir>
+        <lib.source.dir>${basedir}/lib-src</lib.source.dir>
+    </properties>
 
     <developers>
         <developer>
@@ -42,24 +59,16 @@
         </developer>
     </developers>
 
-    <modelVersion>4.0.0</modelVersion>
-    
-    <groupId>org.locationtech.udig</groupId>
-    <artifactId>libs</artifactId>
-    <version>0.0.2</version>
-    <name>uDig 3rd-Party Core libraries Download</name>
-    
-    <packaging>pom</packaging>
-
-    <properties>
-        <!-- see geotools root pom for details -->
-        <geotools.version>11.2</geotools.version>
-        <imageio-ext.version>1.1.10</imageio-ext.version>
-        <jfreechart.version>1.0.13</jfreechart.version>
-        <jt.version>1.3.1</jt.version>
-        <lib.dir>${basedir}/lib</lib.dir>
-        <lib.source.dir>${basedir}/lib-src</lib.source.dir>
-    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+            <!-- make version explicit here, its approved by CQ#: 7583 -->
+            <groupId>net.java.dev.jsr-275</groupId>
+            <artifactId>jsr-275</artifactId>
+            <version>1.0-beta-2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- uDig Specific Extras -->
@@ -121,16 +130,16 @@
             <artifactId>gt-brewer</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-	
-	<!-- gt-11 no longer under development.
-	
+    
+    <!-- gt-11 no longer under development.
+    
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile-renderer</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-	-->
-	
+    -->
+    
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-validation</artifactId>
@@ -208,15 +217,15 @@
             <artifactId>gt-shapefile</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-	
-	<!-- gt-11: shapefile-ng was merged in shapefile
+    
+    <!-- gt-11: shapefile-ng was merged in shapefile
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile-ng</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-	-->
-	
+    -->
+    
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-wfs</artifactId>
@@ -316,6 +325,43 @@
 
         <dependency>
             <groupId>org.geotools</groupId>
+            <artifactId>gt-wfs-ng</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-css</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-mbtiles</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geopkg</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geobuf</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-ogr-jni</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <!-- others -->
+        <dependency>
+            <groupId>org.geotools</groupId>
             <artifactId>gt-imagepyramid</artifactId>
             <version>${geotools.version}</version>
         </dependency>
@@ -338,27 +384,22 @@
             <version>${geotools.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-unidata</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-
         <!-- geotools unsupported modules (ie legacy) -->
         
         <!-- stuff for jgrass contributions -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>1.8.8</version>
+            <version>2.4.5</version>
         </dependency>
         <dependency>
             <groupId>org.geoscript</groupId>
             <artifactId>geoscript-groovy</artifactId>
-            <version>1.3.1</version>
+            <version>1.6.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.geotools</groupId>
+                    <artifactId>*</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.codehaus.groovy</groupId>
@@ -460,9 +501,9 @@
             <version>${jfreechart.version}</version>
             <exclusions>
                 <exclusion>
-		          <groupId>jfree</groupId>
-		          <artifactId>jcommon</artifactId>
-		        </exclusion>
+                  <groupId>jfree</groupId>
+                  <artifactId>jcommon</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -685,9 +726,9 @@
             <version>1.0.b2</version>
             <scope>provided</scope>
         </dependency>
-		
-		<!-- Apache Commons Libraries -->
-		<!-- Prefer to use these from target platform if available -->
+        
+        <!-- Apache Commons Libraries -->
+        <!-- Prefer to use these from target platform if available -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -837,9 +878,9 @@
             <version>0.7.6</version>
             <exclusions>
                 <exclusion>
-		          <groupId>org.codehaus.groovy</groupId>
-		          <artifactId>groovy-all</artifactId>
-		        </exclusion>
+                  <groupId>org.codehaus.groovy</groupId>
+                  <artifactId>groovy-all</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>

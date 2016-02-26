@@ -18,18 +18,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.project.EditManagerEvent;
-import org.locationtech.udig.project.IEditManager;
-import org.locationtech.udig.project.IEditManagerListener;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.ui.ApplicationGIS;
-import org.locationtech.udig.project.ui.commands.AbstractDrawCommand;
-import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
-import org.locationtech.udig.project.ui.tool.SimpleTool;
-import org.locationtech.udig.ui.ExceptionDetailsDialog;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -42,17 +30,26 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.geotools.coverage.grid.GridCoverage2D;
-import org.geotools.coverage.grid.ViewType;
 import org.geotools.geometry.jts.JTS;
-import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.referencing.operation.TransformException;
-
-import com.vividsolutions.jts.geom.Coordinate;
-
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.project.EditManagerEvent;
+import org.locationtech.udig.project.IEditManager;
+import org.locationtech.udig.project.IEditManagerListener;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.ui.ApplicationGIS;
+import org.locationtech.udig.project.ui.commands.AbstractDrawCommand;
+import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
+import org.locationtech.udig.project.ui.tool.SimpleTool;
 import org.locationtech.udig.tools.jgrass.JGrassToolsPlugin;
 import org.locationtech.udig.tools.jgrass.profile.borrowedfromjgrasstools.CoverageUtilities;
 import org.locationtech.udig.tools.jgrass.profile.borrowedfromjgrasstools.ProfilePoint;
 import org.locationtech.udig.tools.jgrass.profile.borrowedfromjgrasstools.RegionMap;
+import org.locationtech.udig.ui.ExceptionDetailsDialog;
+import org.locationtech.udig.ui.PlatformGIS;
+import org.opengis.coverage.grid.GridCoverage;
+import org.opengis.referencing.operation.TransformException;
+
+import com.vividsolutions.jts.geom.Coordinate;
 
 /**
  * <p>
@@ -63,6 +60,7 @@ import org.locationtech.udig.tools.jgrass.profile.borrowedfromjgrasstools.Region
  * </p>
  * 
  * @author Andrea Antonello - www.hydrologis.com
+ * @author Frank Gasdorf
  */
 public class ProfileTool extends SimpleTool implements IEditManagerListener {
 
@@ -125,6 +123,10 @@ public class ProfileTool extends SimpleTool implements IEditManagerListener {
         }
 
         Point current = e.getPoint();
+        handlePointClick(current);
+    }
+
+    private void handlePointClick(Point current) {
         // if enough points are there, create the profile
         if (points.isEmpty() || !current.equals(points.get(points.size() - 1))) {
             points.add(current);
@@ -149,6 +151,10 @@ public class ProfileTool extends SimpleTool implements IEditManagerListener {
     }
 
     protected void onMouseDoubleClicked( MapMouseEvent e ) {
+        // check, if the current point is not equal to the last, if so add it to profile and finish
+        Point current = e.getPoint();
+        handlePointClick(current);
+
         currentPointNumber = 0;
         doubleClicked = true;
     }
@@ -196,8 +202,10 @@ public class ProfileTool extends SimpleTool implements IEditManagerListener {
 
             Point lastPoint = points.get(points.size() - 1);
             Coordinate end = getContext().pixelToWorld(lastPoint.x, lastPoint.y);
+            
 
-            final List<ProfilePoint> profile = CoverageUtilities.doProfile(rasterMapResource, step, begin, end);
+            final List<ProfilePoint> profile = CoverageUtilities.doProfile(getContext().getCRS(), rasterMapResource, step, begin, end);
+            
             begin = end;
 
             Display.getDefault().syncExec(new Runnable(){
@@ -229,6 +237,10 @@ public class ProfileTool extends SimpleTool implements IEditManagerListener {
             cleanupOnDeactivation();
             IEditManager editManager = ApplicationGIS.getActiveMap().getEditManager();
             editManager.removeListener(this);
+        } else {
+            IEditManager editManager = ApplicationGIS.getActiveMap().getEditManager();
+            editManager.addListener(this);
+            selectedLayer = editManager.getSelectedLayer();
         }
         super.setActive(active);
     }
@@ -252,8 +264,6 @@ public class ProfileTool extends SimpleTool implements IEditManagerListener {
                         try {
                             rasterMapResource = (GridCoverage2D) geoResource.resolve(GridCoverage.class,
                                     new NullProgressMonitor());
-                            rasterMapResource = rasterMapResource.view(ViewType.GEOPHYSICS);
-
                             RegionMap regionMap = CoverageUtilities.getRegionParamsFromGridCoverage(rasterMapResource);
                             double xres = regionMap.getXres();
                             double yres = regionMap.getYres();

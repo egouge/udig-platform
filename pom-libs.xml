@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
 
     <!-- This script was created to automagically download the external libs 
         required for uDig to build and export correctly. 
@@ -13,9 +14,6 @@
           - verify the classpath (Manfiest Runtime tab) references the libs;
           - ensure the lib versions in the classpath are also correct. -->
 
-
-    <modelVersion>4.0.0</modelVersion>
-    
     <groupId>org.locationtech.udig</groupId>
     <artifactId>pom-libs.parent</artifactId>
     <version>0.0.2</version>
@@ -66,9 +64,9 @@
         nightly builds - in general it is much faster then the official repository
         above -->
         <repository>
-            <id>geotools-snapshot</id>
-            <name>Geotools Snapshot</name>
-            <url>http://repo.boundlessgeo.com/main/</url>
+            <id>boundless</id>
+            <name>Boundless Maven Repository</name>
+            <url>https://repo.boundlessgeo.com/main/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -86,6 +84,13 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+
+	<repository>
+            <id>ecc</id>
+            <name>ECC Repository</name>
+            <url>https://github.com/ElectronicChartCentre/ecc-mvn-repo/raw/master/releases</url>
+        </repository>
+
     </repositories>
 
     <build>
