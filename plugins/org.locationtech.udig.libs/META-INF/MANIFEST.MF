@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.apache.xerces;visibility:=reexport,
  org.apache.log4j;visibility:=reexport,
  org.eclipse.xsd;visibility:=reexport,
- org.eclipse.swt;visibility:=reexport
+ org.eclipse.swt;visibility:=reexport,
+ org.apache.commons.logging;bundle-version="1.1.1"
 Bundle-Activator: org.locationtech.udig.libs.internal.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
