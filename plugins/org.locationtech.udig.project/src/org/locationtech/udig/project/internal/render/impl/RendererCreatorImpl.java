@@ -128,6 +128,7 @@ public class RendererCreatorImpl implements RendererCreator {
 				return Collections.emptyList();
 			}
         }
+        availableRenderers = new ArrayList<InternalRenderMetricsFactory.InternalRenderMetrics>(availableRenderers);
         for( InternalRenderMetrics internalRenderMetrics : availableRenderers ) {
             IRenderContext renderContext = internalRenderMetrics.getRenderContext();
             IRenderMetricsFactory renderMetricsFactory = internalRenderMetrics.getRenderMetricsFactory();
@@ -222,7 +223,10 @@ public class RendererCreatorImpl implements RendererCreator {
                 }
     
                 List<InternalRenderMetrics> layerfactories = layerToMetricsFactoryMap.get(layer);
-                Collections.sort(layerfactories, new RenderMetricsSorter(layers));
+                synchronized (layerfactories) {
+                	Collections.sort(layerfactories, new RenderMetricsSorter(layers));	
+				}
+                
     
                 if (layerfactories.isEmpty()) {
                     // nobody loves this layer
