@@ -22,7 +22,6 @@ import org.locationtech.udig.project.internal.render.SelectionLayer;
 import org.locationtech.udig.project.internal.render.impl.InternalRenderMetricsFactory.InternalRenderMetrics;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
 import org.locationtech.udig.project.render.IRenderMetricsFactory;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -89,7 +88,8 @@ public class RendererExtensionProcessor implements ExtensionPointProcessor {
                 context.setGeoResourceInternal(resource);
                                 
                 InternalRenderMetrics metrics = metricsFactory.createMetrics(context);
-                metrics.delegate.setId(element.getNamespaceIdentifier()+"."+element.getAttribute("id")); //$NON-NLS-1$ //$NON-NLS-2$)
+                String ns = element.getDeclaringExtension().getNamespaceIdentifier();
+                metrics.delegate.setId(ns + "." + element.getAttribute("id")); //$NON-NLS-1$ //$NON-NLS-2$)
                 rFactories.add(metrics);
             }
         } catch (CoreException e) {
