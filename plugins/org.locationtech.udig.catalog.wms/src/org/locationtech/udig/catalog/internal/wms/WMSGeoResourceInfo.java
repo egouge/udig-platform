@@ -78,8 +78,7 @@ public class WMSGeoResourceInfo extends IGeoResourceInfo {
         } else {
             title = caps.getService().getTitle();
         }
-        super.icon = CatalogUIPlugin.getDefault().getImageDescriptor(
-                ISharedImages.GRID_OBJ);
+        super.icon = WmsPlugin.getDefault().getGridObjectImage();
     }
     /**
      * Isolate bbox generation into a single method.

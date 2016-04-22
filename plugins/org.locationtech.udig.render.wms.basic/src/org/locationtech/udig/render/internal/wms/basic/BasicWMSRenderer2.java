@@ -467,6 +467,11 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
                 try {
                     inputStream = wms.issueRequest(request).getInputStream();
                     image[0] = ImageIO.read(inputStream);
+                    if (image[0] == null){
+                    	//without this we end up in an infinite loop below if something goes wrong
+                    	//that does not throw an exception
+                    	exception[0] = new RenderException("No image returned from wms request"); //$NON-NLS-1$
+                    }
                 } catch (IOException e1) {
                     exception[0] = wrapException(e1);
                 } catch (ServiceException e) {
