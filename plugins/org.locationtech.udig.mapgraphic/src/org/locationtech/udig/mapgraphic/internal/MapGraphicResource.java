@@ -15,18 +15,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IGeoResourceInfo;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.core.internal.CorePlugin;
 import org.locationtech.udig.mapgraphic.MapGraphic;
 import org.locationtech.udig.mapgraphic.MapGraphicFactory;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import com.vividsolutions.jts.geom.Envelope;
@@ -152,9 +151,12 @@ public class MapGraphicResource extends IGeoResource {
 
         public MapGraphicResourceInfo( IConfigurationElement element ) {
             String iconPath = element.getAttribute("icon"); //$NON-NLS-1$
-            if (iconPath != null && iconPath.length() > 0)
-                this.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element
-                        .getNamespaceIdentifier(), iconPath);
+            if (iconPath != null && iconPath.length() > 0 ){
+            	try{
+            		this.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
+            	}catch (NullPointerException ex){}
+            }
+                
         }
 
         /*

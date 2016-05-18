@@ -18,7 +18,6 @@ import org.locationtech.udig.mapgraphic.MapGraphic;
 import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
 import org.locationtech.udig.mapgraphic.scalebar.BarStyle.BarType;
 import org.locationtech.udig.project.StyleContent;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.IMemento;
 
@@ -70,6 +69,7 @@ public class BarStyleContent extends StyleContent {
     @Override
     public Object load( IMemento memento ) {
         try {
+        	
             Integer R = memento.getInteger(COLOR_R);
             Integer G = memento.getInteger(COLOR_G);
             Integer B = memento.getInteger(COLOR_B);
@@ -78,10 +78,13 @@ public class BarStyleContent extends StyleContent {
             int b = B == null ? 0 : B;
             
             Color c = new Color(r,g,b);
-            int numintervales = memento.getInteger(NUM_INTERVAL);
+            Integer numintervales = memento.getInteger(NUM_INTERVAL);
             String bartype = memento.getString(BARSTYLE);
-            //int units = memento.getInteger(UNITS);
-            UnitPolicy units = UnitPolicy.valueOf(memento.getString(UNITS));
+            String unit = memento.getString(UNITS);
+            if (numintervales == null || bartype == null || unit == null){
+            	return new BarStyle();
+            }
+            UnitPolicy units = UnitPolicy.valueOf(unit);
             BarStyle bs = new BarStyle(BarType.valueOf(bartype), c, numintervales, units);
             return bs;
         } catch (Throwable e) {

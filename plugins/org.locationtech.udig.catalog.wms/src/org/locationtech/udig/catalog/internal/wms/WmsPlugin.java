@@ -16,7 +16,10 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
+import org.locationtech.udig.catalog.ui.ISharedImages;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -139,5 +142,12 @@ public class WmsPlugin extends AbstractUIPlugin {
     public static boolean isDebugging( final String trace ){
         return getDefault().isDebugging() &&
             "true".equalsIgnoreCase(Platform.getDebugOption(trace)); //$NON-NLS-1$    
-    }        
+    }
+    
+    public ImageDescriptor getGridObjectImage(){
+    	return CatalogUIPlugin.getDefault().getImageDescriptor(ISharedImages.GRID_OBJ);
+    }
+    public ImageDescriptor getGridMissingImage(){
+    	return CatalogUIPlugin.getDefault().getImageDescriptor(ISharedImages.GRID_MISSING);
+    }
 }

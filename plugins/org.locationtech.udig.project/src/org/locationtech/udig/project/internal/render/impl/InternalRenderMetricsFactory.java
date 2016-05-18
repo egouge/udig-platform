@@ -13,6 +13,9 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.io.IOException;
 import java.util.Set;
 
+import org.eclipse.core.internal.registry.Extension;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.geotools.util.Range;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IStyleBlackboard;
 import org.locationtech.udig.project.internal.render.Renderer;
@@ -20,9 +23,6 @@ import org.locationtech.udig.project.render.AbstractRenderMetrics;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.IRenderMetricsFactory;
 import org.locationtech.udig.project.render.IRenderer;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.geotools.util.Range;
 
 /**
  * Used by Renderer creator for storing extra information about the RenderMetrics, such as the name and id provided by the Extension point.
@@ -62,7 +62,7 @@ public class InternalRenderMetricsFactory implements IRenderMetricsFactory{
             super(delegate.getRenderContext(), delegate.getRenderMetricsFactory(), delegate.getExpectedStyles());
             this.delegate = delegate;
             name=element.getAttribute("name"); //$NON-NLS-1$
-            id=element.getNamespaceIdentifier()+"."+element.getAttribute("id"); //$NON-NLS-1$ //$NON-NLS-2$
+            id = element.getDeclaringExtension().getNamespaceIdentifier() + "." + element.getAttribute("id"); //$NON-NLS-1$ //$NON-NLS-2$
             IConfigurationElement[] descChild = element.getChildren("description"); //$NON-NLS-1$
             if( descChild.length>0 ){
                 description=descChild[0].getValue();

@@ -128,6 +128,7 @@ public class RendererCreatorImpl implements RendererCreator {
 				return Collections.emptyList();
 			}
         }
+        availableRenderers = new ArrayList<InternalRenderMetricsFactory.InternalRenderMetrics>(availableRenderers);
         for( InternalRenderMetrics internalRenderMetrics : availableRenderers ) {
             IRenderContext renderContext = internalRenderMetrics.getRenderContext();
             IRenderMetricsFactory renderMetricsFactory = internalRenderMetrics.getRenderMetricsFactory();
@@ -222,6 +223,7 @@ public class RendererCreatorImpl implements RendererCreator {
                 }
     
                 List<InternalRenderMetrics> layerfactories = layerToMetricsFactoryMap.get(layer);
+
                 /*
                  * This causes  concurrent modification exception. In the end most probably
                  * render metrics sorted once will serve forever in the same order.
@@ -229,8 +231,8 @@ public class RendererCreatorImpl implements RendererCreator {
                  * 
                  */
 //                Collections.sort(layerfactories, new RenderMetricsSorter(layers));
-    
-                if (layerfactories.isEmpty()) {
+
+if (layerfactories.isEmpty()) {
                     // nobody loves this layer
                     // layer.setStatus( Layer.UNCONFIGURED );
                     continue LAYERS;

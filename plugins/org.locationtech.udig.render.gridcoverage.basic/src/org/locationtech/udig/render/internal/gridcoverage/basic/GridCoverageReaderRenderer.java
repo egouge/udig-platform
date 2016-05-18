@@ -25,6 +25,7 @@ import java.util.HashMap;
 
 import javax.media.jai.InterpolationNearest;
 import javax.media.jai.JAI;
+import javax.media.jai.PlanarImage;
 import javax.media.jai.TileCache;
 
 import org.locationtech.udig.catalog.IGeoResource;
@@ -55,6 +56,7 @@ import org.geotools.referencing.CRS;
 import org.geotools.referencing.ReferencingFactoryFinder;
 import org.geotools.renderer.lite.RendererUtilities;
 import org.geotools.renderer.lite.gridcoverage2d.GridCoverageRenderer;
+import org.geotools.resources.image.ImageUtilities;
 import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.RasterSymbolizer;
 import org.geotools.styling.Rule;
@@ -261,6 +263,10 @@ public class GridCoverageReaderRenderer extends RendererImpl {
                     setState( DONE );
 	            }
 	            //tempCache.flush();
+	            
+	            //dispose of image
+	            PlanarImage planarImage = (PlanarImage) coverage.getRenderedImage();
+	            ImageUtilities.disposePlanarImageChain(planarImage);
 			}
         } catch (Exception e1) {
             throw new RenderException(e1);

@@ -42,6 +42,7 @@ import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
 import org.locationtech.udig.catalog.rasterings.GridCoverageLoader;
 import org.locationtech.udig.catalog.rasterings.RasteringsPlugin;
 import org.locationtech.udig.internal.ui.UiPlugin;
+import org.locationtech.udig.ui.PlatformGIS;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.geometry.Envelope;
@@ -89,7 +90,8 @@ public class InMemoryCoverageLoader extends GridCoverageLoader {
                 GridCoverage2D coverage2d = (GridCoverage2D) super.load(all, monitor);
                 RenderedImage image = coverage2d.getRenderedImage();
 
-				RasteringsPlugin
+                if (RasteringsPlugin.getDefault() != null)
+					RasteringsPlugin
 						.log("WARNING.  Loading image fully into memory.  It is about " + size(image) + " MB in size decompressed", null); //$NON-NLS-1$//$NON-NLS-2$
 
                 @SuppressWarnings("rawtypes")

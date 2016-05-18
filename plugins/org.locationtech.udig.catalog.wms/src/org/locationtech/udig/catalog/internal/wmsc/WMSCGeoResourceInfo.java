@@ -15,10 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
-import org.locationtech.udig.catalog.ui.ISharedImages;
+import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
 import org.locationtech.udig.catalog.wmsc.server.TileSet;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.geotools.data.wms.xml.WMSSchema;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -59,7 +57,7 @@ public class WMSCGeoResourceInfo extends IGeoResourceInfo {
         keywordsFromWMSC.add(this.name);
         this.keywords = keywordsFromWMSC.toArray(new String[keywordsFromWMSC.size()]);
 
-        super.icon = CatalogUIPlugin.getDefault().getImageDescriptor(ISharedImages.GRID_OBJ);
+        super.icon = WmsPlugin.getDefault().getGridObjectImage();
 
     }
     
