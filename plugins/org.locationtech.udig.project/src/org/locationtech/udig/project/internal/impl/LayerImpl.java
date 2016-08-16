@@ -2147,8 +2147,10 @@ public class LayerImpl extends EObjectImpl implements Layer {
         }
 
         if (result != null && !result.isNull()) {
-            DefaultEngineeringCRS generic2d = DefaultEngineeringCRS.GENERIC_2D;
-            if (crs != null && result.getCoordinateReferenceSystem() != generic2d) {
+        	//EG: removed so that layers without projection information will still display 
+            //DefaultEngineeringCRS generic2d = DefaultEngineeringCRS.GENERIC_2D;
+            //if (crs != null && result.getCoordinateReferenceSystem() != generic2d) {
+            if (crs != null){
                 try {
                     result = result.transform(crs, true);
                 } catch (Exception fe) {
