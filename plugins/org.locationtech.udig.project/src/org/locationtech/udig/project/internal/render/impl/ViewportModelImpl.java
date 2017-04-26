@@ -6,6 +6,7 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -32,7 +33,6 @@ import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
 import org.locationtech.udig.project.render.displayAdapter.MapDisplayEvent;
 import org.locationtech.udig.ui.PlatformGIS;
 import org.locationtech.udig.ui.ProgressManager;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -786,7 +786,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
                 boolean hasVisibleLayer = false;
                 // search the map for visible layers and construct a bounds from those layers.
                 // otherwise default to what the map's extent is.
-                List<ILayer> layers = getMap().getMapLayers();
+                List<ILayer> layers = new ArrayList<>(getMap().getMapLayers());
                 for (ILayer layer : layers) {
                     ReferencedEnvelope layerBounds = layer.getBounds(ProgressManager.instance()
                             .get(), getCRS());
