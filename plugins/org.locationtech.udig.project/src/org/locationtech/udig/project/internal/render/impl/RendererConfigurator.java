@@ -15,29 +15,27 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import  org.locationtech.udig.core.internal.ExtensionPointUtil;
-import  org.locationtech.udig.project.ILayer;
-import  org.locationtech.udig.project.internal.ContextModel;
-import  org.locationtech.udig.project.internal.Layer;
-import  org.locationtech.udig.project.internal.ProjectPackage;
-import  org.locationtech.udig.project.internal.ProjectPlugin;
-import  org.locationtech.udig.project.internal.render.CompositeRenderContext;
-import  org.locationtech.udig.project.internal.render.RenderContext;
-import  org.locationtech.udig.project.internal.render.RenderManager;
-import  org.locationtech.udig.project.internal.render.Renderer;
-import  org.locationtech.udig.project.internal.render.RendererCreator;
-import  org.locationtech.udig.project.internal.render.SelectionLayer;
-import  org.locationtech.udig.project.internal.render.impl.InternalRenderMetricsFactory.InternalRenderMetrics;
-import  org.locationtech.udig.project.internal.render.impl.RendererCreatorImpl.DumbRenderer;
-import  org.locationtech.udig.project.render.AbstractRenderMetrics;
-import  org.locationtech.udig.project.render.IRenderContext;
-import  org.locationtech.udig.project.render.IRenderMetricsFactory;
-import  org.locationtech.udig.project.render.IRenderer;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.geotools.data.FeatureSource;
 import org.geotools.util.Range;
+import org.locationtech.udig.core.internal.ExtensionPointUtil;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.internal.ContextModel;
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.render.CompositeRenderContext;
+import org.locationtech.udig.project.internal.render.RenderContext;
+import org.locationtech.udig.project.internal.render.RenderManager;
+import org.locationtech.udig.project.internal.render.Renderer;
+import org.locationtech.udig.project.internal.render.RendererCreator;
+import org.locationtech.udig.project.internal.render.SelectionLayer;
+import org.locationtech.udig.project.internal.render.impl.InternalRenderMetricsFactory.InternalRenderMetrics;
+import org.locationtech.udig.project.render.AbstractRenderMetrics;
+import org.locationtech.udig.project.render.IRenderContext;
+import org.locationtech.udig.project.render.IRenderMetricsFactory;
+import org.locationtech.udig.project.render.IRenderer;
 
 /**
  * 
@@ -97,7 +95,6 @@ public class RendererConfigurator {
      * @uml.property name="layers"
      * @generated NOT
      */
-    @SuppressWarnings("unchecked")
     public SortedSet<Layer> getLayers() {
         return layers;
     }
@@ -227,7 +224,7 @@ public class RendererConfigurator {
                     Layer layer = layers.get(i);
                     
                     if(isDisposed())
-                        throw new RuntimeException("Rendering is canceled or interrupted");
+                        throw new RuntimeException("Rendering is canceled or interrupted"); //$NON-NLS-1$
 
                     if (configured.contains(layer)) {
                         continue LAYERS;
@@ -326,7 +323,7 @@ public class RendererConfigurator {
         synchronized (this.layers){
             for( Layer layer : getLayers() ) {
                 if(isDisposed())
-                    throw new RuntimeException("Rendering is canceled or interrupted");
+                    throw new RuntimeException("Rendering is canceled or interrupted"); //$NON-NLS-1$
                 if (!layerToMetricsFactoryMap.containsKey(layer))
                     initFactories(layer);
             }
@@ -405,7 +402,7 @@ public class RendererConfigurator {
         }
         case Notification.ADD_MANY: {
             List<Layer> layers = new ArrayList<Layer>();
-            for( Layer layer : (Collection< ? extends Layer>) event.getNewValue() ) {
+            for( Layer layer : new ArrayList<>((Collection< ? extends Layer>) event.getNewValue() )) {
                 layers.add(layer);
                 if (layer.hasResource(FeatureSource.class)
                         && findSelectionLayer(layer) == null)
@@ -434,8 +431,8 @@ public class RendererConfigurator {
                 
                 Layer removedLayer = (Layer) event.getOldValue();
 
-                for ( Iterator iter = layers.iterator(); iter.hasNext(); ) {
-                    Layer l = (Layer) iter.next();
+                for ( Iterator<Layer> iter = layers.iterator(); iter.hasNext(); ) {
+                    Layer l = iter.next();
                     if(removedLayer==l)
                         iter.remove();
                     else if( l instanceof SelectionLayer ){
@@ -453,8 +450,8 @@ public class RendererConfigurator {
             synchronized (layers) {
                 Collection<Layer> removedLayers = (Collection<Layer>) event.getOldValue();
 
-                for ( Iterator iter = layers.iterator(); iter.hasNext(); ) {
-                    Layer l = (Layer) iter.next();
+                for ( Iterator<Layer> iter = layers.iterator(); iter.hasNext(); ) {
+                    Layer l = iter.next();
                     if( removedLayers.contains(l))
                         iter.remove();
                     else if( l instanceof SelectionLayer ){
@@ -474,8 +471,8 @@ public class RendererConfigurator {
             // remove then add the layers to fix ordering of layers.
             synchronized (layers) {
                 SelectionLayer selectionLayer=null;
-                for( Iterator iter = layers.iterator(); iter.hasNext(); ) {
-                    Layer l = (Layer) iter.next();
+                for( Iterator<Layer> iter = layers.iterator(); iter.hasNext(); ) {
+                    Layer l = iter.next();
                     if(newV==l)
                         iter.remove();
                     else if( l instanceof SelectionLayer ){
@@ -503,8 +500,8 @@ public class RendererConfigurator {
 
             // remove then add the layers to fix ordering of layers.
             synchronized (layers) {
-                for( Iterator iter = layers.iterator(); iter.hasNext(); ) {
-                    Layer l = (Layer) iter.next();
+                for( Iterator<Layer> iter = layers.iterator(); iter.hasNext(); ) {
+                    Layer l = iter.next();
                     if(oldV==l)
                         iter.remove();
                     else if( l instanceof SelectionLayer ){
@@ -606,7 +603,6 @@ public class RendererConfigurator {
             return false;
         }
 
-        @SuppressWarnings("unchecked")
         public Set<Range<Double>> getValidScaleRanges() {
             return new HashSet<Range<Double>>();
         }
