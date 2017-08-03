@@ -470,26 +470,29 @@ public class FeatureTableControl implements ISelectionProvider {
 
     private void setCellEditors( IAdaptable adaptable, int attributeCount ) {
         if (adaptable.getAdapter(CellEditor[].class) != null) {
-            CellEditor[] editors = (CellEditor[]) adaptable.getAdapter(Array.class);
-            if (editors.length < attributeCount) {
-                UiPlugin.log(
-                        "not enough cell editors for feature type so not used", new Exception()); //$NON-NLS-1$
-                createCellEditors();
-            } else {
-                CellEditor[] copy = new CellEditor[editors.length + 1];
-                if (editors.length == attributeCount) {
-                    // there is an editor for each attribute. First element in copy if for the
-                    // fid column (which is not editable).
-                    System.arraycopy(editors, 0, copy, 1, attributeCount);
-                } else {
-
-                    // ignore 1st element in editors because it is for the FID column which is read
-                    // only.
-                    System.arraycopy(editors, 1, copy, 1, attributeCount);
-
-                }
-                tableViewer.setCellEditors(copy);
-            }
+        	Object array = adaptable.getAdapter(Array.class);
+        	if (array instanceof CellEditor[]) {
+        		CellEditor[] editors = (CellEditor[]) array;
+	            if (editors.length < attributeCount) {
+	                UiPlugin.log(
+	                        "not enough cell editors for feature type so not used", new Exception()); //$NON-NLS-1$
+	                createCellEditors();
+	            } else {
+	                CellEditor[] copy = new CellEditor[editors.length + 1];
+	                if (editors.length == attributeCount) {
+	                    // there is an editor for each attribute. First element in copy if for the
+	                    // fid column (which is not editable).
+	                    System.arraycopy(editors, 0, copy, 1, attributeCount);
+	                } else {
+	
+	                    // ignore 1st element in editors because it is for the FID column which is read
+	                    // only.
+	                    System.arraycopy(editors, 1, copy, 1, attributeCount);
+	
+	                }
+	                tableViewer.setCellEditors(copy);
+	            }
+        	}
         } else {
             createCellEditors();
         }
