@@ -552,38 +552,9 @@ public class ToolManager implements IToolManager {
             disable(actionCategories);
             disable(menuCategories);
             disable(modalCategories);
-//            commandListener = null;
-            
-//            setContext(modalCategories, null); 
-//            setContext(actionCategories, null);
-//            setContext(menuCategories, null);
-            
-//            for(  ToolCategory category : menuCategories ) {
-//                for(ModalItem item : category.items ) {
-//                    ToolProxy tool = (ToolProxy) item;
-//                    tool.toolContext = null;
-//                    tool.getTool().setContext(null);
-//                   }
-//            }
-//            
-//            for(  ToolCategory category : actionCategories ) {
-//                for(ModalItem item : category.items ) {
-//                    ToolProxy tool = (ToolProxy) item;
-//                    tool.toolContext = null;
-//                    tool.getTool().setContext(null);
-//                }
-//            }
-//            for(  ToolCategory category : modalCategories ) {
-//                for(ModalItem item : category.items ) {
-//                    ToolProxy tool = (ToolProxy) item;
-//                    tool.toolContext = null;
-//                    tool.getTool().setContext(null);
-//                }
-//            }
-        }   
-        
-        
+        }
     }
+    
     /**
      * Churn through the category disabling all tools.
      *

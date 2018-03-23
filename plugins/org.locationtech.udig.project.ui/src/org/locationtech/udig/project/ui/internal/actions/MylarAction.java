@@ -12,6 +12,8 @@ package org.locationtech.udig.project.ui.internal.actions;
 import org.locationtech.udig.project.EditManagerEvent;
 import org.locationtech.udig.project.IEditManagerListener;
 import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.IMapListener;
+import org.locationtech.udig.project.MapEvent;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.render.RenderManager;
 import org.locationtech.udig.project.ui.ApplicationGIS;
@@ -35,26 +37,28 @@ public class MylarAction extends ActionDelegate implements IViewActionDelegate, 
 
     public static final String KEY = "MYLAR"; //$NON-NLS-1$
 
+    private class EditManagerListener implements IEditManagerListener{
     
-    IEditManagerListener selectedLayerListener = new IEditManagerListener(){
-        
+    	private Map currentMap;  
         public void changed( EditManagerEvent event ) {
-//            IMap map = event.getSource().getMap();
-//            if( map!=currentMap){
-//                map.getEditManager().removeListener(this);
-//            }
-//            if (event.getOldValue() != event.getNewValue()) {
-//                //update image
-//                ((RenderManager)map.getRenderManager()).refreshImage();
-//            }
+            IMap map = event.getSource().getMap();
+            if( map!=currentMap){
+                map.getEditManager().removeListener(this);
+            }
+            if (event.getOldValue() != event.getNewValue()) {
+                //update image
+                ((RenderManager)map.getRenderManager()).refreshImage();
+            }
         }
 
     };
-//    private Map currentMap;
+    EditManagerListener selectedLayerListener = new EditManagerListener();
+    
     
     @Override
     public void runWithEvent( IAction action, Event event ) {
         Map currentMap = (Map) ApplicationGIS.getActiveMap();
+        selectedLayerListener.currentMap = currentMap;
         if (currentMap == ApplicationGIS.NO_MAP)
             return;
         Boolean temp = (Boolean)currentMap.getBlackboard().get(KEY);
@@ -76,6 +80,7 @@ public class MylarAction extends ActionDelegate implements IViewActionDelegate, 
     @Override
     public void selectionChanged( IAction action, ISelection selection ) {
         Map currentMap = (Map) ApplicationGIS.getActiveMap();
+        selectedLayerListener.currentMap = currentMap;
         if (currentMap == ApplicationGIS.NO_MAP)
             return;
         Boolean temp = (Boolean)currentMap.getBlackboard().get(KEY);
