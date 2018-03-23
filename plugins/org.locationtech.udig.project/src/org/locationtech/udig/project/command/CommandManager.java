@@ -90,6 +90,17 @@ public class CommandManager implements CommandStack, NavCommandStack {
     }
 
     /**
+     * clears history and disposes of object
+     */
+    public void dispose() {
+    	if (commandExecutor != null) {
+    		commandExecutor.history.clear();
+    		commandExecutor.commands.clear();
+    		commandExecutor = null;
+    	}
+    }
+    
+    /**
      * Executes a command. Calls the Errorhandler if an exception is thrown.
      * 
      * @param command The command to execute

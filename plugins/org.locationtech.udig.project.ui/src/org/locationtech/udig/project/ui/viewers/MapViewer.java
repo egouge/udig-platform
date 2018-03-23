@@ -342,6 +342,8 @@ public class MapViewer implements MapPart {
     }
     public void dispose() {
         if (this.viewport != null && getMap() != null) {
+        	if (part != null)
+        		part.getSite().setSelectionProvider(null);
             this.viewport .removePaneListener(getMap().getViewportModelInternal());
             this.viewport.dispose();
             this.viewport = null;

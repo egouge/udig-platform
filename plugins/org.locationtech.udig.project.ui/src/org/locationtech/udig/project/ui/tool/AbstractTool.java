@@ -176,7 +176,7 @@ public abstract class AbstractTool
      * This method does not need to be overridden by subclasses normally.
      */
     protected final void deregisterMouseListeners() {
-        if (context == null || context.getViewportPane() == null)
+        if (context == null || context.getViewportPane() == null || context.getViewportPane().isDisposed())
             return;
 
         context.getViewportPane().removeMouseListener(this);

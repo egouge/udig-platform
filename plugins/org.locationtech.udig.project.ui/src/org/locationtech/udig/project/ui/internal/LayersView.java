@@ -262,6 +262,8 @@ public class LayersView extends ViewPart
                 viewer.setSelection(new StructuredSelection(selectedLayer));
             }
             updateCheckboxes();
+        }else {
+        	editManagerListener.setCurrentMap(null);
         }
     }
 

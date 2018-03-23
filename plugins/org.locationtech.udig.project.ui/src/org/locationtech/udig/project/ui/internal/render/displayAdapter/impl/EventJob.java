@@ -187,6 +187,16 @@ public class EventJob {
     }
 
     /**
+     * Removes all listeners 
+     */
+	public void dispose() {
+		paneListener.clear();
+		wheel.clear();
+		motion.clear();
+		mouse.clear();
+	}
+	
+    /**
      *
      * @param event
      */

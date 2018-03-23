@@ -385,6 +385,17 @@ public class ViewportPaneSWT extends Canvas implements ViewportPane {
         super.dispose();
         if (swtImage != null)
             swtImage.dispose();
+        if (buffer != null) 
+        	buffer.dispose();
+        if (eventJob != null)
+        	eventJob.dispose();
+        
+        this.swtImage = null;
+        this.buffer = null;
+        this.display = null;
+        this.editor = null;
+        this.renderManager = null;
+        this.eventJob = null;
     }
 
     /**

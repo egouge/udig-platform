@@ -39,22 +39,22 @@ public class MylarAction extends ActionDelegate implements IViewActionDelegate, 
     IEditManagerListener selectedLayerListener = new IEditManagerListener(){
         
         public void changed( EditManagerEvent event ) {
-            IMap map = event.getSource().getMap();
-            if( map!=currentMap){
-                map.getEditManager().removeListener(this);
-            }
-            if (event.getOldValue() != event.getNewValue()) {
-                //update image
-                ((RenderManager)map.getRenderManager()).refreshImage();
-            }
+//            IMap map = event.getSource().getMap();
+//            if( map!=currentMap){
+//                map.getEditManager().removeListener(this);
+//            }
+//            if (event.getOldValue() != event.getNewValue()) {
+//                //update image
+//                ((RenderManager)map.getRenderManager()).refreshImage();
+//            }
         }
 
     };
-    private Map currentMap;
+//    private Map currentMap;
     
     @Override
     public void runWithEvent( IAction action, Event event ) {
-        currentMap = (Map) ApplicationGIS.getActiveMap();
+        Map currentMap = (Map) ApplicationGIS.getActiveMap();
         if (currentMap == ApplicationGIS.NO_MAP)
             return;
         Boolean temp = (Boolean)currentMap.getBlackboard().get(KEY);
@@ -75,7 +75,7 @@ public class MylarAction extends ActionDelegate implements IViewActionDelegate, 
     
     @Override
     public void selectionChanged( IAction action, ISelection selection ) {
-        currentMap = (Map) ApplicationGIS.getActiveMap();
+        Map currentMap = (Map) ApplicationGIS.getActiveMap();
         if (currentMap == ApplicationGIS.NO_MAP)
             return;
         Boolean temp = (Boolean)currentMap.getBlackboard().get(KEY);
