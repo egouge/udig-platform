@@ -237,7 +237,7 @@ public class LayersView extends ViewPart
 
         if (this.currentMap != null) {
             this.currentMap.removeDeepAdapter(checkboxContextListener);
-            this.currentMap.getBlackboard().removeListener(mylarListener);
+            if (this.currentMap.getBlackboard() != null) this.currentMap.getBlackboard().removeListener(mylarListener);
             this.currentMap.getViewportModel().removeViewportModelListener(zoomListener);
         }
 
