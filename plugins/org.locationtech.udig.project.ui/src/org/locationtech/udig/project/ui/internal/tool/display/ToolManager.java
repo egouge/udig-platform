@@ -898,7 +898,7 @@ public class ToolManager implements IToolManager {
                 redoAction.setText(Messages.ToolManager_redoAction); 
                 redoAction.setActionDefinitionId("org.eclipse.ui.edit.redo"); //$NON-NLS-1$
             }
-            if (activeMap != ApplicationGIS.NO_MAP)
+            if (activeMap != null && activeMap != ApplicationGIS.NO_MAP)
                 redoAction.setEnabled(activeMap.getCommandStack().canRedo());
             else
                 redoAction.setEnabled(false);
