@@ -97,6 +97,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/gt-xsd-sld-14.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-xsd-wfs-14.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-xsd-wps-14.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guava-18.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/h2-1.1.119.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/hatbox-1.0.b7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/hsqldb-2.3.0.jar"/>
