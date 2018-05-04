@@ -11,11 +11,12 @@
  */
 package org.locationtech.udig.project.ui.tool;
 
-import java.util.List;
 
 import org.locationtech.udig.project.ui.ApplicationGIS;
+import org.locationtech.udig.project.ui.internal.ProjectUIPlugin;
+import org.locationtech.udig.project.ui.preferences.PreferenceConstants;
 
-
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IStatusLineManager;
 
 /**
@@ -31,13 +32,8 @@ import org.eclipse.jface.action.IStatusLineManager;
  */
 public abstract class AbstractModalTool extends AbstractTool implements ModalTool {
 
-    
-//    String statusBarMessage;
-//    String statusBarErrorMessage;
-    
     private boolean active;
 
-    
     /** 
      * Current ID of the tool cursor. 
      */
@@ -71,6 +67,7 @@ public abstract class AbstractModalTool extends AbstractTool implements ModalToo
 
     public void setActive( boolean active ) {
         this.active=active;
+
         setStatusBarMessage(active);
         if (!active) {
             deregisterMouseListeners();

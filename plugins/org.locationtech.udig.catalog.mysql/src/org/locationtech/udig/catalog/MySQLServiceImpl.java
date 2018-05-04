@@ -120,11 +120,14 @@ public class MySQLServiceImpl extends IService {
         try {
             if (members == null) {
                 members = new LinkedList<MySQLGeoResource>();
-                String[] typenames = ds.getTypeNames();
-                if (typenames != null)
-                    for( int i = 0; i < typenames.length; i++ ) {
-                        members.add(new MySQLGeoResource(this, typenames[i]));
+                if (ds.getDataSource() != null) {
+                    String[] typenames = ds.getTypeNames();
+                    if (typenames != null) {
+                        for( int i = 0; i < typenames.length; i++ ) {
+                            members.add(new MySQLGeoResource(this, typenames[i]));
+                        }
                     }
+                }
             }
         } finally {
             rLock.unlock();
@@ -245,8 +248,7 @@ public class MySQLServiceImpl extends IService {
         }
 
         public String getTitle() {
-            return "MySQL " + getIdentifier(); //$NON-NLS-1$
-            //return "MySQL " + getIdentifier().getHost() + URLUtils.urlToFile(getIdentifier()).getAbsolutePath(); //$NON-NLS-1$
+            return "MySQL " + getDisplayID(); //$NON-NLS-1$
         }
 
     }

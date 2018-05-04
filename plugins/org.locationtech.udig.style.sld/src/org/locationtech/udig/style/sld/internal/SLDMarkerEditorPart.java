@@ -13,9 +13,6 @@ package org.locationtech.udig.style.sld.internal;
 
 import java.awt.Color;
 
-import org.locationtech.udig.style.sld.SLDEditorPart;
-import org.locationtech.udig.ui.graphics.SLDs;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -32,6 +29,9 @@ import org.geotools.styling.Graphic;
 import org.geotools.styling.Mark;
 import org.geotools.styling.PointSymbolizer;
 import org.geotools.styling.StyleBuilder;
+import org.locationtech.udig.style.sld.SLDEditorPart;
+import org.locationtech.udig.ui.ColorEditor;
+import org.locationtech.udig.ui.graphics.SLDs;
 
 /**
  * Simple view part for editing a Marker.
@@ -44,12 +44,12 @@ public class SLDMarkerEditorPart extends SLDEditorPart implements SelectionListe
     private int opacityMaxValue = 100;
     private double opacityMaxValueFloat = 100.0;
 
-    private StolenColorEditor borderColour;
+    private ColorEditor borderColour;
     private Button borderEnabled;
     private Spinner borderWidth;
     private Spinner borderOpacity;
 
-    private StolenColorEditor markerColour;
+    private ColorEditor markerColour;
     private Button markerEnabled;
     private Combo markerType;
     private Spinner markerWidth;
@@ -256,7 +256,6 @@ public class SLDMarkerEditorPart extends SLDEditorPart implements SelectionListe
         markerWidth.setMaximum(30);
         markerWidth.setPageIncrement(5);
         markerWidth.addSelectionListener(this);
-        markerWidth.setToolTipText(Messages.SLDMarkerEditorPart_width_tooltip); 
     }
 
     private void borderPart( Composite parent ) {
@@ -264,36 +263,31 @@ public class SLDMarkerEditorPart extends SLDEditorPart implements SelectionListe
 
         borderEnabled = new Button(border, SWT.CHECK);
         borderEnabled.addSelectionListener(this);
-        borderEnabled.setToolTipText(Messages.SLDMarkerEditorPart_border_enabled_tooltip); 
 
-        borderColour = new StolenColorEditor(border, this);
+        borderColour = new ColorEditor(border, this);
 
         borderWidth = new Spinner(border, SWT.NONE);
         borderWidth.setMinimum(1);
         borderWidth.setMaximum(30);
         borderWidth.setPageIncrement(5);
         borderWidth.addSelectionListener(this);
-        borderWidth.setToolTipText(Messages.SLDMarkerEditorPart_border_width_tooltip); 
 
         borderOpacity = new Spinner(border, SWT.NONE);
         borderOpacity.setMinimum(0);
         borderOpacity.setMaximum(opacityMaxValue);
         borderOpacity.setPageIncrement(10);
-        borderOpacity.setToolTipText(Messages.SLDMarkerEditorPart_border_opacity_tooltip); 
     }
     private void fillPart( Composite parent ) {
         Composite fill = subpart(parent, Messages.SLDMarkerEditorPart_label_fill , 3);
         markerEnabled = new Button(fill, SWT.CHECK);
         markerEnabled.addSelectionListener(this);
-        markerEnabled.setToolTipText(Messages.SLDMarkerEditorPart_marker_enabled_tooltip); 
 
-        markerColour = new StolenColorEditor(fill, this);
+        markerColour = new ColorEditor(fill, this);
 
         markerOpacity = new Spinner(fill, SWT.NONE);
         markerOpacity.setMinimum(0);
         markerOpacity.setMaximum(opacityMaxValue);
         markerOpacity.setPageIncrement(10);
-        markerOpacity.setToolTipText(Messages.SLDMarkerEditorPart_fill_opacity_tooltip); 
     }
 
     /*

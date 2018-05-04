@@ -11,6 +11,7 @@
 package org.locationtech.udig.project.command.map;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -64,10 +65,19 @@ public class LayerMoveDownCommand extends AbstractCommand implements UndoableMap
     }
 
     public void run( IProgressMonitor monitor ) throws Exception {
+        // need to reverse otherwise nothing happens on multiselect
+        Collections.reverse(selection);
+        int lastAllowedIndex = 0; 
         for( ILayer layer : selection ) {
+            int layerIndex = layer.getZorder();
+            if (layerIndex == lastAllowedIndex) {
+                lastAllowedIndex++;
+                continue;
+            }
             getMap().lowerLayer((Layer) layer);
         }
     }
+    
     public void rollback( IProgressMonitor monitor ) throws Exception {
         for( ILayer layer : selection ) {
             getMap().raiseLayer((Layer) layer);

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Project UI Test Plug-in
 Bundle-SymbolicName: org.locationtech.udig.project.tests.ui; singleton:=true
-Bundle-Version: 2.0.1.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Vendor: udig.refractions.net
 Bundle-Activator: org.locationtech.udig.project.ui.TestsUIPlugin
 Export-Package: org.locationtech.udig; uses:="org.locationtech.udig.pr
@@ -51,4 +51,4 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.7.0",
  org.locationtech.udig.project.tests;visibility:=reexport,
  org.locationtech.udig.catalog.tests.ui;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

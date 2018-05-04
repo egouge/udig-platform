@@ -580,7 +580,7 @@ public class Messages extends NLS {
 
     public static String ImageExportPage_leftMargin;
 
-    public static String ImageExportPage_lowerMargin;
+    public static String ImageExportPage_bottomMargin;
 
     public static String ImageExportPage_marginsGroup;
 
@@ -667,6 +667,12 @@ public class Messages extends NLS {
     public static String LegendView_new_folder_tooltip;
 
     public static String LayerCRSPropertyPage_warningMessage;
+
+    public static String Feature_Attribute_Name;
+
+    public static String Feature_Attribute_Name_tooltip;
+
+    public static String PREFERENCES_LINK_TO_GENERAL_PAGE;
 
     static {
         // initialize resource bundle

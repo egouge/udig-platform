@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Project Tests Plug-in
 Bundle-SymbolicName: org.locationtech.udig.project.tests; singleton:=true
-Bundle-Version: 2.0.1.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Vendor: udig.refractions.net
 Export-Package: org.locationtech.udig.project.command,org.locationtech
  .udig.project.internal,org.locationtech.udig.project.internal.command
@@ -23,4 +23,4 @@ Require-Bundle: org.junit;bundle-version="[4.0.0,5.0.0)",
  org.locationtech.udig.project.edit,
  org.easymock
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

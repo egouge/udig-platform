@@ -25,11 +25,6 @@ package org.locationtech.udig.style.sld.editor.internal;
 import java.util.Iterator;
 import java.util.List;
 
-import org.locationtech.udig.style.sld.IEditorPage;
-import org.locationtech.udig.style.sld.IEditorPageContainer;
-import org.locationtech.udig.style.sld.SLDPlugin;
-import org.locationtech.udig.style.sld.editor.EditorPageManager;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.ListenerList;
@@ -46,6 +41,7 @@ import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.util.Assert;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.util.SafeRunnable;
@@ -85,6 +81,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
+import org.locationtech.udig.style.sld.IEditorPage;
+import org.locationtech.udig.style.sld.IEditorPageContainer;
+import org.locationtech.udig.style.sld.SLDPlugin;
+import org.locationtech.udig.style.sld.editor.EditorPageManager;
 
 /**
  * Adapting PreferenceDialog to allow for the general approach to be used for
@@ -212,7 +212,8 @@ public class EditorDialog extends Dialog implements IEditorPageContainer, IPageC
 	 */
 	private TreeViewer treeViewer;
 	
-    private ListenerList<IPageChangedListener> pageChangedListeners = new ListenerList<>(ListenerList.IDENTITY);
+    private ListenerList<IPageChangedListener> pageChangedListeners = 
+    		new ListenerList<IPageChangedListener>(ListenerList.IDENTITY);
 
 	/**
 	 * Creates a new preference dialog under the control of the given preference
@@ -260,7 +261,7 @@ public class EditorDialog extends Dialog implements IEditorPageContainer, IPageC
 	@Override
     protected void cancelPressed() {
 		// Inform all pages that we are cancelling
-		Iterator<?> nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER).iterator();
+		Iterator nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER).iterator();
 		while (nodes.hasNext()) {
 			final IEditorNode node = (IEditorNode) nodes.next();
 			if (getPage(node) != null) {
@@ -291,7 +292,7 @@ public class EditorDialog extends Dialog implements IEditorPageContainer, IPageC
 	 */
 	@Override
     public boolean close() {
-		List<?> nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER);
+		List nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER);
 		for (int i = 0; i < nodes.size(); i++) {
 			IEditorNode node = (IEditorNode) nodes.get(i);
 			node.disposeResources();
@@ -700,8 +701,8 @@ public class EditorDialog extends Dialog implements IEditorPageContainer, IPageC
 	 *         found.
 	 */
 	protected IEditorNode findNodeMatching(String nodeId) {
-		List<?> nodes = editorPageManager.getElements(EditorPageManager.POST_ORDER);
-		for (Iterator<?> i = nodes.iterator(); i.hasNext();) {
+		List nodes = editorPageManager.getElements(EditorPageManager.POST_ORDER);
+		for (Iterator i = nodes.iterator(); i.hasNext();) {
 			IEditorNode node = (IEditorNode) i.next();
 			if (node.getId().equalsIgnoreCase(nodeId))
 				return node;
@@ -831,7 +832,7 @@ public class EditorDialog extends Dialog implements IEditorPageContainer, IPageC
 				boolean hasFailedOK = false;
 				try {
 					// Notify all the pages and give them a chance to abort
-					Iterator<?> nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER)
+					Iterator nodes = editorPageManager.getElements(EditorPageManager.PRE_ORDER)
 							.iterator();
 					while (nodes.hasNext()) {
 						IEditorNode node = (IEditorNode) nodes.next();

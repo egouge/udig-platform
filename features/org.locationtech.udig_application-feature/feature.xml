@@ -2,7 +2,7 @@
 <feature
       id="org.locationtech.udig_application-feature"
       label="org.locationtech.udig_application-feature"
-      version="2.0.1.qualifier"
+      version="2.1.0.qualifier"
       provider-name="Refractions Research"
       plugin="org.locationtech.udig.project">
 
@@ -204,7 +204,21 @@ License v1.0 (http://www.eclipse.org/org/documents/edl-v10.html).
          unpack="false"/>
 
    <plugin
-         id="org.locationtech.udig.style.advanced"
+         id="org.locationtech.udig.style.advanced.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.locationtech.udig.style.advanced.feature"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.locationtech.udig.style.advanced.raster"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -239,6 +253,20 @@ License v1.0 (http://www.eclipse.org/org/documents/edl-v10.html).
 
    <plugin
          id="org.locationtech.udig.jconsole"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.locationtech.udig.style.sld.raster"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.locationtech.udig.tool.measure"
          download-size="0"
          install-size="0"
          version="0.0.0"

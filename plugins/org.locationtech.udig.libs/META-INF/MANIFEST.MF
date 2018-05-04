@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.locationtech.udig.libs;singleton:=true
-Bundle-Version: 2.0.1.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
 Eclipse-BundleShape: dir
@@ -21,8 +21,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.apache.xerces;visibility:=reexport,
  org.apache.log4j;visibility:=reexport,
  org.eclipse.xsd;visibility:=reexport,
- org.eclipse.swt;visibility:=reexport,
- org.apache.commons.logging;bundle-version="1.1.1"
+ org.eclipse.swt;visibility:=reexport
 Bundle-Activator: org.locationtech.udig.libs.internal.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -195,6 +194,7 @@ Bundle-ClassPath: .,
  lib/gt-xsd-sld-14.1.jar,
  lib/gt-xsd-wfs-14.1.jar,
  lib/gt-xsd-wps-14.1.jar,
+ lib/guava-18.0.jar,
  lib/h2-1.1.119.jar,
  lib/hatbox-1.0.b7.jar,
  lib/hsqldb-2.3.0.jar,

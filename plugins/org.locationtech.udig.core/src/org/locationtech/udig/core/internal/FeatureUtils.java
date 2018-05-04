@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,6 +33,7 @@ import org.geotools.referencing.CRS;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.FeatureType;
 import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory;
@@ -638,10 +641,86 @@ public class FeatureUtils {
         return true;
     }
 
+    /**
+     * Performs a lookup for the provided propertyName in the {@link FeatureType}. Matching process
+     * finds case sensitive attribute first, after that case insensitive comparison returns the
+     * first matching attribute
+     *
+     * @param featureType FeatureType to find named attribute
+     * @param propertyName attribute name
+     * @return the actual propertyName (case sensitive) or null if none is found
+     * @throws IllegalArgumentException if featureType and/or property is null
+     */
+    public static String getActualPropertyName(final SimpleFeatureType featureType,
+            final String propertyName) {
+
+        if (featureType == null) {
+            throw new IllegalArgumentException("featureType cannot be null");
+        }
+        if (propertyName == null) {
+            throw new IllegalArgumentException("propertyName cannot be null");
+        }
+
+        final String internalPropertyName = propertyName.trim();
+
+        if (internalPropertyName.isEmpty()) {
+            // avoid iteration through all properties twice
+            return null;
+        }
+        // if an exact match is found return it
+        for (int i = 0; i < featureType.getAttributeCount(); i++) {
+            String name = featureType.getDescriptor(i).getLocalName();
+            if (internalPropertyName.equals(name)) {
+                return name;
+            }
+        }
+
+        // otherwise return the first match found by performing a case
+        // insensitive check for equality
+        for (int i = 0; i < featureType.getAttributeCount(); i++) {
+            String name = featureType.getDescriptor(i).getLocalName();
+            if (internalPropertyName.equalsIgnoreCase(name)) {
+                return name;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Performs a lookup for the provided propertyNames in the {@link FeatureType} using
+     * {@link #getActualPropertyName(SimpleFeatureType, String)} approach
+     *
+     * @param featureType  FeatureType to find named attribute
+     * @param propertyName List of Properties to check
+     * @return a list of actual propertyName (case sensitive). If a propertyName is not present then
+     *         it is skipped from the list
+     * @throws IllegalArgumentException if featureType and/or propertyNames is null
+     */
+    public static List<String> getActualPropertyName(final SimpleFeatureType featureType,
+            final List<String> propertyNames) {
+
+        if (featureType == null) {
+            throw new IllegalArgumentException("featureType cannot be null");
+        }
+        if (propertyNames == null) {
+            throw new IllegalArgumentException("propertyName cannot be null");
+        }
+
+        List<String> nameList = new LinkedList<String>();
+
+        for (String property : propertyNames) {
+            String name = getActualPropertyName(featureType, property);
+            if (name != null) {
+                nameList.add(name);
+            }
+        }
+        return nameList;
+    }
+
    public static Set<Identifier> stringToId(FilterFactory fac, String fid) {
 	   return stringToId(fac, Collections.singleton(fid));
 	}
-   
+
    public static Set<Identifier> stringToId(FilterFactory fac, Collection<String> fid) {
 		Set<Identifier> ids = new HashSet<Identifier>();
 		for (String string : fid) {

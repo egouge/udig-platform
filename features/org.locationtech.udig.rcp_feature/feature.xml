@@ -2,7 +2,7 @@
 <feature
       id="org.locationtech.udig.rcp-feature"
       label="uDig RCP Feature"
-      version="2.0.1.qualifier"
+      version="2.1.0.qualifier"
       provider-name="udig.refractions.net">
 
    <description url="http://udig.github.com/docs/dev/getting_started.html">
@@ -127,6 +127,13 @@ License v1.0 (http://www.eclipse.org/org/documents/edl-v10.html).
 
    <plugin
          id="org.locationtech.udig.render.feature.basic"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.locationtech.udig.style.sld.raster"
          download-size="0"
          install-size="0"
          version="0.0.0"

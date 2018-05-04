@@ -10,7 +10,13 @@
 package org.locationtech.udig.ui;
 
 import static org.junit.Assert.fail;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -51,6 +57,11 @@ public class BasicTypeCellEditorTest {
     }
 
     @Test
+    public void testString() throws Exception {
+        runTest("2", "3", String.class);
+    }
+    
+    @Test
     public void testInteger() throws Exception {
         runTest(Integer.valueOf(2), Integer.valueOf(3), Integer.class);
     }
@@ -80,6 +91,38 @@ public class BasicTypeCellEditorTest {
         runTest(Float.valueOf(2), Float.valueOf(3), Float.class); 
     }
 
+    @Test
+    public void testBigDecimal() throws Exception {
+        runTest(BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.class); 
+    }
+
+    @Test
+    public void testBigInteger() throws Exception {
+        runTest(BigInteger.valueOf(2), BigInteger.valueOf(3), BigInteger.class); 
+    }
+    
+    @Test
+    public void testEmptyEqualsNull() throws Exception {
+        BasicTypeCellEditor editor;
+        editor = new BasicTypeCellEditor(shell, String.class);
+        editor.setValue("");
+        assertNull(editor.getValue() );
+    }
+    
+    @Test
+    public void testNumberFormatError() throws Exception {
+        BasicTypeCellEditor editor;
+        editor = new BasicTypeCellEditor(shell, Integer.class);
+        editor.setValue(" ");
+        try{
+            editor.getValue();
+        }catch( Exception e ){
+          //good
+           assertTrue(true);
+        }
+    }
+    
+    
     private void runTest( Object value, Object value2, Class<? extends Object> class1 ) {
         BasicTypeCellEditor editor;
         editor = new BasicTypeCellEditor(shell, class1);

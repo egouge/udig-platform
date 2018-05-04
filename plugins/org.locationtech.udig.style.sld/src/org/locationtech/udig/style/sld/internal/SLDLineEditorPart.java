@@ -13,6 +13,7 @@ package org.locationtech.udig.style.sld.internal;
 import java.awt.Color;
 
 import org.locationtech.udig.style.sld.SLDEditorPart;
+import org.locationtech.udig.ui.ColorEditor;
 import org.locationtech.udig.ui.graphics.SLDs;
 
 import org.eclipse.swt.SWT;
@@ -39,7 +40,7 @@ import org.geotools.styling.StyleBuilder;
  */
 public class SLDLineEditorPart extends SLDEditorPart implements SelectionListener {
 
-    private StolenColorEditor lineColourEditor;
+    private ColorEditor lineColourEditor;
     Spinner lineWidth;
     Spinner lineOpacity;
     Combo linejoinCombo;
@@ -197,21 +198,19 @@ public class SLDLineEditorPart extends SLDEditorPart implements SelectionListene
         borderEnabled.setEnabled( false );
         borderEnabled.setSelection( true );
         
-        lineColourEditor = new StolenColorEditor( border, this);
+        lineColourEditor = new ColorEditor(border, this);
         
         lineWidth = new Spinner( border, SWT.HORIZONTAL);     
         lineWidth.setMinimum(1);
         lineWidth.setMaximum(30);
         lineWidth.setPageIncrement(5);
         lineWidth.addSelectionListener(this);
-        lineWidth.setToolTipText( Messages.SLDLineEditorPart_border_width_tooltip ); 
         
         lineOpacity = new Spinner( border, SWT.HORIZONTAL);
         lineOpacity.setMinimum(0);
         lineOpacity.setMaximum(opacityMaxValue);
         lineOpacity.setPageIncrement(10);
         lineOpacity.addSelectionListener( this );
-        lineOpacity.setToolTipText( Messages.SLDLineEditorPart_border_opacity_tooltip ); 
     }
     
     protected Control createPartControl( Composite parent ) {

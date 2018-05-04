@@ -10,20 +10,17 @@
  */
 package org.locationtech.udig.ui;
 
-import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import org.locationtech.udig.core.IProvider;
-import org.locationtech.udig.internal.ui.Trace;
-import org.locationtech.udig.internal.ui.UiPlugin;
-import org.locationtech.udig.ui.internal.Messages;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -60,6 +57,10 @@ import org.eclipse.ui.part.PageBook;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.filter.text.cql2.CQL;
 import org.geotools.filter.text.cql2.CQLException;
+import org.locationtech.udig.core.IProvider;
+import org.locationtech.udig.internal.ui.Trace;
+import org.locationtech.udig.internal.ui.UiPlugin;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
@@ -470,29 +471,26 @@ public class FeatureTableControl implements ISelectionProvider {
 
     private void setCellEditors( IAdaptable adaptable, int attributeCount ) {
         if (adaptable.getAdapter(CellEditor[].class) != null) {
-        	Object array = adaptable.getAdapter(Array.class);
-        	if (array instanceof CellEditor[]) {
-        		CellEditor[] editors = (CellEditor[]) array;
-	            if (editors.length < attributeCount) {
-	                UiPlugin.log(
-	                        "not enough cell editors for feature type so not used", new Exception()); //$NON-NLS-1$
-	                createCellEditors();
-	            } else {
-	                CellEditor[] copy = new CellEditor[editors.length + 1];
-	                if (editors.length == attributeCount) {
-	                    // there is an editor for each attribute. First element in copy if for the
-	                    // fid column (which is not editable).
-	                    System.arraycopy(editors, 0, copy, 1, attributeCount);
-	                } else {
-	
-	                    // ignore 1st element in editors because it is for the FID column which is read
-	                    // only.
-	                    System.arraycopy(editors, 1, copy, 1, attributeCount);
-	
-	                }
-	                tableViewer.setCellEditors(copy);
-	            }
-        	}
+            CellEditor[] editors = (CellEditor[]) adaptable.getAdapter(CellEditor[].class);
+            if (editors.length < attributeCount) {
+                UiPlugin.log(
+                        "not enough cell editors for feature type so not used", new Exception()); //$NON-NLS-1$
+                createCellEditors();
+            } else {
+                CellEditor[] copy = new CellEditor[editors.length + 1];
+                if (editors.length == attributeCount) {
+                    // there is an editor for each attribute. First element in copy if for the
+                    // fid column (which is not editable).
+                    System.arraycopy(editors, 0, copy, 1, attributeCount);
+                } else {
+
+                    // ignore 1st element in editors because it is for the FID column which is read
+                    // only.
+                    System.arraycopy(editors, 1, copy, 1, attributeCount);
+
+                }
+                tableViewer.setCellEditors(copy);
+            }
         } else {
             createCellEditors();
         }
@@ -575,15 +573,21 @@ public class FeatureTableControl implements ISelectionProvider {
                 BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, String.class);
                 editors[i + 1] = textCellEditor;
             } else if (concreteType.isAssignableFrom(Integer.class)) {
-                BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, Integer.class);
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, Integer.class);
                 editors[i + 1] = textCellEditor;
             } else if (concreteType.isAssignableFrom(Double.class)) {
-                BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, Double.class);
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, Double.class);
                 editors[i + 1] = textCellEditor;
             } else if (concreteType.isAssignableFrom(Float.class)) {
-                BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, Float.class);
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, Float.class);
                 editors[i + 1] = textCellEditor;
-
+            } else if (concreteType.isAssignableFrom(BigDecimal.class)) {
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, BigDecimal.class);
+                editors[i + 1] = textCellEditor;
+            } else if (concreteType.isAssignableFrom(BigInteger.class)) {
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, BigInteger.class);
+                editors[i + 1] = textCellEditor;
+                
             } else if (concreteType.isAssignableFrom(Boolean.class)) {
                 BooleanCellEditor textCellEditor = new BooleanCellEditor(control);
                 editors[i + 1] = textCellEditor;
@@ -593,6 +597,9 @@ public class FeatureTableControl implements ISelectionProvider {
                         Character.class);
                 editors[i + 1] = textCellEditor;
 
+            } else if (Date.class.isAssignableFrom(concreteType)) {
+                DateTimeCellEditor textCellEditor = new DateTimeCellEditor(control);
+                editors[i + 1] = textCellEditor;
             }
             // else if( concreteType.isAssignableFrom(Date.class)){
             // WarningCellEditor textCellEditor = new WarningCellEditor(control, "The Date type does
@@ -605,11 +612,11 @@ public class FeatureTableControl implements ISelectionProvider {
                 editors[i + 1] = textCellEditor;
 
             } else if (concreteType.isAssignableFrom(Short.class)) {
-                BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, Short.class);
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, Short.class);
                 editors[i + 1] = textCellEditor;
 
             } else if (concreteType.isAssignableFrom(Long.class)) {
-                BasicTypeCellEditor textCellEditor = new BasicTypeCellEditor(control, Long.class);
+                NumberCellEditor textCellEditor = new NumberCellEditor(control, Long.class);
                 editors[i + 1] = textCellEditor;
 
             } else {

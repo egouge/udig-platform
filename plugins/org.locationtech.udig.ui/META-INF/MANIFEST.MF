@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.locationtech.udig.ui; singleton:=true
-Bundle-Version: 2.0.1.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Activator: org.locationtech.udig.internal.ui.UiPlugin
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
@@ -31,5 +31,5 @@ Export-Package: org.locationtech.udig,
  org.locationtech.udig.ui.preferences,
  org.locationtech.udig.ui.properties
 Import-Package: com.google.common.base;version="12.0.0",
- net.miginfocom.swt;version="3.7.0"
+ net.miginfocom.swt;version="[3.7.0,3.8.0)"
 

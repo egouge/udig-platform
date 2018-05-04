@@ -9,8 +9,6 @@
  */
 package org.locationtech.udig.catalog.teradata;
 
-import static java.util.Collections.emptyMap;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +16,6 @@ import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -319,7 +316,8 @@ public class Activator extends AbstractUIPlugin {
 
 				public File findPluginsDir() throws IOException {
 					Bundle bundle = Platform.getBundle(GEOTOOLS_LIBS_PLUGIN);
-					String filePath = FileLocator.toFileURL(FileLocator.find(bundle, new Path("gtlib"), new HashMap<String,String>())).getFile();
+					
+					String filePath = FileLocator.toFileURL(FileLocator.find(bundle, new Path("glib"), new HashMap<String, String>())).getFile();
 					return new File(filePath).getParentFile().getParentFile();
 				}
 
@@ -361,7 +359,7 @@ public class Activator extends AbstractUIPlugin {
 
 	protected static void createPluginStructure(File newPlugin) throws IOException {
 		Bundle teradataLibsBundle = Platform.getBundle(PLUGIN_ID);
-		URL manifest = FileLocator.toFileURL(FileLocator.find(teradataLibsBundle, new Path("License-MANIFEST.MF"), new HashMap<String,String>()));
+		URL manifest = FileLocator.toFileURL(FileLocator.find(teradataLibsBundle, new Path("License-MANIFEST.MF"), new HashMap<String, String>()));
 		File libsDir = new File(newPlugin, "libs");
 		libsDir.mkdirs();
 		File metaInf = new File(libsDir.getParentFile(), "META-INF");

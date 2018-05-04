@@ -9,11 +9,13 @@
  */
 package org.locationtech.udig.project.ui;
 
-import org.locationtech.udig.project.internal.ProjectPlugin;
-
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.locationtech.udig.project.ui.internal.Messages;
+import org.locationtech.udig.project.ui.internal.ProjectUIPlugin;
+import org.locationtech.udig.project.ui.preferences.PreferenceConstants;
 
 /**
  * Preference page for all tools.
@@ -22,13 +24,19 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class ToolPreferences extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
     
+    //attributes are usually utilized during modal tools actions
+    private StringFieldEditor featureAttributeName;
+
     public ToolPreferences(){
         super(GRID);
-        setPreferenceStore(ProjectPlugin.getPlugin().getPreferenceStore());
+        setPreferenceStore(ProjectUIPlugin.getDefault().getPreferenceStore());
     }
 
     @Override
     protected void createFieldEditors() {
+        featureAttributeName = new StringFieldEditor(PreferenceConstants.FEATURE_ATTRIBUTE_NAME, Messages.Feature_Attribute_Name, getFieldEditorParent());
+        addField(featureAttributeName);
+        featureAttributeName.getLabelControl(getFieldEditorParent()).setToolTipText(Messages.Feature_Attribute_Name_tooltip);
     }
 
     public void init( IWorkbench workbench ) {

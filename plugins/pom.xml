@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.locationtech.udig</groupId>
         <artifactId>udig-tycho</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>plugins</artifactId>
@@ -94,7 +94,9 @@
         <module>org.locationtech.udig.image.georeferencing</module>
         <module>org.locationtech.udig.jconsole</module>
         <module>org.locationtech.udig.omsbox</module>
-        <module>org.locationtech.udig.style.advanced</module>
+        <module>org.locationtech.udig.style.advanced.core</module>
+        <module>org.locationtech.udig.style.advanced.feature</module>
+        <module>org.locationtech.udig.style.advanced.raster</module>
         <module>org.locationtech.udig.style.jgrass</module>
         <module>org.locationtech.udig.tools</module>
         <module>org.locationtech.udig.tools.jgrass</module>
@@ -147,9 +149,11 @@
         <module>org.locationtech.udig.socket</module>
         <module>org.locationtech.udig.style</module>
         <module>org.locationtech.udig.style.sld</module>
+        <module>org.locationtech.udig.style.sld.raster</module>
         <module>org.locationtech.udig.style.wms</module>
         <module>org.locationtech.udig.tool.default</module>
         <module>org.locationtech.udig.tool.edit</module>
+        <module>org.locationtech.udig.tool.measure</module>
         <module>org.locationtech.udig.tool.select</module>
         <module>org.locationtech.udig.ui</module>
         <module>org.locationtech.udig.validation</module>

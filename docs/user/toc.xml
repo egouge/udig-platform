@@ -371,7 +371,11 @@
         <topic label="Adding features from PostGIS" href="EN/tasks/Adding features from PostGIS.html">
         
                 </topic>
-                    
+                
+        <topic label="Adding features from MySQL" href="EN/tasks/Adding features from MySQL.html">
+        
+        </topic>       
+        
         <topic label="Adding features from WFS" href="EN/tasks/Adding features from WFS.html">
         
                 </topic>
@@ -855,7 +859,10 @@
                     
         <topic label="Tool Preferences" href="EN/reference/Tool Preferences.html">
         
-                            
+        <topic label="Deletion Preferences" href="EN/reference/Deletion Preferences.html"/>
+
+        <topic label="Selection Preferences" href="EN/reference/Selection Preferences.html"/>
+
         <topic label="Edit Tool Preferences" href="EN/reference/Edit Tool Preferences.html">
         
                             
