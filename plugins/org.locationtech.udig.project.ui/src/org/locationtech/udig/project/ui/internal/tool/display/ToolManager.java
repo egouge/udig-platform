@@ -953,7 +953,7 @@ public class ToolManager implements IToolManager {
                 undoAction.setText(Messages.ToolManager_undoAction); 
                 undoAction.setActionDefinitionId("org.eclipse.ui.edit.undo"); //$NON-NLS-1$
             }
-            if (activeMap != ApplicationGIS.NO_MAP)
+            if (activeMap != null && activeMap != ApplicationGIS.NO_MAP)
                 undoAction.setEnabled(activeMap.getCommandStack().canUndo());
             else
                 undoAction.setEnabled(false);
