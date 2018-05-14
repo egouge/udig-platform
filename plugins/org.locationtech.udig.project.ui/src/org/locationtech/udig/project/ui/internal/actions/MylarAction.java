@@ -81,7 +81,7 @@ public class MylarAction extends ActionDelegate implements IViewActionDelegate, 
     public void selectionChanged( IAction action, ISelection selection ) {
         Map currentMap = (Map) ApplicationGIS.getActiveMap();
         selectedLayerListener.currentMap = currentMap;
-        if (currentMap == ApplicationGIS.NO_MAP)
+        if (currentMap == ApplicationGIS.NO_MAP || currentMap == null)
             return;
         Boolean temp = (Boolean)currentMap.getBlackboard().get(KEY);
 
