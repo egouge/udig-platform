@@ -1006,7 +1006,7 @@ public class ToolManager implements IToolManager {
                 forwardAction.setToolTipText(Messages.ToolManager_forward_tooltip); 
                 forwardAction.setActionDefinitionId("org.eclipse.ui.navigate.forward"); //$NON-NLS-1$
             }
-            if (activeMap != ApplicationGIS.NO_MAP)
+            if (activeMap != null && activeMap != ApplicationGIS.NO_MAP)
                 forwardAction.setEnabled(activeMap.getCommandStack().canRedo());
             else
                 forwardAction.setEnabled(false);
@@ -1095,7 +1095,7 @@ public class ToolManager implements IToolManager {
                 backwardAction.setToolTipText(Messages.ToolManager_back_tooltip); 
                 backwardAction.setActionDefinitionId("org.eclipse.ui.navigate.back"); //$NON-NLS-1$
             }
-            if (activeMap != ApplicationGIS.NO_MAP)
+            if (activeMap != null && activeMap != ApplicationGIS.NO_MAP)
                 backwardAction.setEnabled(activeMap.getCommandStack().canUndo());
             else
                 backwardAction.setEnabled(false);
