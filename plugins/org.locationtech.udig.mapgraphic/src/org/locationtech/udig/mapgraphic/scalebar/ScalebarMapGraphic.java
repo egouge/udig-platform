@@ -90,6 +90,10 @@ public class ScalebarMapGraphic implements MapGraphic {
         }
         return result;
     }
+    
+    
+    private double dpiScale = 1;
+    
     /*
      * @see org.locationtech.udig.project.render.decorator.Decorator#draw(java.awt.Graphics2D,
      *      org.locationtech.udig.project.render.RenderContext)
@@ -101,6 +105,10 @@ public class ScalebarMapGraphic implements MapGraphic {
 
     private void drawScaleDenom( MapGraphicContext context ) {
         double scaleDenom = context.getViewportModel().getScaleDenominator();
+        
+        //original designed for 96 dpi screen
+        dpiScale = context.getMapDisplay().getDPI() / 96.0;
+        
         IMapDisplay display = context.getMapDisplay();
         int dpi = display.getDPI(); // pixels per inch
         int displayHeight = display.getHeight();
@@ -126,10 +134,10 @@ public class ScalebarMapGraphic implements MapGraphic {
             Pair<Integer, Pair<Integer, Unit>> result2 = null;
             if (scalebarUnits == UnitPolicy.IMPERIAL){
                 result2 = calculateUnitAndLength(inMeters,
-                        location.width / type.getNumintervals(), Unit.MILE, Unit.FOOT, Unit.YARD, Unit.INCHES);
+                       (int)((location.width / type.getNumintervals() ) * dpiScale), Unit.MILE, Unit.FOOT, Unit.YARD, Unit.INCHES);
             }else{ /* METRIC and AUTO both treated as metric, since auto is converted above in CRS search */
                 result2 = calculateUnitAndLength(inMeters,
-                        location.width / type.getNumintervals(), KILOMETER, METER, CENTIMETER);                
+                        (int)((location.width / type.getNumintervals())*dpiScale), KILOMETER, METER, CENTIMETER);                
             }
             
             int trueBarLength2 = result2.getLeft() * type.getNumintervals();
@@ -223,8 +231,11 @@ public class ScalebarMapGraphic implements MapGraphic {
         int x = location.x;
         int y = location.y;
 
+    	x = (int)(x * dpiScale);
+    	y = (int)(y * dpiScale);
+    	
         int width = trueBarLength;
-        int height = location.height;
+        int height = (int) (location.height * dpiScale);
 
         if (x < 0) {
             x = context.getMapDisplay().getWidth() + x - trueBarLength;
@@ -233,7 +244,7 @@ public class ScalebarMapGraphic implements MapGraphic {
             y = context.getMapDisplay().getHeight() + y - height;
         }
 
-        int barWidth = -1;
+       
 
         //get background color
         Color bcolor = (Color) context.getMap().getBlackboard().get(
@@ -256,24 +267,24 @@ public class ScalebarMapGraphic implements MapGraphic {
         Color maskColor = new Color(bcolor.getRed(), bcolor.getGreen(), bcolor.getBlue(), 80);
         computeAndDrawHalo(nice, context, measurement, type, x, y, width, height, maskColor);
         
+        int barWidth = (int)(BAR_WIDTH  * dpiScale);  
         //draw bar with labels
         if (type.getType() == BarType.SIMPLE) {
-            drawSimpleBar(context.getGraphics(), location, x, y, width, height, type
-                    .getColor());
+            drawSimpleBar(context.getGraphics(), x, y, width, height, type.getColor());
             drawSingleLabel(context, measurement, nice * type.getNumintervals(), x, y, height,
-                    barWidth, width, type.getColor());
+            		barWidth, width, type.getColor());
         } else if (type.getType() == BarType.SIMPLE_LINE) {
-            drawLineBar(context.getGraphics(), location, x, y, width, height, type
+            drawLineBar(context.getGraphics(), x, y, width, height, type
                     .getNumintervals(), type.getColor(), bcolor);
             drawIntervalLabels(context, measurement, nice, x, y, height, barWidth, width, type
                     .getNumintervals(), type.getColor());
         } else if (type.getType() == BarType.FILLED) {
-             drawFilled(context.getGraphics(), location, x, y, width, height, type
+             drawFilled(context.getGraphics(), x, y, width, height, type
                     .getNumintervals(), type.getColor(), bcolor);
             drawIntervalLabels(context, measurement, nice, x, y, height, barWidth, width, type
                     .getNumintervals(), type.getColor());
         } else if (type.getType() == BarType.FILLED_LINE) {
-             drawFilledLineBar(context.getGraphics(), location, x, y, width, height, type
+             drawFilledLineBar(context.getGraphics(), x, y, width, height, type
                     .getNumintervals(), type.getColor(), bcolor);
             drawIntervalLabels(context, measurement, nice, x, y, height, barWidth, width, type
                     .getNumintervals(), type.getColor());
@@ -328,7 +339,7 @@ public class ScalebarMapGraphic implements MapGraphic {
         String msg = formatter.format(arguments);
         Rectangle2D msgBounds = graphics.getStringBounds(msg);
 
-        int yText = y + (height - barWidth) - 4;
+        int yText = y + height - barWidth - 4;
         int xText = x + (int) (width * 0.5) - (int) (msgBounds.getWidth() * 0.5);
 
         // Draw the string denoting kilometres (or metres)
@@ -377,7 +388,7 @@ public class ScalebarMapGraphic implements MapGraphic {
         msg = msg.trim();
         Rectangle2D msgBounds = graphics.getStringBounds(msg);
 
-        int yText = y + (height - barWidth) - 12;
+        int yText = y; //+ (height - barWidth);// - 12;
         int xText = x + barWidth + i * (width / numIntervals)
                 - ((int) msgBounds.getWidth() / 2);
 
@@ -395,20 +406,22 @@ public class ScalebarMapGraphic implements MapGraphic {
      * +----------------------------------------------+
      * </code></pre>
      */
-    private void drawSimpleBar( ViewportGraphics graphics, Rectangle location, int x, int y,
-            int width, int height, Color c ) {
+    private void drawSimpleBar( ViewportGraphics graphics, int x, int y, int width, int height, Color c ) {
 
-        int barStartX = x + 1 + BAR_WIDTH / 2;
-        int barStartY = y - 2 + location.height - BAR_HEIGHT;
-
+    	int barWidth = (int)(BAR_WIDTH  * dpiScale);
+    	int barHeight =  height;
+    	
+        int barStartX = x + 1 + barWidth / 2;
+        int barStartY = y + height - barHeight;
+      
         GeneralPath path = new GeneralPath();
         path.moveTo(barStartX, barStartY);
-        path.lineTo(barStartX, barStartY + BAR_HEIGHT);
-        path.lineTo(barStartX + width, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX, barStartY + barHeight);
+        path.lineTo(barStartX + width, barStartY + barHeight);
         path.lineTo(barStartX + width, barStartY);
 
         graphics.setColor(c);
-        graphics.setStroke(ViewportGraphics.LINE_SOLID, BAR_WIDTH);
+        graphics.setStroke(ViewportGraphics.LINE_SOLID, barWidth);
         graphics.draw(path);
     }
 
@@ -421,11 +434,13 @@ public class ScalebarMapGraphic implements MapGraphic {
      * +--+--+----+----+----+----+
      * </code></pre>
      */
-    private void drawFilled( ViewportGraphics graphics, Rectangle location, int x, int y,
+    private void drawFilled( ViewportGraphics graphics, int x, int y,
             int width, int height, int numIntervals, Color c, Color background ) {
 
-        int barStartX = x + 1 + BAR_WIDTH / 2;
-        int barStartY = y - 2 + location.height - BAR_HEIGHT;
+    	int barWidth = (int) (BAR_WIDTH * dpiScale);
+    	int barHeight = height;
+        int barStartX = x + 1 + barWidth / 2;
+        int barStartY = y + height - barHeight;;
 
         int interval = width / (numIntervals * 2);
 
@@ -433,28 +448,28 @@ public class ScalebarMapGraphic implements MapGraphic {
         Color intervalColor = background;
 
         graphics.setColor(color);
-        graphics.fillRect(barStartX, barStartY, (int) interval, BAR_HEIGHT);
+        graphics.fillRect(barStartX, barStartY, (int) interval, barHeight);
         for( int i = 2; i < numIntervals * 2; i += 4 ) {
-            graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, BAR_HEIGHT);
+            graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, barHeight);
         }
 
         graphics.setColor(intervalColor);
-        graphics.fillRect(barStartX + interval, barStartY, interval, BAR_HEIGHT);
+        graphics.fillRect(barStartX + interval, barStartY, interval, barHeight);
         for( int i = 4; i < numIntervals * 2; i += 4 ) {
-            graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, BAR_HEIGHT);
+            graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, barHeight);
         }
 
         // draw border around the whole thing
         GeneralPath path = new GeneralPath();
         path.moveTo(barStartX, barStartY);
 
-        path.lineTo(barStartX, barStartY + BAR_HEIGHT);
-        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX, barStartY + barHeight);
+        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + barHeight);
         path.lineTo(barStartX + numIntervals * 2 * interval, barStartY);
         path.lineTo(barStartX, barStartY);
 
         graphics.setColor(color);
-        graphics.setStroke(ViewportGraphics.LINE_SOLID, BAR_WIDTH);
+        graphics.setStroke(ViewportGraphics.LINE_SOLID, barWidth);
         graphics.draw(path);
     }
 
@@ -469,45 +484,47 @@ public class ScalebarMapGraphic implements MapGraphic {
      * +--+--+----+----+----+----+
      * </code></pre>
      */
-    private void drawLineBar( ViewportGraphics graphics, Rectangle location, int x, int y,
-            int width, int height, int numIntervals, Color c, Color bcolor ) {
+    private void drawLineBar( ViewportGraphics graphics, int x, int y, int width, int height, int numIntervals, Color c, Color bcolor ) {
 
-        int barStartX = x + 1 + BAR_WIDTH / 2;
-        int barStartY = y - 2 + location.height - BAR_HEIGHT;
+    	int barWidth = (int) (BAR_WIDTH * dpiScale);
+    	int barHeight = height;
+    	
+        int barStartX = x + 1 + barWidth / 2;
+        int barStartY = y + height - barHeight;
 
         int interval = width / (numIntervals * 2);
 
         //draw solid background
         graphics.setColor(bcolor);
-        graphics.fillRect(barStartX, barStartY, (int) interval * numIntervals * 2, BAR_HEIGHT);
+        graphics.fillRect(barStartX, barStartY, (int) interval * numIntervals * 2, barHeight);
         
         
         GeneralPath path = new GeneralPath();
         // draw outline box
         path.moveTo(barStartX, barStartY);
-        path.lineTo(barStartX, barStartY + BAR_HEIGHT);
-        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX, barStartY + barHeight);
+        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + barHeight);
         path.lineTo(barStartX + numIntervals * 2 * interval, barStartY);
         path.lineTo(barStartX, barStartY);
 
         // draw vertical dividers
         path.moveTo(barStartX + interval, barStartY);
-        path.lineTo(barStartX + interval, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX + interval, barStartY + barHeight);
         for( int i = 2; i < numIntervals * 2; i += 2 ) {
             path.moveTo(barStartX + i * interval, barStartY);
-            path.lineTo(barStartX + i * interval, barStartY + BAR_HEIGHT);
+            path.lineTo(barStartX + i * interval, barStartY + barHeight);
         }
 
         // draw horizontal dividers
-        path.moveTo(barStartX, barStartY + BAR_HEIGHT / 2);
-        path.lineTo(barStartX + interval, barStartY + BAR_HEIGHT / 2);
+        path.moveTo(barStartX, barStartY + barHeight / 2);
+        path.lineTo(barStartX + interval, barStartY + barHeight / 2);
         for( int i = 2; i < numIntervals * 2; i += 4 ) {
-            path.moveTo(barStartX + i * interval, barStartY + BAR_HEIGHT / 2);
-            path.lineTo(barStartX + (i + 2) * interval, barStartY + BAR_HEIGHT / 2);
+            path.moveTo(barStartX + i * interval, barStartY + barHeight / 2);
+            path.lineTo(barStartX + (i + 2) * interval, barStartY + barHeight / 2);
         }
 
         graphics.setColor(c);
-        graphics.setStroke(ViewportGraphics.LINE_SOLID, BAR_WIDTH);
+        graphics.setStroke(ViewportGraphics.LINE_SOLID, barWidth);
         graphics.draw(path);
     }
 
@@ -522,11 +539,14 @@ public class ScalebarMapGraphic implements MapGraphic {
      * +--+--+----+----+----+----+
      * </pre></code>
      */
-    private void drawFilledLineBar( ViewportGraphics graphics, Rectangle location, int x, int y,
+    private void drawFilledLineBar( ViewportGraphics graphics, int x, int y,
             int width, int height, int numIntervals, Color c, Color background ) {
 
-        int barStartX = x + 1 + BAR_WIDTH / 2;
-        int barStartY = y - 2 + location.height - BAR_HEIGHT;
+    	int barWidth = (int) (BAR_WIDTH *dpiScale);
+    	int barHeight = height;
+    	
+        int barStartX = x + 1 + barWidth / 2;
+        int barStartY = y + height - barHeight;
 
         int interval = width / (numIntervals * 2);
 
@@ -535,48 +555,48 @@ public class ScalebarMapGraphic implements MapGraphic {
 
 
         graphics.setColor(color);
-        graphics.fillRect(barStartX, barStartY, interval, BAR_HEIGHT / 2);
-        graphics.fillRect((barStartX + interval), barStartY + BAR_HEIGHT / 2, interval,
-                BAR_HEIGHT / 2);
+        graphics.fillRect(barStartX, barStartY, interval, barHeight / 2);
+        graphics.fillRect((barStartX + interval), barStartY + barHeight / 2, interval,
+        		barHeight / 2);
         for( int i = 2; i < numIntervals * 2; i += 2 ) {
             if (i % 4 != 0) {
-                graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, BAR_HEIGHT / 2);
+                graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, barHeight / 2);
             } else {
-                graphics.fillRect(barStartX + i * interval, barStartY + BAR_HEIGHT / 2,
-                        (int) (interval * 2), BAR_HEIGHT / 2);
+                graphics.fillRect(barStartX + i * interval, barStartY + barHeight / 2,
+                        (int) (interval * 2), barHeight / 2);
             }
         }
 
         graphics.setColor(intervalColor);
-        graphics.fillRect(barStartX, barStartY + BAR_HEIGHT / 2, interval, BAR_HEIGHT / 2);
-        graphics.fillRect(barStartX + interval, barStartY, interval, BAR_HEIGHT / 2);
+        graphics.fillRect(barStartX, barStartY + barHeight / 2, interval, barHeight / 2);
+        graphics.fillRect(barStartX + interval, barStartY, interval, barHeight / 2);
         for( int i = 2; i < numIntervals * 2; i += 2 ) {
             if (i % 4 != 0) {
-                graphics.fillRect(barStartX + i * interval, barStartY + BAR_HEIGHT / 2,
-                        interval * 2, BAR_HEIGHT / 2);
+                graphics.fillRect(barStartX + i * interval, barStartY + barHeight / 2,
+                        interval * 2, barHeight / 2);
             } else {
-                graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, BAR_HEIGHT / 2);
+                graphics.fillRect(barStartX + i * interval, barStartY, interval * 2, barHeight / 2);
             }
         }
 
         GeneralPath path = new GeneralPath();
         path.moveTo(barStartX, barStartY);
-        path.lineTo(barStartX, barStartY + BAR_HEIGHT);
-        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX, barStartY + barHeight);
+        path.lineTo(barStartX + numIntervals * 2 * interval, barStartY + barHeight);
         path.lineTo(barStartX + numIntervals * 2 * interval, barStartY);
         path.lineTo(barStartX, barStartY);
 
         path.moveTo(barStartX + interval, barStartY);
-        path.lineTo(barStartX + interval, barStartY + BAR_HEIGHT);
+        path.lineTo(barStartX + interval, barStartY + barHeight);
 
         for( int i = 2; i < numIntervals * 2; i += 2 ) {
             path.moveTo(barStartX + i * interval, barStartY);
-            path.lineTo(barStartX + i * interval, barStartY + BAR_HEIGHT);
+            path.lineTo(barStartX + i * interval, barStartY + barHeight);
 
         }
 
         graphics.setColor(color);
-        graphics.setStroke(ViewportGraphics.LINE_SOLID, BAR_WIDTH);
+        graphics.setStroke(ViewportGraphics.LINE_SOLID, barWidth);
         graphics.draw(path);
     }
 

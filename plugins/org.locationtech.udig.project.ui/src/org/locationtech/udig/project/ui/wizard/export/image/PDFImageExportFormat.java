@@ -102,13 +102,15 @@ public class PDFImageExportFormat extends ImageExportFormat {
         dpiCombo.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true,
                 false));
         dpiCombo.setItems(new String[] { "72", //$NON-NLS-1$
+        								 "96", //$NON-NLS-1$
                                          "144",  //$NON-NLS-1$
                                          "300" }); //$NON-NLS-1$
 
         dpiCombo.setData(0 + "", 72); //$NON-NLS-1$
-        dpiCombo.setData(1 + "", 144); //$NON-NLS-1$
-        dpiCombo.setData(2 + "", 300); //$NON-NLS-1$
-        dpiCombo.select(0);
+        dpiCombo.setData(1 + "", 96); //$NON-NLS-1$
+        dpiCombo.setData(2 + "", 144); //$NON-NLS-1$
+        dpiCombo.setData(3 + "", 300); //$NON-NLS-1$
+        dpiCombo.select(1);
 
     }
 

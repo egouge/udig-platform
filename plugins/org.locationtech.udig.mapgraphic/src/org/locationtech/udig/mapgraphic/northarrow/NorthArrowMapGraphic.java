@@ -10,6 +10,7 @@
 package org.locationtech.udig.mapgraphic.northarrow;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -20,6 +21,7 @@ import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.locationtech.udig.mapgraphic.MapGraphic;
 import org.locationtech.udig.mapgraphic.MapGraphicContext;
+import org.locationtech.udig.mapgraphic.style.FontStyle;
 import org.locationtech.udig.mapgraphic.style.LocationStyleContent;
 import org.locationtech.udig.project.IBlackboard;
 import org.locationtech.udig.ui.graphics.ViewportGraphics;
@@ -45,7 +47,11 @@ public final class NorthArrowMapGraphic implements MapGraphic{
     private static int ARROW_WIDTH = 22;
     private static int BOTTOM_INSET = 8;
     private static int SPACE_ABOVE_N = 3;
-        
+    
+    //default font style; could be replaced 
+    //with blackboard font style in future
+    private FontStyle fs = new FontStyle();
+    
 	public NorthArrowMapGraphic() {
 	}
 
@@ -74,27 +80,37 @@ public final class NorthArrowMapGraphic implements MapGraphic{
 		Coordinate destination = walk( worldStart, theta, distance );
 		//Coordinate destination = worldNorth;
 		end = context.worldToPixel( destination );
-		
-		if( start != null && end != null ){			
-			drawArrow( context, start, theta );
+			        
+		if( start != null && end != null ){
+			double scale = context.getMapDisplay().getDPI() / 72;
+			drawArrow( context, start, theta, scale );
 		}
 	}
 
-	private void drawArrow( MapGraphicContext context, Point here, double theta ) {
+
+	private void drawArrow( MapGraphicContext context, Point here, double theta, double scale ) {
+		
 		ViewportGraphics g = context.getGraphics();
+		
+		g.setFont(fs.getFont());
 		AffineTransform t = g.getTransform();
+
+		int arrowHeight = (int)( ARROW_HEIGHT * scale);
+		int arrowWidth = (int)(ARROW_WIDTH * scale);
+		int spaceAboveN = (int)(SPACE_ABOVE_N * scale);
+		int bottomInset = (int)(BOTTOM_INSET * scale);
 		
 		try {
-			int nTop = ARROW_HEIGHT + SPACE_ABOVE_N;			
-			int arrowCenterX = ARROW_WIDTH / 2;
-			int totalHeight = ARROW_HEIGHT + SPACE_ABOVE_N + g.getFontAscent();
+			int nTop = arrowHeight + spaceAboveN;			
+			int arrowCenterX = arrowWidth / 2;
+			int totalHeight = arrowHeight + spaceAboveN + g.getFontAscent();
 
             AffineTransform t1 = g.getTransform();
             int x = here.x;
             if (x < 0){
-            	x = context.getMapDisplay().getWidth() + x - ARROW_WIDTH;
+            	x = context.getMapDisplay().getWidth() + x - arrowWidth;
             }else{
-            	x = here.x + ARROW_WIDTH;
+            	x = here.x + arrowWidth;
             }
             
             int y = here.y;
@@ -112,10 +128,10 @@ public final class NorthArrowMapGraphic implements MapGraphic{
             g.setTransform( t1 );            
             g.setStroke(ViewportGraphics.LINE_SOLID, 1);			
 			
-			Point tip = new Point(arrowCenterX, BOTTOM_INSET);
-			Point centerBase = new Point(arrowCenterX, ARROW_HEIGHT);
+			Point tip = new Point(arrowCenterX, bottomInset);
+			Point centerBase = new Point(arrowCenterX, arrowHeight);
 			Point bottomLeft = new Point(0, 0);
-			Point bottomRight = new Point(ARROW_WIDTH, 0);
+			Point bottomRight = new Point(arrowWidth, 0);
 			
 			//This polygon is drawn on the left, but then gets rotated
 			//so it actually appears on the right if North is up.
@@ -139,7 +155,11 @@ public final class NorthArrowMapGraphic implements MapGraphic{
 			//TODO: center the N properly.  presently it relies on the default font and font size
             // to be some particular values
             g.setColor(Color.BLACK);
-            g.drawString("N", arrowCenterX-5, nTop, ViewportGraphics.ALIGN_LEFT, ViewportGraphics.ALIGN_MIDDLE); //$NON-NLS-1$
+            int offset = 10;
+            if (g.getGraphics(Graphics2D.class) != null) {
+            	offset = g.getGraphics(Graphics2D.class).getFontMetrics().stringWidth("N");
+            }
+            g.drawString("N", arrowCenterX-(int)Math.ceil(offset / 2.0), nTop, ViewportGraphics.ALIGN_LEFT, ViewportGraphics.ALIGN_MIDDLE); //$NON-NLS-1$
             
 			
 		} finally {
