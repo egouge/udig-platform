@@ -47,11 +47,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.mapgraphic.MapGraphic;
-import org.locationtech.udig.mapgraphic.MapGraphicContext;
 import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
 import org.locationtech.udig.project.IBlackboard;
 import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.internal.render.impl.RenderContextImpl;
 import org.locationtech.udig.project.internal.render.impl.RendererImpl;
 import org.locationtech.udig.project.render.ICompositeRenderContext;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
@@ -66,6 +64,10 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
     public static final String BLACKBOARD_IMAGE_KEY = "CACHED_IMAGE"; //$NON-NLS-1$
     public static final String BLACKBOARD_IMAGE_BOUNDS_KEY = "CACHED_IMAGE_BOUNDS"; //$NON-NLS-1$
     
+	//track mapgraphic contexts so we can property dispose of 
+    //them when renderer is disposed to prevent memory leaks
+	private List<MapGraphicContextImpl> toDispose = new ArrayList<MapGraphicContextImpl>();
+	
     @Override
     public String getName() {
         return super.getName();
@@ -89,11 +91,8 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
                     continue;
                 MapGraphic mg = l.getGeoResource().resolve(MapGraphic.class, null);
                 MapGraphicContextImpl mgContext = new MapGraphicContextImpl(l, copy);
-                try {
-                	mg.draw(mgContext);
-                }finally {
-                	mgContext.dispose();
-                }
+                mg.draw(mgContext);
+                toDispose.add(mgContext);
             } catch (IOException e) {
                 exceptions.add(e);
             }finally{
@@ -124,11 +123,8 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
                     continue;
                 MapGraphic mg = l.getGeoResource().resolve(MapGraphic.class, null);
                 MapGraphicContextImpl mgContext = new MapGraphicContextImpl(l, destination);
-                try {
-                	mg.draw(mgContext);
-                }finally {
-                	mgContext.dispose();
-                }
+                mg.draw(mgContext);
+                toDispose.add(mgContext);
             } catch (IOException e) {
                 exceptions.add(e);
             } finally {
@@ -146,6 +142,13 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
         
     }
 
+	@Override
+	public void dispose() {
+		for (MapGraphicContextImpl c : toDispose) c.dispose();
+		toDispose.clear();
+		super.dispose();
+	}
+	
     /**
      * @see org.locationtech.udig.project.internal.render.impl.RendererImpl#getContext()
      */
