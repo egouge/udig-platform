@@ -869,6 +869,8 @@ public class ApplicationGIS {
                             
                         } catch (RenderException e) {
                             throw new InvocationTargetException(e);
+                        }finally {
+                        	renderer.dispose();
                         }
                     } finally {
                         labelPainter.endLayer(layerId, params.graphics,

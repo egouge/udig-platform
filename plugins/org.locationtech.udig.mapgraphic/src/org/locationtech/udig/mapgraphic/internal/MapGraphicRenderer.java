@@ -22,9 +22,9 @@ import java.awt.Paint;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.RenderingHints.Key;
 import java.awt.Shape;
 import java.awt.Stroke;
-import java.awt.RenderingHints.Key;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
@@ -41,22 +41,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.locationtech.udig.mapgraphic.MapGraphic;
-import org.locationtech.udig.mapgraphic.MapGraphicContext;
-import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
-import org.locationtech.udig.project.IBlackboard;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.internal.render.impl.RendererImpl;
-import org.locationtech.udig.project.render.ICompositeRenderContext;
-import org.locationtech.udig.project.render.IMultiLayerRenderer;
-import org.locationtech.udig.project.render.IRenderContext;
-import org.locationtech.udig.project.render.RenderException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.udig.mapgraphic.MapGraphic;
+import org.locationtech.udig.mapgraphic.MapGraphicContext;
+import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
+import org.locationtech.udig.project.IBlackboard;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.internal.render.impl.RenderContextImpl;
+import org.locationtech.udig.project.internal.render.impl.RendererImpl;
+import org.locationtech.udig.project.render.ICompositeRenderContext;
+import org.locationtech.udig.project.render.IMultiLayerRenderer;
+import org.locationtech.udig.project.render.IRenderContext;
+import org.locationtech.udig.project.render.RenderException;
 
 /**
  * Renderer for MapGraphic layers
@@ -88,8 +88,12 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
                 if( !l.getLayer().isVisible() )
                     continue;
                 MapGraphic mg = l.getGeoResource().resolve(MapGraphic.class, null);
-                MapGraphicContext mgContext = new MapGraphicContextImpl(l, copy);
-                mg.draw(mgContext);
+                MapGraphicContextImpl mgContext = new MapGraphicContextImpl(l, copy);
+                try {
+                	mg.draw(mgContext);
+                }finally {
+                	mgContext.dispose();
+                }
             } catch (IOException e) {
                 exceptions.add(e);
             }finally{
@@ -119,8 +123,12 @@ public class MapGraphicRenderer extends RendererImpl implements IMultiLayerRende
                 if (!l.getLayer().isVisible())
                     continue;
                 MapGraphic mg = l.getGeoResource().resolve(MapGraphic.class, null);
-                MapGraphicContext mgContext = new MapGraphicContextImpl(l, destination);
-                mg.draw(mgContext);
+                MapGraphicContextImpl mgContext = new MapGraphicContextImpl(l, destination);
+                try {
+                	mg.draw(mgContext);
+                }finally {
+                	mgContext.dispose();
+                }
             } catch (IOException e) {
                 exceptions.add(e);
             } finally {
