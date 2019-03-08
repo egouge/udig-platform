@@ -18,11 +18,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.measure.Measure;
-import javax.measure.quantity.Length;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -33,6 +28,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.geotools.geometry.jts.JTS;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.udig.catalog.util.CRSUtil;
 import org.locationtech.udig.project.ui.commands.AbstractDrawCommand;
 import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
@@ -40,8 +36,6 @@ import org.locationtech.udig.project.ui.tool.SimpleTool;
 import org.locationtech.udig.tool.measure.internal.MeasurementToolPlugin;
 import org.locationtech.udig.tool.measure.internal.Messages;
 import org.opengis.referencing.operation.TransformException;
-
-import com.vividsolutions.jts.geom.Coordinate;
 
 public class DistanceTool extends SimpleTool implements KeyListener {
     public DistanceTool() {
@@ -186,39 +180,44 @@ public class DistanceTool extends SimpleTool implements KeyListener {
             units = org.locationtech.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS;
         }
 
-        final Measure<Double, Length> distanceInMeter = Measure.valueOf(distance, SI.METER);
-
-        Measure<Double, Length> result = null;
+        Double result = distance;
+        String unit = "m";
+        
         if (units.equals( org.locationtech.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS)){
-            Measure<Double, Length> distanceInMiles = distanceInMeter.to(NonSI.MILE);
-            double distInMilesValue = distanceInMiles.getValue().doubleValue();
-
-
-            if (distInMilesValue > Measure.valueOf(1, NonSI.MILE).doubleValue(NonSI.MILE)) {
+            double distanceInMiles = result / 1609.344;
+            
+            if (distanceInMiles > 1) {
                 // everything longer than a mile
                 result = distanceInMiles;
-            } else if (distInMilesValue > Measure.valueOf(1, NonSI.FOOT).doubleValue(NonSI.MILE)) {
+                unit = "mi";
+            } else if (distanceInMiles > 3.28084) {
                 // everything longer that a foot
-                result = distanceInMiles.to(NonSI.FOOT);
+                result = result * 5280.0;
+                unit = "ft";
             } else {
                 // shorter than a foot
-                result = distanceInMiles.to(NonSI.INCH);
+                result = result * 63360.0;
+                unit="in";
             }
         } else {
-            double distanceInMeterValue = distanceInMeter.getValue().doubleValue();
+            double distanceInMeterValue = result;
 
-            if (distanceInMeterValue > Measure.valueOf(1000, SI.METER).doubleValue(SI.METER)) {
-                result = distanceInMeter.to(SI.KILOMETER);
-            } else if (distanceInMeterValue > Measure.valueOf(1, SI.METER).doubleValue(SI.METER)) {
-                result = distanceInMeter.to(SI.METER);
-            } else if (distanceInMeterValue > Measure.valueOf(1, SI.CENTIMETER).doubleValue(SI.METER)) {
-                result = distanceInMeter.to(SI.CENTIMETER);
+            if (distanceInMeterValue > 1000.0) {
+                result = result * 1000; //kilometer
+                unit = "km";
+            } else if (distanceInMeterValue > 1.0) {
+                result = result; //meter
+                unit = "m";
+            } else if (distanceInMeterValue > 0.01) {
+                result = result * 0.01; //centimeter
+                unit = "cm";
             } else {
-                result = distanceInMeter.to(SI.MILLIMETER);
+                result = result * 0.001; //millimeter
+                unit = "mm";
             }
         }
 
-        final String message = MessageFormat.format(Messages.DistanceTool_distance, round(result.getValue(), 2) + " " + result.getUnit());
+        final String message = MessageFormat.format(Messages.DistanceTool_distance, round(result, 2) + " " + unit);
 
         getContext().updateUI(new Runnable(){
             public void run() {

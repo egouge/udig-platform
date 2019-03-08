@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.ContextModelListenerAdapter;
 import org.locationtech.udig.project.internal.Layer;
@@ -50,8 +51,6 @@ import org.locationtech.udig.project.render.IRenderer;
 import org.locationtech.udig.project.render.RenderException;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
 import org.locationtech.udig.project.ui.render.displayAdapter.ViewportPane;
-
-import com.vividsolutions.jts.geom.Envelope;
 
 /**
  * {@link RenderManagerDynamic} replacement with better synchronized concurrent logic based on

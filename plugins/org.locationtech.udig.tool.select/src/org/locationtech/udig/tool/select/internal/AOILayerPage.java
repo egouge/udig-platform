@@ -12,13 +12,6 @@ package org.locationtech.udig.tool.select.internal;
 
 import java.util.List;
 
-import org.locationtech.udig.aoi.AOIListener;
-import org.locationtech.udig.aoi.AOIProxy;
-import org.locationtech.udig.aoi.IAOIService;
-import org.locationtech.udig.aoi.IAOIStrategy;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -32,6 +25,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
+import org.locationtech.udig.aoi.AOIListener;
+import org.locationtech.udig.aoi.AOIProxy;
+import org.locationtech.udig.aoi.IAOIService;
+import org.locationtech.udig.aoi.IAOIStrategy;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.ui.PlatformGIS;
 
 /**
  * A page to add to the AOI View (Area of Interest) used for additional configuration of the AOI.

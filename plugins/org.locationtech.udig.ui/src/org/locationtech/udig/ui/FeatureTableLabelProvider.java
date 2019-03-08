@@ -9,10 +9,6 @@
  */
 package org.locationtech.udig.ui;
 
-import org.locationtech.udig.core.IProvider;
-import org.locationtech.udig.core.StaticProvider;
-import org.locationtech.udig.ui.internal.Messages;
-
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -22,11 +18,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 import org.geotools.feature.FeatureCollection;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.udig.core.IProvider;
+import org.locationtech.udig.core.StaticProvider;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 class FeatureTableLabelProvider extends LabelProvider
 implements ITableLabelProvider, IColorProvider {

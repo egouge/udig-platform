@@ -11,17 +11,16 @@ package org.locationtech.udig.internal.ui;
 
 import javax.xml.transform.TransformerException;
 
-import org.locationtech.udig.ui.AbstractTextStrategizedTransfer;
-
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.geotools.gml.producer.GeometryTransformer;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
-import com.vividsolutions.jts.io.WKTWriter;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKTReader;
+import org.locationtech.jts.io.WKTWriter;
+import org.locationtech.udig.ui.AbstractTextStrategizedTransfer;
+ 
+import org.locationtech.jts.io.ParseException;
 
 public class GeometryTextTransfer extends AbstractTextStrategizedTransfer implements
 		UDIGTransfer {

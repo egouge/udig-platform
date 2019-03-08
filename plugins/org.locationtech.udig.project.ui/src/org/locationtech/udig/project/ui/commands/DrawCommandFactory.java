@@ -31,7 +31,6 @@ import org.locationtech.udig.project.ui.internal.commands.draw.StopAnimationComm
 import org.locationtech.udig.project.ui.internal.commands.draw.TranslateCommand;
 import org.locationtech.udig.project.ui.internal.commands.draw.ZoomDrawCommand;
 import org.locationtech.udig.ui.graphics.ViewportGraphics;
-
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 

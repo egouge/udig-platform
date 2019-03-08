@@ -6,6 +6,7 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,7 +50,6 @@ import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
-import org.joda.time.DateTime;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.FactoryException;
@@ -57,8 +57,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Envelope;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.render.impl
@@ -197,7 +197,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * @generated
      * @ordered
      */
-    protected EList<DateTime> availableTimesteps;
+    protected EList<LocalDateTime> availableTimesteps;
 
     /**
      * The default value of the '{@link #getCurrentTimestep() <em>Current Timestep</em>}' attribute.
@@ -207,7 +207,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * @generated
      * @ordered
      */
-    protected static final DateTime CURRENT_TIMESTEP_EDEFAULT = null;
+    protected static final LocalDateTime CURRENT_TIMESTEP_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getCurrentTimestep() <em>Current Timestep</em>}' attribute.
@@ -217,7 +217,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * @generated
      * @ordered
      */
-    protected DateTime currentTimestep = CURRENT_TIMESTEP_EDEFAULT;
+    protected LocalDateTime currentTimestep = CURRENT_TIMESTEP_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getAvailableElevation() <em>Available Elevation</em>}' attribute list.
@@ -933,7 +933,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
     }
 
     /**
-     * @see org.locationtech.udig.project.internal.render.ViewportModel#zoomToBox(com.vividsolutions.jts.geom.Envelope)
+     * @see org.locationtech.udig.project.internal.render.ViewportModel#zoomToBox(org.locationtech.jts.geom.Envelope)
      */
     public void zoomToBox(Envelope newbbox) {
         setInitialized(true);
@@ -1089,10 +1089,10 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
             return;
         case RenderPackage.VIEWPORT_MODEL__AVAILABLE_TIMESTEPS:
             getAvailableTimesteps().clear();
-            getAvailableTimesteps().addAll((Collection<? extends DateTime>) newValue);
+            getAvailableTimesteps().addAll((Collection<? extends LocalDateTime>) newValue);
             return;
         case RenderPackage.VIEWPORT_MODEL__CURRENT_TIMESTEP:
-            setCurrentTimestep((DateTime) newValue);
+            setCurrentTimestep((LocalDateTime) newValue);
             return;
         case RenderPackage.VIEWPORT_MODEL__AVAILABLE_ELEVATION:
             getAvailableElevation().clear();
@@ -1308,9 +1308,9 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * <!-- end-user-doc -->
      * @generated
      */
-    public List<DateTime> getAvailableTimesteps() {
+    public List<LocalDateTime> getAvailableTimesteps() {
         if (availableTimesteps == null) {
-            availableTimesteps = new EDataTypeUniqueEList<DateTime>(DateTime.class, this,
+            availableTimesteps = new EDataTypeUniqueEList<LocalDateTime>(LocalDateTime.class, this,
                     RenderPackage.VIEWPORT_MODEL__AVAILABLE_TIMESTEPS);
         }
         return availableTimesteps;
@@ -1321,7 +1321,7 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * <!-- end-user-doc -->
      * @generated
      */
-    public DateTime getCurrentTimestep() {
+    public LocalDateTime getCurrentTimestep() {
         return currentTimestep;
     }
 
@@ -1330,8 +1330,8 @@ public class ViewportModelImpl extends EObjectImpl implements ViewportModel {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setCurrentTimestep(DateTime newCurrentTimestep) {
-        DateTime oldCurrentTimestep = currentTimestep;
+    public void setCurrentTimestep(LocalDateTime newCurrentTimestep) {
+    	LocalDateTime oldCurrentTimestep = currentTimestep;
         currentTimestep = newCurrentTimestep;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET,

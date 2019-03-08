@@ -10,7 +10,11 @@
  */
 package org.locationtech.udig.ui.filter;
 
-import java.lang.reflect.Field;
+import static org.geotools.data.Parameter.LENGTH;
+import static org.geotools.data.Parameter.MAX;
+import static org.geotools.data.Parameter.MIN;
+import static org.geotools.data.Parameter.OPTIONS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,11 +24,8 @@ import org.eclipse.jface.fieldassist.IContentProposal;
 import org.eclipse.jface.fieldassist.IContentProposalProvider;
 import org.geotools.filter.FunctionFinder;
 import org.geotools.filter.text.generated.parsers.CQLParser;
-import org.geotools.filter.text.generated.parsers.ECQLParser;
 import org.opengis.filter.capability.FunctionName;
 import org.opengis.parameter.Parameter;
-
-import static org.geotools.data.Parameter.*;
 /**
  * SimpleContentProposalProvider is a class designed to map a static list of Strings to content
  * proposals.

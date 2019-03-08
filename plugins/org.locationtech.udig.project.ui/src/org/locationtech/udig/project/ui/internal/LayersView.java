@@ -15,35 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.locationtech.udig.internal.ui.IDropTargetProvider;
-import org.locationtech.udig.project.BlackboardEvent;
-import org.locationtech.udig.project.EditManagerEvent;
-import org.locationtech.udig.project.IBlackboard;
-import org.locationtech.udig.project.IBlackboardListener;
-import org.locationtech.udig.project.IEditManagerListener;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.IMap;
-import org.locationtech.udig.project.IProjectElement;
-import org.locationtech.udig.project.command.map.LayerMoveDownCommand;
-import org.locationtech.udig.project.command.map.LayerMoveUpCommand;
-import org.locationtech.udig.project.internal.ContextModel;
-import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.project.internal.Map;
-import org.locationtech.udig.project.internal.ProjectPackage;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.impl.IEListVisitor;
-import org.locationtech.udig.project.internal.impl.SynchronizedEObjectWithInverseResolvingEList;
-import org.locationtech.udig.project.render.IViewportModel;
-import org.locationtech.udig.project.render.IViewportModelListener;
-import org.locationtech.udig.project.render.ViewportModelEvent;
-import org.locationtech.udig.project.ui.AdapterFactoryLabelProviderDecorator;
-import org.locationtech.udig.project.ui.ApplicationGIS;
-import org.locationtech.udig.project.ui.internal.actions.Delete;
-import org.locationtech.udig.project.ui.internal.actions.MylarAction;
-import org.locationtech.udig.project.ui.tool.IToolManager;
-import org.locationtech.udig.ui.PlatformGIS;
-import org.locationtech.udig.ui.UDIGDragDropUtilities;
-import org.locationtech.udig.ui.ZoomingDialog;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -52,7 +23,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -92,9 +62,37 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
 import org.eclipse.ui.part.EditorPart;
-import org.eclipse.ui.part.IContributedContentsView;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.locationtech.udig.internal.ui.IDropTargetProvider;
+import org.locationtech.udig.project.BlackboardEvent;
+import org.locationtech.udig.project.EditManagerEvent;
+import org.locationtech.udig.project.IBlackboard;
+import org.locationtech.udig.project.IBlackboardListener;
+import org.locationtech.udig.project.IEditManagerListener;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.IProjectElement;
+import org.locationtech.udig.project.command.map.LayerMoveDownCommand;
+import org.locationtech.udig.project.command.map.LayerMoveUpCommand;
+import org.locationtech.udig.project.internal.ContextModel;
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.project.internal.Map;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.impl.IEListVisitor;
+import org.locationtech.udig.project.internal.impl.SynchronizedEObjectWithInverseResolvingEList;
+import org.locationtech.udig.project.render.IViewportModel;
+import org.locationtech.udig.project.render.IViewportModelListener;
+import org.locationtech.udig.project.render.ViewportModelEvent;
+import org.locationtech.udig.project.ui.AdapterFactoryLabelProviderDecorator;
+import org.locationtech.udig.project.ui.ApplicationGIS;
+import org.locationtech.udig.project.ui.internal.actions.Delete;
+import org.locationtech.udig.project.ui.internal.actions.MylarAction;
+import org.locationtech.udig.project.ui.tool.IToolManager;
+import org.locationtech.udig.ui.PlatformGIS;
+import org.locationtech.udig.ui.UDIGDragDropUtilities;
+import org.locationtech.udig.ui.ZoomingDialog;
 
 /**
  * The Layers View.
@@ -554,13 +552,13 @@ public class LayersView extends ViewPart
                 if (currentMap == null)
                     return;
 
-                List<Layer> layers = currentMap.getLayersInternal();
+                List<Layer> layers = new ArrayList<>(currentMap.getLayersInternal());
                 if (!requiresCheckboxUpdate(layers)) {
                     return;
                 }
 
                 final List<Layer> checkedLayers = new ArrayList<Layer>();
-                for( Layer layer : layers ) {
+                for( Layer layer : layers ) { 
                     if (layer.isVisible()) {
                         checkedLayers.add(layer);
                     }

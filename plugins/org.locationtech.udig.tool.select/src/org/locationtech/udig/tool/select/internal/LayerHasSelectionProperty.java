@@ -13,7 +13,6 @@ import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.ILayerListener;
 import org.locationtech.udig.project.LayerEvent;
 import org.locationtech.udig.ui.operations.AbstractPropertyValue;
-
 import org.opengis.filter.Filter;
 
 /**

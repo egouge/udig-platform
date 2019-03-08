@@ -9,6 +9,10 @@
  */
 package org.locationtech.udig.project.ui.internal.dragdrop;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.core.internal.FeatureUtils;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
@@ -17,11 +21,6 @@ import org.locationtech.udig.project.command.factory.EditCommandFactory;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.ui.IDropAction;
-
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.GeoTools;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory;

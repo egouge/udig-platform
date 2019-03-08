@@ -10,17 +10,14 @@
 
 package org.locationtech.udig.style.filter;
 
-import java.io.IOException;
-
-import org.locationtech.udig.aoi.IAOIService;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.geotools.data.Query;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.filter.Filters;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.udig.aoi.IAOIService;
+import org.locationtech.udig.ui.PlatformGIS;
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory2;
@@ -29,8 +26,6 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 /**
  * Data structure for holding the filter that is used for the style of a layer.

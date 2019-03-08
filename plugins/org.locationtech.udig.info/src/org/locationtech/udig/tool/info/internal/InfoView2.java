@@ -44,12 +44,12 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.geotools.data.FeatureEvent;
 import org.geotools.data.FeatureEvent.Type;
 import org.geotools.data.FeatureSource;
-import org.geotools.data.ows.Layer;
+import org.geotools.ows.wms.Layer;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.GeoTools;
+import org.geotools.util.factory.GeoTools;
 import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.geometry.jts.ReferencedEnvelope;
@@ -159,10 +159,7 @@ public class InfoView2 extends SearchPart {
             return feature.getID();
             
         }
-        
-        /**
-         * @see org.locationtech.udig.project.internal.provider.LayerItemProvider
-         */
+
         public Color getBackground(Object element) {
             if (element instanceof AdaptableFeature) {
                 AdaptableFeature feature = (AdaptableFeature) element;
@@ -174,9 +171,6 @@ public class InfoView2 extends SearchPart {
             return null;
         }
 
-        /**
-         * @see org.locationtech.udig.project.internal.provider.LayerItemProvider
-         */
         public Color getForeground(Object element) {
             if (element instanceof AdaptableFeature) {
                 AdaptableFeature feature = (AdaptableFeature) element;

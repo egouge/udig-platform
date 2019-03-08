@@ -14,17 +14,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.locationtech.udig.location.Location;
-import org.locationtech.udig.location.LocationUIPlugin;
-import org.locationtech.udig.location.USGLocation;
-import org.locationtech.udig.location.internal.ImageConstants;
-import org.locationtech.udig.location.internal.Messages;
-import org.locationtech.udig.project.IMap;
-import org.locationtech.udig.project.command.NavCommand;
-import org.locationtech.udig.project.internal.command.navigation.SetViewportBBoxCommand;
-import org.locationtech.udig.project.ui.ApplicationGIS;
-import org.locationtech.udig.ui.SearchPart;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
@@ -57,15 +46,24 @@ import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.udig.location.Location;
+import org.locationtech.udig.location.LocationUIPlugin;
+import org.locationtech.udig.location.USGLocation;
+import org.locationtech.udig.location.internal.ImageConstants;
+import org.locationtech.udig.location.internal.Messages;
+import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.command.NavCommand;
+import org.locationtech.udig.project.internal.command.navigation.SetViewportBBoxCommand;
+import org.locationtech.udig.project.ui.ApplicationGIS;
+import org.locationtech.udig.ui.SearchPart;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.Point;
 
 public class LocationView extends SearchPart {
 

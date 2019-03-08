@@ -24,8 +24,8 @@ import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.ui.graphics.SLDs;
 
-import org.geotools.data.ows.StyleImpl;
-import org.geotools.data.wms.WebMapServer;
+import org.geotools.ows.wms.StyleImpl;
+import org.geotools.ows.wms.WebMapServer;
 import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.PointSymbolizer;
@@ -208,7 +208,7 @@ public class Styling {
 
             List<String> l = new LinkedList<String>();
             try {
-            	for (Iterator<StyleImpl> iterator = currentLayer.getResource(org.geotools.data.ows.Layer.class, null).getStyles().iterator(); iterator.hasNext();) {
+            	for (Iterator<StyleImpl> iterator = currentLayer.getResource(org.geotools.ows.wms.Layer.class, null).getStyles().iterator(); iterator.hasNext();) {
             		StyleImpl style = (StyleImpl) iterator.next();
             		l.add(style.getName());
 				}

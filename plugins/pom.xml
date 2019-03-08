@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.locationtech.udig</groupId>
         <artifactId>udig-tycho</artifactId>
-        <version>2.1.0-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>plugins</artifactId>
@@ -84,9 +84,62 @@
                 <module>org.locationtech.udig.tutorials.rcp-feature</module>
              </modules>
         </profile>
-    </profiles>
 
-    <modules>
+        <profile>
+	    <id>smart</id>
+            <activation>
+                <property><name>smart</name></property>
+            </activation>
+            
+            <modules>
+                
+	        <module>org.locationtech.udig.style.advanced.core</module>
+	        <module>org.locationtech.udig.style.advanced.feature</module>
+	        <module>org.locationtech.udig.style.advanced.raster</module>
+	        
+	        <module>org.locationtech.udig.browser</module>
+	        <module>org.locationtech.udig.catalog</module>
+	        <module>org.locationtech.udig.catalog.arcgrid</module>
+	        <module>org.locationtech.udig.catalog.geotiff</module>
+	        <module>org.locationtech.udig.catalog.rasterings</module>
+	        <module>org.locationtech.udig.catalog.shp</module>
+	        <module>org.locationtech.udig.catalog.ui</module>
+	        <module>org.locationtech.udig.catalog.wms</module>
+	        <module>org.locationtech.udig.catalog.worldimage</module>
+	        <module>org.locationtech.udig.core</module>
+	        <module>org.locationtech.udig.help</module>
+	        <module>org.locationtech.udig.info</module>
+	        <module>org.locationtech.udig.legend</module>
+	        <module>org.locationtech.udig.libs</module>
+	        <module>org.locationtech.udig.location</module>
+	        <module>org.locationtech.udig.mapgraphic</module>
+	        <module>org.locationtech.udig.project</module>
+	        <module>org.locationtech.udig.project.edit</module>
+	        <module>org.locationtech.udig.project.ui</module>
+	        <module>org.locationtech.udig.project.ui.editor</module>
+	        <module>org.locationtech.udig.render.feature.basic</module>
+	        <module>org.locationtech.udig.render.feature.shapefile</module>
+	        <module>org.locationtech.udig.render.gridcoverage.basic</module>
+	        <module>org.locationtech.udig.render.wms.basic</module>
+	        
+	        <module>org.locationtech.udig.style</module>
+	        <module>org.locationtech.udig.style.sld</module>
+	        <module>org.locationtech.udig.style.sld.raster</module>
+	        <module>org.locationtech.udig.style.wms</module>
+	        <module>org.locationtech.udig.tool.default</module>
+	        <module>org.locationtech.udig.tool.edit</module>
+	        <module>org.locationtech.udig.tool.measure</module>
+	        <module>org.locationtech.udig.tool.select</module>
+	        <module>org.locationtech.udig.ui</module>
+             </modules>
+        </profile>
+        
+          <profile>
+         <id>default</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <modules>
         <module>org.locationtech.udig.catalog.csw</module>
         <module>org.locationtech.udig.catalog.jgrass</module>
         <module>org.locationtech.udig.catalog.kml</module>
@@ -159,5 +212,10 @@
         <module>org.locationtech.udig.validation</module>
         <module>org.locationtech.udig.bookmarks</module>
     </modules>
+      </profile>
+      
+    </profiles>
+
+   
 
 </project>

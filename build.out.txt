@@ -1,0 +1,31 @@
+[INFO] Scanning for projects...
+[INFO] Computing target platform for MavenProject: org.locationtech.udig:org.locationtech.udig.style.advanced.core:3.0.0-SNAPSHOT @ C:\data\SMART\Source\BranchJava11\udig\udig-platform\plugins\org.locationtech.udig.style.advanced.core\pom.xml
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/2018-12/
+[INFO] Adding repository http://download.eclipse.org/releases/2018-12
+[INFO] Fetching p2.index from http://download.eclipse.org/technology/epp/packages/2018-12/
+[INFO] Fetching p2.index from http://download.eclipse.org/technology/epp/packages/2018-12/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/2018-12/201812191000/
+[INFO] Fetching p2.index from http://download.eclipse.org/releases/2018-12/201812191000/
+[INFO] Adding repository http://udig.refractions.net/files/update-jai
+[INFO] Fetching p2.index from https://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository/
+[INFO] Fetching p2.index from https://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository/
+[INFO] Adding repository https://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository
+[INFO] Fetching p2.index from https://download.eclipse.org/tools/orbit/downloads/drops2/R20181128170323/repository/
+[INFO] Fetching p2.index from https://download.eclipse.org/tools/orbit/downloads/drops2/R20181128170323/repository/
+[INFO] Resolving dependencies of MavenProject: org.locationtech.udig:org.locationtech.udig.style.advanced.core:3.0.0-SNAPSHOT @ C:\data\SMART\Source\BranchJava11\udig\udig-platform\plugins\org.locationtech.udig.style.advanced.core\pom.xml
+[INFO] {osgi.os=win32, osgi.ws=win32, org.eclipse.update.install.features=true, osgi.arch=x86}
+[ERROR] Cannot resolve project dependencies:
+[ERROR]   Software being installed: org.locationtech.udig.style.advanced.core 3.0.0.qualifier
+[ERROR]   Missing requirement: org.apache.batik.dom 1.9.1.v20181015-1528 requires 'java.package; org.apache.xml.utils 2.7.1' but it could not be found
+[ERROR]   Cannot satisfy dependency: org.locationtech.udig.catalog 3.0.0.qualifier depends on: java.package; org.geotools.data.memory 0.0.0
+[ERROR]   Cannot satisfy dependency: org.locationtech.udig.libs 3.0.0.qualifier depends on: osgi.bundle; org.apache.batik.dom 0.0.0
+[ERROR]   Cannot satisfy dependency: org.locationtech.udig.style.advanced.core 3.0.0.qualifier depends on: osgi.bundle; org.locationtech.udig.catalog 0.0.0
+[ERROR] 
+[ERROR] See http://wiki.eclipse.org/Tycho/Dependency_Resolution_Troubleshooting for help.
+[ERROR] Cannot resolve dependencies of MavenProject: org.locationtech.udig:org.locationtech.udig.style.advanced.core:3.0.0-SNAPSHOT @ C:\data\SMART\Source\BranchJava11\udig\udig-platform\plugins\org.locationtech.udig.style.advanced.core\pom.xml: See log for details -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MavenExecutionException

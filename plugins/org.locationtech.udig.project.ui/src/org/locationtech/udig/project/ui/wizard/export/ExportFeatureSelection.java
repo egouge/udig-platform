@@ -15,6 +15,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.geotools.data.DefaultQuery;
+import org.geotools.data.FeatureSource;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.ui.export.CatalogExport;
 import org.locationtech.udig.catalog.ui.export.Data;
@@ -29,9 +31,6 @@ import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.ui.ApplicationGIS;
 import org.locationtech.udig.ui.ProgressManager;
-
-import org.geotools.data.DefaultQuery;
-import org.geotools.data.FeatureSource;
 import org.opengis.filter.Filter;
 
 /**

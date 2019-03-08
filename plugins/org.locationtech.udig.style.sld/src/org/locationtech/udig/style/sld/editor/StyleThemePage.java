@@ -67,7 +67,6 @@ import org.geotools.brewer.color.SampleScheme;
 import org.geotools.brewer.color.StyleGenerator;
 import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.GeoTools;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.NameImpl;
 import org.geotools.feature.visitor.UniqueVisitor;
@@ -91,7 +90,11 @@ import org.geotools.styling.Style;
 import org.geotools.styling.StyleBuilder;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.styling.Symbolizer;
-import org.geotools.util.NullProgressListener;
+import org.geotools.data.util.NullProgressListener;
+import org.geotools.util.factory.GeoTools;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.udig.project.internal.StyleBlackboard;
 import org.locationtech.udig.style.internal.StyleLayer;
 import org.locationtech.udig.style.sld.ImageConstants;
@@ -118,10 +121,6 @@ import org.opengis.filter.capability.FunctionName;
 import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;
 import org.opengis.util.ProgressListener;
-
-import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.MultiLineString;
 
 /**
  * Page for editing a style Theme.

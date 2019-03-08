@@ -8,7 +8,7 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-import org.geotools.resources.XMath;
+import org.geotools.util.XMath;
 
 /**
  * This is a class in Geotools but it has different package name in GT 2.2 vs trunk and therefore until I abandon 2.2 I need

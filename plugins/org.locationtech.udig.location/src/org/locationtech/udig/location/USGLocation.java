@@ -14,9 +14,8 @@ import java.util.List;
 
 import org.apache.xmlrpc.XmlRpcException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.locationtech.jts.geom.Envelope;
 import org.opengis.feature.simple.SimpleFeature;
-
-import com.vividsolutions.jts.geom.Envelope;
 
 /**
  * Find a location, using the USG service.

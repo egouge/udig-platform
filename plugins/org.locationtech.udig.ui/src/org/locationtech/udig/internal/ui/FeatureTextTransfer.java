@@ -24,6 +24,9 @@ import org.geotools.gml.GMLFilterFeature;
 import org.geotools.gml.GMLFilterGeometry;
 import org.geotools.gml.GMLReceiver;
 import org.geotools.gml.producer.FeatureTransformer;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKTReader;
+import org.locationtech.jts.io.WKTWriter;
 import org.locationtech.udig.ui.AbstractTextStrategizedTransfer;
 import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeature;
@@ -31,10 +34,6 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.WKTReader;
-import com.vividsolutions.jts.io.WKTWriter;
 
 public class FeatureTextTransfer extends AbstractTextStrategizedTransfer implements
 		UDIGTransfer {

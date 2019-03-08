@@ -9,13 +9,12 @@
  */
 package org.locationtech.udig.tool.select;
 
+import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.swt.widgets.Item;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.command.factory.EditCommandFactory;
-
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.swt.widgets.Item;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 

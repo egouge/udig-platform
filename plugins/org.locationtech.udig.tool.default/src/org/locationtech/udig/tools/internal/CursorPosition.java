@@ -13,15 +13,10 @@ import java.awt.Point;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import org.locationtech.udig.project.command.Command;
-import org.locationtech.udig.project.internal.command.navigation.SetViewportCenterCommand;
-import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
-import org.locationtech.udig.project.ui.tool.AbstractTool;
-import org.locationtech.udig.project.ui.tool.IToolContext;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.ContributionItem;
+import org.eclipse.jface.action.GroupMarker;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.StatusLineLayoutData;
 import org.eclipse.jface.action.StatusLineManager;
@@ -40,9 +35,14 @@ import org.eclipse.swt.widgets.Text;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.udig.project.command.Command;
+import org.locationtech.udig.project.internal.command.navigation.SetViewportCenterCommand;
+import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
+import org.locationtech.udig.project.ui.tool.AbstractTool;
+import org.locationtech.udig.project.ui.tool.IToolContext;
+import org.locationtech.udig.ui.PlatformGIS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import com.vividsolutions.jts.geom.Coordinate;
 
 /**
  * A CursorPosition tool displays the current Cursor position in map coordinates
@@ -90,14 +90,22 @@ public class CursorPosition extends AbstractTool {
         if( getContext().getActionBars()==null )
             return null;
         IStatusLineManager bar = getContext().getActionBars().getStatusLineManager();
+        
 		if (bar == null) {
 			return null;
 		}
+
 		LineItem item = (LineItem) bar.find(ID);
 		if (item == null) {
 			item = new LineItem(ID);
-			bar.appendToGroup(StatusLineManager.END_GROUP, item);
-			bar.update(true);
+			for (IContributionItem i : bar.getItems()) {
+				if (i instanceof GroupMarker && ((GroupMarker)i).getGroupName().equals(StatusLineManager.END_GROUP)) {
+					bar.appendToGroup(StatusLineManager.END_GROUP, item);
+					bar.update(true);
+					break;
+				}
+			}
+			
 		}
 
 		return item;

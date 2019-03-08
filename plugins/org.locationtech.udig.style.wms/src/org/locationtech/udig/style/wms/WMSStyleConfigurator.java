@@ -20,12 +20,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.project.internal.StyleBlackboard;
-import org.locationtech.udig.style.IStyleConfigurator;
-import org.locationtech.udig.style.wms.internal.Messages;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.SWT;
@@ -38,9 +32,14 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.geotools.data.ows.StyleImpl;
-import org.geotools.data.wms.WebMapServer;
+import org.geotools.ows.wms.StyleImpl;
+import org.geotools.ows.wms.WebMapServer;
 import org.geotools.styling.FeatureTypeStyle;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.project.internal.StyleBlackboard;
+import org.locationtech.udig.style.IStyleConfigurator;
+import org.locationtech.udig.style.wms.internal.Messages;
 
 public class WMSStyleConfigurator extends IStyleConfigurator {
 
@@ -66,7 +65,7 @@ public class WMSStyleConfigurator extends IStyleConfigurator {
             return;
 		layer = getLayer();
 		
-		List<StyleImpl> allStyles = getStyles(layer.findGeoResource(org.geotools.data.ows.Layer.class));	
+		List<StyleImpl> allStyles = getStyles(layer.findGeoResource(org.geotools.ows.wms.Layer.class));	
         styles.clear();
         styleCombo.setItems(new String[0]);
         // Map<DisplayName,wmsStyle>
@@ -132,9 +131,9 @@ public class WMSStyleConfigurator extends IStyleConfigurator {
      */
     @SuppressWarnings("unchecked")
     static List<StyleImpl> getStyles(IGeoResource wmsResource) {
-        org.geotools.data.ows.Layer wmsLayer = null;
+    	org.geotools.ows.wms.Layer wmsLayer = null;
 		try {
-			wmsLayer = wmsResource.resolve(org.geotools.data.ows.Layer.class, null);
+			wmsLayer = wmsResource.resolve(org.geotools.ows.wms.Layer.class, null);
 		} 
 		catch (IOException e) {
 			IStatus status = 

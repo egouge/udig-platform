@@ -57,6 +57,7 @@ import org.eclipse.ui.part.PageBook;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.filter.text.cql2.CQL;
 import org.geotools.filter.text.cql2.CQLException;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.udig.core.IProvider;
 import org.locationtech.udig.internal.ui.Trace;
 import org.locationtech.udig.internal.ui.UiPlugin;
@@ -67,8 +68,6 @@ import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.filter.Filter;
 import org.opengis.filter.Id;
 import org.opengis.filter.identity.FeatureId;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 /**
  * A TreeViewer control for viewing a table of SimpleFeature attributes.

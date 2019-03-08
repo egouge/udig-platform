@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import  org.locationtech.udig.project.ILayer;
 
-import com.vividsolutions.jts.geom.Envelope;
+import org.locationtech.jts.geom.Envelope;
 
 public class RenderTask{
     

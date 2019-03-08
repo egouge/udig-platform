@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.locationtech.udig.style.sld.raster;singleton:=true
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.locationtech.udig.style.sld.raster.SLDRasterPlugin
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
@@ -17,4 +17,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.forms
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.media.jai,
- net.miginfocom.swt;version="[3.7.0,3.8.0)"
+ net.miginfocom.swt;version="[3.7.0,3.8.0)",
+ org.geotools.renderer.lite.gridcoverage2d,
+ org.jaitools.numeric

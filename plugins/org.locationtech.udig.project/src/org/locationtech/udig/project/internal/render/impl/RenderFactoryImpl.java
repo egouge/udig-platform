@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -43,15 +44,14 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.geotools.data.Query;
 import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.joda.time.DateTime;
 import org.geotools.referencing.ReferencingFactoryFinder;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.osgi.framework.Bundle;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Envelope;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory </b>! <!--
@@ -618,8 +618,8 @@ public class RenderFactoryImpl extends EFactoryImpl implements RenderFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public DateTime createDateTimeFromString(EDataType eDataType, String initialValue) {
-        return (DateTime) super.createFromString(eDataType, initialValue);
+    public LocalDateTime createDateTimeFromString(EDataType eDataType, String initialValue) {
+        return (LocalDateTime) super.createFromString(eDataType, initialValue);
     }
 
     /**

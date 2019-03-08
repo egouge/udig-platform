@@ -11,17 +11,16 @@ package org.locationtech.udig.tool.select.internal;
 
 import java.io.IOException;
 
+import org.geotools.data.Query;
+import org.geotools.data.simple.SimpleFeatureSource;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.command.navigation.SetViewportBBoxCommand;
 import org.locationtech.udig.project.internal.render.impl.ScaleUtils;
 import org.locationtech.udig.project.ui.tool.AbstractActionTool;
 import org.locationtech.udig.tool.select.SelectPlugin;
 import org.locationtech.udig.ui.ProgressManager;
-
-import org.geotools.data.Query;
-import org.geotools.data.simple.SimpleFeatureSource;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 

@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.geotools.filter.expression.ExpressionBuilder;
+import org.geotools.brewer.styling.filter.expression.ExpressionBuilder;
 import org.geotools.styling.ColorMap;
 import org.geotools.styling.ColorMapEntryImpl;
 import org.geotools.styling.ColorMapImpl;

@@ -11,10 +11,9 @@
  */
 package org.locationtech.udig.ui;
 
-import org.locationtech.udig.ui.internal.Messages;
-
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.geotools.feature.type.Types;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 

@@ -10,22 +10,17 @@
  */
 package org.locationtech.udig.project.ui.viewers;
 
+import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.gef.palette.PaletteListener;
+import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.ui.IEditorPart;
 import org.locationtech.udig.project.ui.ApplicationGIS;
 import org.locationtech.udig.project.ui.internal.MapToolEntry;
 import org.locationtech.udig.project.ui.internal.tool.display.ToolManager;
 import org.locationtech.udig.project.ui.internal.tool.display.ToolProxy;
-import org.locationtech.udig.project.ui.tool.IToolManager;
-import org.locationtech.udig.project.ui.tool.ModalTool;
-
-import org.eclipse.gef.DefaultEditDomain;
-import org.eclipse.gef.EditDomain;
-import org.eclipse.gef.palette.PaletteContainer;
-import org.eclipse.gef.palette.PaletteEntry;
-import org.eclipse.gef.palette.PaletteListener;
-import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.palette.ToolEntry;
-import org.eclipse.gef.ui.palette.PaletteViewer;
-import org.eclipse.ui.IEditorPart;
 
 /**
  * Domain responsible for managing the active tool; and advertising the set of

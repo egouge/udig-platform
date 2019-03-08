@@ -21,6 +21,10 @@ import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.udig.aoi.AOIProxy;
 import org.locationtech.udig.aoi.IAOIService;
 import org.locationtech.udig.aoi.IAOIStrategy;
@@ -38,11 +42,6 @@ import org.locationtech.udig.tool.select.preferences.SelectionToolPreferencePage
 import org.locationtech.udig.ui.PlatformGIS;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.filter.Filter;
-
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Polygon;
 
 /**
  * Queries the current AOI layer (Area of Interest) for selection and updates the AOILayerStrategy

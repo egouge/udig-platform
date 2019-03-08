@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.geotools.data.FeatureEvent;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.ContextModel;
 import org.locationtech.udig.project.internal.ContextModelListenerAdapter;
@@ -33,8 +34,6 @@ import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-
-import com.vividsolutions.jts.geom.Envelope;
 
 /**
  * Provides factory methods for various Listeners used by RenderManagerDynamic.

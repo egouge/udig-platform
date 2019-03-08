@@ -22,7 +22,7 @@ import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-import com.vividsolutions.jts.geom.Envelope;
+import org.locationtech.jts.geom.Envelope;
 
 public class AbstractRasterGeoResourceInfo extends IGeoResourceInfo {
     protected final AbstractRasterGeoResource resource;
