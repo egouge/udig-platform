@@ -21,3 +21,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.forms
 Bundle-ActivationPolicy: lazy
 Import-Package: net.miginfocom.swt;version="[3.7.0,3.8.0)"
+Automatic-Module-Name: org.locationtech.udig.style.sld

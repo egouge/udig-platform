@@ -20,3 +20,4 @@ Import-Package: javax.media.jai,
  net.miginfocom.swt;version="[3.7.0,3.8.0)",
  org.geotools.renderer.lite.gridcoverage2d,
  org.jaitools.numeric
+Automatic-Module-Name: org.locationtech.udig.style.sld.raster

@@ -21,3 +21,4 @@ Export-Package: org.locationtech.udig.style.advanced.common,
  org.locationtech.udig.style.advanced.points,
  org.locationtech.udig.style.advanced.polygons,
  org.locationtech.udig.style.advanced.utils
+Automatic-Module-Name: org.locationtech.udig.style.advanced.feature

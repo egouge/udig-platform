@@ -17,4 +17,5 @@ Require-Bundle: org.eclipse.ui,
  org.locationtech.udig.libs,
  org.locationtech.udig.project.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: org.locationtech.udig.catalog.wms

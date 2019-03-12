@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.apache.log4j;bundle-version="1.2.15"
 Bundle-Activator: org.locationtech.udig.libs.internal.Activator
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.sun.media.imageio.plugins.bmp,
  com.sun.media.imageio.plugins.jpeg2000,
  com.sun.media.imageio.plugins.pnm,

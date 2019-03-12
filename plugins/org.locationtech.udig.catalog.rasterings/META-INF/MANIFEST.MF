@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.locationtech.udig.catalog.shp;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Export-Package: org.locationtech.udig.catalog.rasterings
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: udig.refractions.net
 Import-Package: javax.media.jai,
  javax.media.jai.iterator,
@@ -21,3 +21,4 @@ Import-Package: javax.media.jai,
  javax.media.jai.remote,
  javax.media.jai.tilecodec,
  javax.media.jai.util
+Automatic-Module-Name: org.locationtech.udig.catalog.rasterings

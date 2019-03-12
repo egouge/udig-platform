@@ -43,3 +43,4 @@ Import-Package: javax.media.jai,
  javax.media.jai.tilecodec,
  javax.media.jai.util,
  javax.media.jai.widget
+Automatic-Module-Name: org.locationtech.udig.project

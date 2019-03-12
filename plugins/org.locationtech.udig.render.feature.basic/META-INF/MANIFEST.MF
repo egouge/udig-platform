@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.locationtech.udig.project.ui,
  org.locationtech.udig.style.sld
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: org.locationtech.udig.render.feature.basic

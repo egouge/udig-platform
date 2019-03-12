@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.ui,
  org.locationtech.udig.catalog.ui
 Export-Package: org.locationtech.udig.catalog.internal.shp
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: org.locationtech.udig.catalog.shp

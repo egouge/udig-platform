@@ -64,3 +64,4 @@ Import-Package: javax.media.jai,
  javax.media.jai.util,
  javax.media.jai.widget,
  net.miginfocom.swt
+Automatic-Module-Name: org.locationtech.udig.project.ui

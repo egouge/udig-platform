@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.help.base,
  org.locationtech.udig.catalog.ui,
  org.locationtech.udig.tool.default
 Import-Package: org.locationtech.udig.project.ui.internal
+Automatic-Module-Name: org.locationtech.udig.help
