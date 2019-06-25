@@ -31,7 +31,7 @@
     <properties>
         <!-- see geotools root pom for details -->
         <!--<geotools.version>14.1</geotools.version>-->
-        <geotools.version>21.0</geotools.version>
+        <geotools.version>21.1</geotools.version>
         <imageio-ext.version>1.1.22</imageio-ext.version>
         <jfreechart.version>1.0.13</jfreechart.version>
         <jt.version>1.4.0</jt.version>
@@ -190,12 +190,13 @@
             <artifactId>gt-imageio-ext-gdal</artifactId>
             <version>${geotools.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.geotools.jdbc</groupId>
             <artifactId>gt-jdbc-db2</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-        <!--
+        
         <dependency>
             <groupId>org.geotools.jdbc</groupId>
             <artifactId>gt-jdbc-mysql</artifactId>
@@ -281,7 +282,7 @@
             <groupId>org.geotools.jdbc</groupId>
             <artifactId>gt-jdbc-sqlserver</artifactId>
             <version>${geotools.version}</version>
-        </dependency>-->
+        </dependency>
         <dependency>
           <groupId>org.xerial</groupId>
           <artifactId>sqlite-jdbc-spatialite</artifactId>
@@ -292,7 +293,7 @@
             <artifactId>gt-jdbc-h2</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-
+-->
         <!-- xml formats -->
         <dependency>
             <groupId>org.geotools.xsd</groupId>
@@ -372,15 +373,15 @@
 -->
 
         <!-- others -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-imagepyramid</artifactId>
             <version>${geotools.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.geotools</groupId>
-            <artifactId>gt-coverage-api</artifactId>
+            <artifactId>gt-coverage</artifactId>
             <version>${geotools.version}</version>
         </dependency>
 

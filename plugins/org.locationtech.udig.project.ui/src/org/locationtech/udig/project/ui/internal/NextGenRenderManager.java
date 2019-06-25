@@ -551,7 +551,7 @@ public class NextGenRenderManager extends RenderManagerImpl {
     }
     
     protected void scheduleQueueJob(){
-        if(getRenderQueueSize() != 0){
+        if(getRenderQueueSize() != 0 && isRenderingEnabled()){
             getRenderQueueJob().schedule();
         }
     }

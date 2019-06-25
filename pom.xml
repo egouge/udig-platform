@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <java-version>1.7</java-version>
+        <java-version>11</java-version>
 	<tycho-version>1.3.0</tycho-version>
 	<tycho-extras-version>1.3.0</tycho-extras-version>
         <!-- necessary for e.g. hudson proxy settings
@@ -222,21 +222,21 @@
                     <pomDependencies>consider</pomDependencies>
 
                     <environments>
-                        <environment>
+                        <!--<environment>
                             <os>win32</os>
                             <ws>win32</ws>
                             <arch>x86</arch>
-                        </environment>
+                        </environment>-->
                         <environment>
                             <os>win32</os>
                             <ws>win32</ws>
                             <arch>x86_64</arch>
                         </environment>
-                        <environment>
+                       <!-- <environment>
                             <os>linux</os>
                             <ws>gtk</ws>
                             <arch>x86</arch>
-                        </environment>
+                        </environment>-->
                         <environment>
                             <os>linux</os>
                             <ws>gtk</ws>
@@ -256,8 +256,8 @@
                 <artifactId>tycho-compiler-plugin</artifactId>
                 <version>${tycho-version}</version>
                 <configuration>
-                    <source>${java-version}</source>
-                    <target>${java-version}</target>
+                    <!--<source>${java-version}</source>
+                    <target>${java-version}</target>-->
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
