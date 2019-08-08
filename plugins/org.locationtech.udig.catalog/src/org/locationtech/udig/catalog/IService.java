@@ -576,9 +576,8 @@ public abstract class IService implements IResolve {
                     }
                 }
             } catch (Throwable e) {
-                ErrorManager.get().displayException(e,
-                        "Cleaning up members of service: " + getIdentifier(), CatalogPlugin.ID); //$NON-NLS-1$
-                e.printStackTrace();
+                ErrorManager.get().displayException(e, "Cleaning up members of service: " + getIdentifier(), CatalogPlugin.ID); //$NON-NLS-1$
+                CatalogPlugin.log(e.getMessage(), e);
                 return;
             }
         }
