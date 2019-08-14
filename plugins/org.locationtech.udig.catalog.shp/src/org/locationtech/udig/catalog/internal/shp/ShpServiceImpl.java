@@ -132,14 +132,16 @@ public class ShpServiceImpl extends IService {
     }
 
     public void dispose( IProgressMonitor monitor ) {
-        super.dispose(monitor);
-        if (members != null){
-            members = null;
-        }
         if( ds != null ){
             ds.dispose();
             ds = null;
         }
+        if (members != null){
+        	for (ShpGeoResourceImpl i : members) i.dispose(monitor);
+            members = null;
+        }
+        
+        super.dispose(monitor);
     }
 
     /*
