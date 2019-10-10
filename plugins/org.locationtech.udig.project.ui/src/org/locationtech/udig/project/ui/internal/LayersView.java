@@ -564,8 +564,8 @@ public class LayersView extends ViewPart
                     }
                 }
 
-                if (viewer != null) {
-                    // viewer.refresh(false);
+                if (viewer != null) { 
+                    viewer.refresh(false);
                     viewer.setCheckedElements(checkedLayers.toArray());
                     ILayer selectedLayer = currentMap.getEditManager().getSelectedLayer();
                     if (selectedLayer != null)
