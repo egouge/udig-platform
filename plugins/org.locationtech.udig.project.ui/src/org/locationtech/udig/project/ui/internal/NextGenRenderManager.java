@@ -80,9 +80,8 @@ public class NextGenRenderManager extends RenderManagerImpl {
         Envelope bounds;
 
         List<ILayer> layers;
+        List<SelectionLayer> selectionLayers;
         
-        SelectionLayer selectionLayer;
-
         int refreshType = UNKNOWN;
 
         RenderTaskCompressor(){
@@ -122,8 +121,11 @@ public class NextGenRenderManager extends RenderManagerImpl {
             layers.add(layer);
         }
         
-        void setSelectionLayer(SelectionLayer selectionLayer) {
-            this.selectionLayer = selectionLayer;
+        void addSelectionLayer(SelectionLayer selectionLayer) {
+            if(selectionLayers == null){
+            	selectionLayers = new LinkedList<>();
+            }
+            selectionLayers.add(selectionLayer);
         }
         
     }
@@ -228,11 +230,8 @@ public class NextGenRenderManager extends RenderManagerImpl {
 
                         List<ILayer> layers = next.getLayers();
                         final ILayer layer = layers.get(0);
-                        final Envelope bounds = next.getBounds();
-
                         final SelectionLayer selectionLayer = configurator.findSelectionLayer(layer);
-                        taskCompressor.setSelectionLayer(selectionLayer);
-
+                        taskCompressor.addSelectionLayer(selectionLayer);
                         break;
 
                     case LAYER_ADDED:
@@ -320,13 +319,14 @@ public class NextGenRenderManager extends RenderManagerImpl {
                 }else if( (taskCompressor.refreshType & RenderTaskCompressor.REFRESH_SELECTION) == RenderTaskCompressor.REFRESH_SELECTION){
 
 
-                    if (taskCompressor.selectionLayer != null){
+                    if (taskCompressor.selectionLayers != null && !taskCompressor.selectionLayers.isEmpty()){
 
                         configurator.reset();
                         validateRenderers();
                         cachedRenderContexts=null;
 
-                        refreshSelection(taskCompressor.selectionLayer, null);
+                        for (SelectionLayer l : taskCompressor.selectionLayers)
+                        	refreshSelection(l, null);
                     }
 
                 }else if( (taskCompressor.refreshType & RenderTaskCompressor.REFRESH_IMAGE_BUFFER) == RenderTaskCompressor.REFRESH_IMAGE_BUFFER){
