@@ -119,7 +119,7 @@ public class SelectionStyleContent extends StyleContent {
         Style style = (Style) value;
 
         // store the feature type name
-        momento.putString(fTypeName, style.getFeatureTypeStyles()[0].getFeatureTypeName());
+        momento.putString(fTypeName, style.featureTypeStyles().get(0).featureTypeNames().iterator().next().toString());
     }
 
     public Object load( IMemento momento ) {
@@ -154,14 +154,20 @@ public class SelectionStyleContent extends StyleContent {
             return null;
         GeometryDescriptor geom = schema.getGeometryDescriptor();
         if (isLine(geom)) {
-            ssc.getDefaultRule(style).setSymbolizers(createLineSymbolizers(ssc));
+        	ssc.getDefaultRule(style).symbolizers().clear();
+        	for (Symbolizer s : createLineSymbolizers(ssc)) {
+        		ssc.getDefaultRule(style).symbolizers().add(s);
+        	}
         } else if (isPoint(geom)) {
             int size = queryPointSize(style);
             PointSymbolizer sym = ssc.createPointSymbolizer(getSelectionColor(), size);
-            Symbolizer[] symbolizers = new Symbolizer[]{sym};
-            ssc.getDefaultRule(style).setSymbolizers(symbolizers);
+            ssc.getDefaultRule(style).symbolizers().clear();
+        	
         } else if (isPolygon(geom)) {
-            ssc.getDefaultRule(style).setSymbolizers(createPolygonSymbolizarts(ssc));
+        	ssc.getDefaultRule(style).symbolizers().clear();
+        	for (Symbolizer s : createPolygonSymbolizarts(ssc)) {
+        		ssc.getDefaultRule(style).symbolizers().add(s);
+        	}
         } else {
             try {
                 int size = queryPointSize(style);
@@ -169,9 +175,11 @@ public class SelectionStyleContent extends StyleContent {
                         .getGeometryDescriptor().getName().getLocalPart(), style, size);
             } catch (Exception e) {
                 ProjectPlugin.log("", e); //$NON-NLS-1$
-                ssc.getDefaultRule(style).setSymbolizers(
-                        new Symbolizer[]{ssc.createLineSymbolizer(getSelectionColor2(), false),
-                                ssc.createLineSymbolizer(getSelectionColor(), true)});
+                
+                ssc.getDefaultRule(style).symbolizers().clear();
+                ssc.getDefaultRule(style).symbolizers().add(ssc.createLineSymbolizer(getSelectionColor2(), false));
+                ssc.getDefaultRule(style).symbolizers().add(ssc.createLineSymbolizer(getSelectionColor(), true));
+
             }
         }
 
@@ -239,53 +247,67 @@ public class SelectionStyleContent extends StyleContent {
         PropertyIsEqualTo filter = createGeometryFunctionFilter(geomXPath, Point.class
                 .getSimpleName());
         rule.setFilter(filter);
-        Symbolizer[] pointSymbolizers = new Symbolizer[]{createPointSymbolizer(colour, size)};
-        rule.setSymbolizers(pointSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        rule.symbolizers().add(createPointSymbolizer(colour, size));
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create MultiPoint rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, MultiPoint.class.getSimpleName());
         rule.setFilter(filter);
-        rule.setSymbolizers(pointSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        rule.symbolizers().add(createPointSymbolizer(colour, size));
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create LineString rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, LineString.class.getSimpleName());
         rule.setFilter(filter);
-        Symbolizer[] lineSymbolizers = createLineSymbolizers(this);
-        rule.setSymbolizers(lineSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        for (Symbolizer s : createLineSymbolizers(this)) {
+        	rule.symbolizers().add(s);
+        }
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create LinearRing rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, LinearRing.class.getSimpleName());
         rule.setFilter(filter);
-        rule.setSymbolizers(lineSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        for (Symbolizer s : createLineSymbolizers(this)) {
+        	rule.symbolizers().add(s);
+        }
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create MultiLineString rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, MultiLineString.class.getSimpleName());
         rule.setFilter(filter);
-        rule.setSymbolizers(lineSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        for (Symbolizer s : createLineSymbolizers(this)) {
+        	rule.symbolizers().add(s);
+        }
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create Polygon rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, Polygon.class.getSimpleName());
         rule.setFilter(filter);
-        Symbolizer[] polygonSymbolizers = createPolygonSymbolizarts(this);
-        rule.setSymbolizers(polygonSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        for (Symbolizer s : createPolygonSymbolizarts(this)) {
+        	rule.symbolizers().add(s);
+        }
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
 
         // create MultiPolygon rule
         rule = styleBuilder.createRule(new Symbolizer[]{});
         filter = createGeometryFunctionFilter(geomXPath, MultiPolygon.class.getSimpleName());
         rule.setFilter(filter);
-        rule.setSymbolizers(polygonSymbolizers);
-        getDefaultFeatureTypeStyle(style).addRule(rule);
+        rule.symbolizers().clear();
+        for (Symbolizer s : createPolygonSymbolizarts(this)) {
+        	rule.symbolizers().add(s);
+        }
+        getDefaultFeatureTypeStyle(style).rules().add(rule);
     }
 
     /**
@@ -293,14 +315,14 @@ public class SelectionStyleContent extends StyleContent {
      */
     public Rule getDefaultRule( Style style ) {
         FeatureTypeStyle ftStyle = getDefaultFeatureTypeStyle(style);
-        if (ftStyle.getRules() == null || ftStyle.getRules().length == 0) {
+        if (ftStyle.rules() == null || ftStyle.rules().isEmpty()) {
             // create an empty rule
             Rule rule = styleBuilder.createRule(new Symbolizer[]{});
-            ftStyle.addRule(rule);
+            ftStyle.rules().add(rule);
             return rule;
         }
 
-        return ftStyle.getRules()[0];
+        return ftStyle.rules().get(0);
     }
 
     /**
@@ -311,15 +333,14 @@ public class SelectionStyleContent extends StyleContent {
      */
     public FeatureTypeStyle getDefaultFeatureTypeStyle( Style style ) {
         List< ? extends org.opengis.style.FeatureTypeStyle> fts = style.featureTypeStyles();
-        FeatureTypeStyle[] styles = style.getFeatureTypeStyles();
-        if (styles == null || styles.length == 0 || styles[0].getRules().length == 0) {
+        if (style.featureTypeStyles() == null || style.featureTypeStyles().isEmpty() || style.featureTypeStyles().get(0).rules().isEmpty()) {
             // create a feature type style
             FeatureTypeStyle ftStyle = styleBuilder.createFeatureTypeStyle("default", new Rule[]{}); //$NON-NLS-1$
-            style.addFeatureTypeStyle(ftStyle);
+            style.featureTypeStyles().add(ftStyle);
             return ftStyle;
         }
 
-        return styles[0];
+        return style.featureTypeStyles().get(0);
     }
 
     protected PointSymbolizer createPointSymbolizer( Color colour, int size ) {
@@ -330,8 +351,8 @@ public class SelectionStyleContent extends StyleContent {
         Graphic graph2 = styleBuilder.createGraphic(null, mark, null, 1, size, 0);
         PointSymbolizer symb = styleBuilder.createPointSymbolizer(graph2);
 
-        symb.getGraphic().setMarks(new Mark[]{mark});
-
+        symb.getGraphic().graphicalSymbols().clear();
+        symb.getGraphic().graphicalSymbols().add(mark);
         return symb;
     }
 

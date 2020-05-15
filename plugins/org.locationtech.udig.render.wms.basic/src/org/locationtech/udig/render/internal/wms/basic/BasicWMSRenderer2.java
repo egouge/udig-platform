@@ -199,7 +199,7 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
                 StyleBlackboard sb = (StyleBlackboard) ilayer.getStyleBlackboard();
                 Style style = (Style) sb.lookup(Style.class);
                 if (style != null) {
-                    Rule rule = style.getFeatureTypeStyles()[0].getRules()[0];
+                    Rule rule = style.featureTypeStyles().get(0).rules().get(0);
                     minScale = rule.getMinScaleDenominator();
                     maxScale = rule.getMaxScaleDenominator();
                 }

@@ -9,16 +9,20 @@
  */
 package org.locationtech.udig.style.advanced.points;
 
+import static org.locationtech.udig.style.advanced.utils.Utilities.sb;
+import static org.locationtech.udig.style.advanced.utils.Utilities.wkMarkNames;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
-import org.locationtech.udig.style.sld.SLD;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -31,13 +35,10 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.styling.Font;
 import org.geotools.styling.TextSymbolizer;
-import org.opengis.filter.Filter;
 import org.locationtech.udig.style.advanced.StylePlugin;
 import org.locationtech.udig.style.advanced.common.FiltersComposite;
 import org.locationtech.udig.style.advanced.common.IStyleChangesListener;
@@ -47,13 +48,13 @@ import org.locationtech.udig.style.advanced.common.styleattributeclasses.Symboli
 import org.locationtech.udig.style.advanced.common.styleattributeclasses.TextSymbolizerWrapper;
 import org.locationtech.udig.style.advanced.internal.Messages;
 import org.locationtech.udig.style.advanced.points.widgets.PointBoderParametersComposite;
-import org.locationtech.udig.style.advanced.points.widgets.PointFillParametersComposite;
 import org.locationtech.udig.style.advanced.points.widgets.PointCharacterChooserComposite;
+import org.locationtech.udig.style.advanced.points.widgets.PointFillParametersComposite;
 import org.locationtech.udig.style.advanced.points.widgets.PointGeneralParametersComposite;
 import org.locationtech.udig.style.advanced.points.widgets.PointLabelsParametersComposite;
 import org.locationtech.udig.style.advanced.utils.Utilities;
-
-import static org.locationtech.udig.style.advanced.utils.Utilities.*;
+import org.locationtech.udig.style.sld.SLD;
+import org.opengis.filter.Filter;
 
 public class PointPropertiesComposite extends SelectionAdapter implements ModifyListener, IStyleChangesListener {
 
@@ -315,7 +316,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         propertiesGroup.setLayout(new GridLayout(1, false));
         propertiesGroup.setText(Messages.PointPropertiesComposite_8);
 
-        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.NONE);
+        CTabFolder tabFolder = new CTabFolder(propertiesGroup, SWT.NONE);
         tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         generalParametersCompositeSIMPLE = new PointGeneralParametersComposite(tabFolder, numericAttributesArrays);
@@ -323,7 +324,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         generalParametersCompositeSIMPLE.addListener(this);
         Composite generalParametersInternalComposite = generalParametersCompositeSIMPLE.getComposite();
 
-        TabItem tabItem1 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem1 = new CTabItem(tabFolder, SWT.NULL);
         tabItem1.setText(Messages.PointPropertiesComposite_9);
         tabItem1.setControl(generalParametersInternalComposite);
 
@@ -333,7 +334,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         borderParametersComposite.addListener(this);
         Composite borderParametersInternalComposite = borderParametersComposite.getComposite();
 
-        TabItem tabItem2 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem2 = new CTabItem(tabFolder, SWT.NULL);
         tabItem2.setText(Messages.PointPropertiesComposite_10);
         tabItem2.setControl(borderParametersInternalComposite);
 
@@ -343,7 +344,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fillParametersComposite.addListener(this);
         Composite fillParametersInternalComposite = fillParametersComposite.getComposite();
 
-        TabItem tabItem3 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem3 = new CTabItem(tabFolder, SWT.NULL);
         tabItem3.setText(Messages.PointPropertiesComposite_11);
         tabItem3.setControl(fillParametersInternalComposite);
 
@@ -353,7 +354,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         labelsParametersComposite.addListener(this);
         Composite labelParametersInternalComposite = labelsParametersComposite.getComposite();
 
-        TabItem tabItem4 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem4 = new CTabItem(tabFolder, SWT.NULL);
         tabItem4.setText(Messages.PointPropertiesComposite_12);
         tabItem4.setControl(labelParametersInternalComposite);
         
@@ -363,7 +364,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         filtersComposite.addListener(this);
         Composite filtersInternalComposite = filtersComposite.getComposite();
 
-        TabItem tabItem5 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem5 = new CTabItem(tabFolder, SWT.NULL);
         tabItem5.setText(Messages.PointPropertiesComposite_13);
         tabItem5.setControl(filtersInternalComposite);
     }
@@ -436,7 +437,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         propertiesGroup.setLayout(new GridLayout(1, false));
         propertiesGroup.setText(Messages.PointPropertiesComposite_19);
 
-        TabFolder tabFolder = new TabFolder(propertiesGroup, SWT.NONE);
+        CTabFolder tabFolder = new CTabFolder(propertiesGroup, SWT.NONE);
         tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
         //TODO PointCharacterChooserComposite is loading in the ui this is holding up the dialog desplay
@@ -445,7 +446,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fontParametersComposite.addListener(this);
         Composite fontParametersInternalComposite = fontParametersComposite.getComposite();
 
-        TabItem tabItem1 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem1 = new CTabItem(tabFolder, SWT.NULL);
         tabItem1.setText(Messages.PointPropertiesComposite_20);
         tabItem1.setControl(fontParametersInternalComposite);
         
@@ -454,7 +455,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         generalParametersCompositeFONT.addListener(this);
         Composite generalParametersInternalComposite = generalParametersCompositeFONT.getComposite();
 
-        TabItem tabItem2 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem2 = new CTabItem(tabFolder, SWT.NULL);
         tabItem2.setText(Messages.PointPropertiesComposite_21);
         tabItem2.setControl(generalParametersInternalComposite);
 
@@ -464,7 +465,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fontBorderParametersComposite.addListener(this);
         Composite borderParametersInternalComposite = fontBorderParametersComposite.getComposite();
 
-        TabItem tabItem3 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem3 = new CTabItem(tabFolder, SWT.NULL);
         tabItem3.setText(Messages.PointPropertiesComposite_22);
         tabItem3.setControl(borderParametersInternalComposite);
 
@@ -474,7 +475,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fontFillParametersComposite.addListener(this);
         Composite fillParametersInternalComposite = fontFillParametersComposite.getComposite();
 
-        TabItem tabItem4 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem4 = new CTabItem(tabFolder, SWT.NULL);
         tabItem4.setText(Messages.PointPropertiesComposite_23);
         tabItem4.setControl(fillParametersInternalComposite);
 
@@ -484,7 +485,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fontLabelsParametersComposite.addListener(this);
         Composite labelParametersInternalComposite = fontLabelsParametersComposite.getComposite();
 
-        TabItem tabItem5 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem5 = new CTabItem(tabFolder, SWT.NULL);
         tabItem5.setText(Messages.PointPropertiesComposite_24);
         tabItem5.setControl(labelParametersInternalComposite);
         
@@ -494,7 +495,7 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         fontFiltersComposite.addListener(this);
         Composite filtersInternalComposite = fontFiltersComposite.getComposite();
 
-        TabItem tabItem6 = new TabItem(tabFolder, SWT.NULL);
+        CTabItem tabItem6 = new CTabItem(tabFolder, SWT.NULL);
         tabItem6.setText(Messages.PointPropertiesComposite_25);
         tabItem6.setControl(filtersInternalComposite);
     }

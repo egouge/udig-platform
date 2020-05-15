@@ -211,7 +211,7 @@ public abstract class AbstractContextImpl implements AbstractContext {
             MathTransform toScreen = factory.createAffineTransform(new GeneralMatrix(
                     worldToScreenTransform()));
             transform = factory.createConcatenatedTransform(transform, toScreen);
-            return new LiteShape2(geometry, transform, new Decimator(transform), false);
+            return new LiteShape2(geometry, transform, new Decimator(transform, new Rectangle()), false);
         } catch (FactoryException e) {
             return null;
         } catch( TransformException e){

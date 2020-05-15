@@ -255,9 +255,9 @@ public class LabelViewer {
         TextSymbolizer text = build.createTextSymbolizer(fill, new Font[] {gtFont},
                 null, exp, placement, null);
         if (SLD.isLine(this.schema)) {
-            text.addToOptions("group", "yes"); //$NON-NLS-1$ //$NON-NLS-2$
+            text.getOptions().put("group", "yes"); //$NON-NLS-1$ //$NON-NLS-2$
         }
-        text.addToOptions("spaceAround", "2"); //$NON-NLS-1$ //$NON-NLS-2$
+        text.getOptions().put("spaceAround", "2"); //$NON-NLS-1$ //$NON-NLS-2$
         return text; 
     }
     

@@ -271,13 +271,10 @@ public class BasicFeatureRenderer extends RendererImpl {
 
     private int getExpandSizeFromStyle( Style style ) {
         MetaBufferEstimator rbe = new MetaBufferEstimator();
-        FeatureTypeStyle[] styles = style.getFeatureTypeStyles();
-        for (int t=0; t<styles.length; t++) {
-            final FeatureTypeStyle lfts = styles[t];
-            Rule[] rules = lfts.getRules();
-            for (int j = 0; j < rules.length; j++) {
-                rbe.visit(rules[j]);
-            }
+        for (FeatureTypeStyle lfts : style.featureTypeStyles()) {
+        	for (Rule r : lfts.rules()) {
+        		rbe.visit(r);
+        	}
         }
 
         if(!rbe.isEstimateAccurate())
@@ -309,7 +306,7 @@ public class BasicFeatureRenderer extends RendererImpl {
     }
 
     /**
-     * @see org.locationtech.udig.project.internal.render.impl.RendererImpl#render(com.vividsolutions.jts.geom.Envelope,
+     * @see org.locationtech.udig.project.internal.render.impl.RendererImpl#render(org.locationtech.jts.geom.Envelope,
      *      org.eclipse.core.runtime.IProgressMonitor)
      */
     public void render( IProgressMonitor monitor ) throws RenderException {

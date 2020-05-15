@@ -1,3 +1,4 @@
+
 /* uDig - User Friendly Desktop Internet GIS client
  * http://udig.refractions.net
  * (C) 2004-2012, Refractions Research Inc.
@@ -9,6 +10,10 @@
  */
 package org.locationtech.udig.project.internal.render;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.geotools.feature.NameImpl;
+import org.geotools.styling.Style;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.LayerDecorator;
@@ -18,10 +23,6 @@ import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.StyleBlackboard;
 import org.locationtech.udig.project.internal.impl.LayerImpl;
 import org.locationtech.udig.ui.graphics.SLDs;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.geotools.styling.Style;
 import org.opengis.filter.Filter;
 
 /**
@@ -74,7 +75,9 @@ public class SelectionLayer extends LayerDecorator {
         //no selection style defined on original layer, so create a default one
         if (style == null) {
             style = SelectionStyleContent.createDefaultStyle(layer);
-            style.getFeatureTypeStyles()[0].setFeatureTypeName(SLDs.GENERIC_FEATURE_TYPENAME);
+            style.featureTypeStyles().get(0).featureTypeNames().clear();
+            style.featureTypeStyles().get(0).featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
+
         }
         if (style == null)
             return styleBlackboard;

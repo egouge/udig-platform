@@ -427,7 +427,7 @@ public class RootCompositeRendererImpl extends RendererImpl implements MultiLaye
 
     /**
      * @throws RenderException
-     * @see  org.locationtech.udig.project.internal.render.Renderer#render(com.vividsolutions.jts.geom.Envelope)
+     * @see  org.locationtech.udig.project.internal.render.Renderer#render()
      */
     public void render( IProgressMonitor monitor ) throws RenderException {
         if (getRenderExecutors().size() == 0)

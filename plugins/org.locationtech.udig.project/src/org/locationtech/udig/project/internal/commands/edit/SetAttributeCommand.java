@@ -1,3 +1,4 @@
+
 /* uDig - User Friendly Desktop Internet GIS client
  * http://udig.refractions.net
  * (C) 2004-2012, Refractions Research Inc.
@@ -112,7 +113,7 @@ public class SetAttributeCommand extends AbstractEditCommand implements Undoable
         feature2.setAttribute(xpath, value);
 
         AttributeDescriptor attributeType = layer.getSchema().getDescriptor(xpath);
-        resource.modifyFeatures(attributeType, value, fidFilter);
+        resource.modifyFeatures(attributeType.getName(), value, fidFilter);
     }
 
     /**
@@ -127,7 +128,7 @@ public class SetAttributeCommand extends AbstractEditCommand implements Undoable
         FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory(GeoTools.getDefaultHints());
 		Id id = filterFactory.id(
                 FeatureUtils.stringToId(filterFactory, feature.getID()));
-        resource.modifyFeatures(attributeType, oldValue, id);
+        resource.modifyFeatures(attributeType.getName(), oldValue, id);
     }
 
     /**

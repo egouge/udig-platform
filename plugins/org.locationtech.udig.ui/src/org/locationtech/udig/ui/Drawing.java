@@ -26,7 +26,6 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.geotools.data.DataUtilities;
-import org.geotools.feature.IllegalAttributeException;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.JTS;
@@ -194,12 +193,8 @@ public final class Drawing {
 
     Symbolizer[] getSymbolizers(Style style){
         List<Symbolizer> symbs=new ArrayList<Symbolizer>();
-        FeatureTypeStyle[] styles=style.getFeatureTypeStyles();
-        for( int i = 0; i < styles.length; i++ ) {
-            FeatureTypeStyle fstyle = styles[i];
-            Rule[] rules=fstyle.getRules();
-            for( int j = 0; j < rules.length; j++ ) {
-                Rule rule = rules[j];
+        for (FeatureTypeStyle fstyle : style.featureTypeStyles()) {
+        	for (Rule rule : fstyle.rules()) {
                 symbs.addAll(Arrays.asList(rule.getSymbolizers()));
             }
         }
@@ -557,13 +552,9 @@ public final class Drawing {
      */
     public SimpleFeature feature( Point point ) {
         if( point == null ) throw new NullPointerException("Point required"); //$NON-NLS-1$
-        try {
-        	return SimpleFeatureBuilder.build( pointSchema, new Object[]{ point }, null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+point );  //$NON-NLS-1$
-        }
+       	return SimpleFeatureBuilder.build( pointSchema, new Object[]{ point }, null );
     }
+    
     /**
      * Simple SimpleFeature with a default geometry and no attribtues.
      * @param line 
@@ -571,12 +562,7 @@ public final class Drawing {
      */
     public SimpleFeature feature( LineString line ) {
         if( line == null ) throw new NullPointerException("line required"); //$NON-NLS-1$
-        try {
-            return SimpleFeatureBuilder.build( lineSchema, new Object[]{ line },null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+line );  //$NON-NLS-1$
-        }
+        return SimpleFeatureBuilder.build( lineSchema, new Object[]{ line },null );
     }
     
     /**
@@ -586,12 +572,7 @@ public final class Drawing {
      */
     public SimpleFeature feature( Polygon polygon ) {
         if( polygon == null ) throw new NullPointerException("polygon required"); //$NON-NLS-1$
-        try {
-            return SimpleFeatureBuilder.build( polygonSchema, new Object[]{ polygon }, null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+polygon );  //$NON-NLS-1$
-        }
+        return SimpleFeatureBuilder.build( polygonSchema, new Object[]{ polygon }, null );
     }
     
     /**
@@ -601,13 +582,9 @@ public final class Drawing {
      */
     public SimpleFeature feature( MultiPoint multipoint ) {
         if( multipoint == null ) throw new NullPointerException("multipoint required"); //$NON-NLS-1$
-        try {
-            return SimpleFeatureBuilder.build( multipointSchema, new Object[]{ multipoint }, null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+multipoint );  //$NON-NLS-1$
-        }
+        return SimpleFeatureBuilder.build( multipointSchema, new Object[]{ multipoint }, null );
     }
+    
     /**
      * Simple SimpleFeature with a default geometry and no attribtues.
      * @param multilinestring
@@ -615,12 +592,7 @@ public final class Drawing {
      */
     public SimpleFeature feature( MultiLineString multilinestring ) {
         if( multilinestring == null ) throw new NullPointerException("multilinestring required"); //$NON-NLS-1$
-        try {
-            return SimpleFeatureBuilder.build( multilineSchema, new Object[]{ multilinestring }, null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+multilinestring );  //$NON-NLS-1$
-        }
+        return SimpleFeatureBuilder.build( multilineSchema, new Object[]{ multilinestring }, null );
     }
     /**
      * Simple SimpleFeature with a default geometry and no attribtues.
@@ -629,12 +601,7 @@ public final class Drawing {
      */
     public SimpleFeature feature( MultiPolygon multipolygon ) {
         if( multipolygon == null ) throw new NullPointerException("multipolygon required"); //$NON-NLS-1$
-        try {
-            return SimpleFeatureBuilder.build( multipolygonSchema, new Object[]{ multipolygon }, null );
-        } catch (IllegalAttributeException e) {
-            // this should not happen because we *know* the parameter matches schame
-            throw new RuntimeException("Could not generate feature for point "+multipolygon );  //$NON-NLS-1$
-        }
+        return SimpleFeatureBuilder.build( multipolygonSchema, new Object[]{ multipolygon }, null );
     }
     
     /**

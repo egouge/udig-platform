@@ -15,7 +15,6 @@ import org.locationtech.udig.project.IEditManager;
 
 import org.eclipse.emf.ecore.EObject;
 import org.geotools.data.Transaction;
-import org.geotools.feature.IllegalAttributeException;
 import org.opengis.feature.simple.SimpleFeature;
 
 /**

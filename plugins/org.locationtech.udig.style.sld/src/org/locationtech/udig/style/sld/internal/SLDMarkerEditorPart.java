@@ -1,4 +1,5 @@
 /*
+
  *    uDig - User Friendly Desktop Internet GIS client
  *    http://udig.refractions.net
  *    (C) 2004, Refractions Research Inc.
@@ -182,7 +183,8 @@ public class SLDMarkerEditorPart extends SLDEditorPart implements SelectionListe
         } else {
             mark[0].setStroke(null);
         }
-        g.setMarks(mark);
+        g.graphicalSymbols().clear();
+        for (Mark m : mark) g.graphicalSymbols().add(m);
     }
 
     /**

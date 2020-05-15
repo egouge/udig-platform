@@ -14,7 +14,6 @@ package org.locationtech.udig.project.ui.operations;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.swt.widgets.Display;
-import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
 import org.geotools.factory.CommonFactoryFinder;
@@ -50,7 +49,7 @@ public class MakeHole implements IOp {
         final IMap map = layer.getMap();
 
         //get all selected features
-        Query query = new DefaultQuery(layer.getSchema().getTypeName(), layer.getFilter());
+        Query query = new Query(layer.getSchema().getTypeName(), layer.getFilter());
         
         FeatureSource<SimpleFeatureType, SimpleFeature> featureSource = layer.getResource(FeatureSource.class, new SubProgressMonitor(monitor, 1)); 
         FeatureCollection<SimpleFeatureType, SimpleFeature>  features = featureSource.getFeatures(query);

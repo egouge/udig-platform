@@ -11,6 +11,13 @@ package org.locationtech.udig.project.internal.commands.edit;
 
 import java.util.Collections;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.geotools.data.FeatureStore;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.core.IBlockingProvider;
 import org.locationtech.udig.core.StaticFeatureCollection;
 import org.locationtech.udig.core.internal.FeatureUtils;
@@ -20,17 +27,10 @@ import org.locationtech.udig.project.command.provider.EditFeatureProvider;
 import org.locationtech.udig.project.command.provider.EditLayerFeatureStoreProvider;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.geotools.data.FeatureStore;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.Name;
 import org.opengis.filter.FilterFactory;
 import org.opengis.filter.Id;
 
@@ -90,13 +90,12 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
         filter = factory.id(FeatureUtils.stringToId(factory, editFeature.getID()));
         FeatureCollection<SimpleFeatureType, SimpleFeature>  results = store.getFeatures(filter);
 
+        Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
         FeatureIterator<SimpleFeature> reader = results.features();
         try {
             if (reader.hasNext()) {
                 try {
-                    store.modifyFeatures(featureType.getAttributeDescriptors().toArray(
-							new AttributeDescriptor[0]), editFeature
-							.getAttributes().toArray(), filter);
+                    store.modifyFeatures(names, editFeature.getAttributes().toArray(), filter);
                 } catch (Exception e) {
                     ProjectPlugin.log("", e); //$NON-NLS-1$
                     noChange=true;
@@ -134,8 +133,8 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
             store.removeFeatures(filter);
         }else{
             SimpleFeatureType featureType = this.editFeature.getFeatureType();
-            store.modifyFeatures(featureType.getAttributeDescriptors().toArray(new AttributeDescriptor[0]), this.editFeature
-                    .getAttributes().toArray(), filter);            
+            Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
+            store.modifyFeatures(names, this.editFeature.getAttributes().toArray(), filter);            
         }
     }
 

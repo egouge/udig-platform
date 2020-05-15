@@ -31,9 +31,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.geotools.data.FeatureSource;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyleFactory;
-import org.geotools.styling.StyleFactoryFinder;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.xml.styling.SLDParser;
 import org.locationtech.udig.catalog.IGeoResource;
@@ -174,7 +174,7 @@ public class StyleXMLPage extends StyleEditorPage {
     
     private StyledLayerDescriptor XMLtoSLD(String xml, String encoding) {
         //save changes to style object
-        StyleFactory factory = StyleFactoryFinder.createStyleFactory();
+        StyleFactory factory = CommonFactoryFinder.getStyleFactory();
         InputStream is = getXMLasInputStream(xml, encoding);
         if (is == null) return null;
         SLDParser stylereader = new SLDParser(factory, is);

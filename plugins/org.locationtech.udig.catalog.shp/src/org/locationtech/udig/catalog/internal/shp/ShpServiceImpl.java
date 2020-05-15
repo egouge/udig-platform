@@ -1,4 +1,5 @@
 /*
+
  *    uDig - User Friendly Desktop Internet GIS client
  *    http://udig.refractions.net
  *    (C) 2004-2011, Refractions Research Inc.
@@ -22,8 +23,8 @@ import java.util.concurrent.locks.Lock;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureReader;
+import org.geotools.data.Query;
 import org.geotools.data.Transaction;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
@@ -288,7 +289,7 @@ public class ShpServiceImpl extends IService {
         FeatureReader<SimpleFeatureType, SimpleFeature> reader = null;
         try {
             // smack Datastore to generate indices
-            reader = ds.getFeatureReader(new DefaultQuery(typename, Filter.INCLUDE, new String[0]), Transaction.AUTO_COMMIT);
+            reader = ds.getFeatureReader(new Query(typename, Filter.INCLUDE, new String[0]), Transaction.AUTO_COMMIT);
         } catch (Exception e) {
             ShpPlugin.log("", e); //$NON-NLS-1$
         } finally {

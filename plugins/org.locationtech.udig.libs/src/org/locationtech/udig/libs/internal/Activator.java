@@ -45,6 +45,7 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.referencing.factory.PropertyAuthorityFactory;
 import org.geotools.referencing.factory.ReferencingFactoryContainer;
 import org.geotools.referencing.factory.epsg.hsql.ThreadedHsqlEpsgFactory;
+import org.geotools.util.URLs;
 import org.geotools.util.factory.GeoTools;
 import org.geotools.util.factory.Hints;
 import org.geotools.util.factory.Hints.Key;
@@ -269,10 +270,10 @@ public class Activator implements BundleActivator {
     }
     
     private static File doEpsg(Location configLocation) throws MalformedURLException{
-        File config = DataUtilities.urlToFile( configLocation.getURL() );
+        File config = URLs.urlToFile( configLocation.getURL() );
         if( config.canWrite() ){
             URL databaseDirectoryUrl = new URL( configLocation.getURL(), DATABASES_FOLDER_NAME );
-            File directory = DataUtilities.urlToFile( databaseDirectoryUrl );
+            File directory = URLs.urlToFile( databaseDirectoryUrl );
             File epsgDirectory = new File( directory, EPSG_DATABASEFOLDER_PREFIX + ThreadedHsqlEpsgFactory.VERSION );
             
             return epsgDirectory;

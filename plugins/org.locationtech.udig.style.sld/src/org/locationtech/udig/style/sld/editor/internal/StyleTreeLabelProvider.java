@@ -50,13 +50,13 @@ public class StyleTreeLabelProvider extends LabelProvider implements ITableLabel
         if (element instanceof Style) {
             // shouldn't be called, as the root object is hidden
             Style style = (Style) element;
-            return style.getTitle();
+            return style.getDescription().getTitle().toString();
         } else if (element instanceof Rule) {
             Rule rule = (Rule) element;
             if (rule.getName().startsWith("rule")) //$NON-NLS-1$
                 return StyleGenerator.toStyleExpression(rule.getFilter());
             else
-                return rule.getTitle();
+                return rule.getDescription().getTitle().toString();
         }
         return super.getText(element); // unknown type
     }
@@ -100,7 +100,7 @@ public class StyleTreeLabelProvider extends LabelProvider implements ITableLabel
                 return (String) element;
             } else if (element instanceof Rule) {
                 Rule rule = (Rule) element;
-                return rule.getTitle();
+                return rule.getDescription().getTitle().toString();
             }
         } else if (columnIndex == 2) { // style expression
             if (element instanceof Rule) {

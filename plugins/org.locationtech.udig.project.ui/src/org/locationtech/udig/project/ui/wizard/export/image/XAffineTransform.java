@@ -8,8 +8,6 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-import org.geotools.util.XMath;
-
 /**
  * This is a class in Geotools but it has different package name in GT 2.2 vs trunk and therefore until I abandon 2.2 I need
  * this class
@@ -407,10 +405,10 @@ public class XAffineTransform extends AffineTransform{
      * </code></blockquote>
      */
     public static int getFlip(final AffineTransform tr) {
-        final int scaleX = XMath.sgn(tr.getScaleX());
-        final int scaleY = XMath.sgn(tr.getScaleY());
-        final int shearX = XMath.sgn(tr.getShearX());
-        final int shearY = XMath.sgn(tr.getShearY());
+        final int scaleX = (int) Math.signum(tr.getScaleX());
+        final int scaleY = (int) Math.signum(tr.getScaleY());
+        final int shearX = (int) Math.signum(tr.getShearX());
+        final int shearY = (int) Math.signum(tr.getShearY());
         if (scaleX ==  scaleY && shearX == -shearY) return +1;
         if (scaleX == -scaleY && shearX ==  shearY) return -1;
         return 0;
@@ -422,7 +420,7 @@ public class XAffineTransform extends AffineTransform{
      * <IMG src="{@docRoot}/org/geotools/display/canvas/doc-files/scaleX0.png">.
      */
     public static double getScaleX0(final AffineTransform tr) {
-        return XMath.hypot(tr.getScaleX(), tr.getShearX());
+        return Math.hypot(tr.getScaleX(), tr.getShearX());
     }
 
     /**
@@ -431,7 +429,7 @@ public class XAffineTransform extends AffineTransform{
      * <IMG src="{@docRoot}/org/geotools/display/canvas/doc-files/scaleY0.png">.
      */
     public static double getScaleY0(final AffineTransform tr) {
-        return XMath.hypot(tr.getScaleY(), tr.getShearY());
+        return Math.hypot(tr.getScaleY(), tr.getShearY());
     }
 
     /**

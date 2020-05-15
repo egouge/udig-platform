@@ -382,7 +382,7 @@ public class CopyFeaturesCommand extends AbstractCommand implements UndoableMapC
                             next = copiedFeatures.next();
                             ReferencedEnvelope newbounds = new ReferencedEnvelope(next.getBounds());
                             try {
-                                newbounds = newbounds.transform(env.crs(), true);
+                                newbounds = newbounds.transform(env.getCoordinateReferenceSystem(), true);
                                 env.expandToInclude(newbounds);
                             } catch (TransformException e) {
                                 ProjectPlugin.log("", e); //$NON-NLS-1$

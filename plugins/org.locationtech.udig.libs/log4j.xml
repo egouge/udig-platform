@@ -6,7 +6,7 @@
 <!-- For layout pattern, see doc at http://jakarta.apache.org/log4j/docs/api/org/apache/log4j/PatternLayout.html -->
 	<!-- The RCP appender -->
 	<appender name="RCPAppender" class="org.locationtech.udig.libs.internal.PluginLogAppender">
-		<param name="Threshold" value="info" />
+		<param name="Threshold" value="warn" />
 		<param name="SymbolicName" value="org.locationtech.udig.libs"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
@@ -15,17 +15,20 @@
 	</appender>
 	
 	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
-            <param name="Threshold" value="debug" />	    	
+            <param name="Threshold" value="trace" />	    	
 		<layout class="org.apache.log4j.PatternLayout">
                    <param name="ConversionPattern"
 		          value="%-5p %c{1} - %m%n"/>
 		</layout>		
 	</appender>
 
-<!--  Set here specific level for classes  -->
-     <logger name="org.locationtech.udig" additivity="true">	  <level value="info" />	</logger>
+	<!--  Set here specific level for classes  -->
+    <logger name="org.locationtech.udig" additivity="false">	  <level value="info" />	<appender-ref ref="STDOUT" /></logger>
+    <!--  
+    <logger name="org.hibernate.type.descriptor.sql" additivity="false" ><level value="trace" /><appender-ref ref="STDOUT" /></logger>
+	<logger name="org.hibernate.SQL" additivity="false" ><level value="trace" /><appender-ref ref="STDOUT" /></logger>
+ 	-->
  
-
 	<root>
 	   <priority value ="warn" />
            <!-- scorreia: put here your appenders -->

@@ -9,9 +9,8 @@
  */
 package org.locationtech.udig.project.internal.render;
 
-import org.locationtech.udig.project.render.RenderException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.locationtech.udig.project.render.RenderException;
 
 /**
  * Each renderer has an executor that runs the renderer in a separate thread. 
@@ -69,15 +68,10 @@ public interface RenderExecutor extends Renderer {
 
     /**
      * This method does not use the monitor parameter. It is the same as calling render(bounds);
-     * 
-     * @see org.locationtech.udig.project.internal.render.Renderer#render(com.vividsolutions.jts.geom.Envelope,
-     *      org.eclipse.core.runtime.IProgressMonitor)
      */
     public void render(IProgressMonitor monitor) throws RenderException;
 
     /**
-     * @see org.locationtech.udig.project.internal.render.Renderer#render(com.vividsolutions.jts.geom.Envelope,
-     *      org.eclipse.core.runtime.IProgressMonitor)
      */
     public void render() throws RenderException;
 

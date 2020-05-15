@@ -380,7 +380,7 @@ public class TiledRenderManagerDynamic extends RenderManagerImpl {
     /**
      * 
      * Called when a selection layer is refreshed.
-     * @see org.locationtech.udig.project.render.impl.RenderManagerImpl#refreshSelection(com.vividsolutions.jts.geom.Envelope)
+     * @see org.locationtech.udig.project.render.impl.RenderManagerImpl#refreshSelection(org.locationtech.jts.geom.Envelope)
      */
     public void refreshSelection(final ILayer layer, final Envelope bounds) {
         

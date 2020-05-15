@@ -594,7 +594,7 @@ public class NextGenRenderManager extends RenderManagerImpl {
     }
 
     /**
-     * @see org.locationtech.udig.project.render.impl.RenderManagerImpl#refreshSelection(com.vividsolutions.jts.geom.Envelope)
+     * @see org.locationtech.udig.project.render.impl.RenderManagerImpl#refreshSelection(org.locationtech.jts.geom.Envelope)
      */
     public void refreshSelection(final ILayer layer, final Envelope bounds) {
         checkState();

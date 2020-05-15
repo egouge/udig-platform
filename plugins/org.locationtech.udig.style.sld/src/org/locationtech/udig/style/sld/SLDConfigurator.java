@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.part.PageBook;
 import org.geotools.data.FeatureSource;
+import org.geotools.feature.NameImpl;
 import org.geotools.styling.Style;
 import org.geotools.styling.Symbolizer;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
@@ -178,7 +179,7 @@ public class SLDConfigurator extends IStyleConfigurator {
         
             //set the name of the feature type style for the feature renderer
             String name = featureType.getName().getLocalPart();
-            sldContentManager.getDefaultFeatureTypeStyle().setFeatureTypeName(SLDs.GENERIC_FEATURE_TYPENAME);
+            sldContentManager.getDefaultFeatureTypeStyle().featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
         }
         
         // force the toolbar to refresh

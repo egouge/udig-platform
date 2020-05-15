@@ -227,8 +227,8 @@ public class WMSStyleConfigurator extends IStyleConfigurator {
         	List<FeatureTypeStyle > fts = wmsStyle.getFeatureStyles();
             for( FeatureTypeStyle style : fts ) {
                 String name = style.getName();
-                if( style.getTitle()!=null )
-                    name = style.getTitle();                    
+                if( style.getDescription().getTitle()!=null )
+                    name = style.getDescription().getTitle().toString();                    
                 buff.append( name );
                 buff.append("\n"); //$NON-NLS-1$
             }

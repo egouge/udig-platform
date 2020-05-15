@@ -1,4 +1,5 @@
 /*
+
  *    uDig - User Friendly Desktop Internet GIS client
  *    http://udig.refractions.net
  *    (C) 2004, Refractions Research Inc.
@@ -322,9 +323,9 @@ public class SLDTextEditorPart extends SLDEditorPart {
             boolean fontBold = (fd[0].getStyle() == SWT.BOLD);
             boolean fontItalic = (fd[0].getStyle() == SWT.ITALIC);
             double fontSize = fd[0].getHeight();
-            org.geotools.styling.Font[] font = new org.geotools.styling.Font[1];
-            font[0] = styleBuilder.createFont(fontName, fontItalic, fontBold, fontSize);
-            textSymbolizer.setFonts(font);
+            
+            textSymbolizer.fonts().clear();
+            textSymbolizer.fonts().add(styleBuilder.createFont(fontName, fontItalic, fontBold, fontSize));
 
             if (labelHaloEnabled.getSelection()) {
                 RGB haloColor = labelHaloColorEditor.getColorValue();

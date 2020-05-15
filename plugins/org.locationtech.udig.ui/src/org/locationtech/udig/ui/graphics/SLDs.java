@@ -64,6 +64,7 @@ import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
 import org.opengis.style.Graphic;
 import org.opengis.style.GraphicalSymbol;
+import org.opengis.style.SemanticType;
 
 /**
  * Utility class for working with Geotools SLD objects.
@@ -357,12 +358,10 @@ public class SLDs extends SLD {
     }
 
     public static boolean isSemanticTypeMatch( FeatureTypeStyle fts, String regex ) {
-        String[] identifiers = fts.getSemanticTypeIdentifiers();
-        for( int i = 0; i < identifiers.length; i++ ) {
-            if (identifiers[i].matches(regex))
-                return true;
-        }
-        return false;
+    	for (SemanticType type : fts.semanticTypeIdentifiers()) {
+    		if (type.matches(regex)) return true;
+    	}
+    	return false;
     }
 
     /**

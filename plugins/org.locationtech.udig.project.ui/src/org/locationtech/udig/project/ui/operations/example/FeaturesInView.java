@@ -16,8 +16,8 @@ import java.text.MessageFormat;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
 import org.geotools.feature.FeatureCollection;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
@@ -52,7 +52,7 @@ public class FeaturesInView implements IOp {
                     FeatureSource<SimpleFeatureType, SimpleFeature> source = layer.getResource(FeatureSource.class, monitor);
                     Filter filter = layer.createBBoxFilter(map.getViewportModel().getBounds(),
                             monitor);
-                    FeatureCollection<SimpleFeatureType, SimpleFeature>  results = source.getFeatures(new DefaultQuery(layer.getSchema()
+                    FeatureCollection<SimpleFeatureType, SimpleFeature>  results = source.getFeatures(new Query(layer.getSchema()
                             .getName().getLocalPart(), filter));
                     int count = results.size();
                     // FeatureReader<SimpleFeatureType, SimpleFeature> reader=results.reader()

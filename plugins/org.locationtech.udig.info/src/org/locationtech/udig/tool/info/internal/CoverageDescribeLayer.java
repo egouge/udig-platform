@@ -68,7 +68,7 @@ public class CoverageDescribeLayer {
         if (geoResource.canResolve(AbstractGridCoverage2DReader.class)) {
             AbstractGridCoverage2DReader reader = geoResource.resolve(AbstractGridCoverage2DReader.class, monitor);
             GeneralEnvelope originalEnvelope = reader.getOriginalEnvelope();
-            CoordinateReferenceSystem targetCrs = reader.getCrs();
+            CoordinateReferenceSystem targetCrs = reader.getCoordinateReferenceSystem();
 
             if (targetCrs != null) {
                 evaluateCoord = transform(sourceCRS, targetCrs, envelopeCenterOrig);

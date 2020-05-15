@@ -82,13 +82,6 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
         setTransactionInternal();
         wrapped.removeFeatures(filter);
     }
-
-    @Deprecated
-    public void modifyFeatures( AttributeDescriptor[] descriptors, Object[] values, Filter filter )
-            throws IOException {
-        setTransactionInternal();
-        wrapped.modifyFeatures(descriptors, values, filter);
-    }
     
     public void modifyFeatures( Name[] names, Object[] values, Filter filter ) throws IOException {
         setTransactionInternal();
@@ -98,29 +91,6 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
     public void modifyFeatures( Name name, Object value, Filter filter ) throws IOException {
         setTransactionInternal();
         wrapped.modifyFeatures(name, value, filter);
-    }
-
-    @Deprecated
-    public void modifyFeatures( AttributeDescriptor attribute, Object value, Filter selectFilter )
-            throws IOException {
-        setTransactionInternal();
-        if (value instanceof Geometry) {
-            Geometry geom = (Geometry) value;
-            if (!geom.isValid()) {
-                WKTWriter writer = new WKTWriter();
-                String wkt = writer.write(geom);
-                String where = selectFilter.toString();
-                if (selectFilter instanceof Id) {
-                    Id id = (Id) selectFilter;
-                    where = id.getIDs().toString();
-                }
-                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:"
-                        + wkt;
-                ProjectPlugin.log(msg);
-                throw new IOException(msg);
-            }
-        }
-        wrapped.modifyFeatures(attribute, value, selectFilter);
     }
 
     public void setFeatures( FeatureReader<FeatureType, Feature> features )

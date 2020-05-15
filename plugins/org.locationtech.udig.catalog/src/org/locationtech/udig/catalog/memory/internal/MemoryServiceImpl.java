@@ -18,15 +18,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.geotools.data.DataUtilities;
+import org.geotools.data.FeatureSource;
+import org.geotools.util.URLs;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IResolve;
 import org.locationtech.udig.catalog.IResolveChangeEvent;
 import org.locationtech.udig.catalog.IResolveDelta;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.IServiceInfo;
 import org.locationtech.udig.catalog.ITransientResolve;
-import org.locationtech.udig.catalog.IResolve.Status;
 import org.locationtech.udig.catalog.internal.CatalogImpl;
 import org.locationtech.udig.catalog.internal.Messages;
 import org.locationtech.udig.catalog.internal.ResolveChangeEvent;
@@ -34,14 +37,7 @@ import org.locationtech.udig.catalog.internal.ResolveDelta;
 import org.locationtech.udig.catalog.memory.ActiveMemoryDataStore;
 import org.locationtech.udig.catalog.memory.MemoryDSFactory;
 import org.locationtech.udig.catalog.memory.MemoryServiceExtensionImpl;
-import org.locationtech.udig.ui.ErrorManager;
 import org.locationtech.udig.ui.UDIGDisplaySafeLock;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.geotools.data.DataUtilities;
-import org.geotools.data.FeatureSource;
 import org.opengis.feature.simple.SimpleFeatureType;
 
 public class MemoryServiceImpl extends IService implements ITransientResolve {
@@ -95,7 +91,7 @@ public class MemoryServiceImpl extends IService implements ITransientResolve {
 
                     buffer.append(type.getName().getLocalPart());
                     buffer.append("_SPLIT_"); //$NON-NLS-1$
-                    buffer.append(DataUtilities.spec(type));
+                    buffer.append(DataUtilities.encodeType(type));
                 } catch (IOException e) {
                     CatalogPlugin.log("", e); //$NON-NLS-1$
                 }

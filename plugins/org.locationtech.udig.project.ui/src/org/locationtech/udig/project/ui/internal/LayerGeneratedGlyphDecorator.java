@@ -428,8 +428,8 @@ public class LayerGeneratedGlyphDecorator implements ILabelDecorator {
         Rule rule = null;
         int size = 0;
 
-        for( FeatureTypeStyle style : sld.getFeatureTypeStyles() ) {
-            for( Rule potentialRule : style.getRules() ) {
+        for( FeatureTypeStyle style : sld.featureTypeStyles()) {
+            for( Rule potentialRule : style.rules() ) {
                 if (potentialRule != null) {
                     Symbolizer[] symbs = potentialRule.getSymbolizers();
                     for( int m = 0; m < symbs.length; m++ ) {

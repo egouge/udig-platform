@@ -26,6 +26,7 @@ import org.eclipse.ui.IMemento;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.NameImpl;
 import org.geotools.filter.IllegalFilterException;
 import org.geotools.filter.function.FilterFunction_geometryType;
 import org.geotools.styling.FeatureTypeConstraint;
@@ -66,6 +67,7 @@ import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.filter.FilterFactory;
 import org.opengis.filter.PropertyIsEqualTo;
 import org.opengis.filter.expression.Expression;
+import org.opengis.style.SemanticType;
 
 /**
  * StyleContent allowing a Style Layer Descriptor (SLD) document to be saved on the style blackboard.
@@ -289,9 +291,12 @@ public final class SLDContent extends StyleContent {
 
         //set the feature type name
         FeatureTypeStyle fts = sldContentManager.getDefaultFeatureTypeStyle();
-        fts.setFeatureTypeName(SLDs.GENERIC_FEATURE_TYPENAME);
+        fts.featureTypeNames().clear();
+        fts.featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
         fts.setName("simple"); //$NON-NLS-1$
-        fts.setSemanticTypeIdentifiers(new String[] {"generic:geometry", "simple"}); //$NON-NLS-1$ //$NON-NLS-2$
+        fts.semanticTypeIdentifiers().clear();
+        fts.semanticTypeIdentifiers().add(new SemanticType("generic:geometry")); //$NON-NLS-1$
+        fts.semanticTypeIdentifiers().add(new SemanticType("simple")); //$NON-NLS-1$
         
         return style;
     }
@@ -397,8 +402,9 @@ public final class SLDContent extends StyleContent {
         //tag as a simple FeatureTypeStyle
         FeatureTypeStyle fts = style.featureTypeStyles().get(0);
         fts.setName("simple"); //$NON-NLS-1$
-        fts.setSemanticTypeIdentifiers(new String[] {"generic:geometry", "simple"}); //$NON-NLS-1$ //$NON-NLS-2$
-        
+        fts.semanticTypeIdentifiers().clear();
+        fts.semanticTypeIdentifiers().add(new SemanticType("generic:geometry")); //$NON-NLS-1$
+        fts.semanticTypeIdentifiers().add(new SemanticType("simple")); //$NON-NLS-1$
         //TODO: add StyledLayerDescriptor to sldContentManager?
         return style;
     }

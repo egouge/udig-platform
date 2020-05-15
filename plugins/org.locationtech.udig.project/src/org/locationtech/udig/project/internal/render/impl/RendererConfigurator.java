@@ -638,8 +638,6 @@ public class RendererConfigurator {
         }
 
         /**
-         * @see  org.locationtech.udig.project.internal.render.impl.RendererImpl#render(com.vividsolutions.jts.geom.Envelope,
-         *      org.eclipse.core.runtime.IProgressMonitor)
          */
         public void render(IProgressMonitor monitor ) {
             // do nothing

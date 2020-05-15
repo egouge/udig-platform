@@ -1,4 +1,5 @@
 /*
+
  *    uDig - User Friendly Desktop Internet GIS client
  *    http://udig.refractions.net
  *    (C) 2012, Refractions Research Inc.
@@ -70,7 +71,7 @@ public class TransparencyRemovingVisitor implements StyleVisitor {
     }
 
     public void visit( Style arg0 ) {
-        for( FeatureTypeStyle fts : arg0.getFeatureTypeStyles() ) {
+        for( FeatureTypeStyle fts : arg0.featureTypeStyles() ) {
             fts.accept(this);
         }
     }
@@ -82,7 +83,7 @@ public class TransparencyRemovingVisitor implements StyleVisitor {
     }
 
     public void visit( FeatureTypeStyle arg0 ) {
-        for( Rule s : arg0.getRules() ) {
+        for( Rule s : arg0.rules() ) {
             s.accept(this);
         }
     }
