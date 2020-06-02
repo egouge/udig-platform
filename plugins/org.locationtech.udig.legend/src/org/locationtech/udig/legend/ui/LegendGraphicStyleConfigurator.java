@@ -22,9 +22,11 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Spinner;
 import org.locationtech.udig.legend.internal.Messages;
 import org.locationtech.udig.mapgraphic.style.FontStyle;
 import org.locationtech.udig.mapgraphic.style.FontStyleContent;
@@ -34,11 +36,17 @@ import org.locationtech.udig.ui.ColorEditor;
 
 public class LegendGraphicStyleConfigurator extends IStyleConfigurator implements SelectionListener, ModifyListener {
 
-    private Text verticalMargin;
-    private Text horizontalMargin;
-    private Text verticalSpacing;
-    private Text horizontalSpacing;
-    private Text indentSize;
+    private Combo verticalMargin;
+    private Combo horizontalMargin;
+    private Combo verticalSpacing;
+    private Combo horizontalSpacing;
+    private Combo indentSize;
+    private Combo imageSpacing;
+    private Combo numCols;
+    private Combo imageSize;
+    private Spinner backgroundTransparency;
+    private Button drawBorder;
+    
     private ColorEditor fontColour;
     private ColorEditor backgroundColour;
     
@@ -47,22 +55,6 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
     
     private boolean fireEvents = true;
     
-    /*
-     *         verticalMargin = 3; 
-        horizontalMargin = 2; 
-        verticalSpacing = 5; 
-        horizontalSpacing = 3; 
-        indentSize = 10;
-        imageHeight = 16;
-        imageWidth = 16;
-        maxWidth = -1;
-        maxHeight = -1;
-               
-        foregroundColour = Color.BLACK;
-        backgroundColour = Color.WHITE;
-        
-        location = new Point(30, 10);
-     */
     
     public void createControl( Composite parent) {
     	parent.setLayout(new GridLayout());
@@ -78,36 +70,80 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         
         GridData layoutData = null;
 
+        Label numColsLabel = new Label(composite, SWT.NONE);
+        numColsLabel.setLayoutData(layoutData);
+        numColsLabel.setText(Messages.LegendGraphicStyleConfigurator_NumColsLabel);
+        numColsLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_NumColsTooltip);
+        
+        numCols = new Combo(composite, SWT.BORDER);
+        numCols.setItems("1","2","3","4","5"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+        numCols.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        
         Label verticalMarginLabel = new Label(composite, SWT.NONE);
         verticalMarginLabel.setText(Messages.LegendGraphicStyleConfigurator_vertical_margin);
+        verticalMarginLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_VSpacingTooltip);
         verticalMarginLabel.setLayoutData(layoutData);
-        verticalMargin = new Text(composite, SWT.BORDER);
+        verticalMargin = new Combo(composite, SWT.BORDER);
         verticalMargin.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        verticalMargin.setItems("0","2","5","10","15"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         
 
         Label horizontalMarginLabel = new Label(composite, SWT.NONE);
         horizontalMarginLabel.setLayoutData(layoutData);
         horizontalMarginLabel.setText(Messages.LegendGraphicStyleConfigurator_horizontal_margin);
-        horizontalMargin = new Text(composite, SWT.BORDER);     
+        horizontalMarginLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_HSpacingTooltip);
+        horizontalMargin = new Combo(composite, SWT.BORDER);     
         horizontalMargin.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        horizontalMargin.setItems("0","2","5","10","15"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
         
         Label verticalSpacingLabel = new Label(composite, SWT.NONE);
         verticalSpacingLabel.setLayoutData(layoutData);
         verticalSpacingLabel.setText(Messages.LegendGraphicStyleConfigurator_vertical_spacing);
-        verticalSpacing = new Text(composite, SWT.BORDER);
+        verticalSpacingLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_VEntrySpacingTooltip);
+        verticalSpacing = new Combo(composite, SWT.BORDER);
         verticalSpacing.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        verticalSpacing.setItems("0","1","2","3","4","5"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
         
         Label horizontalSpacingLabel = new Label(composite, SWT.NONE);
         horizontalSpacingLabel.setLayoutData(layoutData);
         horizontalSpacingLabel.setText(Messages.LegendGraphicStyleConfigurator_horizontal_spacing);
-        horizontalSpacing = new Text(composite, SWT.BORDER);
+        horizontalSpacingLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_ColSpacingTooltip);
+        horizontalSpacing = new Combo(composite, SWT.BORDER);
         horizontalSpacing.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        horizontalSpacing.setItems("0","1","2","3","4","5"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
         
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
+        
+        Label imageSizeLabel = new Label(composite, SWT.NONE);
+        imageSizeLabel.setLayoutData(layoutData);
+        imageSizeLabel.setText(Messages.LegendGraphicStyleConfigurator_ImageSizeLabel);
+        imageSizeLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_ImageSizeTooltip);
+        imageSize = new Combo(composite, SWT.BORDER);
+        imageSize.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        imageSize.setItems("8","16","32","64"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        
+        Label imgSpacingLabel = new Label(composite, SWT.NONE);
+        imgSpacingLabel.setLayoutData(layoutData);
+        imgSpacingLabel.setText(Messages.LegendGraphicStyleConfigurator_ImageTextSpacingLabel);
+        imgSpacingLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_ImageTextSpacingTooltip);
+        imageSpacing = new Combo(composite, SWT.BORDER);
+        imageSpacing.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        imageSpacing.setItems("0","1","2","3","4","5"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+
         Label indentSizeLabel = new Label(composite, SWT.NONE);
         indentSizeLabel.setLayoutData(layoutData);
         indentSizeLabel.setText(Messages.LegendGraphicStyleConfigurator_indent_size);
-        indentSize = new Text(composite, SWT.BORDER);
+        indentSizeLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_IndentTooltip);        
+        indentSize = new Combo(composite, SWT.BORDER);
         indentSize.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        indentSize.setItems("0","5","10","15"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        
+        new Label(composite, SWT.NONE);
+        new Label(composite, SWT.NONE);
         
         Label fontColourLabel = new Label(composite, SWT.NONE);
         fontColourLabel.setLayoutData(layoutData);
@@ -117,7 +153,28 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         Label backgroundColourLabel = new Label(composite, SWT.NONE);
         backgroundColourLabel.setLayoutData(layoutData);
         backgroundColourLabel.setText(Messages.LegendGraphicStyleConfigurator_background_colour);
-        backgroundColour = new ColorEditor(composite); 
+        
+        Composite temp = new Composite(composite, SWT.NONE);
+        temp.setLayout(new GridLayout(3, false));
+        ((GridLayout)temp.getLayout()).marginWidth = 0;
+        ((GridLayout)temp.getLayout()).marginHeight = 0;
+        
+        backgroundColour = new ColorEditor(temp);
+        
+        Label translabel = new Label(temp, SWT.NONE);
+        translabel.setText(Messages.LegendGraphicStyleConfigurator_opacityLabel);
+        
+        backgroundTransparency = new Spinner(temp, SWT.BORDER);
+        backgroundTransparency.setMinimum(0);
+        backgroundTransparency.setMaximum(255);
+        backgroundTransparency.setSelection(150);
+        
+        
+        Label borderLabel = new Label(composite, SWT.NONE);
+        borderLabel.setLayoutData(layoutData);
+        borderLabel.setText(Messages.LegendGraphicStyleConfigurator_BorderOption);
+        drawBorder = new Button(composite, SWT.CHECK);
+        
         
         composite.setSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         scrollComposite.setContent(composite);
@@ -128,8 +185,13 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         verticalSpacing.addModifyListener(this);
         horizontalSpacing.addModifyListener(this);
         indentSize.addModifyListener(this);
+        numCols.addModifyListener(this);
+        imageSpacing.addModifyListener(this);
+        imageSize.addModifyListener(this);
         backgroundColour.getButton().addSelectionListener(this);
         fontColour.getButton().addSelectionListener(this);
+        drawBorder.addSelectionListener(this);
+        backgroundTransparency.addModifyListener(this);
     }
     
     @Override
@@ -157,6 +219,9 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         verticalSpacing.setText(Integer.toString(style.verticalSpacing));
         horizontalSpacing.setText(Integer.toString(style.horizontalSpacing));
         indentSize.setText(Integer.toString(style.indentSize));
+        numCols.setText(Integer.toString(style.numCols));
+        imageSpacing.setText(Integer.toString(style.imageSpacing));
+        imageSize.setText(Integer.toString(style.imageWidth));
         fontColour.setColorValue(new RGB(
                 fontStyle.getColor().getRed(),
                 fontStyle.getColor().getGreen(), 
@@ -166,6 +231,8 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
                 style.backgroundColour.getGreen(),
                 style.backgroundColour.getBlue()
                 ));
+        backgroundTransparency.setSelection(style.backgroundColour.getAlpha());
+        drawBorder.setSelection(style.drawBorder);
         fireEvents = true;
         updateBlackboard();
     }
@@ -173,16 +240,22 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
     private void updateBlackboard() {
         
     	RGB bg = backgroundColour.getColorValue();
-        style.backgroundColour = new Color(bg.red, bg.green, bg.blue);
+        style.backgroundColour = new Color(bg.red, bg.green, bg.blue, backgroundTransparency.getSelection());
         
         RGB fg = fontColour.getColorValue();
         fontStyle.setColor(new Color(fg.red, fg.green, fg.blue));
         
         style.horizontalMargin = Integer.parseInt(horizontalMargin.getText());
         style.horizontalSpacing = Integer.parseInt(horizontalSpacing.getText());
+        style.numCols = Integer.parseInt(numCols.getText());
         style.indentSize = Integer.parseInt(indentSize.getText());
         style.verticalMargin = Integer.parseInt(verticalMargin.getText());
         style.verticalSpacing = Integer.parseInt(verticalSpacing.getText());
+        style.imageSpacing = Integer.parseInt(imageSpacing.getText());
+        
+        style.imageWidth = Integer.parseInt(imageSize.getText());
+        style.imageHeight = Integer.parseInt(imageSize.getText());
+        style.drawBorder = drawBorder.getSelection();
         
         getStyleBlackboard().put(LegendStyleContent.ID, style);
         getStyleBlackboard().put(FontStyleContent.ID, fontStyle);

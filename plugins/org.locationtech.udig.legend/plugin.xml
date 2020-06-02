@@ -18,11 +18,11 @@
             requires="org.locationtech.udig.legend.ui.LegendGraphic"
             styleId="org.locationtech.udig.legend.style"/>
       <styleConfigurator
-            class="org.locationtech.udig.mapgraphic.style.LocationStyleConfigurator"
+            class="org.locationtech.udig.legend.ui.LegendLocationStyleConfigurator"
             id="org.locationtech.udig.legend.location"
             label="%location.label"
             requires="org.locationtech.udig.legend.ui.LegendGraphic"
-            styleId="org.locationtech.udig.printing.ui.locationStyle"/>
+            styleId="org.locationtech.udig.legend.locationStyle"/>
       <styleConfigurator
             class="org.locationtech.udig.mapgraphic.style.FontStyleConfigurator"
             id="org.locationtech.udig.legend.ui.style.font"
@@ -37,6 +37,11 @@
             class="org.locationtech.udig.legend.ui.LegendStyleContent"
             id="org.locationtech.udig.legend.legendStyle"
             name="%legend.style.name"/>
+      <style
+            class="org.locationtech.udig.legend.ui.LegendLocationStyleContent"
+            id="org.locationtech.udig.legend.locationStyle"
+            name="Location Style">
+      </style>
    </extension>
       <extension
          point="org.eclipse.ui.actionSets">

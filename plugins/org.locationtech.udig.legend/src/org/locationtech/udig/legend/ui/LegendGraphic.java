@@ -11,22 +11,29 @@ package org.locationtech.udig.legend.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.geotools.styling.FeatureTypeStyle;
+import org.geotools.styling.Rule;
+import org.geotools.styling.Style;
 import org.locationtech.udig.mapgraphic.MapGraphic;
 import org.locationtech.udig.mapgraphic.MapGraphicContext;
 import org.locationtech.udig.mapgraphic.internal.MapGraphicResource;
 import org.locationtech.udig.mapgraphic.style.FontStyle;
 import org.locationtech.udig.mapgraphic.style.FontStyleContent;
-import org.locationtech.udig.mapgraphic.style.LocationStyleContent;
 import org.locationtech.udig.project.IBlackboard;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
@@ -36,12 +43,6 @@ import org.locationtech.udig.ui.PlatformGIS;
 import org.locationtech.udig.ui.graphics.AWTSWTImageUtils;
 import org.locationtech.udig.ui.graphics.SLDs;
 import org.locationtech.udig.ui.graphics.ViewportGraphics;
-
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.SWT;
-import org.geotools.styling.FeatureTypeStyle;
-import org.geotools.styling.Rule;
-import org.geotools.styling.Style;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.feature.type.Name;
 
@@ -53,32 +54,33 @@ import org.opengis.feature.type.Name;
  */
 public class LegendGraphic implements MapGraphic {
 
+
 	private int verticalMargin; // distance between border and icons/text
 	private int horizontalMargin; // distance between border and icons/text
 	private int verticalSpacing; // distance between layers
-	private int horizontalSpacing; // space between image and text
-	
+	private int horizontalSpacing; // distance between columns
+	private int imageSpacing; //distance between glyph and text
+	private int numCols; //number of columns
+	private int indentSize; //indent for substyles	
 	private Color backgroundColour;
-	private int indentSize;
-
 	private int imageWidth;
 	private int imageHeight; // size of glyph image
-
+	private boolean drawBorder;
+	
+	
 	public void draw(MapGraphicContext context) {
 
 		IBlackboard blackboard = context.getLayer().getStyleBlackboard();
-		LegendStyle legendStyle = (LegendStyle) blackboard
-				.get(LegendStyleContent.ID);
+		LegendStyle legendStyle = (LegendStyle) blackboard.get(LegendStyleContent.ID);
 		if (legendStyle == null) {
 			legendStyle = LegendStyleContent.createDefault();
 			blackboard.put(LegendStyleContent.ID, legendStyle);
 		}
 
-		Rectangle locationStyle = (Rectangle) blackboard
-				.get(LocationStyleContent.ID);
+		LegendLocationStyle locationStyle = (LegendLocationStyle) blackboard.get(LegendLocationStyleContent.ID);
 		if (locationStyle == null) {
-			locationStyle = new Rectangle(-1, -1, -1, -1);
-			blackboard.put(LocationStyleContent.ID, locationStyle);
+			locationStyle = LegendLocationStyleContent.createDefaultStyle();
+			blackboard.put(LegendLocationStyleContent.ID, locationStyle);
 		}
 
 		FontStyle fontStyle = (FontStyle) blackboard.get(FontStyleContent.ID);
@@ -93,8 +95,11 @@ public class LegendGraphic implements MapGraphic {
 		this.horizontalSpacing = legendStyle.horizontalSpacing;
 		this.verticalSpacing = legendStyle.verticalSpacing;
 		this.indentSize = legendStyle.indentSize;
-		this.imageHeight = legendStyle.imageHeight;
-		this.imageWidth = legendStyle.imageWidth;
+		this.numCols = legendStyle.numCols;
+		this.imageSpacing = legendStyle.imageSpacing;
+		this.drawBorder = legendStyle.drawBorder;
+		this.imageHeight = (int)(legendStyle.imageHeight);
+		this.imageWidth = (int)(legendStyle.imageWidth);
 
 		final ViewportGraphics graphics = context.getGraphics();
 
@@ -104,11 +109,10 @@ public class LegendGraphic implements MapGraphic {
 
 		List<Map<ILayer, LegendEntry[]>> layers = new ArrayList<Map<ILayer, LegendEntry[]>>();
 
-		int longestRow = 0; // used to calculate the width of the graphic
-		final int[] numberOfEntries = new int[1]; // total number of entries to
-													// draw
-		numberOfEntries[0] = 0;
-
+		int numberOfEntries = 0;
+		int numberOfLayers = 0;
+		if (imageWidth < 0) imageWidth = 0;
+		if (imageHeight < 0) imageHeight = 0;
 		/*
 		 * Set up the layers that we want to draw so we can operate just on
 		 * those ones. Layers at index 0 are on the bottom of the map, so we
@@ -130,6 +134,7 @@ public class LegendGraphic implements MapGraphic {
 					// don't include mapgraphics
 					continue;
 				}
+				numberOfLayers++;
 				String layerName = layer.getName();
 				if (layerName == null) {
 					layerName = null;
@@ -150,191 +155,179 @@ public class LegendGraphic implements MapGraphic {
 									GridCoverage.class)) {
 						// grid coverage with single rule; lets see if it is a
 						// theming style
-						List<LegendEntry> cmEntries = ColorMapLegendCreator
-								.findEntries(styles, imageSize, textSize);
+						List<LegendEntry> cmEntries = ColorMapLegendCreator.findEntries(styles, imageSize, textSize);
 						if (cmEntries != null) {
-							cmEntries.add(0, layerEntry); // add layer legend
-															// entry
-							entries = cmEntries
-									.toArray(new LegendEntry[cmEntries.size()]);
+							cmEntries.add(0, layerEntry);
+							entries = cmEntries.toArray(new LegendEntry[cmEntries.size()]);
 						}
 					}
 					if (entries == null) {
 						List<LegendEntry> localEntries = new ArrayList<LegendEntry>();
 						if (ruleCount == 1) {
-							// only one rule so apply this to the layer legend
-							// entry
 							layerEntry.setRule(rules.get(0));
 						}
 						localEntries.add(layerEntry); // add layer legend entry
 
 						if (ruleCount > 1) {
 							// we have more than one rule so there is likely
-							// some
-							// themeing going on; add each of these rules
+							// some themeing going on; add each of these rules
 							for (Rule rule : rules) {
 								LegendEntry rentry = new LegendEntry(rule);
 								localEntries.add(rentry);
 							}
 						}
-						entries = localEntries
-								.toArray(new LegendEntry[localEntries.size()]);
+						entries = localEntries.toArray(new LegendEntry[localEntries.size()]);
 					}
 				}
 				layers.add(Collections.singletonMap(layer, entries));
 
 				// compute maximum length for each entry
-				for (int j = 0; j < entries.length; j++) {
-					StringBuilder sb = new StringBuilder();
-					for (int k = 0; k < entries[j].getText().length; k++){
-						sb.append(entries[j].getText()[k]);
-					}
-					Rectangle2D bounds = graphics.getStringBounds(sb.toString());
-					int length = indentSize + imageWidth + horizontalSpacing
-							+ (int) bounds.getWidth();
-
-					if (length > longestRow) {
-						longestRow = length;
-					}
-					numberOfEntries[0]++;
-				}
+				numberOfEntries += entries.length;
 			}
 		}
 
-		if (numberOfEntries[0] == 0) {
+		if (numberOfEntries == 0) {
 			// nothing to draw!
 			return;
 		}
-
-		final int rowHeight = Math.max(imageHeight, graphics.getFontHeight()); // space
-																				// allocated
-																				// to
-																				// each
-																				// layer
-
-		if (locationStyle.width == 0 || locationStyle.height == 0) {
-			// we want to change the location style as needed
-			// but not change the saved one so we create a copy here
-			locationStyle = new Rectangle(locationStyle);
-			if (locationStyle.width == 0) {
-				// we want to grow to whatever size we need
-				int width = longestRow + horizontalMargin * 2;
-				locationStyle.width = width;
-			}
-			if (locationStyle.height == 0) {
-				// we want to grow to whatever size we need
-				int height = rowHeight * numberOfEntries[0] + verticalMargin * 2;
-				for (int i = 0; i < layers.size(); i++) {
-					Map<ILayer, LegendEntry[]> map = layers.get(i);
-					final LegendEntry[] entries = map.values().iterator().next();
-					for (int j = 0; j < entries.length; j ++){
-						if (entries[j].getSpacingAfter() == null){
-							height += verticalSpacing;
-						}else{
-							height += entries[j].getSpacingAfter();
-						}
-					}
-				}
-				locationStyle.height = height- verticalSpacing;
-			}
+		if (numCols > numberOfLayers) {
+			numCols = numberOfLayers;
 		}
+		if (numCols < 1) {
+			numCols = 1;
+		}
+		int entriesPerCol = (int)Math.ceil( numberOfEntries / (float)numCols );
+		numCols = (int)Math.ceil(numberOfEntries / entriesPerCol);
+		
+		//for each column get the layer and maxwidth
+		List<LegendColumn> columns = new ArrayList<>();				
+		int cnt = 0; 
+		LegendColumn current = new LegendColumn();
+		columns.add(current);
+		for (int i = 0; i < layers.size(); i++) {
+			if (cnt >= entriesPerCol) {
+				current = new LegendColumn();
+				columns.add(current);	
+				cnt= 0;
+			}
+					
+			Map<ILayer, LegendEntry[]> map = layers.get(i);
+			final ILayer layer = map.keySet().iterator().next();
+			final LegendEntry[] entries = map.values().iterator().next();
+			cnt+= entries.length;
+			current.layer.add(layer);
+			current.entries.put(layer, entries);
+		}
+				
+		// space allocated to each layer
+		final int rowHeight = Math.max(imageHeight, graphics.getFontHeight()); 
+		// we want to grow to whatever size we need
+		int width = horizontalMargin;
+		for (LegendColumn c : columns) {
+			width += c.getMaxLength(graphics) + horizontalSpacing;
+		}
+		width = width + horizontalMargin - horizontalSpacing;
+
+		int height = 0;
+		for (LegendColumn c : columns) {
+			int temp = c.computHeight(rowHeight);
+			if (temp > height)
+				height = temp;
+		}
+
+		int rawx = 0;
+		int rawy = 0;
 
 		// ensure box within the display
 		Dimension displaySize = context.getMapDisplay().getDisplaySize();
-		if (locationStyle.x < 0) {
-			locationStyle.x = displaySize.width - locationStyle.width
-					+ locationStyle.x;
-		}
-		if ((locationStyle.x + locationStyle.width + 6) > displaySize.width) {
-			locationStyle.x = displaySize.width - locationStyle.width - 5;
-		}
-
-		if (locationStyle.y < 0) {
-			locationStyle.y = displaySize.height - locationStyle.height - 5
-					+ locationStyle.y;
-		}
-		if ((locationStyle.y + locationStyle.height + 6) > displaySize.height) {
-			locationStyle.y = displaySize.height - locationStyle.height - 5;
+		if (locationStyle.xposition == LegendLocationStyle.FixedPosition.LEFT.value) {
+			rawx = locationStyle.xpadding;
+		} else if (locationStyle.xposition == LegendLocationStyle.FixedPosition.MIDDLE.value) {
+			rawx = (displaySize.width / 2) - (width / 2);
+			rawx += locationStyle.xpadding;
+		} else if (locationStyle.xposition == LegendLocationStyle.FixedPosition.RIGHT.value) {
+			rawx = displaySize.width - width - locationStyle.xpadding;
+		} else {
+			rawx = locationStyle.xposition;
 		}
 
-		graphics.setClip(new Rectangle(locationStyle.x, locationStyle.y,
-				locationStyle.width + 1, locationStyle.height + 1));
+		if (locationStyle.yposition == LegendLocationStyle.FixedPosition.TOP.value) {
+			rawy = locationStyle.ypadding;
+		} else if (locationStyle.yposition == LegendLocationStyle.FixedPosition.MIDDLE.value) {
+			rawy = (displaySize.height / 2) - (height / 2);
+			rawy += locationStyle.ypadding;
+		} else if (locationStyle.yposition == LegendLocationStyle.FixedPosition.BOTTOM.value) {
+			rawy = displaySize.height - height - locationStyle.ypadding;
+		} else {
+			rawy = locationStyle.yposition;
+		}
 
-		/*
-		 * Draw the box containing the layers/icons
-		 */
-		drawOutline(graphics, context, locationStyle, fontStyle);
+		Rectangle bounds = new Rectangle(rawx, rawy, width, height);
+		graphics.setClip(bounds);
 
-		/*
-		 * Draw the layer names/icons
-		 */
-		final int[] rowsDrawn = new int[1];
-		rowsDrawn[0] = 0;
+		// Draw the box containing the layers/icons
+		drawOutline(graphics, context, bounds, fontStyle);
+
+		// Draw the layer names/icons
+
 		final int[] x = new int[1];
-		x[0] = locationStyle.x + horizontalMargin;
+		x[0] = rawx + horizontalMargin;
 		final int[] y = new int[1];
-		y[0] = locationStyle.y + verticalMargin;
-
+		y[0] = rawy + verticalMargin;
 		if (fontStyle.getFont() != null) {
 			graphics.setFont(fontStyle.getFont());
 		}
 
-		for (int i = 0; i < layers.size(); i++) {
-			Map<ILayer, LegendEntry[]> map = layers.get(i);
-			final ILayer layer = map.keySet().iterator().next();
-			final LegendEntry[] entries = map.values().iterator().next();
+		for (LegendColumn column : columns) {
 
-			try {
-				layer.getGeoResources().get(0).getInfo(null);
-			} catch (Exception ex) {
+			for (ILayer layer : column.layer) {
+				final LegendEntry[] entries = column.entries.get(layer);
+
+				try {
+					layer.getGeoResources().get(0).getInfo(null);
+				} catch (Exception ex) {
+				}
+
+				
+				PlatformGIS.syncInDisplayThread(new Runnable() {
+					public void run() {
+						for (int k = 0; k < entries.length; k++) {
+							BufferedImage awtIcon = null;
+							if (entries[k].getRule() != null) {
+								// generate icon from use
+								ImageDescriptor descriptor = LayerGeneratedGlyphDecorator.generateStyledIcon(layer, entries[k].getRule());
+								if (descriptor == null) {
+									descriptor = LayerGeneratedGlyphDecorator.generateIcon((Layer) layer);
+								}
+								if (descriptor != null) {
+									awtIcon = AWTSWTImageUtils.convertToAWT(descriptor.getImageData());
+								}
+							} else if (entries[k].getIcon() != null) {
+								// use set icon
+								awtIcon = AWTSWTImageUtils.convertToAWT(entries[k].getIcon().getImageData());
+							} else {
+								// no rule, no icon, try default for layer
+								ImageDescriptor descriptor = LayerGeneratedGlyphDecorator.generateIcon((Layer) layer);
+								if (descriptor != null) {
+									awtIcon = AWTSWTImageUtils.convertToAWT(descriptor.getImageData());
+								}
+							}
+							drawRow(graphics, x[0], y[0], awtIcon, entries[k].getText(), k != 0, entries[k].getTextPosition());
+							y[0] = y[0] + rowHeight;
+		
+							if (entries[k].getSpacingAfter() != null) {
+								y[0] = y[0] + entries[k].getSpacingAfter();
+							} else {
+								y[0] = y[0] + verticalSpacing;
+							}
+						}
+					}
+				});
 			}
 
-			PlatformGIS.syncInDisplayThread(new Runnable() {
-				public void run() {
-					for (int i = 0; i < entries.length; i++) {
-						BufferedImage awtIcon = null;
-						if (entries[i].getRule() != null) {
-							// generate icon from use
-							ImageDescriptor descriptor = LayerGeneratedGlyphDecorator
-									.generateStyledIcon(layer,
-											entries[i].getRule());
-							if (descriptor == null) {
-								descriptor = LayerGeneratedGlyphDecorator
-										.generateIcon((Layer) layer);
-							}
-							if (descriptor != null) {
-								awtIcon = AWTSWTImageUtils
-										.convertToAWT(descriptor.getImageData());
-							}
-						} else if (entries[i].getIcon() != null) {
-							// use set icon
-							awtIcon = AWTSWTImageUtils.convertToAWT(entries[i]
-										.getIcon().getImageData());
-						} else {
-							// no rule, no icon, try default for layer
-							ImageDescriptor descriptor = LayerGeneratedGlyphDecorator
-									.generateIcon((Layer) layer);
-							if (descriptor != null) {
-								awtIcon = AWTSWTImageUtils
-										.convertToAWT(descriptor.getImageData());
-							}
-						}
-						drawRow(graphics, x[0], y[0], awtIcon,
-								entries[i].getText(), i != 0, entries[i].getTextPosition());
+			x[0] = x[0] + column.getMaxLength(graphics) + horizontalSpacing;
+			y[0] = rawy + verticalMargin;
 
-						y[0] += rowHeight;
-						if ((rowsDrawn[0] + 1) < numberOfEntries[0]) {
-							if (entries[i].getSpacingAfter() != null){
-								y[0] += entries[i].getSpacingAfter();
-							}else{
-								y[0] += verticalSpacing;
-							}
-						}
-						rowsDrawn[0]++;
-					}
-
-				}
-			});
 		}
 		// clear the clip so we don't affect other rendering processes
 		graphics.setClip(null);
@@ -354,6 +347,24 @@ public class LegendGraphic implements MapGraphic {
 		if (text.length == 0){
 			return;
 		}
+		
+		
+        if (icon.getWidth() != imageWidth || icon.getHeight() != imageHeight) {
+            //scale the icon image
+        	//this is not the best way to do this; ideally the images
+        	//are drawn at the correct size
+            double scalex = imageWidth / icon.getWidth();
+            double scaley = imageHeight / icon.getHeight();
+
+            AffineTransform scaletransform = new AffineTransform();
+            scaletransform.scale(scalex, scaley);
+            BufferedImage resizedImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = resizedImage.createGraphics();
+            g.drawRenderedImage(icon, scaletransform);
+            g.dispose();
+            icon = resizedImage;
+        }
+        
 		Rectangle2D stringBounds = graphics.getStringBounds(text[0]);
 
 		/*
@@ -380,7 +391,6 @@ public class LegendGraphic implements MapGraphic {
 		if (indent) {
 			x += indentSize;
 		}
-
 		if (icon != null) {
 			graphics.drawImage(icon, x, y + iconVerticalOffset);
 			x += imageWidth;
@@ -389,7 +399,7 @@ public class LegendGraphic implements MapGraphic {
 		if (text != null && text[0].length() != 0) {
 			graphics.drawString(
 					text[0],
-					x + horizontalMargin,
+					x + imageSpacing,
 					y + textVerticalOffset
 					- (int) (graphics.getFontHeight() - graphics.getFontAscent()),
 					ViewportGraphics.ALIGN_LEFT, ViewportGraphics.ALIGN_TOP);
@@ -399,7 +409,7 @@ public class LegendGraphic implements MapGraphic {
 			//draw last label at bottom of range
 			String end = text[text.length - 1];
 
-			graphics.drawString(end, x + horizontalMargin, y + imageHeight
+			graphics.drawString(end, x + imageSpacing, y + imageHeight
 					+ (int) (graphics.getFontAscent() * 0.3),
 					ViewportGraphics.ALIGN_LEFT, ViewportGraphics.ALIGN_BOTTOM);
 		}
@@ -453,9 +463,61 @@ public class LegendGraphic implements MapGraphic {
 
 		graphics.setColor(backgroundColour);
 		graphics.fill(outline);
-
 		graphics.setColor(fs.getColor());
 		graphics.setBackground(backgroundColour);
-		graphics.draw(outline);
+		
+		if (drawBorder) {
+			outline = new Rectangle(locationStyle.x, locationStyle.y,
+					locationStyle.width-1, locationStyle.height-1);
+			graphics.draw(outline);
+		}
+	}
+	
+	class LegendColumn {
+
+		List<ILayer> layer = new ArrayList<>();
+		HashMap<ILayer, LegendEntry[]> entries = new HashMap<>();
+
+		public int getMaxLength(ViewportGraphics graphics) {
+			int longestRow = 0;
+			for (LegendEntry[] entries : entries.values()) {
+				for (int j = 0; j < entries.length; j++) {
+					StringBuilder sb = new StringBuilder();
+					for (int k = 0; k < entries[j].getText().length; k++) {
+						sb.append(entries[j].getText()[k]);
+					}
+					Rectangle2D bounds = graphics.getStringBounds(sb.toString());
+
+					int length = (int) bounds.getWidth() + imageSpacing + imageWidth;
+					if (j != 0)
+						length += indentSize;
+
+					if (length > longestRow) {
+						longestRow = length;
+					}
+				}
+			}
+			return longestRow;
+		}
+
+		public int computHeight(int rowHeight) {
+			int numitems = 0;
+			for (LegendEntry[] e : entries.values()) {
+				numitems += e.length;
+			}
+			int height = rowHeight * numitems + verticalMargin * 2;
+
+			for (LegendEntry[] entries : entries.values()) {
+				for (int j = 0; j < entries.length; j++) {
+					if (entries[j].getSpacingAfter() == null) {
+						height += verticalSpacing;
+					} else {
+						height += entries[j].getSpacingAfter();
+					}
+				}
+			}
+
+			return height - verticalSpacing;
+		}
 	}
 }

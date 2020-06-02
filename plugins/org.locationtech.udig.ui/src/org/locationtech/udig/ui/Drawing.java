@@ -13,12 +13,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.RenderedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
@@ -320,8 +322,14 @@ public final class Drawing {
             float[] point=new float[6];
             shape.getPathIterator(null).currentSegment(point);
             SLDStyleFactory styleFactory=new SLDStyleFactory();
+             
+             
+             RenderingHints hints = new RenderingHints(Collections.EMPTY_MAP);
+             hints.add(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+             styleFactory.setRenderingHints(hints);
+             
              Style2D tmp = styleFactory.createStyle(feature, pointSymbolizer, new NumberRange(Double.class, Double.MIN_VALUE, Double.MAX_VALUE));
-            
+             
              if( tmp instanceof MarkStyle2D ){
                 MarkStyle2D style=(MarkStyle2D) tmp;
                 Shape shape2 = style.getTransformedShape(point[0], point[1]);

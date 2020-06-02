@@ -19,6 +19,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
@@ -26,8 +27,10 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Path;
 import org.eclipse.swt.graphics.PathData;
@@ -46,6 +49,7 @@ public class AWTGraphics implements ViewportGraphics {
         g.setBackground(Color.WHITE);
         dpi = 72;
     }
+    
     /**
      * Construct a AWTGraphics with the indicated dpi
      * 
@@ -53,10 +57,9 @@ public class AWTGraphics implements ViewportGraphics {
      * @param dpi
      */
     public AWTGraphics( Graphics2D g, int dpi ) {
-        this.g = g;
-        this.dpi = dpi;
-        g.setBackground(Color.WHITE);
-
+    	this(g);
+    	this.dpi = dpi;
+        
         if (dpi != 72) {
             Font font = g.getFont();
             String name = font.getName();
@@ -64,6 +67,7 @@ public class AWTGraphics implements ViewportGraphics {
             int size = (font.getSize() * dpi) / 72;
             g.setFont(new Font(name, style, size));
         }
+        
     }
 
     /**

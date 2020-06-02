@@ -25,6 +25,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
@@ -372,6 +373,11 @@ public final class Drawing {
             pathIterator.currentSegment(point);
 
             SLDStyleFactory styleFactory = new SLDStyleFactory();
+            
+            RenderingHints hints = new RenderingHints(Collections.EMPTY_MAP);
+            hints.add(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+            styleFactory.setRenderingHints(hints);
+            
             Style2D tmp = null;
             try {
                 tmp = styleFactory.createStyle(feature, pointSymbolizer, new NumberRange<Double>(Double.class, Double.NEGATIVE_INFINITY,

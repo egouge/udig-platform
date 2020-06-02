@@ -14,14 +14,21 @@ package org.locationtech.udig.legend.ui;
 import java.awt.Color;
 
 public class LegendStyle {
-    public  int verticalMargin; //distance between border and icons/text
-    public  int horizontalMargin; //distance between border and icons/text
-    public  int verticalSpacing; //distance between layers
-    public  int horizontalSpacing; //space between image and text
-    public  Color backgroundColour;
-    public  int indentSize;
+    
+	public int verticalMargin; //distance between border and icons/text
+    public int horizontalMargin; //distance between border and icons/text
+    public int numCols;	//number of columns in legend
+    public int verticalSpacing; //distance between layers
+    public int horizontalSpacing; //distance between vertical columns
+    public int imageSpacing; //spacing between glyph image and text
+    public int indentSize; //size of indent for "substyles" of a layer ex. themes
+    
+    public boolean drawBorder;
+    
+    public Color backgroundColour;
+    
     public int imageWidth;
-    public  int imageHeight; //size of glyph image
+    public int imageHeight; //size of glyph image
     
     /**
      * Creates a new empty legend style
@@ -46,6 +53,9 @@ public class LegendStyle {
 		this.indentSize = oldStyle.indentSize;
 		this.imageWidth = oldStyle.imageWidth;
 		this.imageHeight = oldStyle.imageHeight;
+		this.numCols = oldStyle.numCols;
+		this.imageSpacing = oldStyle.imageSpacing;
+		this.drawBorder = oldStyle.drawBorder;
 	}
     
 }

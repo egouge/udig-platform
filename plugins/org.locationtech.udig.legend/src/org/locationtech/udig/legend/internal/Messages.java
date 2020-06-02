@@ -17,17 +17,42 @@ public class Messages extends NLS {
 
 	public static String LegendGraphicStyleConfigurator_background_colour;
 
+	public static String LegendGraphicStyleConfigurator_BorderOption;
+
+	public static String LegendGraphicStyleConfigurator_ColSpacingTooltip;
+
 	public static String LegendGraphicStyleConfigurator_font_colour;
 
 	public static String LegendGraphicStyleConfigurator_horizontal_margin;
 
 	public static String LegendGraphicStyleConfigurator_horizontal_spacing;
 
+	public static String LegendGraphicStyleConfigurator_HSpacingTooltip;
+
+	public static String LegendGraphicStyleConfigurator_ImageSizeLabel;
+
+	public static String LegendGraphicStyleConfigurator_ImageSizeTooltip;
+
+	public static String LegendGraphicStyleConfigurator_ImageTextSpacingLabel;
+
+	public static String LegendGraphicStyleConfigurator_ImageTextSpacingTooltip;
+
+	public static String LegendGraphicStyleConfigurator_IndentTooltip;
+
 	public static String LegendGraphicStyleConfigurator_indent_size;
+
+	public static String LegendGraphicStyleConfigurator_NumColsLabel;
+
+	public static String LegendGraphicStyleConfigurator_NumColsTooltip;
+
+	public static String LegendGraphicStyleConfigurator_opacityLabel;
 
 	public static String LegendGraphicStyleConfigurator_vertical_margin;
 
 	public static String LegendGraphicStyleConfigurator_vertical_spacing;
+	public static String LegendGraphicStyleConfigurator_VEntrySpacingTooltip;
+
+	public static String LegendGraphicStyleConfigurator_VSpacingTooltip;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

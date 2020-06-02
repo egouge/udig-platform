@@ -31,12 +31,19 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.geotools.data.FeatureSource;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.ows.wms.WebMapServer;
+import org.geotools.renderer.style.GraphicStyle2D;
+import org.geotools.renderer.style.SLDStyleFactory;
+import org.geotools.renderer.style.Style2D;
 import org.geotools.styling.FeatureTypeStyle;
+import org.geotools.styling.Graphic;
 import org.geotools.styling.PointSymbolizer;
 import org.geotools.styling.Rule;
 import org.geotools.styling.Style;
 import org.geotools.styling.Symbolizer;
+import org.geotools.styling.visitor.DuplicatingStyleVisitor;
+import org.geotools.util.NumberRange;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryCollection;
 import org.locationtech.jts.geom.LineString;
@@ -450,6 +457,25 @@ public class LayerGeneratedGlyphDecorator implements ILabelDecorator {
         }
         return rule;
     }
+    
+	// resize images down so entire image shows up in layers list icon even if
+	// style says size is larger
+	private static Rule changeSize(Rule rule, int newsize) {
+		DuplicatingStyleVisitor copyStyle = new DuplicatingStyleVisitor();
+		rule.accept(copyStyle);
+		rule = (Rule) copyStyle.getCopy();
+
+		for (Symbolizer s : rule.symbolizers()) {
+			if (s instanceof PointSymbolizer) {
+				Graphic g = ((PointSymbolizer) s).getGraphic();
+				int psize = SLDs.pointSize((PointSymbolizer) s);
+				if (g != null && psize > newsize - 2) {
+					g.setSize(CommonFactoryFinder.getFilterFactory().literal(newsize - 2));
+				}
+			}
+		}
+		return rule;
+	}
 
     public static ImageDescriptor generateStyledIcon( ILayer layer, Rule rule ) {
         if (layer.hasResource(FeatureSource.class) && rule != null) {
@@ -458,6 +484,7 @@ public class LayerGeneratedGlyphDecorator implements ILabelDecorator {
             if (geom != null) {
                 Class geom_type = geom.getType().getBinding();
                 if (geom_type == Point.class || geom_type == MultiPoint.class) {
+                	rule = changeSize(rule, 16);
                     return Glyph.point(rule);
                 } else if (geom_type == LineString.class || geom_type == MultiLineString.class) {
                     return Glyph.line(rule);
