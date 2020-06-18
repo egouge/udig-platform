@@ -41,6 +41,10 @@ public class Messages extends NLS {
 
 	public static String LegendGraphicStyleConfigurator_indent_size;
 
+	public static String LegendGraphicStyleConfigurator_MaxLengthLabel;
+
+	public static String LegendGraphicStyleConfigurator_MaxLengthTooltip;
+
 	public static String LegendGraphicStyleConfigurator_NumColsLabel;
 
 	public static String LegendGraphicStyleConfigurator_NumColsTooltip;

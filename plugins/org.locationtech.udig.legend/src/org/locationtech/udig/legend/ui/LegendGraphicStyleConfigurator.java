@@ -147,12 +147,12 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         
         Label maxEntryLabel = new Label(composite, SWT.NONE);
         maxEntryLabel.setLayoutData(layoutData);
-        maxEntryLabel.setText("Max Entry Length (chars):");
-        maxEntryLabel.setToolTipText("The maximum number of characters in a legend entry. Enter 0 for no limit");
+        maxEntryLabel.setText(Messages.LegendGraphicStyleConfigurator_MaxLengthLabel);
+        maxEntryLabel.setToolTipText(Messages.LegendGraphicStyleConfigurator_MaxLengthTooltip);
         
         maxEntrySize = new Text(composite, SWT.BORDER);
         maxEntrySize.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
-        maxEntrySize.setText("0");
+        maxEntrySize.setText("0"); //$NON-NLS-1$
         
         
         new Label(composite, SWT.NONE);
