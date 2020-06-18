@@ -28,6 +28,9 @@ public class LegendEntry {
 	
 	private Integer spacingAfter = null;
 
+	private boolean indent;
+	private boolean noIcon;
+	
 	/**
 	 * Creates a new legend entry based on a rule.
 	 * 
@@ -35,8 +38,9 @@ public class LegendEntry {
 	 */
 	public LegendEntry(Rule rule) {
 		this.rule = rule;
-		this.text = null;
+		this.text = new String[]{getText(rule)};
 		this.icon = null;
+		this.indent = false;
 	}
 
 	/**
@@ -45,9 +49,7 @@ public class LegendEntry {
 	 * @param text
 	 */
 	public LegendEntry(String text) {
-		this.text = new String[] {text};
-		this.icon = null;
-		this.rule = null;
+		this(new String[] {text}, null);
 	}
 
 	/**
@@ -57,9 +59,7 @@ public class LegendEntry {
 	 * @param icon
 	 */
 	public LegendEntry(String text, ImageDescriptor icon) {
-		this.text = new String[] {text};
-		this.icon = icon;
-		this.rule = null;
+		this(new String[] {text}, icon);
 	}
 
 	/**
@@ -72,6 +72,43 @@ public class LegendEntry {
 		this.text = text;
 		this.icon = icon;
 		this.rule = null;
+		this.indent = false;
+		
+		if (this.text == null) this.text = new String[0];
+	}
+	
+	/**
+	 * True if the legend entry should be indented, false otherwise
+	 * @return
+	 */
+	public boolean isIndent() {
+		return this.indent;
+	}
+	
+	/**
+	 * True if the legend entry should be indented, false otherwise
+	 * @param indent
+	 */
+	public void setIndent(boolean indent) {
+		this.indent = indent;
+	}
+	
+
+	/**
+	 * If true no image should be drawn
+	 * @return
+	 */
+	public boolean getHideImage() {
+		return this.noIcon;
+	}
+	
+	/**
+	 * If true to glyph image should be drawn.
+	 * 
+	 * @param hideImage
+	 */
+	public void setHideImage(boolean hideImage) {
+		this.noIcon = hideImage;
 	}
 	
 	/**
@@ -84,12 +121,7 @@ public class LegendEntry {
 	 * @return
 	 */
 	public String[] getText() {
-		if (this.text != null) {
-			return this.text;
-		} else if (rule != null) {
-			return new String[]{getText(rule)};
-		}
-		return new String[]{};
+		return this.text;
 	}
 	
 	/**
@@ -172,11 +204,6 @@ public class LegendEntry {
 		} else if (rule.getFilter() != null) {
 			text = rule.getFilter().toString();
 		}
-
-		if (text.length() > 19) {
-			return text.substring(0, 18) + "..."; //$NON-NLS-1$
-		} else {
-			return text;
-		}
+		return text;
 	}
 }

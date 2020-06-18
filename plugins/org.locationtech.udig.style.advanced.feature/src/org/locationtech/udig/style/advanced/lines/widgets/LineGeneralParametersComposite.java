@@ -37,6 +37,8 @@ public class LineGeneralParametersComposite extends ParameterComposite {
     private final Composite parent;
 
     private Text nameText;
+    private Text titleText;
+    
     private Spinner xOffsetSpinner;
     private Spinner yOffsetSpinner;
     private Text maxScaleText;
@@ -64,6 +66,17 @@ public class LineGeneralParametersComposite extends ParameterComposite {
         mainComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         mainComposite.setLayout(new GridLayout(3, true));
 
+        //title for legend
+        Label titleLabel = new Label(mainComposite, SWT.NONE);
+        titleLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+        titleLabel.setText(Messages.LineGeneralParametersComposite_4);
+        titleText = new Text(mainComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+        GridData titleTextGD = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        titleTextGD.horizontalSpan = 2;
+        titleText.setLayoutData(titleTextGD);
+        titleText.setText(ruleWrapper.getTitle());
+        titleText.addFocusListener(this);
+        
         // rule name
         Label nameLabel = new Label(mainComposite, SWT.NONE);
         nameLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
@@ -138,6 +151,7 @@ public class LineGeneralParametersComposite extends ParameterComposite {
         SymbolizerWrapper symbolizersWrapper = ruleWrapper.getGeometrySymbolizersWrapper();
 
         nameText.setText(ruleWrapper.getName());
+        titleText.setText(ruleWrapper.getName());
 
         // offset
         String xOffset = symbolizersWrapper.getxOffset();
@@ -199,6 +213,9 @@ public class LineGeneralParametersComposite extends ParameterComposite {
         if (source.equals(nameText)) {
             String text = nameText.getText();
             notifyListeners(text, false, STYLEEVENTTYPE.NAME);
+        }else if (source.equals(titleText)) {
+            String text = titleText.getText();
+            notifyListeners(text, false, STYLEEVENTTYPE.TITLE);
         }
     }
 

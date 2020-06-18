@@ -66,7 +66,7 @@ public class LegendGraphic implements MapGraphic {
 	private int imageWidth;
 	private int imageHeight; // size of glyph image
 	private boolean drawBorder;
-	
+	private int maxEntryLength;
 	
 	public void draw(MapGraphicContext context) {
 
@@ -100,6 +100,7 @@ public class LegendGraphic implements MapGraphic {
 		this.drawBorder = legendStyle.drawBorder;
 		this.imageHeight = (int)(legendStyle.imageHeight);
 		this.imageWidth = (int)(legendStyle.imageWidth);
+		this.maxEntryLength = legendStyle.maxEntryLength;
 
 		final ViewportGraphics graphics = context.getGraphics();
 
@@ -179,6 +180,20 @@ public class LegendGraphic implements MapGraphic {
 						entries = localEntries.toArray(new LegendEntry[localEntries.size()]);
 					}
 				}
+				//trim legend entries if required
+				if (this.maxEntryLength > 0) {
+					for (LegendEntry e : entries) {
+						if (e.getText() == null) continue;
+						for (int k = 0; k < e.getText().length; k ++) {
+							String label  = e.getText()[k];
+							if (label.length() > this.maxEntryLength) {
+								label = label.substring(0, this.maxEntryLength) + "..."; //$NON-NLS-1$
+								e.getText()[k] = label;
+							}
+						}
+					}
+				}
+				
 				layers.add(Collections.singletonMap(layer, entries));
 
 				// compute maximum length for each entry

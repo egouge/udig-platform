@@ -240,6 +240,9 @@ public class PolygonPropertiesComposite implements ModifyListener, IStyleChanges
         case NAME:
             ruleWrapper.setName(value);
             break;
+        case TITLE:
+            ruleWrapper.setTitle(value);
+            break;
         case OFFSET:
             polygonSymbolizerWrapper.setOffset(value);
             break;

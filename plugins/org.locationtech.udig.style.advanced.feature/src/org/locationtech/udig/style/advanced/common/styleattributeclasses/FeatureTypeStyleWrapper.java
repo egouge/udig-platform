@@ -53,7 +53,7 @@ public class FeatureTypeStyleWrapper {
 
     public String getName() {
         int indexOf = parent.getStyle().featureTypeStyles().indexOf(featureTypeStyle);
-        name = "group" + indexOf;
+        name = "group" + indexOf; //$NON-NLS-1$
         featureTypeStyle.setName(name);
         return name;
     }

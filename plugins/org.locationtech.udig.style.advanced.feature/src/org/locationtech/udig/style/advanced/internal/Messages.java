@@ -38,6 +38,8 @@ public class Messages extends NLS {
 	public static String LineGeneralParametersComposite_1;
 	public static String LineGeneralParametersComposite_2;
 	public static String LineGeneralParametersComposite_3;
+
+	public static String LineGeneralParametersComposite_4;
 	public static String LineLabelsParametersComposite_0;
 	public static String LineLabelsParametersComposite_1;
 	public static String LineLabelsParametersComposite_11;
@@ -104,6 +106,8 @@ public class Messages extends NLS {
 	public static String PointGeneralParametersComposite_5;
 	public static String PointGeneralParametersComposite_6;
 	public static String PointGeneralParametersComposite_7;
+
+	public static String PointGeneralParametersComposite_8;
 	public static String PointLabelsParametersComposite_0;
 	public static String PointLabelsParametersComposite_1;
 	public static String PointLabelsParametersComposite_10;
@@ -175,6 +179,8 @@ public class Messages extends NLS {
 	public static String PolygonGeneralParametersComposite_1;
 	public static String PolygonGeneralParametersComposite_2;
 	public static String PolygonGeneralParametersComposite_3;
+
+	public static String PolygonGeneralParametersComposite_4;
 	public static String PolygonLabelsParametersComposite_0;
 	public static String PolygonLabelsParametersComposite_1;
 	public static String PolygonLabelsParametersComposite_3;

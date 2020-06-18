@@ -63,12 +63,17 @@ public class GroupRulesTreeLabelProvider extends LabelProvider {
             return name;
         } else if (element instanceof RuleWrapper) {
             RuleWrapper ruleWrapper = (RuleWrapper) element;
+            String title = ruleWrapper.getTitle();
             String name = ruleWrapper.getName();
-            if (name == null || name.length() == 0) {
-                name = Messages.GroupRulesTreeLabelProvider_1;
-                name = WrapperUtilities.checkSameNameRule(ruleWrapper.getParent().getRulesWrapperList(), name);
-                ruleWrapper.setName(name);
-            }
+            
+            if (title != null && !title.isBlank()) return title;
+            if (name != null && !name.isBlank()) return name;
+            
+            name = Messages.GroupRulesTreeLabelProvider_1;
+            name = WrapperUtilities.checkSameNameRule(ruleWrapper.getParent().getRulesWrapperList(), name);
+            ruleWrapper.setName(name);
+            ruleWrapper.setTitle(name);
+            
             return name;
         }
         return null;

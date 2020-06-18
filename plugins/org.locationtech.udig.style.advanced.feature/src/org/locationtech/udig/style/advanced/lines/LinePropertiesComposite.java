@@ -221,6 +221,9 @@ public class LinePropertiesComposite implements ModifyListener, IStyleChangesLis
         case NAME:
             ruleWrapper.setName(value);
             break;
+        case TITLE:
+            ruleWrapper.setTitle(value);
+            break;
         case OFFSET:
             lineSymbolizerWrapper.setOffset(value);
             break;

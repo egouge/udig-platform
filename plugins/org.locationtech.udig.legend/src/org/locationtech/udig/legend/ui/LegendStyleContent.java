@@ -33,6 +33,7 @@ public class LegendStyleContent extends StyleContent {
 	private static final String VERTICAL_MARGIN = "verticalMargin"; //$NON-NLS-1$
 	private static final String NUM_COLUMNS= "numberColumns"; //$NON-NLS-1$
 	private static final String DRAW_BORDER = "drawBorder"; //$NON-NLS-1$
+	private static final String MAX_ENTRY_LENGTH = "maxEntryLength"; //$NON-NLS-1$
 
     
 	public static final String ID = "org.locationtech.udig.legend.legendStyle"; //$NON-NLS-1$
@@ -59,7 +60,7 @@ public class LegendStyleContent extends StyleContent {
     		momento.putInteger(IMAGE_HEIGHT, ls.imageHeight);
     		momento.putInteger(IMAGE_WIDTH, ls.imageWidth);
     		momento.putBoolean(DRAW_BORDER, ls.drawBorder);
-    		
+    		momento.putInteger(MAX_ENTRY_LENGTH, ls.maxEntryLength);
     		momento.putInteger(BACKGROUND_COLOUR, ls.backgroundColour.getRGB());
     	}
     }
@@ -70,6 +71,9 @@ public class LegendStyleContent extends StyleContent {
     	 
     	 Integer v = momento.getInteger(VERTICAL_MARGIN);
     	 if (v != null) style.verticalMargin = v.intValue();
+    	 
+    	 v = momento.getInteger(MAX_ENTRY_LENGTH);
+    	 if (v != null) style.maxEntryLength = v.intValue();
     	 
     	 v = momento.getInteger(HORIZONTAL_MARGIN);
     	 if (v != null) style.horizontalMargin = v.intValue();
@@ -122,20 +126,17 @@ public class LegendStyleContent extends StyleContent {
         
         style.numCols = 1;
         style.verticalMargin = 5; 
-        style.horizontalMargin = 5; 
-        
+        style.horizontalMargin = 5;
         style.verticalSpacing = 3; 
         style.horizontalSpacing = 3;
-        
         style.indentSize = 10;
-        
         style.imageHeight = 16;
         style.imageWidth = 16;
-        
         style.imageSpacing = 2;
-        
         style.backgroundColour = Color.WHITE;
         style.drawBorder = true;
+        style.maxEntryLength = 0;
+        
         return style;
     }
 }

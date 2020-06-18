@@ -22,6 +22,7 @@ public class LegendStyle {
     public int horizontalSpacing; //distance between vertical columns
     public int imageSpacing; //spacing between glyph image and text
     public int indentSize; //size of indent for "substyles" of a layer ex. themes
+    public int maxEntryLength; //the maximum number of characters for a legend entry 
     
     public boolean drawBorder;
     
@@ -51,6 +52,7 @@ public class LegendStyle {
 		this.horizontalSpacing = oldStyle.horizontalSpacing;
 		this.backgroundColour = oldStyle.backgroundColour;
 		this.indentSize = oldStyle.indentSize;
+		this.maxEntryLength = oldStyle.maxEntryLength;
 		this.imageWidth = oldStyle.imageWidth;
 		this.imageHeight = oldStyle.imageHeight;
 		this.numCols = oldStyle.numCols;

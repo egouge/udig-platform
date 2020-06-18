@@ -306,10 +306,10 @@ public final class WrapperUtilities {
             tmpName = tmpName.trim();
             if (tmpName.equals(name)) {
                 // name exists, change the name of the entering
-                if (name.endsWith(")")) {
-                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")");
+                if (name.endsWith(")")) { //$NON-NLS-1$
+                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 } else {
-                    name = name + " (" + (index++) + ")";
+                    name = name + " (" + (index++) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 // start again
                 i = 0;
@@ -344,10 +344,10 @@ public final class WrapperUtilities {
             tmpName = tmpName.trim();
             if (tmpName.equals(name)) {
                 // name exists, change the name of the entering
-                if (name.endsWith(")")) {
-                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")");
+                if (name.endsWith(")")) { //$NON-NLS-1$
+                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 } else {
-                    name = name + " (" + (index++) + ")";
+                    name = name + " (" + (index++) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 // start again
                 i = 0;
@@ -382,10 +382,10 @@ public final class WrapperUtilities {
             tmpName = tmpName.trim();
             if (tmpName.equals(name)) {
                 // name exists, change the name of the entering
-                if (name.endsWith(")")) {
-                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")");
+                if (name.endsWith(")")) { //$NON-NLS-1$
+                    name = name.trim().replaceFirst("\\([0-9]+\\)$", "(" + (index++) + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 } else {
-                    name = name + " (" + (index++) + ")";
+                    name = name + " (" + (index++) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 // start again
                 i = 0;
@@ -408,18 +408,18 @@ public final class WrapperUtilities {
     public static StyleWrapper createStyleFromGraphic( File graphicsPath ) throws IOException {
         String name = graphicsPath.getName();
         ExternalGraphic exGraphic = null;
-        if (name.toLowerCase().endsWith(".png")) {
-            exGraphic = Utilities.sf.createExternalGraphic(graphicsPath.toURI().toURL(), "image/png");
-        } else if (name.toLowerCase().endsWith(".svg")) {
-            exGraphic = Utilities.sf.createExternalGraphic(graphicsPath.toURI().toURL(), "image/svg+xml");
-        } else if (name.toLowerCase().endsWith(".sld")) {
+        if (name.toLowerCase().endsWith(".png")) { //$NON-NLS-1$
+            exGraphic = Utilities.sf.createExternalGraphic(graphicsPath.toURI().toURL(), "image/png"); //$NON-NLS-1$
+        } else if (name.toLowerCase().endsWith(".svg")) { //$NON-NLS-1$
+            exGraphic = Utilities.sf.createExternalGraphic(graphicsPath.toURI().toURL(), "image/svg+xml"); //$NON-NLS-1$
+        } else if (name.toLowerCase().endsWith(".sld")) { //$NON-NLS-1$
             StyledLayerDescriptor sld = Utilities.readStyle(graphicsPath);
             Style style = SLDs.getDefaultStyle(sld);
             return new StyleWrapper(style);
         }
 
         if (exGraphic == null) {
-            throw new IOException("Style could not be created!");
+            throw new IOException("Style could not be created!"); //$NON-NLS-1$
         }
 
         Graphic gr = Utilities.sf.createDefaultGraphic();

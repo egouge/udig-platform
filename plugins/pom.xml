@@ -127,7 +127,6 @@
 	        <module>org.locationtech.udig.style.sld.raster</module>
 	        <module>org.locationtech.udig.style.wms</module>
 	        <module>org.locationtech.udig.tool.default</module>
-	        <module>org.locationtech.udig.tool.edit</module>
 	        <module>org.locationtech.udig.tool.measure</module>
 	        <module>org.locationtech.udig.tool.select</module>
 	        <module>org.locationtech.udig.ui</module>

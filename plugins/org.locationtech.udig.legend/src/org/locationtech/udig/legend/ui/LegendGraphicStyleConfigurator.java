@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
+import org.eclipse.swt.widgets.Text;
 import org.locationtech.udig.legend.internal.Messages;
 import org.locationtech.udig.mapgraphic.style.FontStyle;
 import org.locationtech.udig.mapgraphic.style.FontStyleContent;
@@ -46,6 +47,7 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
     private Combo imageSize;
     private Spinner backgroundTransparency;
     private Button drawBorder;
+    private Text maxEntrySize;
     
     private ColorEditor fontColour;
     private ColorEditor backgroundColour;
@@ -142,6 +144,17 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         indentSize.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
         indentSize.setItems("0","5","10","15"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
         
+        
+        Label maxEntryLabel = new Label(composite, SWT.NONE);
+        maxEntryLabel.setLayoutData(layoutData);
+        maxEntryLabel.setText("Max Entry Length (chars):");
+        maxEntryLabel.setToolTipText("The maximum number of characters in a legend entry. Enter 0 for no limit");
+        
+        maxEntrySize = new Text(composite, SWT.BORDER);
+        maxEntrySize.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+        maxEntrySize.setText("0");
+        
+        
         new Label(composite, SWT.NONE);
         new Label(composite, SWT.NONE);
         
@@ -185,6 +198,7 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         verticalSpacing.addModifyListener(this);
         horizontalSpacing.addModifyListener(this);
         indentSize.addModifyListener(this);
+        maxEntrySize.addModifyListener(this);
         numCols.addModifyListener(this);
         imageSpacing.addModifyListener(this);
         imageSize.addModifyListener(this);
@@ -233,6 +247,8 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
                 ));
         backgroundTransparency.setSelection(style.backgroundColour.getAlpha());
         drawBorder.setSelection(style.drawBorder);
+        maxEntrySize.setText(Integer.toString(style.maxEntryLength));
+        
         fireEvents = true;
         updateBlackboard();
     }
@@ -250,6 +266,7 @@ public class LegendGraphicStyleConfigurator extends IStyleConfigurator implement
         style.numCols = Integer.parseInt(numCols.getText());
         style.indentSize = Integer.parseInt(indentSize.getText());
         style.verticalMargin = Integer.parseInt(verticalMargin.getText());
+        style.maxEntryLength = Integer.parseInt(maxEntrySize.getText());
         style.verticalSpacing = Integer.parseInt(verticalSpacing.getText());
         style.imageSpacing = Integer.parseInt(imageSpacing.getText());
         

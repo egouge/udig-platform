@@ -22,6 +22,7 @@ public interface IStyleChangesListener {
     public enum STYLEEVENTTYPE {
         // general
         NAME,
+        TITLE,
         PATH,
         MARKNAME,
         SIZE, 

@@ -597,6 +597,9 @@ public class PointPropertiesComposite extends SelectionAdapter implements Modify
         case NAME:
             ruleWrapper.setName(value);
             break;
+        case TITLE:
+            ruleWrapper.setTitle(value);
+            break;
         case SIZE:
             pointSymbolizerWrapper.setSize(value, fromField);
             break;

@@ -39,6 +39,7 @@ public class PointGeneralParametersComposite extends ParameterComposite {
     private final String[] numericAttributesArrays;
 
     private Text nameText;
+    private Text titleText;
     private Spinner sizeSpinner;
     private Combo sizeAttributecombo;
     private Spinner rotationSpinner;
@@ -67,6 +68,18 @@ public class PointGeneralParametersComposite extends ParameterComposite {
         mainComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         mainComposite.setLayout(new GridLayout(3, true));
 
+        //title for legend
+        Label titleLabel = new Label(mainComposite, SWT.NONE);
+        titleLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+        titleLabel.setText(Messages.PointGeneralParametersComposite_8);
+        titleText = new Text(mainComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+        GridData titleTextGD = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        titleTextGD.horizontalSpan = 2;
+        titleText.setLayoutData(titleTextGD);
+        titleText.setText(ruleWrapper.getTitle());
+        titleText.addFocusListener(this);
+        
+        
         // rule name
         Label nameLabel = new Label(mainComposite, SWT.NONE);
         nameLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
@@ -205,6 +218,7 @@ public class PointGeneralParametersComposite extends ParameterComposite {
                 PointSymbolizerWrapper.class);
 
         nameText.setText(ruleWrapper.getName());
+        titleText.setText(ruleWrapper.getTitle());
         // size
         String size = pointSymbolizerWrapper.getSize();
         Double tmpSize = isDouble(size);
@@ -333,6 +347,9 @@ public class PointGeneralParametersComposite extends ParameterComposite {
         if (source.equals(nameText)) {
             String text = nameText.getText();
             notifyListeners(text, false, STYLEEVENTTYPE.NAME);
+        }else if (source.equals(titleText)) {
+            String text = titleText.getText();
+            notifyListeners(text, false, STYLEEVENTTYPE.TITLE);
         }
     }
 

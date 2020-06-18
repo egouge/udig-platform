@@ -34,6 +34,7 @@ import org.locationtech.udig.style.sld.SLD;
 public class RuleWrapper {
     private Rule rule;
     private String name;
+    private String title;
     private String maxScale;
     private String minScale;
     private List<SymbolizerWrapper> symbolizersWrapperList = new ArrayList<SymbolizerWrapper>();
@@ -44,6 +45,12 @@ public class RuleWrapper {
         this.parent = parent;
 
         name = rule.getName();
+        if (rule.getDescription() != null && rule.getDescription().getTitle() != null) {
+        	title = rule.getDescription().getTitle().toString();
+        }else {
+        	title = ""; //$NON-NLS-1$
+        }
+        
         try {
             maxScale = String.valueOf(rule.getMaxScaleDenominator());
             minScale = String.valueOf(rule.getMinScaleDenominator());
@@ -227,6 +234,15 @@ public class RuleWrapper {
         return name;
     }
 
+    public String getTitle() {
+        return title;
+    }
+    
+    public void setTitle( String title ) {
+        this.title = title;
+        rule.getDescription().setTitle(title);
+    }
+    
     public void setName( String name ) {
         this.name = name;
         rule.setName(name);
