@@ -42,6 +42,7 @@ import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.Style;
 import org.locationtech.udig.catalog.ID;
 import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.style.advanced.common.GroupRulesTreeContentProvider;
 import org.locationtech.udig.style.advanced.common.GroupRulesTreeLabelProvider;
 import org.locationtech.udig.style.advanced.common.PropertiesEditor;
@@ -72,6 +73,10 @@ public class PointPropertiesEditor extends PropertiesEditor {
         super(layer);
     }
 
+    public Layer getLayer() {
+    	return this.layer;
+    }
+    
     protected void createGui( Composite parent ) {
         mainComposite = new Composite(parent, SWT.NONE);
         mainComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -98,7 +103,7 @@ public class PointPropertiesEditor extends PropertiesEditor {
         rulesAndPreviewGroup.setText(Messages.PointPropertiesEditor_0);
 
         Composite canvasComposite = new Composite(rulesAndPreviewGroup, SWT.NONE);
-        canvasComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        canvasComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
         canvasComposite.setLayout(new GridLayout(1, false));
         previewCanvas = new Canvas(canvasComposite, SWT.BORDER);
         GridData previewCanvasGD = new GridData(SWT.BEGINNING, SWT.TOP, true, true);

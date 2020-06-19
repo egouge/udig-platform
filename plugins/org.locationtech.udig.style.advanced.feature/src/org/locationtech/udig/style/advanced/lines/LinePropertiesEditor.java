@@ -99,7 +99,7 @@ public class LinePropertiesEditor extends PropertiesEditor {
         rulesAndPreviewGroup.setText(Messages.LinePropertiesEditor_0);
 
         Composite canvasComposite = new Composite(rulesAndPreviewGroup, SWT.NONE);
-        canvasComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        canvasComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
         canvasComposite.setLayout(new GridLayout(1, false));
         previewCanvas = new Canvas(canvasComposite, SWT.BORDER);
         GridData previewCanvasGD = new GridData(SWT.BEGINNING, SWT.TOP, true, true);
