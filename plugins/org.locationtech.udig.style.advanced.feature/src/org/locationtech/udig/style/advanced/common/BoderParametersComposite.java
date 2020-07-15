@@ -690,9 +690,11 @@ public class BoderParametersComposite extends ParameterComposite implements Modi
             }
         } else if (source.equals(dashText)) {
             String text = dashText.getText();
-            float[] dash = Utilities.getDash(text);
-            if (dash == null) {
-                return;
+            if (!text.trim().isBlank()) {
+            	float[] dash = Utilities.getDash(text);
+	            if (dash == null) {
+	                return;
+	            }
             }
             notifyListeners(new String[]{text}, false, STYLEEVENTTYPE.DASH);
         } else if (source.equals(dashOffsetText)) {

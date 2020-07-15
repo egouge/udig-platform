@@ -301,7 +301,11 @@ public class LineSymbolizerWrapper extends SymbolizerWrapper {
         if (hasStroke){
         	checkStrokeExists();
         	float[] dashArray = Utilities.getDash(dash);
-        	stroke.setDashArray(dashArray);
+        	if (dashArray == null) {
+        		stroke.setDashArray((List<Expression>)null);
+        	}else {
+        		stroke.setDashArray(dashArray);
+        	}
         }
     }
 
@@ -311,6 +315,8 @@ public class LineSymbolizerWrapper extends SymbolizerWrapper {
         	checkStrokeExists();
         	if (dashOffset != null && dashOffset.length() > 0) {
         		stroke.setDashOffset(ff.literal(dashOffset));
+        	}else {
+        		stroke.setDashOffset(ff.literal(0));
         	}
         }
     }
