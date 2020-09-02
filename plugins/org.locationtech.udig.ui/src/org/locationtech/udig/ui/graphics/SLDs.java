@@ -359,9 +359,9 @@ public class SLDs extends SLD {
 
     public static boolean isSemanticTypeMatch( FeatureTypeStyle fts, String regex ) {
     	for (SemanticType type : fts.semanticTypeIdentifiers()) {
-    		if (type.matches(regex)) return true;
+    		if (type.name().matches(regex)) return true;
     	}
-    	return false;
+        return false;
     }
 
     /**

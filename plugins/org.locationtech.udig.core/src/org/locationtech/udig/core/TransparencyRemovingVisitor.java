@@ -12,7 +12,6 @@
 package org.locationtech.udig.core;
 
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
 import org.geotools.styling.AnchorPoint;
 import org.geotools.styling.ChannelSelection;
 import org.geotools.styling.ColorMap;
@@ -45,6 +44,7 @@ import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.styling.Symbolizer;
 import org.geotools.styling.TextSymbolizer;
 import org.geotools.styling.UserLayer;
+import org.geotools.util.factory.GeoTools;
 import org.opengis.filter.FilterFactory;
 
 /**

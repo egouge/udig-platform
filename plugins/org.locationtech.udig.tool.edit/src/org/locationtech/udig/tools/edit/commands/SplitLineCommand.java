@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.geotools.data.FeatureStore;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.feature.IllegalAttributeException;
+
 import org.geotools.feature.collection.AdaptorFeatureCollection;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.util.factory.GeoTools;
@@ -44,6 +44,7 @@ import org.locationtech.udig.tools.edit.support.GeometryCreationUtil;
 import org.locationtech.udig.tools.edit.support.Point;
 import org.locationtech.udig.tools.edit.support.PrimitiveShape;
 import org.locationtech.udig.tools.edit.support.ShapeType;
+import org.opengis.feature.IllegalAttributeException;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.GeometryDescriptor;
@@ -145,7 +146,7 @@ public class SplitLineCommand extends AbstractCommand implements MapCommand, Und
                 .isAssignableFrom(MultiLineString.class))
             g = new GeometryFactory().createMultiLineString(new LineString[]{(LineString) g});
 
-        store.modifyFeatures(store.getSchema().getGeometryDescriptor(), g, filter);
+        store.modifyFeatures(store.getSchema().getGeometryDescriptor().getName(), g, filter);
         oldFeature.setDefaultGeometry(g);
     }
 
@@ -249,7 +250,7 @@ public class SplitLineCommand extends AbstractCommand implements MapCommand, Und
         store.removeFeatures(filter);
         Geometry oldType = (Geometry) oldFeature.getDefaultGeometry();
 		GeometryDescriptor newType = store.getSchema().getGeometryDescriptor();
-		store.modifyFeatures(newType, oldType, factory.id(FeatureUtils.stringToId(factory, oldFeature.getID())));
+		store.modifyFeatures(newType.getName(), oldType, factory.id(FeatureUtils.stringToId(factory, oldFeature.getID())));
         oldFeature.setDefaultGeometry(oldGeometry);
         newFids.clear();
     }

@@ -279,8 +279,8 @@ public class LayerImpl extends EObjectImpl implements Layer {
                 ProjectPlugin.log("", e); //$NON-NLS-1$
             }
             if (featureEvent.getBounds() != null) {
-                if (featureEvent.getType() == Type.ADDED
-                        || featureEvent.getType() == Type.CHANGED) {
+                if (featureEvent.getType() == FeatureEvent.Type.ADDED
+                        || featureEvent.getType() == FeatureEvent.Type.CHANGED) {
                     if (bounds == null) {
                         ReferencedEnvelope bounds2 = getInfo(getGeoResource(),
                                 new NullProgressMonitor()).getBounds();
@@ -1553,14 +1553,19 @@ public class LayerImpl extends EObjectImpl implements Layer {
                     ProjectPackage.LAYER__FEATURE_CHANGES) {
                 @Override
                 public void add(int index, Object object) {
+                    checkAndClear();
+                    super.add(index, object);
+                }
+
+                private void checkAndClear() {
                     if (size() > 10) {
                         clear();
                     }
-                    super.add(index, object);
                 }
 
                 @Override
                 public boolean add(Object arg0) {
+                    checkAndClear();
                     return super.add(arg0);
                 }
             };

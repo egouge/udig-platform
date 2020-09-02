@@ -17,7 +17,12 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import javax.measure.Quantity;
+import javax.measure.quantity.Length;
+import si.uom.SI;
+import systems.uom.common.USCustomary;
+import tec.uom.se.quantity.Quantities;
+import tec.uom.se.unit.MetricPrefix;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -42,13 +47,15 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         super(MOUSE | MOTION);
     }
 
-    List<Point> points = new ArrayList<Point>();
+    List<Coordinate> points = new ArrayList<Coordinate>();
     DistanceFeedbackCommand command;
-    private Point now;
+    private Coordinate now;
 
+    double lastSegmentDistance = 0;
+    
     @Override
     protected void onMouseMoved( MapMouseEvent e ) {
-        now = e.getPoint();
+        now = getContext().pixelToWorld(e.x, e.y);
         if (command == null || points.isEmpty())
             return;
         Rectangle area = command.getValidArea();
@@ -60,7 +67,7 @@ public class DistanceTool extends SimpleTool implements KeyListener {
     }
 
     public void onMouseReleased( MapMouseEvent e ) {
-        Point current = e.getPoint();
+        Coordinate current = getContext().pixelToWorld(e.x, e.y);
         if (points.isEmpty() || !current.equals(points.get(points.size() - 1)))
             points.add(current);
         if (command == null || !command.isValid()) {
@@ -131,25 +138,24 @@ public class DistanceTool extends SimpleTool implements KeyListener {
     private double distance() throws TransformException {
         if (points.isEmpty())
             return 0;
-        Iterator<Point> iter = points.iterator();
-        Point start = iter.next();
+        Iterator<Coordinate> iter = points.iterator();
+        Coordinate start = iter.next();
         double distance = 0;
+        double lastSegment = 0;
         while( iter.hasNext() ) {
-            Point current = iter.next();
-            Coordinate begin = getContext().pixelToWorld(start.x, start.y);
-            Coordinate end = getContext().pixelToWorld(current.x, current.y);
-            distance += JTS.orthodromicDistance(begin, end, getContext().getCRS());
+        	Coordinate current = iter.next();
+        	lastSegment = JTS.orthodromicDistance(start, current, getContext().getCRS());
+            distance += lastSegment;
             start = current;
         }
 
         if (now != null) {
-            Point current = now;
-            Coordinate begin = getContext().pixelToWorld(start.x, start.y);
-            Coordinate end = getContext().pixelToWorld(current.x, current.y);
-            distance += JTS.orthodromicDistance(begin, end, getContext().getCRS());
-            start = current;
+        	Coordinate current = now;
+        	lastSegment = JTS.orthodromicDistance(start, current, getContext().getCRS());
+            distance += lastSegment;
         }
-
+        this.lastSegmentDistance = lastSegment;
+        
         return distance;
     }
 
@@ -180,44 +186,69 @@ public class DistanceTool extends SimpleTool implements KeyListener {
             units = org.locationtech.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS;
         }
 
-        Double result = distance;
-        String unit = "m";
+
+        final Quantity<Length> distanceInMeter = Quantities.getQuantity(distance, SI.METRE);
+        final Quantity<Length> lastSegmentInMeter = Quantities.getQuantity(lastSegmentDistance, SI.METRE);
         
+        Quantity<Length> result = null;
+        Quantity<Length> resultLastSegment = null;
         if (units.equals( org.locationtech.udig.ui.preferences.PreferenceConstants.IMPERIAL_UNITS)){
-            double distanceInMiles = result / 1609.344;
-            
-            if (distanceInMiles > 1) {
+        	Quantity<Length> distanceInMiles = distanceInMeter.to(USCustomary.MILE);
+        	Quantity<Length> lastSegmentInMiles = lastSegmentInMeter.to(USCustomary.MILE);
+            double distInMilesValue = distanceInMiles.getValue().doubleValue();
+            double lastSegmentInMilesValue = lastSegmentInMiles.getValue().doubleValue();
+
+            if (distInMilesValue >  Quantities.getQuantity(1, USCustomary.MILE).getValue().doubleValue()) {
                 // everything longer than a mile
                 result = distanceInMiles;
-                unit = "mi";
-            } else if (distanceInMiles > 3.28084) {
+            } else if (distInMilesValue > Quantities.getQuantity(1, USCustomary.FOOT).to(USCustomary.MILE).getValue().doubleValue()) {
                 // everything longer that a foot
-                result = result * 5280.0;
-                unit = "ft";
+                result = distanceInMiles.to(USCustomary.FOOT);
             } else {
                 // shorter than a foot
-                result = result * 63360.0;
-                unit="in";
+                result = distanceInMiles.to(USCustomary.INCH);
+            }
+            
+            if (lastSegmentInMilesValue >  Quantities.getQuantity(1, USCustomary.MILE).getValue().doubleValue()) {
+                // everything longer than a mile
+            	resultLastSegment = lastSegmentInMiles;
+            } else if (lastSegmentInMilesValue > Quantities.getQuantity(1, USCustomary.FOOT).to(USCustomary.MILE).getValue().doubleValue()) {
+                // everything longer that a foot
+            	resultLastSegment = lastSegmentInMiles.to(USCustomary.FOOT);
+            } else {
+                // shorter than a foot
+            	resultLastSegment = lastSegmentInMiles.to(USCustomary.INCH);
             }
         } else {
-            double distanceInMeterValue = result;
-
-            if (distanceInMeterValue > 1000.0) {
-                result = result * 1000; //kilometer
-                unit = "km";
-            } else if (distanceInMeterValue > 1.0) {
-                result = result; //meter
-                unit = "m";
-            } else if (distanceInMeterValue > 0.01) {
-                result = result * 0.01; //centimeter
-                unit = "cm";
+            double distanceInMeterValue = distanceInMeter.getValue().doubleValue();
+            double lastSegmentInMeterValue = lastSegmentInMeter.getValue().doubleValue();
+            
+            if (distanceInMeterValue >  Quantities.getQuantity(1000, SI.METRE).to(SI.METRE).getValue().doubleValue()) {
+                result = distanceInMeter.to(MetricPrefix.KILO(SI.METRE));
+            } else if (distanceInMeterValue > Quantities.getQuantity(1, SI.METRE).to(SI.METRE).getValue().doubleValue()) {
+                result = distanceInMeter.to(SI.METRE);
+            } else if (distanceInMeterValue > Quantities.getQuantity(1, MetricPrefix.CENTI(SI.METRE)).to(SI.METRE).getValue().doubleValue()) {
+                result = distanceInMeter.to(MetricPrefix.CENTI(SI.METRE));
             } else {
-                result = result * 0.001; //millimeter
-                unit = "mm";
+                result = distanceInMeter.to(MetricPrefix.MILLI(SI.METRE));
             }
+            
+            
+            if (lastSegmentInMeterValue >  Quantities.getQuantity(1000, SI.METRE).to(SI.METRE).getValue().doubleValue()) {
+            	resultLastSegment = lastSegmentInMeter.to(MetricPrefix.KILO(SI.METRE));
+            } else if (lastSegmentInMeterValue > Quantities.getQuantity(1, SI.METRE).to(SI.METRE).getValue().doubleValue()) {
+            	resultLastSegment = lastSegmentInMeter.to(SI.METRE);
+            } else if (lastSegmentInMeterValue > Quantities.getQuantity(1, MetricPrefix.CENTI(SI.METRE)).to(SI.METRE).getValue().doubleValue()) {
+            	resultLastSegment = lastSegmentInMeter.to(MetricPrefix.CENTI(SI.METRE));
+            } else {
+            	resultLastSegment = lastSegmentInMeter.to(MetricPrefix.MILLI(SI.METRE));
+            }
+
         }
 
-        final String message = MessageFormat.format(Messages.DistanceTool_distance, round(result, 2) + " " + unit);
+        final String message = MessageFormat.format(Messages.DistanceTool_distance, 
+        		round(result.getValue().doubleValue(), 2) + " " + result.getUnit(), 
+        		round(resultLastSegment.getValue().doubleValue(), 2) + " " + resultLastSegment.getUnit());
 
         getContext().updateUI(new Runnable(){
             public void run() {
@@ -256,16 +287,17 @@ public class DistanceTool extends SimpleTool implements KeyListener {
             if (points.isEmpty())
                 return;
             graphics.setColor(Color.BLACK);
-            Iterator<Point> iter = points.iterator();
-            Point start = iter.next();
+            Iterator<Coordinate> iter = points.iterator();
+            Point start = getContext().worldToPixel(iter.next());
             while( iter.hasNext() ) {
-                Point current = iter.next();
+            	Point current = getContext().worldToPixel(iter.next());
                 graphics.drawLine(start.x, start.y, current.x, current.y);
                 start = current;
             }
             if (start == null || now == null)
                 return;
-            graphics.drawLine(start.x, start.y, now.x, now.y);
+            Point nowPoint = getContext().worldToPixel(now);
+            graphics.drawLine(start.x, start.y, nowPoint.x, nowPoint.y);
 
             displayResult();
         }

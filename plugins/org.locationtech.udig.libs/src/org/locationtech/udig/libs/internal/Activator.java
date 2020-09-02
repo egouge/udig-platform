@@ -33,7 +33,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.osgi.service.datalocation.Location;
 import org.eclipse.osgi.service.debug.DebugOptions;
-import org.geotools.data.DataUtilities;
 import org.geotools.geometry.DirectPosition2D;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.geometry.jts.ReferencedEnvelope;
@@ -87,7 +86,6 @@ public class Activator implements BundleActivator {
     private static final String DATABASES_FOLDER_NAME = "databases";
     private static final String EPSG_DATABASEFOLDER_PREFIX = "epsg_v";
 
-    @SuppressWarnings("deprecation")
     public void start( final BundleContext context ) throws Exception {
         if (Platform.getOS().equals(Platform.OS_WIN32)) {
             try {

@@ -22,7 +22,7 @@ import org.locationtech.udig.core.internal.FeatureUtils;
 import org.eclipse.swt.SWT;
 import org.geotools.data.DataUtilities;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.GeoTools;
+import org.geotools.util.factory.GeoTools;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,8 +33,8 @@ import org.opengis.filter.FilterFactory;
 import org.opengis.filter.Id;
 import org.opengis.filter.identity.Identifier;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
 
 @SuppressWarnings("nls")
 public class SelectionComparatorTest {
@@ -94,19 +94,19 @@ public class SelectionComparatorTest {
         Collections.sort(features, new SelectionComparator(fidFilter, SWT.UP, new FIDComparator(SWT.UP)));
         
         assertEquals( feature3, features.get(0));
-        assertEquals( feature4, features.get(1));
+        assertEquals( feature1, features.get(1));
         assertEquals( feature2, features.get(2));
-        assertEquals( feature1, features.get(3));
+        assertEquals( feature4, features.get(3));
 
         fids.add(ff.featureId("ID1")); //$NON-NLS-1$
         
         fidFilter = ff.id(fids);
         Collections.sort(features, new SelectionComparator(fidFilter, SWT.UP, new FIDComparator(SWT.UP)));
         
-        assertEquals( feature3, features.get(0));
-        assertEquals( feature1, features.get(1));
-        assertEquals( feature4, features.get(2));
-        assertEquals( feature2, features.get(3));
+        assertEquals( feature1, features.get(0));
+        assertEquals( feature3, features.get(1));
+        assertEquals( feature2, features.get(2));
+        assertEquals( feature4, features.get(3));
     }
 
 }

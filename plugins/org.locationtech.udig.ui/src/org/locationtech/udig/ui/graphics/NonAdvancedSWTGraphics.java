@@ -10,7 +10,6 @@
 package org.locationtech.udig.ui.graphics;
 
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -19,7 +18,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
-import java.util.ArrayList;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
@@ -250,7 +248,7 @@ public class NonAdvancedSWTGraphics implements ViewportGraphics {
     }
 
     /**
-     * @see org.locationtech.udig.project.render.ViewportGraphics#drawImage(javax.media.jai.PlanarImage,
+     * @see org.locationtech.udig.project.render.ViewportGraphics#drawImage(RenderedImage,
      *      int, int)
      */
     public void drawImage( RenderedImage rimage, int x, int y ) {

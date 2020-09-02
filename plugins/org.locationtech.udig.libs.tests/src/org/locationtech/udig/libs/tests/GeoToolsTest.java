@@ -13,19 +13,16 @@ package org.locationtech.udig.libs.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.net.URL;
 
 import javax.swing.Icon;
 
-import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
-import org.apache.batik.util.XMLResourceDescriptor;
 import org.eclipse.core.runtime.Platform;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.GeoTools;
-import org.geotools.renderer.style.SVGGraphicFactory;
+import org.geotools.renderer.style.svg.SVGGraphicFactory;
 import org.geotools.util.Version;
+import org.geotools.util.factory.GeoTools;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -56,9 +53,9 @@ public class GeoToolsTest {
 
     @Test
     public void testGeoTools(){
-         Version version = GeoTools.getVersion();
-         assertEquals( 14, version.getMajor() );
-         assertTrue( version.getMinor().toString().startsWith("1") );
+        Version version = GeoTools.getVersion();
+        assertEquals( 22, version.getMajor() );
+        assertEquals( 1, version.getMinor() );
     }
 
     @Ignore("FIXME: due to migration to batik bundle from Orbit")
@@ -75,13 +72,13 @@ public class GeoToolsTest {
         
     }
 
-    @Ignore("FIXME: due to migration to batik bundle from Orbit")
-    @Test
-    public void testParseSVG() throws Exception {
-        URL url = GeoToolsTest.class.getResource("example.svg");
-        String parser = XMLResourceDescriptor.getXMLParserClassName();
-        System.out.println("used parser : " + parser);
-        SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
-        f.createDocument(url.toString());
-    }
+//    @Ignore("FIXME: due to migration to batik bundle from Orbit")
+//    @Test
+//    public void testParseSVG() throws Exception {
+//        URL url = GeoToolsTest.class.getResource("example.svg");
+//        String parser = XMLResourceDescriptor.getXMLParserClassName();
+//        System.out.println("used parser : " + parser);
+//        SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
+//        f.createDocument(url.toString());
+//    }
 }

@@ -19,8 +19,8 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.WKTReader;
 import org.locationtech.jts.io.WKTWriter;
 import org.locationtech.udig.ui.AbstractTextStrategizedTransfer;
- 
 import org.locationtech.jts.io.ParseException;
+
 
 public class GeometryTextTransfer extends AbstractTextStrategizedTransfer implements
 		UDIGTransfer {

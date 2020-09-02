@@ -18,13 +18,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.locationtech.udig.project.render.AbstractRenderMetrics;
-import org.locationtech.udig.project.render.IRenderContext;
-import org.locationtech.udig.project.render.IRenderMetricsFactory;
-
 import org.geotools.ows.wms.Layer;
 import org.geotools.ows.wms.WebMapServer;
 import org.geotools.referencing.CRS;
+import org.locationtech.udig.project.render.AbstractRenderMetrics;
+import org.locationtech.udig.project.render.IRenderContext;
+import org.locationtech.udig.project.render.IRenderMetricsFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;

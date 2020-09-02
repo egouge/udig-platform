@@ -80,8 +80,7 @@ public class SimpleGridConfigurator extends AbstractSimpleConfigurator {
     @Override
     protected void refresh() {
         Style style = getStyle();
-        RasterSymbolizer sym = SLD.rasterSymbolizer(style);
-        
+        SLD.rasterSymbolizer(style);
         Rule r = style.featureTypeStyles().get(0).rules().get(0);
         double minScaleDen=r.getMinScaleDenominator();
         double maxScaleDen=r.getMaxScaleDenominator();
@@ -152,6 +151,7 @@ public class SimpleGridConfigurator extends AbstractSimpleConfigurator {
         
         //set the feature type name
         FeatureTypeStyle fts = sldContentManager.getDefaultFeatureTypeStyle();
+
         fts.featureTypeNames().clear();
         fts.featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
         fts.setName("simple"); //$NON-NLS-1$

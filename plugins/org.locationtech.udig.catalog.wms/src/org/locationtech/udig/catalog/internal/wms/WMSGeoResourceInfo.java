@@ -16,20 +16,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
-import org.locationtech.udig.catalog.ui.ISharedImages;
-
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.ows.wms.CRSEnvelope;
 import org.geotools.ows.wms.Layer;
 import org.geotools.ows.wms.WMSCapabilities;
 import org.geotools.ows.wms.WebMapServer;
 import org.geotools.ows.wms.xml.WMSSchema;
-import org.geotools.geometry.GeneralEnvelope;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.locationtech.udig.catalog.IGeoResourceInfo;
 import org.opengis.geometry.Envelope;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -38,7 +34,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public class WMSGeoResourceInfo extends IGeoResourceInfo {
     /** WMSResourceInfo resource field */
     private final WMSGeoResourceImpl resource;
-    @SuppressWarnings("unchecked")
+
     WMSGeoResourceInfo( WMSGeoResourceImpl geoResourceImpl, IProgressMonitor monitor ) throws IOException {
         resource = geoResourceImpl;
         WebMapServer wms = resource.service(monitor).getWMS(monitor);

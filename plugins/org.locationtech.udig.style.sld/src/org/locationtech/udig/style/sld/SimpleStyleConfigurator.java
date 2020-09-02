@@ -388,6 +388,7 @@ public class SimpleStyleConfigurator extends AbstractSimpleConfigurator {
         FeatureTypeStyle featureTypeStyle = this.build.createFeatureTypeStyle(
                 SLDs.GENERIC_FEATURE_TYPENAME, rule);
         featureTypeStyle.setName("simple"); //$NON-NLS-1$
+
         featureTypeStyle.semanticTypeIdentifiers().clear();
         featureTypeStyle.semanticTypeIdentifiers().add(new SemanticType("generic:geometry")); //$NON-NLS-1$
         featureTypeStyle.semanticTypeIdentifiers().add(new SemanticType("simple")); //$NON-NLS-1$

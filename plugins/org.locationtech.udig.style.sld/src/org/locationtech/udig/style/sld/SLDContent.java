@@ -297,7 +297,6 @@ public final class SLDContent extends StyleContent {
         fts.semanticTypeIdentifiers().clear();
         fts.semanticTypeIdentifiers().add(new SemanticType("generic:geometry")); //$NON-NLS-1$
         fts.semanticTypeIdentifiers().add(new SemanticType("simple")); //$NON-NLS-1$
-        
         return style;
     }
     

@@ -97,7 +97,16 @@ public class UDIGSimpleFeatureStore implements SimpleFeatureStore, UDIGStore {
         fireLayerEditEvent( FeatureEvent.Type.REMOVED, null, filter );
     }
 
-  
+    @Deprecated
+    public void modifyFeatures( AttributeDescriptor[] descriptors, Object[] values, Filter filter )
+            throws IOException {
+        setTransactionInternal();
+        Name[] names = new Name[descriptors.length];
+        for (int i = 0; i < names.length; i ++) names[i] = descriptors[i].getName();
+        wrapped.modifyFeatures(names, values, filter);
+        fireLayerEditEvent( FeatureEvent.Type.CHANGED, null, filter );
+    }
+    
     public void modifyFeatures( Name[] names, Object[] values, Filter filter ) throws IOException {
         setTransactionInternal();
         wrapped.modifyFeatures(names, values, filter);
@@ -119,7 +128,32 @@ public class UDIGSimpleFeatureStore implements SimpleFeatureStore, UDIGStore {
         wrapped.modifyFeatures(names, values, filter);
         fireLayerEditEvent( FeatureEvent.Type.CHANGED, null, filter );        
     }
-   
+
+    
+    @Deprecated
+    public void modifyFeatures( AttributeDescriptor attribute, Object value, Filter selectFilter )
+            throws IOException {
+        setTransactionInternal();
+        if (value instanceof Geometry) {
+            Geometry geom = (Geometry) value;
+            if (!geom.isValid()) {
+                WKTWriter writer = new WKTWriter();
+                String wkt = writer.write(geom);
+                String where = selectFilter.toString();
+                if (selectFilter instanceof Id) {
+                    Id id = (Id) selectFilter;
+                    where = id.getIDs().toString();
+                }
+                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:"
+                        + wkt;
+                ProjectPlugin.log(msg);
+                throw new IOException(msg);
+            }
+        }
+        wrapped.modifyFeatures(attribute.getName(), value, selectFilter);
+        fireLayerEditEvent( FeatureEvent.Type.CHANGED, null, selectFilter );
+    }
+
     /**
      * Used to force the layer to send out an LayerEditEvent (and refresh!); we are faking the correct FeatureEventType
      * we expected from the wrapped GeoTools datastore. This is defensive programming as we are not trusting

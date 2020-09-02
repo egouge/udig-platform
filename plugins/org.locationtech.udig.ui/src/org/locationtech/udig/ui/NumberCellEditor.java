@@ -11,7 +11,6 @@ package org.locationtech.udig.ui;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.viewers.TextCellEditor;

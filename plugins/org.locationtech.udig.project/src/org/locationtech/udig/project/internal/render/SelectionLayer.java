@@ -77,10 +77,7 @@ public class SelectionLayer extends LayerDecorator {
             style = SelectionStyleContent.createDefaultStyle(layer);
             style.featureTypeStyles().get(0).featureTypeNames().clear();
             style.featureTypeStyles().get(0).featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
-
         }
-        if (style == null)
-            return styleBlackboard;
         
         styleBlackboard.put(SelectionStyleContent.ID, style);
         return styleBlackboard;

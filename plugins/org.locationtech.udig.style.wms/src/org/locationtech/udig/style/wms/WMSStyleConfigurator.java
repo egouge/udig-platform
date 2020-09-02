@@ -124,7 +124,7 @@ public class WMSStyleConfigurator extends IStyleConfigurator {
 	}
 
     /**
-     * Returns all the style in the resource if the resource can resolve to an {@link org.geotools.data.ows.Layer}.
+     * Returns all the style in the resource if the resource can resolve to an {@link org.geotools.ows.wms.Layer}.
      *
      * @param wmsResource resource to search.
      * @return all named styles.
@@ -227,6 +227,7 @@ public class WMSStyleConfigurator extends IStyleConfigurator {
         	List<FeatureTypeStyle > fts = wmsStyle.getFeatureStyles();
             for( FeatureTypeStyle style : fts ) {
                 String name = style.getName();
+
                 if( style.getDescription().getTitle()!=null )
                     name = style.getDescription().getTitle().toString();                    
                 buff.append( name );

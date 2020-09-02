@@ -63,6 +63,7 @@ import org.locationtech.udig.ui.graphics.NonAdvancedSWTGraphics;
 import org.locationtech.udig.ui.graphics.SLDs;
 import org.locationtech.udig.ui.graphics.SWTGraphics;
 import org.locationtech.udig.ui.graphics.ViewportGraphics;
+import org.opengis.feature.IllegalAttributeException;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
@@ -196,7 +197,7 @@ public final class Drawing {
     Symbolizer[] getSymbolizers(Style style){
         List<Symbolizer> symbs=new ArrayList<Symbolizer>();
         for (FeatureTypeStyle fstyle : style.featureTypeStyles()) {
-        	for (Rule rule : fstyle.rules()) {
+            for (Rule rule : fstyle.rules()) {
                 symbs.addAll(Arrays.asList(rule.getSymbolizers()));
             }
         }

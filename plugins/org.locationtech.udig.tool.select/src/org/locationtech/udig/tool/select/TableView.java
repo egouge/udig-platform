@@ -119,7 +119,6 @@ import org.locationtech.udig.project.internal.commands.edit.DeleteManyFeaturesCo
 import org.locationtech.udig.project.ui.ApplicationGIS;
 import org.locationtech.udig.project.ui.IUDIGView;
 import org.locationtech.udig.project.ui.internal.MapPart;
-import org.locationtech.udig.project.ui.internal.tool.display.ToolManager;
 import org.locationtech.udig.project.ui.tool.IToolContext;
 import org.locationtech.udig.project.ui.tool.ToolsConstants;
 import org.locationtech.udig.tool.select.internal.Messages;
@@ -582,7 +581,7 @@ public class TableView extends ViewPart implements ISelectionProvider, IUDIGView
         
         this.promoteSelection=new PromoteSelectionAction();
         
-        zoom=((ToolManager) ApplicationGIS.getToolManager()).createToolAction(ZoomSelection.ID, ToolsConstants.ZOOM_CATEGORY);
+        zoom=ApplicationGIS.getToolManager().createToolAction(ZoomSelection.ID, ToolsConstants.ZOOM_CATEGORY);
         icon = AbstractUIPlugin.imageDescriptorFromPlugin( SelectPlugin.ID, "icons/elcl16/zoom_select_co.png"); //$NON-NLS-1$
         zoom.setImageDescriptor( icon );
         zoom.setText(Messages.TableView_zoomToolText);
@@ -1367,20 +1366,21 @@ public class TableView extends ViewPart implements ISelectionProvider, IUDIGView
 	        searchWidget.setEditable(true);
 	        searchWidget.addListener(SWT.FocusIn, new Listener(){
 	            public void handleEvent( Event e ) {
-                    if( searchWidget.getForeground().equals(systemColor) ){
-                        searchWidget.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-                        searchWidget.setText(""); //$NON-NLS-1$
-                    }
-					ApplicationGIS.getToolManager().unregisterActions(TableView.this);
+                        if (searchWidget.getForeground().equals(systemColor)) {
+                            searchWidget.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+                            searchWidget.setText(""); //$NON-NLS-1$
+                        }
+                        ApplicationGIS.getToolManager().unregisterActions(TableView.this);
 	            }
 	        });
 	        searchWidget.addListener(SWT.FocusOut, new Listener(){
 	            public void handleEvent( Event e ) {
-	                    if( !searchWidget.getForeground().equals(systemColor) && searchWidget.getText().trim().length()==0 ){
-	                        searchWidget.setForeground(systemColor);
-	                        searchWidget.setText(""); //$NON-NLS-1$
-	                    }
-	                    ApplicationGIS.getToolManager().registerActionsWithPart(TableView.this);
+                        if (!searchWidget.getForeground().equals(systemColor)
+                                && searchWidget.getText().trim().length() == 0) {
+                            searchWidget.setForeground(systemColor);
+                            searchWidget.setText(""); //$NON-NLS-1$
+                        }
+                        ApplicationGIS.getToolManager().registerActionsWithPart(TableView.this);
 	            }
 	        });
 			searchWidget.addListener(SWT.KeyUp, this);	

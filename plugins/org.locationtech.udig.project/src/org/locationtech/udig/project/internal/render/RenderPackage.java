@@ -552,7 +552,11 @@ public interface RenderPackage extends EPackage {
      * The meta object id for the '<em>Envelope</em>' data type.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
+<<<<<<< HEAD
      * @see org.locationtech.jts.Envelope
+=======
+     * @see org.locationtech.jts.geom.Envelope
+>>>>>>> udig/master
      * @see org.locationtech.udig.project.internal.render.impl.RenderPackageImpl#getEnvelope()
      * @generated
      */
@@ -622,7 +626,11 @@ public interface RenderPackage extends EPackage {
      * The meta object id for the '<em>Coordinate</em>' data type.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
+<<<<<<< HEAD
      *@see org.locationtech.jts.Envelope
+=======
+     * @see org.locationtech.jts.geom.Coordinate
+>>>>>>> udig/master
      * @see org.locationtech.udig.project.internal.render.impl.RenderPackageImpl#getCoordinate()
      * @generated
      */

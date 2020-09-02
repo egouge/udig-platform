@@ -993,6 +993,7 @@ public class StyleThemePage extends StyleEditorPage {
 	}
     private boolean removeRule(Rule rule) {
         Style style = getStyle();
+
         if (style.featureTypeStyles() == null || style.featureTypeStyles().isEmpty()) return false;
         
         for(FeatureTypeStyle featureTypeStyle : style.featureTypeStyles() ){
@@ -1573,13 +1574,12 @@ public class StyleThemePage extends StyleEditorPage {
     private void addThemedFTStoStyle(Style style, FeatureTypeStyle fts) {
         //determine what symbolizers exist in the fts
         Set<Object> symbs = new HashSet<Object>();
-        
         for (Rule r : fts.rules()) {
         	for (Symbolizer s : r.symbolizers()) {
         		symbs.add(s.getClass());
         	}
         }
-        
+
         boolean found = false;
         for (int i = 0; i < style.featureTypeStyles().size(); i ++) {
             if (SLDs.isSemanticTypeMatch(style.featureTypeStyles().get(i), "colorbrewer:.*")) { //$NON-NLS-1$
@@ -1588,29 +1588,29 @@ public class StyleThemePage extends StyleEditorPage {
             } else {
                 //purge any conflicting Symbolizers (same class)
                 //TODO: add conditions under which other Symbolizers might live
-            	List<Rule> rule = style.featureTypeStyles().get(i).rules();
-            	 for (int j = 0; j < rule.size(); j++) {
-                     Symbolizer[] symb = rule.get(j).getSymbolizers();
-                     Symbolizer[] newSymb = (Symbolizer[]) symb.clone();
-                     int deletedElements = 0;
-                     for (int k = 0; k < symb.length; k++) {
-                         if (symbs.contains(symb[k].getClass())) { //the Symbolizer class is a match
-                             Object[] temp = removeElement(newSymb, k-deletedElements);
-                             if (temp.length > 0) { 
-                                 newSymb = new Symbolizer[temp.length];
-                                 for (int l = 0; l < temp.length; l++) {
-                                     newSymb[l] = (Symbolizer) temp[l];
-                                 }
-                             } else {
-                                 newSymb = new Symbolizer[0];
-                             }
-                             deletedElements++;
-                         }
-                     }
-                     if (deletedElements > 0) {
-                         rule.get(j).symbolizers().clear();
-                         for (Symbolizer s : newSymb) rule.get(j).symbolizers().add(s);
-                     }
+                List<Rule> rule = style.featureTypeStyles().get(i).rules();
+                for (int j = 0; j < rule.size(); j++) {
+                    Symbolizer[] symb = rule.get(j).getSymbolizers();
+                    Symbolizer[] newSymb = (Symbolizer[]) symb.clone();
+                    int deletedElements = 0;
+                    for (int k = 0; k < symb.length; k++) {
+                        if (symbs.contains(symb[k].getClass())) { //the Symbolizer class is a match
+                            Object[] temp = removeElement(newSymb, k-deletedElements);
+                            if (temp.length > 0) { 
+                                newSymb = new Symbolizer[temp.length];
+                                for (int l = 0; l < temp.length; l++) {
+                                    newSymb[l] = (Symbolizer) temp[l];
+                                }
+                            } else {
+                                newSymb = new Symbolizer[0];
+                            }
+                            deletedElements++;
+                        }
+                    }
+                    if (deletedElements > 0) {
+                        rule.get(j).symbolizers().clear();
+                        for (Symbolizer s : newSymb) rule.get(j).symbolizers().add(s);
+                    }
                 }
             }
         }
@@ -1631,13 +1631,24 @@ public class StyleThemePage extends StyleEditorPage {
 				iterator.remove();
 			}
 		}
-
         if (!found) {
         	style.featureTypeStyles().add(fts);
             //match was not found, so add the FTS
         }
     }
     
+    private Object[] removeElement(List<?> array, int indexToRemove) {
+        if (array.size() == 1) return new Object[0];
+        Object[] newArray = new Object[array.size()-1];
+        if (indexToRemove > 0) {
+            System.arraycopy(array, 0, newArray, 0, indexToRemove);
+        }
+        if (indexToRemove < array.size()-1) {
+            System.arraycopy(array, indexToRemove+1, newArray, indexToRemove, array.size()-indexToRemove-1);
+        }
+        return newArray;
+    }
+        
     private Object[] removeElement(Object[] array, int indexToRemove) {
         if (array.length == 1) return new Object[0];
         Object[] newArray = new Object[array.length-1];
@@ -1649,7 +1660,6 @@ public class StyleThemePage extends StyleEditorPage {
         }
         return newArray;
     }
-        
     private AttributeDescriptor getAttributeType(String attributeTypeName) {
         SimpleFeatureType featureType = getSelectedLayer().getSchema();
         for (int i = 0; i < featureType.getAttributeCount(); i++) {

@@ -18,10 +18,14 @@ import java.util.TreeSet;
 
 import javax.measure.UnitConverter;
 import javax.measure.quantity.Length;
-
 import si.uom.SI;
 import javax.measure.Unit;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.GeodeticCalculator;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.core.Pair;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
@@ -32,17 +36,10 @@ import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.project.preferences.PreferenceConstants;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.GeodeticCalculator;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.TransformException;
 
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * Methods for calculating the ScaleDenominator
@@ -90,7 +87,7 @@ public final class ScaleUtils {
 
 	public static double fromMeterToCrs(double value,
 			CoordinateReferenceSystem crs) {
-		try {
+		try{
 			Unit<?> unit = getUnit(crs);
 			UnitConverter converter = SI.METRE.getConverterToAny(unit);
 			return converter.convert(value);

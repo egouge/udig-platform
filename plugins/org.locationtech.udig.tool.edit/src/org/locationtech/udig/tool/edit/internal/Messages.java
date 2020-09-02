@@ -75,6 +75,8 @@ public class Messages extends NLS {
 	public static String EditToolPreferences_selectedGeom;
 	public static String EditToolPreferences_advanced_editing_name;
 	public static String EditToolPreferences_vertexDiameter;
+	public static String EditToolPreferences_vertexOpacity;
+	public static String EditToolPreferences_fillOpacity;
 	public static String EditToolPreferences_grid;
 	public static String EditToolPreferences_all;
 	public static String EditToolPreferences_current;
@@ -83,6 +85,7 @@ public class Messages extends NLS {
 	public static String EditToolPreferences_behaviour;
 	public static String EditToolPreferences_snapRadius;
 	public static String EditToolPreferences_description;
+	public static String EditToolPreferences_messageDisplayDelay;
 	public static String DeleteGlobalActionSetterActivator_tooltip;
 	public static String DeleteGlobalActionSetterActivator_title;
 	public static String DifferenceFeatureCommand_name;

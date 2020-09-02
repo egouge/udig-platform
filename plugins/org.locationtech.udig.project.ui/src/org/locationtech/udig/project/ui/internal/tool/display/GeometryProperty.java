@@ -35,18 +35,18 @@ import org.opengis.feature.simple.SimpleFeatureType;
  * Returns true if the value is a subclass of the layer's schema's default geometry. If the layer
  * does not have a schema false is returned.
  * <p>
- * The value must be a Geometry class fully qualified (com.vividsolutions.jts.geom.Geometry) unless
+ * The value must be a Geometry class fully qualified (org.locationtech.jts.geom.Geometry) unless
  * it is one of the following abbreviations (case is unimportant):
  * <ul>
- * <li>Geometry = com.vividsolutions.jts.geom.Geometry</li>
- * <li>Polygon = com.vividsolutions.jts.geom.Polygon</li>
- * <li>Point = com.vividsolutions.jts.geom.Point</li>
- * <li>MultiPolygon = com.vividsolutions.jts.geom.MultiPolygon</li>
- * <li>MultiPoint = com.vividsolutions.jts.geom.MultiPoint</li>
- * <li>MultiLineString, MultiLine = com.vividsolutions.jts.geom.MultiLineString</li>
- * <li>LinearRing = com.vividsolutions.jts.geom.LinearRing</li>
- * <li>Line, LineString = com.vividsolutions.jts.geom.LineString</li>
- * <li>GeometryCollection = com.vividsolutions.jts.geom.GeometryCollection</li>
+ * <li>Geometry = org.locationtech.jts.geom.Geometry</li>
+ * <li>Polygon = org.locationtech.jts.geom.Polygon</li>
+ * <li>Point = org.locationtech.jts.geom.Point</li>
+ * <li>MultiPolygon = org.locationtech.jts.geom.MultiPolygon</li>
+ * <li>MultiPoint = org.locationtech.jts.geom.MultiPoint</li>
+ * <li>MultiLineString, MultiLine = org.locationtech.jts.geom.MultiLineString</li>
+ * <li>LinearRing = org.locationtech.jts.geom.LinearRing</li>
+ * <li>Line, LineString = org.locationtech.jts.geom.LineString</li>
+ * <li>GeometryCollection = org.locationtech.jts.geom.GeometryCollection</li>
  * </ul>
  * </p>
  * 

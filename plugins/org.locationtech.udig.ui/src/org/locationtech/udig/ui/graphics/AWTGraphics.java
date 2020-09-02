@@ -142,7 +142,7 @@ public class AWTGraphics implements ViewportGraphics {
     }
 
     /**
-     * @see org.locationtech.udig.ui.graphics.ViewportGraphics#drawImage(javax.media.jai.PlanarImage,
+     * @see org.locationtech.udig.ui.graphics.ViewportGraphics#drawImage(RenderedImage,
      *      int, int)
      */
     public void drawImage( RenderedImage image, int x, int y ) {

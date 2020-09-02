@@ -94,8 +94,9 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
         FeatureIterator<SimpleFeature> reader = results.features();
         try {
             if (reader.hasNext()) {
-                try {
-                    store.modifyFeatures(names, editFeature.getAttributes().toArray(), filter);
+                try {                    
+                    store.modifyFeatures(names, editFeature
+							.getAttributes().toArray(), filter);
                 } catch (Exception e) {
                     ProjectPlugin.log("", e); //$NON-NLS-1$
                     noChange=true;
@@ -134,7 +135,8 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
         }else{
             SimpleFeatureType featureType = this.editFeature.getFeatureType();
             Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
-            store.modifyFeatures(names, this.editFeature.getAttributes().toArray(), filter);            
+            store.modifyFeatures(names, this.editFeature
+                    .getAttributes().toArray(), filter);            
         }
     }
 

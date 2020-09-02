@@ -68,10 +68,21 @@ public interface RenderExecutor extends Renderer {
 
     /**
      * This method does not use the monitor parameter. It is the same as calling render(bounds);
+<<<<<<< HEAD
+=======
+     * 
+     * @see org.locationtech.udig.project.internal.render.Renderer#render(org.locationtech.jts.geom.Envelope,
+     *      org.eclipse.core.runtime.IProgressMonitor)
+>>>>>>> udig/master
      */
     public void render(IProgressMonitor monitor) throws RenderException;
 
     /**
+<<<<<<< HEAD
+=======
+     * @see org.locationtech.udig.project.internal.render.Renderer#render(org.locationtech.jts.geom.Envelope,
+     *      org.eclipse.core.runtime.IProgressMonitor)
+>>>>>>> udig/master
      */
     public void render() throws RenderException;
 

@@ -19,9 +19,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.geotools.feature.NameImpl;
+
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.ui.graphics.SLDs;
+import org.opengis.style.SemanticType;
 import org.geotools.ows.wms.StyleImpl;
 import org.geotools.ows.wms.WebMapServer;
+import org.geotools.feature.NameImpl;
 import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.PointSymbolizer;
@@ -127,7 +133,7 @@ public class Styling {
 
         FeatureTypeStyle fts = linestyle.featureTypeStyles().get(0);
         fts.setName(Messages.Styling_name); //tag as simple 
-        
+
         fts.featureTypeNames().clear();
         fts.featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
         fts.semanticTypeIdentifiers().clear();
@@ -180,7 +186,6 @@ public class Styling {
         pointstyle.featureTypeStyles().add(sb.createFeatureTypeStyle(point));
         pointstyle.featureTypeStyles().get(0).featureTypeNames().clear();
         pointstyle.featureTypeStyles().get(0).featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
-        
         return pointstyle;
     }
 

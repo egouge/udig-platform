@@ -23,28 +23,31 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchPart;
 import org.locationtech.udig.project.ui.internal.MapPart;
 import org.locationtech.udig.project.ui.internal.tool.display.ActionToolCategory;
+import org.locationtech.udig.project.ui.internal.tool.display.MenuToolCategory;
 import org.locationtech.udig.project.ui.internal.tool.display.ModalToolCategory;
 import org.locationtech.udig.project.ui.internal.tool.display.ToolCategory;
+import org.locationtech.udig.project.ui.internal.tool.display.ToolProxy;
+
 
 public interface IToolManager {
     
-    public final String XPID = "org.locationtech.udig.project.ui.toolManagers"; //$NON-NLS-1$
+    final String XPID = "org.locationtech.udig.project.ui.toolManagers"; //$NON-NLS-1$
     /**
      * Points to id field of extension point attribute
      */
-    public final String ATTR_ID = "id"; //$NON-NLS-1$
+    final String ATTR_ID = "id"; //$NON-NLS-1$
     
     /**
      * Points to class field of extension point attribute
      */
-    public final String ATTR_CLASS = "class"; //$NON-NLS-1$
+    final String ATTR_CLASS = "class"; //$NON-NLS-1$
     
     /**
      * Preference constant that can used to set and look up the default 
      * IToolManager. This can be set in plugin_customization.ini with the key
      * "org.locationtech.udig.project.ui/toolManager".
      */
-    public final String P_TOOL_MANAGER = "toolManager"; //$NON-NLS-1$
+    final String P_TOOL_MANAGER = "toolManager"; //$NON-NLS-1$
 
     void setCurrentEditor( MapPart editor );
 
@@ -66,8 +69,6 @@ public interface IToolManager {
      * @return a proxy action that can be put in other toolbars
      */
     IAction createToolAction( final String toolID, final String categoryID );
-
-    ActionToolCategory findActionCategory( String id );
 
     void contributeToMenu( IMenuManager manager );
     
@@ -119,7 +120,7 @@ public interface IToolManager {
      *
      * @param part
      */
-    public void unregisterActions( IWorkbenchPart  part );
+    void unregisterActions( IWorkbenchPart  part );
     /**
      * Retrieves the backward navigation action that is used by much of the map components such as
      * the MapEditor and the LayersView. Undoes the last Nav command set to the current map.
@@ -172,7 +173,7 @@ public interface IToolManager {
      * @param toolManager
      * @param bars
      */
-    public void contributeActionTools( IToolBarManager toolBarManager, IActionBars bars );
+    void contributeActionTools( IToolBarManager toolBarManager, IActionBars bars );
     
     /**
      * Adds modal tools contribution items to the toolbar.
@@ -183,7 +184,7 @@ public interface IToolManager {
      * @param toolManager
      * @param bars
      */
-    public void contributeModalTools( IToolBarManager toolBarManager, IActionBars bars );
+    void contributeModalTools( IToolBarManager toolBarManager, IActionBars bars );
 
     /**
      * Contributes the common global actions.
@@ -264,6 +265,39 @@ public interface IToolManager {
      * @param cursorID
      * @return
      */
-    public Cursor findToolCursor(String cursorID);
+    Cursor findToolCursor(String cursorID);
+
+    /**
+     * @param id Category id
+     * @return ModalToolCategory for given categoryId, null if it doesn't exists
+     */
+    ModalToolCategory findModalCategory(String categoryId);
+
+    /**
+     * @param categoryId Category id
+     * @return MenuToolCategory for given categoryId, null if it doesn't exists
+     */
+    MenuToolCategory findMenuCategory(String categoryId);
+
+    /**
+     * @param categoryId Category id
+     * @return ActionToolCategory for given categoryId, null if it doesn't exists
+     */
+    ActionToolCategory findActionCategory(String categoryId);
+
+    /**
+     * @return List of ActiveToolCategories
+     */
+    List<ActionToolCategory> getActiveToolCategories();
+
+    /**
+     * @return active ToolProxy or null if there isn't any
+     */
+    ToolProxy getActiveToolProxy();
+
+    /**
+     * @param toolProxy ToolProxy to set as active ToolProxy
+     */
+    void setActiveModalToolProxy(ToolProxy toolProxy);
 
 }

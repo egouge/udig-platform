@@ -179,6 +179,7 @@ public class SLDConfigurator extends IStyleConfigurator {
         
             //set the name of the feature type style for the feature renderer
             String name = featureType.getName().getLocalPart();
+            sldContentManager.getDefaultFeatureTypeStyle().featureTypeNames().clear();
             sldContentManager.getDefaultFeatureTypeStyle().featureTypeNames().add(new NameImpl(SLDs.GENERIC_FEATURE_TYPENAME));
         }
         

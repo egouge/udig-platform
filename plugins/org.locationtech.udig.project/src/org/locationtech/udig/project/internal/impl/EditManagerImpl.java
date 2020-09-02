@@ -27,7 +27,6 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 import org.geotools.data.FeatureEvent;
-import org.geotools.data.FeatureEvent.Type;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.FeatureStore;
 import org.geotools.data.Transaction;
@@ -45,6 +44,7 @@ import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.internal.EditManager;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Map;
+import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.render.RenderManager;
@@ -371,7 +371,7 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
 
         fireEvent(new EditManagerEvent(this, EditManagerEvent.PRE_COMMIT, null, null));
 
-        startCommitRollback("Comitting changes all layers in map");
+        startCommitRollback(Messages.EditManagerImpl_commit_message);
 
         try {
             transaction.commitInternal();
@@ -416,7 +416,7 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
      */
     public void rollbackTransaction() throws IOException {
         fireEvent(new EditManagerEvent(this, EditManagerEvent.PRE_ROLLBACK, null, null));
-        startCommitRollback("Rolling back to Previous checkpoint");
+        startCommitRollback(Messages.EditManagerImpl_rollback_message);
 
         HashMap<List<FeatureEvent>, FeatureEvent> modified = new HashMap<List<FeatureEvent>, FeatureEvent>();
         try {
@@ -436,8 +436,7 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
                         }
                         FeatureSource<SimpleFeatureType, SimpleFeature> source = layer.getResource(
                                 FeatureSource.class, null);
-                        FeatureEvent event = new FeatureEvent(source, Type.CHANGED, envelope);
-
+                        FeatureEvent event = new FeatureEvent(source,FeatureEvent.Type.CHANGED, envelope);
                         modified.put(changes, event);
                     }
                 }
@@ -685,17 +684,21 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
     public void refreshEditFeature() {
         Layer editLayer = getEditLayerInternal();
         try {
-            FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory(GeoTools
-                    .getDefaultHints());
+            FilterFactory filterFactory = CommonFactoryFinder
+                    .getFilterFactory(GeoTools.getDefaultHints());
             FeatureStore resource = editLayer.getResource(FeatureStore.class, null);
             Set<Identifier> fids = FeatureUtils.stringToId(filterFactory, getEditFeature().getID());
             Id filter = filterFactory.id(fids);
             FeatureIterator<SimpleFeature> features = resource.getFeatures(filter).features();
-            if (features.hasNext()) {
-                SimpleFeature feature = features.next();
-                setEditFeature(feature, editLayer);
-            } else {
-                setEditFeature(null, editLayer);
+            try {
+                if (features.hasNext()) {
+                    SimpleFeature feature = features.next();
+                    setEditFeature(feature, editLayer);
+                } else {
+                    setEditFeature(null, editLayer);
+                }
+            } finally {
+                features.close();
             }
 
         } catch (Exception e) {

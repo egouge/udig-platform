@@ -123,12 +123,18 @@ public class ViewportPainter {
      * @param minHeight
      * @param minWidth
      */
-    public void paint( ViewportGraphics g, org.eclipse.swt.graphics.Image image, int minWidth,
+    public void paint( ViewportGraphics g, org.eclipse.swt.graphics.Image image, AffineTransform imageTrsf, int minWidth,
             int minHeight ) {
         processCommands(g, true);
         clearPane(g, minWidth, minHeight);
         if( image!=null ) {
+        	
+        	AffineTransform oldTrsf = g.getTransform();
+        	AffineTransform fullTrsf = new AffineTransform(oldTrsf);
+        	fullTrsf.concatenate(imageTrsf);
+        	g.setTransform(fullTrsf);
             g.drawImage(image, 0, 0, minWidth, minHeight, 0, 0, minWidth, minHeight);
+            g.setTransform(oldTrsf);
         }
         //draw glass pane
         drawGlassPane(g);
@@ -318,12 +324,18 @@ public class ViewportPainter {
          */
         public void clearCommands() {
             for (IDrawCommand command : preTransform) {
-                command.setValid(false);
-                command.dispose();
+                if(command != null)
+                {
+                    command.setValid(false);
+                    command.dispose();
+                }
             }
             for (IDrawCommand command : postTransform) {
-                command.setValid(false);
-                command.dispose();
+                if(command != null)
+                {
+                    command.setValid(false);
+                    command.dispose();
+                }
             }
             preTransform = new IMapTransformCommand[5];
             postTransform = new IMapTransformCommand[5];
@@ -331,12 +343,18 @@ public class ViewportPainter {
             postTI = 0;
 
             for (IDrawCommand command : preNorm) {
-                command.setValid(false);
-                command.dispose();
+                if(command != null)
+                {
+                    command.setValid(false);
+                    command.dispose();
+                }
             }
             for (IDrawCommand command : postNorm) {
-                command.setValid(false);
-                command.dispose();
+                if(command != null)
+                {
+                    command.setValid(false);
+                    command.dispose();
+                }
             }
             preNorm = new IDrawCommand[5];
             postNorm = new IDrawCommand[5];

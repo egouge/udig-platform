@@ -50,7 +50,6 @@ public class WriteEditFeatureCommand extends AbstractEditCommand implements Undo
     /**
      * @see org.locationtech.udig.project.internal.command.MapCommand#run()
      */
-    @SuppressWarnings("deprecation") 
     public void run( IProgressMonitor monitor ) throws Exception {
         monitor.beginTask(Messages.WriteEditFeatureCommand_runTask, IProgressMonitor.UNKNOWN); 
 
@@ -70,12 +69,12 @@ public class WriteEditFeatureCommand extends AbstractEditCommand implements Undo
         FeatureCollection<SimpleFeatureType, SimpleFeature>  results = store.getFeatures(filter);
 
         Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
-        
         FeatureIterator<SimpleFeature> reader = results.features();
         try {
             if (reader.hasNext()) {
                 try {
-                    store.modifyFeatures(names, editFeature.getAttributes().toArray(), filter);
+                    store.modifyFeatures(names, editFeature
+                            .getAttributes().toArray(), filter);
                 } catch (Exception e) {
                     ProjectPlugin.log("",e); //$NON-NLS-1$
                     noChange=true;
@@ -122,9 +121,10 @@ public class WriteEditFeatureCommand extends AbstractEditCommand implements Undo
             store.removeFeatures(filter);
             getMap().getEditManagerInternal().setEditFeature(null,null);
         }else{
-            SimpleFeatureType featureType = old.getFeatureType();
+            SimpleFeatureType featureType = old.getFeatureType();           
             Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
-            store.modifyFeatures(names, old.getAttributes().toArray(), filter);            
+            store.modifyFeatures(names, old
+                    .getAttributes().toArray(), filter);
         }
         monitor.done();
     }

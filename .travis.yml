@@ -1,51 +1,51 @@
 sudo: true
+dist: trusty
 language: java
+
 jdk:
-  - oraclejdk8 # just run openJdk - oraclejdk7
+  - oraclejdk8
+  - oraclejdk11
+  - openjdk11
 
-python:
-  - "2.7"
-
-env:
-  global:
-    - TRAVIS_PYTHON_VERSION="2.7"
-    - MVN_VERION="3.3.9"
 cache:
   directories:
   - $HOME/.m2
 
+env:
+  global:
+    - MVN_VERSION="3.5.4"
+    - MAVEN_OPTS="-Xmx8g -XX:-UseGCOverheadLimit"
+
 before_install:
-  - echo "MAVEN_OPTS='-Xmx8g -XX:-UseGCOverheadLimit'" > ~/.mavenrc
-  - wget http://apache.claz.org/maven/maven-3/${MVN_VERION}/binaries/apache-maven-${MVN_VERION}-bin.tar.gz
-  - tar zxvf apache-maven-${MVN_VERION}-bin.tar.gz
-  - chmod +x apache-maven-${MVN_VERION}/bin/mvn
-  - export M2_HOME=$PWD/apache-maven-${MVN_VERION}
-  - export PATH=$PWD/apache-maven-${MVN_VERION}/bin:${PATH}
-  - hash -r
-install:
-  - "sudo pip install 'requests[security]'"
-  - "sudo pip install -q sphinx==1.1.3"
-  - "travis_wait mvn install -B -f docs/pom.xml -Dtycho.mode=maven -Pdocs" #build documentation using sphinx
-  - "travis_wait mvn install -B -f pom-libs.xml -DskipTests=true" #download dependencies
+  - rm ~/.m2/settings.xml
+  - unset _JAVA_OPTIONS
 
 before_script:
-  - export M2_HOME=$PWD/apache-maven-${MVN_VERION}
-  - export PATH=$PWD/apache-maven-${MVN_VERION}/bin:${PATH}
-  - hash -r
+  - wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/${MVN_VERSION}/apache-maven-${MVN_VERSION}-bin.tar.gz
+  - tar zxf apache-maven-${MVN_VERSION}-bin.tar.gz
+  - export M2_HOME=$PWD/apache-maven-${MVN_VERSION}
+  - export PATH=$M2_HOME/bin:$PATH
+  - mvn --version
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - "sudo pip install 'requests[security]'"
+  - "sudo pip install -q sphinx==1.8.5"
+
+matrix:
+  allow_failures:
+    - jdk: openjdk11
+    - jdk: oraclejdk11
+
+install:
+  - "mvn install -B -f pom-libs.xml -DskipTests=true" #download dependencies
 
 script: 
-  - "travis_wait mvn install -B -Pproduct -Psdk -T 4"
+  - "mvn install -B -f docs/pom.xml -Dtycho.mode=maven -Pdocs"
+  - "mvn verify -B -Pproduct -Pdocs -Psdk -Ptest --fail-at-end -T4"
+
 
 notifications:
   email:
     on_success: never
     on_failure: never
-  irc:
-    channels: "irc.freenode.org#udig"
-    on_success: change
-    on_failure: always
-    template: "%{repository} (%{branch}:%{commit}): %{message} (%{build_url})"
-branches:
-  only:
-    - master
-    - /^travis.*$/

@@ -760,21 +760,25 @@ public class ToolManager implements IToolManager {
         addToolAction(toolAction);
         return toolAction;
     }
-    public ActionToolCategory findActionCategory( String id ) {
+    
+    @Override
+    public final ActionToolCategory findActionCategory( String id ) {
         for( ActionToolCategory category : actionCategories ) {
             if (category.getId().equals(id))
                 return category;
         }
         return null;
     }
-    MenuToolCategory findMenuCategory( String id ) {
+    @Override
+    public final MenuToolCategory findMenuCategory( String id ) {
         for( MenuToolCategory category : menuCategories ) {
             if (category.getId().equals(id))
                 return category;
         }
         return null;
     }
-    protected ModalToolCategory findModalCategory( String id ) {
+    @Override
+    public final ModalToolCategory findModalCategory( String id ) {
         for( ModalToolCategory category : modalCategories ) {
             String id2 = category.getId();
             if (id2.equals(id))

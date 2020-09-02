@@ -434,6 +434,10 @@ public class CompositeRendererImpl extends RendererImpl implements MultiLayerRen
 
     /**
      * @throws RenderException
+<<<<<<< HEAD
+=======
+     * @see org.locationtech.udig.project.internal.render.Renderer#render(org.locationtech.jts.geom.Envelope)
+>>>>>>> udig/master
      */
     public void render( IProgressMonitor monitor ) throws RenderException {
         if (getRenderExecutors().size() == 0)

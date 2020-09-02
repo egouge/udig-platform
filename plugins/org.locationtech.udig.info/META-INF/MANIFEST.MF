@@ -6,12 +6,9 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.locationtech.udig.tool.info.InfoPlugin
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
-Export-Package: org.locationtech.udig.document.model;x-friends:="org.l
- ocationtech.udig.tests.info",org.locationtech.udig.document.source,or
- g.locationtech.udig.document.ui,org.locationtech.udig.tool.info,org.l
- ocationtech.udig.tool.info.internal;x-friends:="org.locationtech.udig
- .tests.info",org.locationtech.udig.tool.info.internal.display;x-frien
- ds:="org.locationtech.udig.tests.info"
+Export-Package: org.locationtech.udig.tool.info,
+ org.locationtech.udig.tool.info.internal;x-friends:="org.locationtech.udig.tests.info",
+ org.locationtech.udig.tool.info.internal.display;x-friends:="org.locationtech.udig.tests.info"
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.locationtech.udig.project,

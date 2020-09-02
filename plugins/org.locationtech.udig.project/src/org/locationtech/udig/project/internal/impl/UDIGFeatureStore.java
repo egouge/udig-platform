@@ -15,25 +15,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.project.ProjectBlackboardConstants;
-import org.locationtech.udig.project.internal.EditManager;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-
 import org.geotools.data.DataAccess;
 import org.geotools.data.FeatureListener;
 import org.geotools.data.FeatureReader;
-import org.geotools.data.FeatureSource;
 import org.geotools.data.FeatureStore;
 import org.geotools.data.Query;
 import org.geotools.data.QueryCapabilities;
 import org.geotools.data.ResourceInfo;
 import org.geotools.data.Transaction;
-import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKTWriter;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.Interaction;
+import org.locationtech.udig.project.internal.EditManager;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.FeatureType;
@@ -41,9 +39,6 @@ import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
 import org.opengis.filter.Id;
 import org.opengis.filter.identity.FeatureId;
-
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.io.WKTWriter;
 
 /**
  * A FeatureStore decorator that does not allow the transaction to be set more than once. (Only if
@@ -82,6 +77,14 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
         setTransactionInternal();
         wrapped.removeFeatures(filter);
     }
+    @Deprecated
+    public void modifyFeatures( AttributeDescriptor[] descriptors, Object[] values, Filter filter )
+            throws IOException {
+        setTransactionInternal();
+        Name[] names = new Name[descriptors.length];
+        for (int i = 0; i < descriptors.length; i ++) names[i] = descriptors[i].getName();
+        wrapped.modifyFeatures(names, values, filter);
+    }
     
     public void modifyFeatures( Name[] names, Object[] values, Filter filter ) throws IOException {
         setTransactionInternal();
@@ -91,6 +94,30 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
     public void modifyFeatures( Name name, Object value, Filter filter ) throws IOException {
         setTransactionInternal();
         wrapped.modifyFeatures(name, value, filter);
+    }
+
+
+    @Deprecated
+    public void modifyFeatures( AttributeDescriptor attribute, Object value, Filter selectFilter )
+            throws IOException {
+        setTransactionInternal();
+        if (value instanceof Geometry) {
+            Geometry geom = (Geometry) value;
+            if (!geom.isValid()) {
+                WKTWriter writer = new WKTWriter();
+                String wkt = writer.write(geom);
+                String where = selectFilter.toString();
+                if (selectFilter instanceof Id) {
+                    Id id = (Id) selectFilter;
+                    where = id.getIDs().toString();
+                }
+                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:"
+                        + wkt;
+                ProjectPlugin.log(msg);
+                throw new IOException(msg);
+            }
+        }
+        wrapped.modifyFeatures(attribute.getName(), value, selectFilter);
     }
 
     public void setFeatures( FeatureReader<FeatureType, Feature> features )

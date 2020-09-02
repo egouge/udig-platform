@@ -13,10 +13,6 @@ package org.locationtech.udig.style.sld.editor.internal;
 import java.awt.Color;
 import java.util.List;
 
-import org.locationtech.udig.style.sld.SLDPlugin;
-import org.locationtech.udig.ui.graphics.Glyph;
-import org.locationtech.udig.ui.graphics.SLDs;
-
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -28,6 +24,9 @@ import org.geotools.styling.PolygonSymbolizer;
 import org.geotools.styling.Rule;
 import org.geotools.styling.Style;
 import org.geotools.styling.Symbolizer;
+import org.locationtech.udig.style.sld.SLDPlugin;
+import org.locationtech.udig.ui.graphics.Glyph;
+import org.locationtech.udig.ui.graphics.SLDs;
 
 public class StyleTreeLabelProvider extends LabelProvider implements ITableLabelProvider {
     public Image getImage( Object element ) {

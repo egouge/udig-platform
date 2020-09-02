@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 import org.geotools.data.shapefile.shp.JTSUtilities;
-import org.locationtech.jts.algorithm.CGAlgorithms;
 import org.locationtech.jts.algorithm.Orientation;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;

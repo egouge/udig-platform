@@ -22,14 +22,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.geotools.data.DataUtilities;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.collection.AdaptorFeatureCollection;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.referencing.CRS;
+import org.geotools.util.factory.GeoTools;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiLineString;
+import org.locationtech.jts.geom.MultiPoint;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.udig.core.AdapterUtil;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
@@ -44,16 +57,6 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.CodeList;
 
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryCollection;
-import org.locationtech.jts.geom.LineString;
-import org.locationtech.jts.geom.LinearRing;
-import org.locationtech.jts.geom.MultiLineString;
-import org.locationtech.jts.geom.MultiPoint;
-import org.locationtech.jts.geom.MultiPolygon;
-import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.geom.Polygon;
 /**
  * A utility class for playing with features.
  * 
@@ -234,7 +237,7 @@ public class FeatureUtils {
 
                 // don't worry about case of attribute name
                 if (target.getName().getLocalPart().equalsIgnoreCase(source.getName().getLocalPart())
-                        && target.getType().getBinding().isAssignableFrom(source.getType().getBinding())) {
+                       /* && target.getType().getBinding().isAssignableFrom(source.getType().getBinding())*/) {
                     queryAttributes.put(target.getName().getLocalPart(), source.getName().getLocalPart());
                 }
             }
@@ -336,12 +339,36 @@ public class FeatureUtils {
     private static Object[] copyAttributes( SimpleFeatureType destSchema, SimpleFeature source,
             Map<String, Iterator< ? extends Geometry>> geometries, Map<String, String> attributeMap, MathTransform mt  ) {
         Object[] attributes = new Object[destSchema.getAttributeCount()];
+        
+        //dummy progress monitor
+        IProgressMonitor mon = new NullProgressMonitor();
+        
         for( int i = 0; i < attributes.length; i++ ) {
             String sourceAttributeName = destSchema.getDescriptor(i).getName().getLocalPart();
             String name = attributeMap.get(sourceAttributeName);
-            if (name != null)
-                attributes[i] = source.getAttribute(name);
-            else {
+            //if an attribute match exists set its value
+            if (name != null) {                 
+                if (destSchema.getDescriptor(sourceAttributeName).getType().getBinding().isAssignableFrom(
+                        source.getFeatureType().getDescriptor(name).getType().getBinding())) {
+                    attributes[i] = source.getAttribute(name);
+                } else {
+                    //if not directly assignable then check for an adapter
+                    if (AdapterUtil.instance.canAdaptTo(
+                            source.getAttribute(name), 
+                            destSchema.getDescriptor(i).getType().getBinding())) {
+                        try {
+                            attributes[i] = AdapterUtil.instance.adaptTo(
+                                    destSchema.getDescriptor(i).getType().getBinding(), 
+                                    source.getAttribute(name), mon);
+                        } catch (Exception e) {
+                        	CorePlugin.log("", e);
+                        }
+                    } else {
+                        attributes[i] = destSchema.getDescriptor(i).getDefaultValue();
+                    }
+                }
+            } else {
+                //if we reach here use the default value
                 attributes[i] = destSchema.getDescriptor(i).getDefaultValue();
             }
             if (attributes[i] instanceof Geometry) {
@@ -353,7 +380,7 @@ public class FeatureUtils {
                     Iterator< ? extends Geometry> giter = geom.iterator();
                     attributes[i] = giter.next();
                     if (giter.hasNext())
-                        geometries.put(sourceAttributeName, giter);
+                        geometries.put(name, giter);
                 }
                 attributes[i] = transformGeom((Geometry) attributes[i], mt);
             }
