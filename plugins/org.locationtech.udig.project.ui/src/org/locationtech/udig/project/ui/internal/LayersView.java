@@ -553,9 +553,9 @@ public class LayersView extends ViewPart
                 }
                 if (currentMap == null)
                     return;
-//                List<Layer> layers = new ArrayList<>(currentMap.getLayersInternal());
+                List<Layer> layers = new ArrayList<>(currentMap.getLayersInternal());
 //                if (!requiresCheckboxUpdate(layers)) {
-                List<Layer> layers = currentMap.getLayersInternal();
+//                List<Layer> layers = currentMap.getLayersInternal();
                 if (!requiresCheckboxUpdate(viewer, layers)) {
                     return;
                 }
