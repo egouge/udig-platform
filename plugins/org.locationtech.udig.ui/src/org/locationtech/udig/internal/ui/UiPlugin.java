@@ -172,7 +172,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
             // chances are someone is using the SDK with their own
             // application or product.
             String message = "Unable to parse version from about.mappings file. Defaulting to a blank string."; //$NON-NLS-1$
-            this.getLog().log(new Status(IStatus.INFO, ID, 0, message, null));
+            //this.getLog().log(new Status(IStatus.INFO, ID, 0, message, null));
             this.version = "";
             return;
         }
