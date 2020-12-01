@@ -205,7 +205,7 @@ public abstract class RemotePreferenceStore implements IPersistentPreferenceStor
             return DOUBLE_DEFAULT_DEFAULT;
         double ival = DOUBLE_DEFAULT_DEFAULT;
         try {
-            ival = new Double(value).doubleValue();
+            ival = Double.valueOf(value).doubleValue();
         } catch (NumberFormatException e) {
         }
         return ival;
@@ -221,7 +221,7 @@ public abstract class RemotePreferenceStore implements IPersistentPreferenceStor
             return FLOAT_DEFAULT_DEFAULT;
         float ival = FLOAT_DEFAULT_DEFAULT;
         try {
-            ival = new Float(value).floatValue();
+            ival = Float.valueOf(value).floatValue();
         } catch (NumberFormatException e) {
         }
         return ival;
@@ -352,12 +352,12 @@ public abstract class RemotePreferenceStore implements IPersistentPreferenceStor
 
     private void setValue(Map<String, String> p, String name, double value) {
         Assert.isTrue(p != null && name != null);
-        p.put(name, toString(new Double(value)));
+        p.put(name, toString(Double.valueOf(value)));
     }
 
     private void setValue(Map<String, String> p, String name, float value) {
         Assert.isTrue(p != null && name != null);
-        p.put(name, toString(new Float(value)));
+        p.put(name, toString(Float.valueOf(value)));
     }
 
     private void setValue(Map<String, String> p, String name, int value) {
@@ -395,7 +395,7 @@ public abstract class RemotePreferenceStore implements IPersistentPreferenceStor
         if (oldValue != value) {
             setValue(localProperties, name, value);
             dirty = true;
-            firePropertyChangeEvent(name, new Double(oldValue), new Double(value));
+            firePropertyChangeEvent(name, Double.valueOf(oldValue), Double.valueOf(value));
         }
     }
 
@@ -404,7 +404,7 @@ public abstract class RemotePreferenceStore implements IPersistentPreferenceStor
         if (oldValue != value) {
             setValue(localProperties, name, value);
             dirty = true;
-            firePropertyChangeEvent(name, new Float(oldValue), new Float(value));
+            firePropertyChangeEvent(name, Float.valueOf(oldValue), Float.valueOf(value));
         }
     }
 

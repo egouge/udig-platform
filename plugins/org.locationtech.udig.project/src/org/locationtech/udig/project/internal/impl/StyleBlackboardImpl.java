@@ -29,19 +29,6 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.locks.Lock;
 
-import org.locationtech.udig.core.internal.ExtensionPointProcessor;
-import org.locationtech.udig.core.internal.ExtensionPointUtil;
-import org.locationtech.udig.project.BlackboardEvent;
-import org.locationtech.udig.project.IBlackboard;
-import org.locationtech.udig.project.IBlackboardListener;
-import org.locationtech.udig.project.StyleContent;
-import org.locationtech.udig.project.internal.ProjectFactory;
-import org.locationtech.udig.project.internal.ProjectPackage;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.StyleBlackboard;
-import org.locationtech.udig.project.internal.StyleEntry;
-import org.locationtech.udig.ui.UDIGDisplaySafeLock;
-
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -54,6 +41,18 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
+import org.locationtech.udig.core.internal.ExtensionPointProcessor;
+import org.locationtech.udig.core.internal.ExtensionPointUtil;
+import org.locationtech.udig.project.BlackboardEvent;
+import org.locationtech.udig.project.IBlackboard;
+import org.locationtech.udig.project.IBlackboardListener;
+import org.locationtech.udig.project.StyleContent;
+import org.locationtech.udig.project.internal.ProjectFactory;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.StyleBlackboard;
+import org.locationtech.udig.project.internal.StyleEntry;
+import org.locationtech.udig.ui.UDIGDisplaySafeLock;
 
 /**
  * The default implementation.
@@ -179,7 +178,7 @@ public class StyleBlackboardImpl extends EObjectImpl implements StyleBlackboard 
                 } catch (Throwable t) {
                     // protect against a StyleEntry/StyleContent taking us down
                     ProjectPlugin.log(
-                            "Style " + se.getID() + " not restored:" + t.getLocalizedMessage(), t);
+                            "Style " + se.getID() + " not restored:" + t.getLocalizedMessage(), t); //$NON-NLS-1$ //$NON-NLS-2$
                 }
 
             }
@@ -213,7 +212,7 @@ public class StyleBlackboardImpl extends EObjectImpl implements StyleBlackboard 
                     }
                 }
             } catch (WorkbenchException e) {
-                ProjectPlugin.getPlugin().log(styleEntry.getID() + ":" + e);
+                ProjectPlugin.getPlugin().log(styleEntry.getID() + ":" + e); //$NON-NLS-1$
                 e.printStackTrace();
             }
         }
@@ -311,7 +310,7 @@ public class StyleBlackboardImpl extends EObjectImpl implements StyleBlackboard 
                 if (!found && element.getAttribute("id").equals(styleId)) { //$NON-NLS-1$
                     found = true;
                     StyleContent styleContent = (StyleContent) element
-                            .createExecutableExtension("class");
+                            .createExecutableExtension("class"); //$NON-NLS-1$
                     id2content.put(styleId, styleContent);
                 }
             }
@@ -442,14 +441,14 @@ public class StyleBlackboardImpl extends EObjectImpl implements StyleBlackboard 
 
                         styleEntryClone.setStyle(copy);
                     } catch (Throwable t) {
-                        ProjectPlugin.trace(StyleBlackboardImpl.class, "Unable to copy style " + ID
-                                + ":" + style, t);
+                        ProjectPlugin.trace(StyleBlackboardImpl.class, "Unable to copy style " + ID //$NON-NLS-1$
+                                + ":" + style, t); //$NON-NLS-1$
                     }
                 } else {
                     // unable to preserve independence of this style object
                     styleEntryClone.setStyle(style); // warning!
-                    ProjectPlugin.trace(StyleBlackboardImpl.class, "Unable to copy style " + ID
-                            + ":" + style, null);
+                    ProjectPlugin.trace(StyleBlackboardImpl.class, "Unable to copy style " + ID //$NON-NLS-1$
+                            + ":" + style, null); //$NON-NLS-1$
                 }
                 clone.getContent().add(styleEntryClone);
             }
@@ -657,13 +656,13 @@ public class StyleBlackboardImpl extends EObjectImpl implements StyleBlackboard 
     @Override
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        buf.append("StyleBlackBoardImpl: ");
+        buf.append("StyleBlackBoardImpl: "); //$NON-NLS-1$
         buf.append(content.size());
-        buf.append(" entries");
+        buf.append(" entries"); //$NON-NLS-1$
         for (StyleEntry entry : content) {
-            buf.append("\n\t");
+            buf.append("\n\t"); //$NON-NLS-1$
             buf.append(entry.getID());
-            buf.append("=");
+            buf.append("="); //$NON-NLS-1$
             buf.append(entry.getStyle());
         }
         return buf.toString();

@@ -9,14 +9,12 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.project.interceptor.LayerInterceptor;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Map;
-import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
 import org.locationtech.udig.ui.ProgressManager;
-
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 /**
  * If first layer it sets the viewport bounds to be the bounds of the layer.

@@ -9,13 +9,12 @@
  */
 package org.locationtech.udig.project;
 
+import org.geotools.data.DataStore;
+import org.geotools.data.Query;
 import org.locationtech.udig.project.internal.StyleBlackboard;
 import org.locationtech.udig.project.internal.impl.UDIGFeatureStore;
 import org.locationtech.udig.project.internal.interceptor.ShowViewInterceptor;
 import org.locationtech.udig.project.internal.render.RendererCreator;
-
-import org.geotools.data.DataStore;
-import org.geotools.data.Query;
 
 /**
  * Lists the keys of common items that are put on the Map blackboard and the Layer blackboard

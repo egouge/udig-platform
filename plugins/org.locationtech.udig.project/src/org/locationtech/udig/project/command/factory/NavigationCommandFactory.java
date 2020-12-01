@@ -11,6 +11,8 @@ package org.locationtech.udig.project.command.factory;
 
 import java.util.Arrays;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.internal.command.navigation.NavComposite;
 import org.locationtech.udig.project.internal.command.navigation.PanCommand;
@@ -20,11 +22,7 @@ import org.locationtech.udig.project.internal.command.navigation.SetViewportHeig
 import org.locationtech.udig.project.internal.command.navigation.SetViewportWidth;
 import org.locationtech.udig.project.internal.command.navigation.ZoomCommand;
 import org.locationtech.udig.project.internal.command.navigation.ZoomExtentCommand;
-
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * Factory providing default implementations of common navigation commands.

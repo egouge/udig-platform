@@ -13,15 +13,14 @@ package org.locationtech.udig.tool.info.internal.display;
 
 import java.io.IOException;
 
-import org.locationtech.udig.project.ui.controls.FeatureTableControl;
-import org.locationtech.udig.tool.info.InfoDisplay;
-import org.locationtech.udig.tool.info.LayerPointInfo;
-
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FeatureReader;
 import org.geotools.feature.FeatureCollection;
+import org.locationtech.udig.project.ui.controls.FeatureTableControl;
+import org.locationtech.udig.tool.info.InfoDisplay;
+import org.locationtech.udig.tool.info.LayerPointInfo;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 

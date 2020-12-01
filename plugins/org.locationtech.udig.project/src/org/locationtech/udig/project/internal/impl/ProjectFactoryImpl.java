@@ -14,10 +14,31 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.geotools.brewer.color.BrewerPalette;
+import org.geotools.data.FeatureEvent;
+import org.geotools.data.Query;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.ReferencingFactoryFinder;
+import org.geotools.referencing.crs.DefaultEngineeringCRS;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.geotools.styling.SLD;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.project.Interaction;
 import org.locationtech.udig.core.internal.CorePlugin;
 import org.locationtech.udig.core.internal.ExtensionPointList;
+import org.locationtech.udig.project.Interaction;
 import org.locationtech.udig.project.command.CommandStack;
 import org.locationtech.udig.project.command.EditCommand;
 import org.locationtech.udig.project.command.EditManagerControlCommand;
@@ -46,36 +67,12 @@ import org.locationtech.udig.project.internal.StyleEntry;
 import org.locationtech.udig.project.internal.render.RenderFactory;
 import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-import org.locationtech.udig.ui.palette.ColourPalette;
 import org.locationtech.udig.ui.PlatformGIS;
 import org.locationtech.udig.ui.palette.ColourScheme;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.geotools.brewer.color.BrewerPalette;
-import org.geotools.data.FeatureEvent;
-import org.geotools.data.Query;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.ReferencingFactoryFinder;
-import org.geotools.referencing.crs.DefaultEngineeringCRS;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.geotools.styling.SLD;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.picocontainer.MutablePicoContainer;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * The EMF factory for project model objects
@@ -104,13 +101,13 @@ public class ProjectFactoryImpl extends EFactoryImpl implements ProjectFactory {
         return new ProjectFactoryImpl();
     }
 
-    private static final String CARTESIAN_2D = "CARTESIAN_2D";
+    private static final String CARTESIAN_2D = "CARTESIAN_2D"; //$NON-NLS-1$
 
-    private static final String CARTESIAN_3D = "CARTESIAN_3D";
+    private static final String CARTESIAN_3D = "CARTESIAN_3D"; //$NON-NLS-1$
 
-    private static final String GENERIC_2D = "GENERIC_2D";
+    private static final String GENERIC_2D = "GENERIC_2D"; //$NON-NLS-1$
 
-    private static final String GENERIC_3D = "GENERIC_3D";
+    private static final String GENERIC_3D = "GENERIC_3D"; //$NON-NLS-1$
 
     /**
      * Creates an instance of the factory.
@@ -1025,7 +1022,7 @@ public class ProjectFactoryImpl extends EFactoryImpl implements ProjectFactory {
             String crs = convertCoordinateReferenceSystemToString(
                     ProjectPackage.eINSTANCE.getCoordinateReferenceSystem(),
                     ((ReferencedEnvelope) instanceValue).getCoordinateReferenceSystem());
-            return envString + "@" + crs;
+            return envString + "@" + crs; //$NON-NLS-1$
         } else {
             return envString;
         }

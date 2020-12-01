@@ -25,7 +25,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
         store.setDefault(PreferenceConstants.MOUSE_SPEED,
                 ProjectUIPlugin.DEFAULT_DOUBLECLICK_SPEED_MILLIS);
         store.setDefault(MapEditorWithPalette.ID, 0);
-        store.setDefault("Test", 0);
+        store.setDefault("Test", 0); //$NON-NLS-1$
 
         //added for finer control of certain map actions
         //node.put(PreferenceConstants.FEATURE_ATTRIBUTE_NAME, "name");

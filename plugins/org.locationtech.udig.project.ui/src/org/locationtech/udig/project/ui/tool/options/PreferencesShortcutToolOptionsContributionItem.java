@@ -40,7 +40,7 @@ public class PreferencesShortcutToolOptionsContributionItem extends Contribution
     final ICommandService commandService = (ICommandService) PlatformUI.getWorkbench().getService(
             ICommandService.class);
 
-    final String defultPreferencePage = "org.locationtech.udig.tools.edit.preferences";
+    final String defultPreferencePage = "org.locationtech.udig.tools.edit.preferences"; //$NON-NLS-1$
 
     //private ToolBar toolBar;
     private Label icon;
@@ -61,8 +61,8 @@ public class PreferencesShortcutToolOptionsContributionItem extends Contribution
                     page = activeTool.getPreferencePageId();
                 }
                 final ParameterizedCommand command = commandService
-                        .deserialize("org.eclipse.ui.window.preferences(preferencePageId=" + page
-                                + ")");
+                        .deserialize("org.eclipse.ui.window.preferences(preferencePageId=" + page //$NON-NLS-1$
+                                + ")"); //$NON-NLS-1$
 
                 handlerService.executeCommand(command, null);
             } catch (Exception e) {
@@ -124,7 +124,7 @@ public class PreferencesShortcutToolOptionsContributionItem extends Contribution
                 if( preferencePageId == null ){
                     preferencePageId = defultPreferencePage;
                 }
-                String text = "<a href=\""+preferencePageId+"\">"+activeTool.getName()+"</a>";
+                String text = "<a href=\""+preferencePageId+"\">"+activeTool.getName()+"</a>"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 link.setText(text);
                 link.setToolTipText(activeTool.getToolTipText());
             }

@@ -13,7 +13,6 @@ package org.locationtech.udig.project.internal.property;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.Interaction;
 import org.locationtech.udig.ui.operations.AbstractPropertyValue;
-import org.locationtech.udig.ui.operations.PropertyValue;
 
 /**
  * Allows tools or operations to check what kind of interactions a layer

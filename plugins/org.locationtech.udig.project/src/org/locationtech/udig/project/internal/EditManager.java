@@ -11,10 +11,9 @@ package org.locationtech.udig.project.internal;
 
 import java.io.IOException;
 
-import org.locationtech.udig.project.IEditManager;
-
 import org.eclipse.emf.ecore.EObject;
 import org.geotools.data.Transaction;
+import org.locationtech.udig.project.IEditManager;
 import org.opengis.feature.IllegalAttributeException;
 import org.opengis.feature.simple.SimpleFeature;
 

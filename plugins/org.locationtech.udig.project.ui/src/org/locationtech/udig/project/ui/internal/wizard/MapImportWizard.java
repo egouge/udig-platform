@@ -41,7 +41,7 @@ public class MapImportWizard extends CatalogImportWizard {
     public MapImportWizard(Workflow workflow,
             java.util.Map<Class<? extends State>, WorkflowWizardPageProvider> map, int layerPosition) {
         super(workflow, map);
-        setWindowTitle("Add Data");
+        setWindowTitle(Messages.MapImportWizard_AddDataTitle);
         this.layerPosition = layerPosition;
     }
 

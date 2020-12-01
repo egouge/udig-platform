@@ -157,7 +157,7 @@ public abstract class ToolOptionContributionItem extends ContributionItem
     /** Add a button to the tracked widgets used to invoke a preference change */
     public void addField( String preferenceString, Button button ) {
         if (preferenceString == null) {
-            throw new NullPointerException("PreferenceString required");
+            throw new NullPointerException("PreferenceString required"); //$NON-NLS-1$
         }
         fields.put(button, preferenceString);
         // normally we would use button.setData but ContributionItems gets stored there
@@ -166,7 +166,7 @@ public abstract class ToolOptionContributionItem extends ContributionItem
     
     public void addField( String preferenceString, Combo combo, String[] behaviour ) {
         if (preferenceString == null) {
-            throw new NullPointerException("PreferenceString required");
+            throw new NullPointerException("PreferenceString required"); //$NON-NLS-1$
         }
         this.behaviour = behaviour;
         fields.put(combo, preferenceString);
@@ -176,7 +176,7 @@ public abstract class ToolOptionContributionItem extends ContributionItem
     
     public void addField( String preferenceString, Text text ) {
         if (preferenceString == null) {
-            throw new NullPointerException("PreferenceString required");
+            throw new NullPointerException("PreferenceString required"); //$NON-NLS-1$
         }
 
         fields.put(text, preferenceString);

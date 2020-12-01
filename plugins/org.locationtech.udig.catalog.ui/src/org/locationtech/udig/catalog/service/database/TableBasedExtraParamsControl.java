@@ -51,7 +51,7 @@ public class TableBasedExtraParamsControl implements ExtraParamsControl {
 	}
 
 	private void createColumns(Composite parent, final TableViewer viewer) {
-		TableViewerColumn col = createTableViewerColumn(viewer, "c1", 200);
+		TableViewerColumn col = createTableViewerColumn(viewer, "c1", 200); //$NON-NLS-1$
 		col.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -60,7 +60,7 @@ public class TableBasedExtraParamsControl implements ExtraParamsControl {
 			}
 		});
 
-		col = createTableViewerColumn(viewer, "c2", 300);
+		col = createTableViewerColumn(viewer, "c2", 300); //$NON-NLS-1$
 		col.setEditingSupport(new ParamEditingSupport(viewer));
 		col.setLabelProvider(new ColumnLabelProvider() {
 			@Override

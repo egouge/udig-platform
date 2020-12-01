@@ -15,16 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.locationtech.udig.catalog.ID;
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.catalog.IResolveChangeListener;
-import org.locationtech.udig.core.IBlockingAdaptable;
-import org.locationtech.udig.project.IBlackboard;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.ui.palette.ColourScheme;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +23,14 @@ import org.geotools.data.FeatureEvent;
 import org.geotools.data.Query;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.util.Range;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IGeoResourceInfo;
+import org.locationtech.udig.catalog.IResolveChangeListener;
+import org.locationtech.udig.core.IBlockingAdaptable;
+import org.locationtech.udig.project.IBlackboard;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.Interaction;
+import org.locationtech.udig.ui.palette.ColourScheme;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 

@@ -65,9 +65,9 @@ public class ExportSLD extends ExportTo {
             SLDPlugin.log("StyledLayerDescriptor not found", null); //$NON-NLS-1$
             throw (IOException) new IOException("SLD not found"); //$NON-NLS-1$
         }
-        FileWriter w = new FileWriter(file);
-        w.write(xml);
-        w.close();
+        try(FileWriter w = new FileWriter(file)){
+        	w.write(xml);
+        }
     }
 
     @Override

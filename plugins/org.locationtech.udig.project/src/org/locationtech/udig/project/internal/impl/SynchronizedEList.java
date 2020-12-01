@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.locks.Lock;
 
-import org.locationtech.udig.ui.UDIGDisplaySafeLock;
-
 import org.eclipse.emf.common.util.EList;
+import org.locationtech.udig.ui.UDIGDisplaySafeLock;
 
 /**
  * A decorator that synchronizes on all methods of the list.

@@ -67,7 +67,7 @@ public class ResourceSelectionState extends State {
                         list.add( service );
                     }
                     catch( IOException t){
-                        CatalogUIPlugin.log("Unable to connect to service "+ t, t);
+                        CatalogUIPlugin.log("Unable to connect to service "+ t, t); //$NON-NLS-1$
                     }
                 }
                 if( resolve instanceof IService ){

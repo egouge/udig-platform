@@ -61,39 +61,39 @@ public class DataBaseConnInfo {
 
 	public String getHostString() {
 		String string = host;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	public String getPortString() {
 		String string = port;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	public String getUserString() {
 		String string = user;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	public String getPassString() {
 		String string = pass;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	public String getDbString() {
 		String string = db;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	public String getSchemaString() {
 		String string = schema;
-		return processStringForGetter(string); //$NON-NLS-1$
+		return processStringForGetter(string); 
 	}
 
 	/**
 	 * Processes a string so that it is formatted well for a getter
 	 */
 	private String processStringForGetter(String string) {
-		String toReturn = string == null ? "" : string;
+		String toReturn = string == null ? "" : string; //$NON-NLS-1$
 		toReturn = toReturn.trim();
 		if (treatEmptyStringAsNull && toReturn.length() == 0) {
 			return null;

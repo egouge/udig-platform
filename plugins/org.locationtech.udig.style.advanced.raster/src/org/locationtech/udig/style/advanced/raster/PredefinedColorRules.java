@@ -101,19 +101,19 @@ public class PredefinedColorRules {
                 for( File file : files ) {
                     String name = file.getName();
                     if (name.toLowerCase().endsWith(".clr")) { //$NON-NLS-1$
-                        BufferedReader bR = new BufferedReader(new FileReader(file));
-                        List<String[]> lines = new ArrayList<String[]>();
-                        String line = null;
-                        int cols = 0;
-                        while( (line = bR.readLine()) != null ) {
-                            if (line.startsWith("#")) { //$NON-NLS-1$
-                                continue;
-                            }
-                            String[] lineSplit = line.trim().split("\\s+"); //$NON-NLS-1$
-                            cols = lineSplit.length;
-                            lines.add(lineSplit);
+                    	List<String[]> lines = new ArrayList<String[]>();
+                    	int cols = 0;
+                        try(BufferedReader bR = new BufferedReader(new FileReader(file))){
+	                        String line = null;
+	                        while( (line = bR.readLine()) != null ) {
+	                            if (line.startsWith("#")) { //$NON-NLS-1$
+	                                continue;
+	                            }
+	                            String[] lineSplit = line.trim().split("\\s+"); //$NON-NLS-1$
+	                            cols = lineSplit.length;
+	                            lines.add(lineSplit);
+	                        }
                         }
-                        bR.close();
                         String[][] linesArray = (String[][]) lines.toArray(new String[lines.size()][cols]);
                         String ruleName = FilenameUtils.getBaseName(file.getName());
                         ruleName = ruleName.replaceAll("\\_", " "); //$NON-NLS-1$ //$NON-NLS-2$

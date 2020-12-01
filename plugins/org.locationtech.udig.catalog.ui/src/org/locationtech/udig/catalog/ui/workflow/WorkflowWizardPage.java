@@ -141,9 +141,9 @@ public abstract class WorkflowWizardPage extends WizardPage {
     public String toString() {
     	StringBuffer text = new StringBuffer();
     	text.append( getName() );
-    	text.append( "(" );
-    	text.append( state != null ? state.getName() : "null" );
-    	text.append( "_" );
+    	text.append( "(" ); //$NON-NLS-1$
+    	text.append( state != null ? state.getName() : "null" ); //$NON-NLS-1$
+    	text.append( "_" ); //$NON-NLS-1$
         return text.toString();
     }
 }

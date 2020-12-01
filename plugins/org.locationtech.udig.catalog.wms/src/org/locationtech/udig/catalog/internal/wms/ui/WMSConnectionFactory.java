@@ -184,7 +184,7 @@ public class WMSConnectionFactory extends UDIGConnectionFactory {
     /** Check that any trailing #layer is removed from the url */
     static public URL checkedURL( URL url ){
         String check = url.toExternalForm();
-        int tiled = check.toUpperCase().indexOf("TILED=TRUE");
+        int tiled = check.toUpperCase().indexOf("TILED=TRUE"); //$NON-NLS-1$
         if( tiled != -1 ){
             return null; // we do not support tiled WMS here
         }

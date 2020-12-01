@@ -86,7 +86,7 @@ public class ExceptionDetailsDialog extends Dialog {
                         .getLocalizedMessage(), throwable);
                 String msg = message;
                 if (msg == null) {
-                    msg = "";
+                    msg = ""; //$NON-NLS-1$
                 }
                 msg = msg + Messages.ExceptionDetailsEditorMessage;
                 ExceptionDetailsDialog dialog = new ExceptionDetailsDialog(Display.getDefault()
@@ -196,7 +196,7 @@ public class ExceptionDetailsDialog extends Dialog {
             String name = e.getClass().getName();
             return name.substring(name.lastIndexOf('.') + 1);
         }
-        return "Exception";
+        return "Exception"; //$NON-NLS-1$
     }
 
     public static Image getImage( Object details ) {
@@ -233,7 +233,7 @@ public class ExceptionDetailsDialog extends Dialog {
         }
         if (message != null)
             return message;
-        return "An Exception occurred.";
+        return "An Exception occurred."; //$NON-NLS-1$
     }
 
     public static void appendException( PrintWriter writer, Throwable ex ) {
@@ -247,7 +247,7 @@ public class ExceptionDetailsDialog extends Dialog {
     }
     public static void appendStatus( PrintWriter writer, IStatus status, int nesting ) {
         for( int i = 0; i < nesting; i++ )
-            writer.print("  ");
+            writer.print("  "); //$NON-NLS-1$
         writer.println(status.getMessage());
         IStatus[] children = status.getChildren();
         for( int i = 0; i < children.length; i++ )

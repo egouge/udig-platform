@@ -3,30 +3,23 @@
  */
 package org.locationtech.udig.project.internal.render.util;
 
-import org.locationtech.udig.project.IAbstractContext;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.internal.AbstractContext;
-import org.locationtech.udig.project.internal.render.CompositeRenderContext;
 import org.locationtech.udig.project.internal.render.MultiLayerRenderer;
-import org.locationtech.udig.project.internal.render.RenderContext;
 import org.locationtech.udig.project.internal.render.RenderExecutor;
 import org.locationtech.udig.project.internal.render.RenderManager;
 import org.locationtech.udig.project.internal.render.RenderPackage;
 import org.locationtech.udig.project.internal.render.Renderer;
-import org.locationtech.udig.project.internal.render.RendererCreator;
 import org.locationtech.udig.project.internal.render.ViewportModel;
-import org.locationtech.udig.project.render.ICompositeRenderContext;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IRenderer;
 import org.locationtech.udig.project.render.IViewportModel;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplayListener;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.render.util

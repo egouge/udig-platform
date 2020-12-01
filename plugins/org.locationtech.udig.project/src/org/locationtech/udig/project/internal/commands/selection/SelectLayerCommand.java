@@ -9,6 +9,7 @@
  */
 package org.locationtech.udig.project.internal.commands.selection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.MapCommand;
@@ -16,8 +17,6 @@ import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.EditManager;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Command that selects the currently selected layer of a map.

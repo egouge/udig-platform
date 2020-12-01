@@ -51,21 +51,21 @@ public class URLUtils {
         }
         boolean sameProtocol = url2.getProtocol().equalsIgnoreCase(url1.getProtocol());
         
-        if ("file".equals(url2.getProtocol()) && "file".equals(url1.getProtocol())) {
+        if ("file".equals(url2.getProtocol()) && "file".equals(url1.getProtocol())) { //$NON-NLS-1$ //$NON-NLS-2$
             // take into account file links on linux and osx
             File file1 = urlToFile(url1);
             File file2 = urlToFile(url2);
             try {
                 if (file1 != null && file2 != null) {
                     String path1 = file1.getCanonicalPath();
-                    path1 = path1.replaceAll("\\\\", "/");
-                    if (file1.isDirectory() && !path1.endsWith("/")) {
-                        path1 = path1 + "/";
+                    path1 = path1.replaceAll("\\\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
+                    if (file1.isDirectory() && !path1.endsWith("/")) { //$NON-NLS-1$
+                        path1 = path1 + "/"; //$NON-NLS-1$
                     }
                     String path2 = file2.getCanonicalPath();
-                    path2 = path2.replaceAll("\\\\", "/");
-                    if (file2.isDirectory() && !path2.endsWith("/")) {
-                        path2 = path2 + "/";
+                    path2 = path2.replaceAll("\\\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
+                    if (file2.isDirectory() && !path2.endsWith("/")) { //$NON-NLS-1$
+                        path2 = path2 + "/"; //$NON-NLS-1$
                     }
                     if (stripRef) {
                         if (url1.getRef() != null) {
@@ -80,7 +80,7 @@ public class URLUtils {
                     return path1.equals(path2);
                 }
 			} catch (IOException e) {
-				CatalogPlugin.log("Unable to compare file URLS "+file1+" and "+file2+" files because of an exception.", e);
+				CatalogPlugin.log("Unable to compare file URLS "+file1+" and "+file2+" files because of an exception.", e); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
         	
         }
@@ -94,8 +94,8 @@ public class URLUtils {
         if (sameProtocol && sameHost && samePath && sameQuery && sameAuthority && sameRef)
             return true;
 
-        String string1 = URLUtils.urlToString(url1, stripRef).replace("%20", " ").toLowerCase();
-        String string2 = URLUtils.urlToString(url2, stripRef).replace("%20", " ").toLowerCase();
+        String string1 = URLUtils.urlToString(url1, stripRef).replace("%20", " ").toLowerCase(); //$NON-NLS-1$ //$NON-NLS-2$
+        String string2 = URLUtils.urlToString(url2, stripRef).replace("%20", " ").toLowerCase(); //$NON-NLS-1$ //$NON-NLS-2$
         if (stripRef)
             return string1.startsWith(string2) || string2.startsWith(string1);
         return string1.equalsIgnoreCase(string2);
@@ -130,7 +130,7 @@ public class URLUtils {
         // 5) file:/Jesse relative path
         // 6) file://Jesse relative? 90% of the time
         // 7) file:foo relative to base url
-        if( string.startsWith("file:"))	
+        if( string.startsWith("file:"))	 //$NON-NLS-1$
         	string = string.replaceAll("/+", "/"); //$NON-NLS-1$ //$NON-NLS-2$
 
         return string;
@@ -201,9 +201,9 @@ public class URLUtils {
 
 			if (destDir.equals(absReference)) {
 				if (destinationFile.isFile()) {
-					return new URL("file:/./" + destinationFile.getName());
+					return new URL("file:/./" + destinationFile.getName()); //$NON-NLS-1$
 				} else {
-					return new URL("file:/./");
+					return new URL("file:/./"); //$NON-NLS-1$
 				}
 			}
 
@@ -212,7 +212,7 @@ public class URLUtils {
 			} else {
 				int length = absReference.getPath().length();
 				String frag = destinationFile.getPath().substring(length+1);
-				String dirPath = "file:/./" + frag.replaceAll("\\\\", "/");
+				String dirPath = "file:/./" + frag.replaceAll("\\\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 return new URL(dirPath);
 			}
 		} catch (Exception e) {
@@ -242,21 +242,21 @@ public class URLUtils {
             compare = compare.getParentFile();
         }
         String root = compare.getPath();
-        String platform = System.getProperty("os.name");
-        if (platform.toUpperCase().indexOf("WINDOWS") != -1) {
+        String platform = System.getProperty("os.name"); //$NON-NLS-1$
+        if (platform.toUpperCase().indexOf("WINDOWS") != -1) { //$NON-NLS-1$
             if (root.length() > 2 && root.charAt(1) == ':') {
                 // Example: C:\ or C:
                 return root.substring(0, 2);
             }
-            if (root.startsWith("\\\\")) {
+            if (root.startsWith("\\\\")) { //$NON-NLS-1$
                 // Example: \\machine\share
                 return root;
             }
-        } else if (platform.toUpperCase().indexOf("MAC") != -1) {
+        } else if (platform.toUpperCase().indexOf("MAC") != -1) { //$NON-NLS-1$
             return null;
         } else {
-            if (root.startsWith("/")) {
-                return "/";
+            if (root.startsWith("/")) { //$NON-NLS-1$
+                return "/"; //$NON-NLS-1$
             }
         }
         return null;

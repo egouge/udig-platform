@@ -138,7 +138,7 @@ public class ProjectRegistryItemProvider extends ItemProviderAdapter implements
      * @generated NOT
      */
     public String getText(Object object) {
-        return "ProjectRegistry";
+        return "ProjectRegistry"; //$NON-NLS-1$
     }
 
     /**

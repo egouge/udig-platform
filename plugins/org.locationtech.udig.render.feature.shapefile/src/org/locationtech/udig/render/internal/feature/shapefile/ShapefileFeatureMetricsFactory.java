@@ -38,7 +38,6 @@ public class ShapefileFeatureMetricsFactory implements IRenderMetricsFactory {
     /**
      * @see org.locationtech.udig.project.render.IRenderMetricsFactory#canRender(org.locationtech.udig.project.render.IRenderContext)
      */
-    @SuppressWarnings("unchecked")
     public boolean canRender(IRenderContext context) {
         try {
             IGeoResource geoResource = context.getGeoResource();

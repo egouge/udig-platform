@@ -11,11 +11,10 @@ package org.locationtech.udig.project.internal.command.navigation;
 
 import java.text.MessageFormat;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Sets the width of the Viewport bounding box. Because the aspect ratio of the viewport bounding

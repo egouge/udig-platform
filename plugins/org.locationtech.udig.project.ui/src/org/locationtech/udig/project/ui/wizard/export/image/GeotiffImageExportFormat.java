@@ -38,7 +38,7 @@ public class GeotiffImageExportFormat extends ImageExportFormat {
 
     @Override
     public String getName() {
-        return "Geotiff";
+        return "Geotiff"; //$NON-NLS-1$
     }
 
     @Override

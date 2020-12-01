@@ -11,7 +11,6 @@ import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.IProject;
 
 public final class ContentProvider implements ITreeContentProvider {
-	@SuppressWarnings("unchecked")
 	public Object[] getChildren(Object element) {
 		if (element instanceof Collection) {
 			Collection collection = (Collection) element;

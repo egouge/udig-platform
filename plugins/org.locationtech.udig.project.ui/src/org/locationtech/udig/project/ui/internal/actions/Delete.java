@@ -349,7 +349,7 @@ public class Delete extends UDIGGenericAction {
                     String path = resourceUri.toFileString();
                     resource.unload();
                     if (resourceUri.hasAuthority()) {
-                        path = StringUtils.removeStart(path, "//");
+                        path = StringUtils.removeStart(path, "//"); //$NON-NLS-1$
                     }
                     /*
                     int lastIndexOf = path.lastIndexOf('/');
@@ -437,7 +437,7 @@ public class Delete extends UDIGGenericAction {
                     deleteFile(file);
                     //also delete the directory containing the files
                     String dirPath = FilenameUtils.getFullPathNoEndSeparator(path);
-                    if (dirPath.endsWith(".udig")) {
+                    if (dirPath.endsWith(".udig")) { //$NON-NLS-1$
                         deleteFile(new File(dirPath));
                     }
                 } catch (Exception e) {

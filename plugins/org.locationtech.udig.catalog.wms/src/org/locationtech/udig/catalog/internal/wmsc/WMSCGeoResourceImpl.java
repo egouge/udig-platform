@@ -12,17 +12,14 @@ package org.locationtech.udig.catalog.internal.wmsc;
 import java.io.IOException;
 import java.net.URL;
 
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.catalog.IResolve;
-import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.wmsc.server.TileSet;
-import org.locationtech.udig.catalog.wmsc.server.TiledWebMapServer;
-import org.locationtech.udig.catalog.wmsc.server.WMSTileSet;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IResolve;
+import org.locationtech.udig.catalog.wmsc.server.TileSet;
+import org.locationtech.udig.catalog.wmsc.server.TiledWebMapServer;
+import org.locationtech.udig.catalog.wmsc.server.WMSTileSet;
 
 /**
  * GeoResource to represent a WMS-C Tileset.

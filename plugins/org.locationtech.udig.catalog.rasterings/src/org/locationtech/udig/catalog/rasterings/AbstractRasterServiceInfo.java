@@ -12,15 +12,17 @@
 
 package org.locationtech.udig.catalog.rasterings;
 
+import java.text.MessageFormat;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
 import org.geotools.geometry.GeneralEnvelope;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
 import org.locationtech.udig.catalog.ID;
 import org.locationtech.udig.catalog.IServiceInfo;
+import org.locationtech.udig.catalog.rasterings.internal.Messages;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 public class AbstractRasterServiceInfo extends IServiceInfo {
 
@@ -71,7 +73,7 @@ public class AbstractRasterServiceInfo extends IServiceInfo {
 
         try {
             IProgressMonitor monitor = new NullProgressMonitor();
-            monitor.setTaskName("Checking availability of metadata for " + service.getTitle());
+            monitor.setTaskName(MessageFormat.format(Messages.AbstractRasterServiceInfo_lookingUpMetadata, service.getTitle()));
             
             reader = service.getReader(monitor);
 

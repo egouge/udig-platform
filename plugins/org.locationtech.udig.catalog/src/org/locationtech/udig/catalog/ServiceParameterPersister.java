@@ -43,7 +43,7 @@ import org.osgi.service.prefs.Preferences;
  * @author Jesse
  */
 public class ServiceParameterPersister {
-    private static final String COLON_ENCODING = "@col@";
+    private static final String COLON_ENCODING = "@col@"; //$NON-NLS-1$
     private static final String TYPE_QUALIFIER = "@type@"; //$NON-NLS-1$
     private static final String PROPERTIES_KEY = "_properties"; //$NON-NLS-1$
     
@@ -171,7 +171,7 @@ public class ServiceParameterPersister {
             }
             if( id.isFile() ){
                 String path = id.toFile().getAbsolutePath();
-                path = path.replace(":", COLON_ENCODING);
+                path = path.replace(":", COLON_ENCODING); //$NON-NLS-1$
                 str = URLEncoder.encode(path, ENCODING);
             }
             else {
@@ -212,7 +212,7 @@ public class ServiceParameterPersister {
                 URL url = new URL(null, parts[0], CorePlugin.RELAXED_HANDLER); 
                 id = new ID(parts[0], qualifier);
             } catch (MalformedURLException e) {
-                String path = parts[0].replaceAll(COLON_ENCODING, ":");
+                String path = parts[0].replaceAll(COLON_ENCODING, ":"); //$NON-NLS-1$
                 id = new ID(new File(path), qualifier);
             }        
             
@@ -479,7 +479,7 @@ public class ServiceParameterPersister {
                         }        
                         resourcePropertiesSaved=true;
                     } catch (Exception e) {
-                        CatalogPlugin.log("Unable to access resource list for "+service.getID()+":"+e, e);
+                        CatalogPlugin.log("Unable to access resource list for "+service.getID()+":"+e, e); //$NON-NLS-1$ //$NON-NLS-2$
                     }
                 }
                 

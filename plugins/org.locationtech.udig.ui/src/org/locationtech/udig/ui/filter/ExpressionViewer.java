@@ -15,7 +15,7 @@ import java.util.List;
 
 import net.miginfocom.swt.MigLayout;
 import org.locationtech.udig.ui.filter.ViewerFactory.Appropriate;
-
+import org.locationtech.udig.ui.internal.Messages;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -146,13 +146,13 @@ public class ExpressionViewer extends IExpressionViewer {
             }
         };
         
-        control.setLayout(new MigLayout("insets 0", "[fill][]", "[fill]"));
+        control.setLayout(new MigLayout("insets 0", "[fill][]", "[fill]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
         pageBook = new PageBook(control, SWT.NO_SCROLL);
-        pageBook.setLayoutData("cell 0 0,grow,width 200:100%:100%,height 18:75%:100%");
+        pageBook.setLayoutData("cell 0 0,grow,width 200:100%:100%,height 18:75%:100%"); //$NON-NLS-1$
         
         placeholder = new Label( pageBook, SWT.SINGLE );
-        placeholder.setText("Choose expression editor");
+        placeholder.setText(Messages.ExpressionViewer_ExpressionEditor);
         
         delegate = new CQLExpressionViewer(pageBook, style);
         delegate.addSelectionChangedListener(listener);
@@ -163,7 +163,7 @@ public class ExpressionViewer extends IExpressionViewer {
         
         config = new Label(control, SWT.SINGLE);
         config.setImage(JFaceResources.getImage(PopupDialog.POPUP_IMG_MENU));
-        config.setLayoutData("cell 1 0,aligny top,height 16!, width 16!");
+        config.setLayoutData("cell 1 0,aligny top,height 16!, width 16!"); //$NON-NLS-1$
         
         createContextMenu( config );
         config.addMouseListener(new MouseAdapter() {
@@ -180,7 +180,7 @@ public class ExpressionViewer extends IExpressionViewer {
     protected void showViewer(String newViewerId) {
         if( newViewerId == null ){
             // show place holder label or default to CQL
-            newViewerId = "org.locationtech.udig.ui.cqlExpressionViewer";
+            newViewerId = "org.locationtech.udig.ui.cqlExpressionViewer"; //$NON-NLS-1$
         }
         this.viewerId = newViewerId;
         

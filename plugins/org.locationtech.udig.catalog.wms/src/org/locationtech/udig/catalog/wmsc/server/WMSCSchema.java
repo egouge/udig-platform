@@ -308,7 +308,6 @@ public class WMSCSchema implements Schema {
             return false;
         }
 
-        @SuppressWarnings("unchecked")
         public boolean cache( Element element, Map hints ) {
             return true;
         }

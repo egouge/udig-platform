@@ -129,7 +129,7 @@ public class MapDropAction extends CatalogImportDropAction {
                 Collection<IGeoResource> additionalResources = toResources(monitor, object, getClass());
                 
                 ProjectUIPlugin.trace(Trace.DND, MapDropAction.class,
-                        "Converted from DnD "+object.getClass().getSimpleName()+" data to:"+additionalResources,null);
+                        "Converted from DnD "+object.getClass().getSimpleName()+" data to:"+additionalResources,null); //$NON-NLS-1$ //$NON-NLS-2$
                 resources.addAll(additionalResources);
             }
         }
@@ -162,7 +162,7 @@ public class MapDropAction extends CatalogImportDropAction {
             Set<IGeoResource> keySet = state.getResources().keySet();
 
             ProjectUIPlugin.trace(Trace.DND, callingClass,
-                    "converted " + object + " to " + keySet, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                    "converted " + object + " to " + keySet, null); //$NON-NLS-1$ //$NON-NLS-2$
 
             return keySet;
         } else {

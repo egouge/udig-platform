@@ -16,10 +16,8 @@ import java.awt.geom.Point2D;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.measure.UnitConverter;
-import javax.measure.quantity.Length;
-import si.uom.SI;
 import javax.measure.Unit;
+import javax.measure.UnitConverter;
 
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.GeodeticCalculator;
@@ -39,6 +37,8 @@ import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.TransformException;
+
+import si.uom.SI;
 
 
 /**
@@ -205,15 +205,15 @@ public final class ScaleUtils {
 			calc.setDestinationGeographicPoint(maxX, centerY);
 			return calc.getOrthodromicDistance() * scale;
 		} catch (FactoryException e) {
-			ProjectPlugin.log("error transforming: " + referencePixel
-					+ " to latlong", e);
+			ProjectPlugin.log("error transforming: " + referencePixel //$NON-NLS-1$
+					+ " to latlong", e); //$NON-NLS-1$
 			return -1;
 		} catch (TransformException e) {
-            ProjectPlugin.log("error transforming: " + referencePixel
-                    + " to latlong", e);
+            ProjectPlugin.log("error transforming: " + referencePixel //$NON-NLS-1$
+                    + " to latlong", e); //$NON-NLS-1$
             return -1;
         } catch (AssertionError e) {
-            ProjectPlugin.log("Bad parameters", e);
+            ProjectPlugin.log("Bad parameters", e); //$NON-NLS-1$
             return -1;
         }
 	}
@@ -282,9 +282,9 @@ public final class ScaleUtils {
 			return latLong.transform(
 					pixelBounds.getCoordinateReferenceSystem(), true);
 		} catch (TransformException e) {
-			ProjectPlugin.log("", e);
+			ProjectPlugin.log("", e); //$NON-NLS-1$
 		} catch (FactoryException e) {
-			ProjectPlugin.log("", e);
+			ProjectPlugin.log("", e); //$NON-NLS-1$
 		}
 		return pixelBounds;
 	}
@@ -400,8 +400,8 @@ public final class ScaleUtils {
 
 			return c;
 		} catch (Exception e) {
-			ProjectPlugin.log("Error transforming point:" + x + "," + y
-					+ " to a coordinate", e);
+			ProjectPlugin.log("Error transforming point:" + x + "," + y //$NON-NLS-1$ //$NON-NLS-2$
+					+ " to a coordinate", e); //$NON-NLS-1$
 		}
 
 		return null;
@@ -669,7 +669,7 @@ public final class ScaleUtils {
     	
     	@Override
     	public String toString() {
-    		return scale+" ["+nextSmaller+", *"+closestMatch+"*, "+nextGreater+"]";
+    		return scale+" ["+nextSmaller+", *"+closestMatch+"*, "+nextGreater+"]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     	}
 	}
 

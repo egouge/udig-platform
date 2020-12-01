@@ -13,10 +13,6 @@ package org.locationtech.udig.tool.info.internal.display;
 
 import java.io.IOException;
 
-import org.locationtech.udig.tool.info.InfoDisplay;
-import org.locationtech.udig.tool.info.InfoPlugin;
-import org.locationtech.udig.tool.info.LayerPointInfo;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
@@ -31,6 +27,9 @@ import org.eclipse.swt.custom.ViewForm;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.ToolBar;
+import org.locationtech.udig.tool.info.InfoDisplay;
+import org.locationtech.udig.tool.info.InfoPlugin;
+import org.locationtech.udig.tool.info.LayerPointInfo;
 
 /**
  * Nested browser used to display LayerPointInfo.
@@ -112,7 +111,7 @@ public class BrowserInfoDisplay extends InfoDisplay {
             try {
                 browser.setText((String) info.acquireValue());
             } catch (IOException e) {
-                InfoPlugin.trace("Could not acquire info value", e);
+                InfoPlugin.trace("Could not acquire info value", e); //$NON-NLS-1$
             }
         }
     }

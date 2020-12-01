@@ -75,7 +75,7 @@ public class MultiLayerRendererItemProvider extends RendererItemProvider impleme
      */
     public String getText(Object object) {
         String label = ((MultiLayerRenderer) object).getName();
-        return label == null || label.length() == 0 ? "MultiLayerRenderer" : label;
+        return label == null || label.length() == 0 ? "MultiLayerRenderer" : label; //$NON-NLS-1$
     }
 
     /**

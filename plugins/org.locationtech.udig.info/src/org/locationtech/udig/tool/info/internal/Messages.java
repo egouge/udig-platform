@@ -19,7 +19,21 @@ public class Messages extends NLS {
 
     public static String AbstractAttachmentDocument_errSaveAsNotSupported;
 
-    public static String DistanceTool_distance;
+    public static String CoverageDescribeLayer_BandInfo;
+
+	public static String CoverageDescribeLayer_CoverageInfo;
+
+	public static String CoverageDescribeLayer_label1;
+
+	public static String CoverageDescribeLayer_label2;
+
+	public static String CoverageDescribeLayer_NoCoverageInfo;
+
+	public static String CoverageDescribeLayer_OutsideArea;
+
+	public static String CoverageDescribeLayer_ValueLabel;
+
+	public static String DistanceTool_distance;
 
     public static String DistanceTool_error;
 

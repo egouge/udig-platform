@@ -22,7 +22,11 @@ public class Messages extends NLS {
 
     public static String AbstractToolbarContributionItem_warning_title;
 
-    public static String AddToNewMap_resource_selection_page_title;
+    public static String AddMapsSelectionListener_ExportLabel;
+
+	public static String AddMapsSelectionListener_ShellTitle;
+
+	public static String AddToNewMap_resource_selection_page_title;
 
     public static String CRSPropertyPage_message;
 
@@ -136,6 +140,8 @@ public class Messages extends NLS {
 
     public static String ApplicationGIS_loadError;
 
+	public static String ApplicationGIS_RenderingTaskName;
+
     public static String AbstractDrawCommand_name;
 
     public static String DropFilterAction_taskname;
@@ -160,7 +166,9 @@ public class Messages extends NLS {
 
     public static String StopAnimationCommand_name;
 
-    public static String Delete_filesystem;
+    public static String DefaultMapViewPart_NewMapName;
+
+	public static String Delete_filesystem;
 
     public static String Delete_delete;
 
@@ -203,6 +211,8 @@ public class Messages extends NLS {
     public static String IssuesView_desc_title;
 
     public static String PalettePropertyPage_Title;
+
+	public static String PDFImageExportFormat_DPILabel;
 
     public static String LayerGeneratedGlyphDecorator_error;
 
@@ -388,7 +398,9 @@ public class Messages extends NLS {
 
     public static String AttributePropertySource_other;
 
-    public static String CoordinateSetPropertySource_coordinates;
+    public static String ConsolidateAction_ErrorTitle;
+
+	public static String CoordinateSetPropertySource_coordinates;
 
     public static String ScemaDescriptor_attributeTypes;
 
@@ -406,7 +418,13 @@ public class Messages extends NLS {
 
     public static String ResourceSelectionPage_title;
 
-    public static String OpenMapCommand_taskName;
+    public static String OpenMapAction_ErrorMessage;
+
+	public static String OpenMapAction_ErrorMessage2;
+
+	public static String OpenMapAction_ErrorTitle;
+
+	public static String OpenMapCommand_taskName;
 
     public static String OpenProject_ErrorMessage;
 
@@ -432,6 +450,8 @@ public class Messages extends NLS {
 
     public static String MapImport_selectLayers;
 
+	public static String MapImportWizard_AddDataTitle;
+
     public static String MapStylePage_editStyles_description;
 
     public static String MapEditorInput_name;
@@ -446,7 +466,15 @@ public class Messages extends NLS {
 
     public static String MapEditor_titleToolTip;
 
-    public static String SelectLayersPage_label_selectLayers_tooltip;
+    public static String SelectedFeatureop_FeatureCountMessage;
+
+	public static String SelectedFeatureop_TaskName;
+
+	public static String SelectedFeatureop_Title;
+
+	public static String SelectedFeatureop_updateTaskName;
+
+	public static String SelectLayersPage_label_selectLayers_tooltip;
 
     public static String SelectLayersPage_label_selectLayers_text;
 
@@ -558,15 +586,25 @@ public class Messages extends NLS {
 
     public static String ExportMapToImageWizard_selectFileTitle;
 
-    public static String ExportMapToImageWizard_ShowErrorMessage;
+    public static String ExportMapToImageWizard_SelectMapLabel;
+
+	public static String ExportMapToImageWizard_ShowErrorMessage;
 
     public static String ExportMapToImageWizard_unableToDeleteMsg;
 
+	public static String ExportMapToImageWizard_UnknownError;
+
     public static String ExportMapToImageWizard_windowtitle;
+
+	public static String ExportMapToImageWizard_WorldFileCreationFail;
 
     public static String ExportMapToImageWizard_writingTaskname;
 
-    public static String ImageExportPage_AspectRatioCheck;
+    public static String ExportMapWizard_SelectionTitle;
+
+	public static String ExportMapWizard_Title;
+
+	public static String ImageExportPage_AspectRatioCheck;
 
     public static String ImageExportPage_directoryToolTip;
 
@@ -622,7 +660,15 @@ public class Messages extends NLS {
 
     public static String MapSelectorPageWithScaleColumn_scaleColumnText;
 
-    public static String ToolManager_zoomToSelectionAction;
+    public static String MapToolPaletteFactory_ActionsGroup;
+
+	public static String MapToolPaletteFactory_NavigationGroup;
+
+	public static String MoveProjectElement_SaveErrorMsg1;
+
+	public static String MoveProjectElement_SaveErrorTitle;
+
+	public static String ToolManager_zoomToSelectionAction;
 
     public static String ToolManager_zoomToSelectionActionTooltip;
 
@@ -669,6 +715,8 @@ public class Messages extends NLS {
     public static String LegendView_new_folder_tooltip;
 
     public static String LayerCRSPropertyPage_warningMessage;
+
+	public static String LayerQueryPropertyPage_DataFilter;
 
     public static String Feature_Attribute_Name;
 

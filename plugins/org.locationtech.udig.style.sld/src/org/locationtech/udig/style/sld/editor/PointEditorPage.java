@@ -65,7 +65,7 @@ public class PointEditorPage extends StyleEditorPage {
          */
         FeatureTypeStyle defaultStyle = null;
         for(FeatureTypeStyle typeStyle : getStyle().featureTypeStyles()) {
-            if(typeStyle.getName().equals("Default Styler")) {
+            if(typeStyle.getName().equals("Default Styler")) { //$NON-NLS-1$
                 defaultStyle = typeStyle;
                 break;
             }
@@ -145,14 +145,14 @@ public class PointEditorPage extends StyleEditorPage {
         buttonComposite.setLayout(new FormLayout());
         
         listAddButton = new Button(buttonComposite, SWT.PUSH);
-        listAddButton.setText("Add");
+        listAddButton.setText(Messages.PointEditorPage_AddButton);
         FormData data = new FormData();
         data.left = new FormAttachment(0, standardPadding);
         data.top = new FormAttachment(0, standardPadding);
         listAddButton.setLayoutData(data);
         
         listUpButton = new Button(buttonComposite, SWT.PUSH);
-        listUpButton.setText("Move Up");
+        listUpButton.setText(Messages.PointEditorPage_UpButton);
         data = new FormData();
         data.left = new FormAttachment(listAddButton, 0, SWT.LEFT);
         data.top = new FormAttachment(listAddButton, standardPadding * 3);
@@ -160,7 +160,7 @@ public class PointEditorPage extends StyleEditorPage {
         listUpButton.setEnabled(false);
         
         listDownButton = new Button(buttonComposite, SWT.PUSH);
-        listDownButton.setText("Move Down");
+        listDownButton.setText(Messages.PointEditorPage_DownButton);
         data = new FormData();
         data.left = new FormAttachment(listAddButton, 0, SWT.LEFT);
         data.top = new FormAttachment(listUpButton, standardPadding);
@@ -168,7 +168,7 @@ public class PointEditorPage extends StyleEditorPage {
         listDownButton.setEnabled(false);
         
         listRemoveButton = new Button(buttonComposite, SWT.PUSH);
-        listRemoveButton.setText("Remove");
+        listRemoveButton.setText(Messages.PointEditorPage_RemoveButton);
         data = new FormData();
         data.top = new FormAttachment(listDownButton, standardPadding * 3);
         data.left = new FormAttachment(listAddButton, 0, SWT.LEFT);
@@ -249,7 +249,7 @@ public class PointEditorPage extends StyleEditorPage {
         anchorXViewer.getControl().setLayoutData(data);
         anchorXViewer.getControl().setToolTipText(Messages.StylingConstants_tooltip_anchor);
         label = new Label(anchorComposite, SWT.NONE);
-        label.setText("X");
+        label.setText(Messages.PointEditorPage_XLabel);
         data = new FormData();
         data.left = new FormAttachment(anchorXViewer.getControl(), 4);
         data.bottom = new FormAttachment(anchorXViewer.getControl(), 0, SWT.BOTTOM) ;
@@ -281,7 +281,7 @@ public class PointEditorPage extends StyleEditorPage {
         displacementXViewer.getControl().setLayoutData(data);
         displacementXViewer.getControl().setToolTipText(Messages.StylingConstants_tooltip_displacement);
         label = new Label(displacementComposite, SWT.NONE);
-        label.setText("X");
+        label.setText(Messages.PointEditorPage_XLabel2);
         data = new FormData();
         data.left = new FormAttachment(displacementXViewer.getControl(), 4, SWT.RIGHT);
         data.bottom = new FormAttachment(displacementXViewer.getControl(), 0, SWT.BOTTOM);
@@ -379,9 +379,9 @@ public class PointEditorPage extends StyleEditorPage {
      * TODO: implement stuff
      */
     private String[] getGraphicRepresentations() {
-        return new String[] {"External Graphic (PNG)",
-                "External Graphic (BMP)",
-                "Well Known Mark (Star)"};
+        return new String[] {Messages.PointEditorPage_PNG,
+                Messages.PointEditorPage_BMP,
+                Messages.PointEditorPage_WellKnownMark};
     }
     
     /*
@@ -396,7 +396,7 @@ public class PointEditorPage extends StyleEditorPage {
 //                getFilterFactory().createLiteralExpression("Opaque")};
 //    }
     private String[] getOpacityList() {
-        return new String[] {"Clear", "25%", "50%", "75%", "Opaque"};
+        return new String[] {Messages.PointEditorPage_ClearOpacity, "25%", "50%", "75%", Messages.PointEditorPage_OpaqugOpacity};  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ 
     }
     
     private int[] getSizeList() {
@@ -404,12 +404,12 @@ public class PointEditorPage extends StyleEditorPage {
     }
     
     private String[] getRotationList() {
-        return new String[] {"-150�", "-135�", "-120�", "-90�", "-60�", "-45�", "-30�", "0�", 
-                "30�", "45�", "60�", "90�", "120�", "135�", "150�", "180�"};
+        return new String[] {"-150�", "-135�", "-120�", "-90�", "-60�", "-45�", "-30�", "0�",  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$
+                "30�", "45�", Messages.PointEditorPage_25, "90�", "120�", "135�", "150�", "180�"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ 
     }
     
     private String[] getAnchorList() {
-        return new String[] {"0%", "25%", "50%", "75%", "100%"};
+        return new String[] {"0%", "25%", "50%", "75%", "100%"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
     }
     
     private int[] getDisplacementList() {
@@ -453,7 +453,7 @@ public class PointEditorPage extends StyleEditorPage {
                 public void widgetSelected( SelectionEvent e ) {
                     fancyCombo.remove(0);
                     fancyCombo.removeSelectionListener(this);
-                    SLDPlugin.log("Removing selection listener", null);
+                    SLDPlugin.log("Removing selection listener", null); //$NON-NLS-1$
                 }
             };
             fancyCombo.addSelectionListener(listener);

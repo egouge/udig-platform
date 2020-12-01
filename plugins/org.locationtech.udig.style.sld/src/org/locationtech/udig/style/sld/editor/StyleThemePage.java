@@ -165,35 +165,35 @@ public class StyleThemePage extends StyleEditorPage {
     // red-green-blue
     private static final String BORDER_COLOR_KEY = "theme_page_border_color"; //$NON-NLS-1$
     // Key for saving the opacity in the layer's blackboard.  Integer
-    private static final String OPACITY_KEY = "theme_page_opacity";
+    private static final String OPACITY_KEY = "theme_page_opacity"; //$NON-NLS-1$
     // Key for saving the AttributeDescriptor in the layer's blackboard.  String
-    private static final String ATTRIBUTE_KEY = "theme_page_attribute";
+    private static final String ATTRIBUTE_KEY = "theme_page_attribute"; //$NON-NLS-1$
     // Key for saving the Number of classes in the layer's blackboard.  Integer
-    private static final String CLASSES_KEY = "theme_page_classes";
+    private static final String CLASSES_KEY = "theme_page_classes"; //$NON-NLS-1$
     // Key for saving the BreakType in the layer's blackboard.  Integer
-    private static final String BREAK_KEY = "theme_page_break";
+    private static final String BREAK_KEY = "theme_page_break"; //$NON-NLS-1$
     // Key for saving the normalize attribute in the layer's blackboard.  String
-    private static final String NORMALIZE_KEY = "theme_page_normalize";
+    private static final String NORMALIZE_KEY = "theme_page_normalize"; //$NON-NLS-1$
     // Key for saving the else in the layer's blackboard.  Boolean
-    private static final String ELSE_KEY = "theme_page_else";
+    private static final String ELSE_KEY = "theme_page_else"; //$NON-NLS-1$
     // Key for saving the Palette category in the layer's blackboard.  String
-    private static final String PALETTE_CATEGORY_KEY = "theme_page_palette_category";
+    private static final String PALETTE_CATEGORY_KEY = "theme_page_palette_category"; //$NON-NLS-1$
     // Key for saving the Colorblind in the layer's blackboard.  Boolean
-    private static final String COLOR_BLIND_KEY = "theme_page_color_blind";
+    private static final String COLOR_BLIND_KEY = "theme_page_color_blind"; //$NON-NLS-1$
     // Key for saving the CRT in the layer's blackboard.  Boolean
-    private static final String CRT_KEY = "theme_page_crt";
+    private static final String CRT_KEY = "theme_page_crt"; //$NON-NLS-1$
     // Key for saving the Projector in the layer's blackboard.  Boolean
-    private static final String PROJECTOR_KEY = "theme_page_projector";
+    private static final String PROJECTOR_KEY = "theme_page_projector"; //$NON-NLS-1$
     // Key for saving the LCD in the layer's blackboard.  Boolean
-    private static final String LCD_KEY = "theme_page_lcd";
+    private static final String LCD_KEY = "theme_page_lcd"; //$NON-NLS-1$
     // Key for saving the Printing in the layer's blackboard.  Boolean
-    private static final String PRINT_KEY = "theme_page_print";
+    private static final String PRINT_KEY = "theme_page_print"; //$NON-NLS-1$
     // Key for saving the photocopy in the layer's blackboard.  Boolean
-    private static final String PHOTO_COPY_KEY = "theme_page_copy";
+    private static final String PHOTO_COPY_KEY = "theme_page_copy"; //$NON-NLS-1$
     // Key for saving the Palette in the layer's blackboard.  String (palette name)
-    private static final String PALETTE_KEY = "theme_page_palette";
+    private static final String PALETTE_KEY = "theme_page_palette"; //$NON-NLS-1$
     // Key for memento which contains the custom palette's colors
-    private static final String CUSTOM_PALETTE = "custom_palette_key";
+    private static final String CUSTOM_PALETTE = "custom_palette_key"; //$NON-NLS-1$
 
 
     private HashMap<Integer,Control> pageControls = new HashMap<Integer,Control>();
@@ -660,7 +660,7 @@ public class StyleThemePage extends StyleEditorPage {
         GridData gridData;
         Label opacityLabel = new Label(compBottomLeftButtons, SWT.NONE);
         opacityLabel.setFont(font);
-        opacityLabel.setText("Outline"); 
+        opacityLabel.setText(Messages.StyleThemePage_Outline); 
         gridData = new GridData(SWT.LEFT, SWT.DEFAULT, false, false);
         opacityLabel.setLayoutData(gridData);
 
@@ -1905,7 +1905,7 @@ public class StyleThemePage extends StyleEditorPage {
     	StyleBlackboard bb = getSelectedLayer().getStyleBlackboard();
     	IMemento memento = (IMemento) bb.get(DialogSettingsStyleContent.EXTENSION_ID);
     	if(memento == null ){
-    		memento = XMLMemento.createWriteRoot("ThemeingData");
+    		memento = XMLMemento.createWriteRoot("ThemeingData"); //$NON-NLS-1$
     	}
 
     	putIntFromCombo(memento, OPACITY_KEY, COMBO_OPACITY);

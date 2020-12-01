@@ -36,12 +36,12 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 public class AOIServiceImpl implements IAOIService {
 
     /** This is the AOI extension point processed to get AOIStrategy entries */
-    private static final String EXT_ID = "org.locationtech.udig.ui.aoi";
+    private static final String EXT_ID = "org.locationtech.udig.ui.aoi"; //$NON-NLS-1$
 
     /**
      * the id of the all strategy (ie the default)
      */
-    public static final String STRATEGY_ALL_ID = "org.locationtech.udig.ui.aoiAll";
+    public static final String STRATEGY_ALL_ID = "org.locationtech.udig.ui.aoiAll"; //$NON-NLS-1$
 
     /*
      * A list of all the strategies
@@ -61,7 +61,7 @@ public class AOIServiceImpl implements IAOIService {
     @Override
     public void addListener( AOIListener listener ) {
         if (listener == null) {
-            throw new NullPointerException("AOIService listener required to be non null");
+            throw new NullPointerException("AOIService listener required to be non null"); //$NON-NLS-1$
         }
         listeners.add(listener);
     }
@@ -86,7 +86,7 @@ public class AOIServiceImpl implements IAOIService {
                     listener.handleEvent(event);
                 }
             } catch (Exception e) {
-                UiPlugin.log(getClass(), "notifyListeners", e);
+                UiPlugin.log(getClass(), "notifyListeners", e); //$NON-NLS-1$
             }
         }
     }

@@ -419,7 +419,7 @@ public class SLDs extends SLD {
     /**
      * The type name that can be used in an SLD in the featuretypestyle that matches all feature types.
      */
-    public static final String GENERIC_FEATURE_TYPENAME = "Feature";
+    public static final String GENERIC_FEATURE_TYPENAME = "Feature"; //$NON-NLS-1$
 
     public static StyledLayerDescriptor parseSLD(File file) throws IOException {
         StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory();
@@ -442,7 +442,7 @@ public class SLDs extends SLD {
         }
         catch(Exception ignore){
             // we are ignoring this error and will try the more forgiving option below
-            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+file, ignore);
+            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+file, ignore); //$NON-NLS-1$
         }
         finally {
             if( reader != null){
@@ -482,7 +482,7 @@ public class SLDs extends SLD {
         }
         catch(Exception ignore){
             // we are ignoring this error and will try the more forgiving option below
-            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+url, ignore);
+            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+url, ignore); //$NON-NLS-1$
         }
         finally {
             if( input != null){
@@ -519,7 +519,7 @@ public class SLDs extends SLD {
         }
         catch(Exception ignore){
             // we are ignoring this error and will try the more forgiving option below
-            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+file, ignore);
+            UiPlugin.trace(SLDs.class,"SLD 1.1 configuration failed to parse "+file, ignore); //$NON-NLS-1$
         }
         finally {
             if( reader != null){

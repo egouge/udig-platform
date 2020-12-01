@@ -1,7 +1,7 @@
 package org.locationtech.udig.catalog.wms.preferences;
 
 import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
-
+import org.locationtech.udig.catalog.wms.internal.Messages;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.ui.IWorkbench;
@@ -24,14 +24,14 @@ implements IWorkbenchPreferencePage {
 	@Override
 	public void init(IWorkbench workbench) {
 		setPreferenceStore(WmsPlugin.getDefault().getPreferenceStore());
-		setDescription("Configuration Options about WMS connections");
+		setDescription(Messages.WmsPreferencePage_description);
 	}
 
 	@Override
 	protected void createFieldEditors() {
 		
 		addField(new IntegerFieldEditor(WmsPreferenceConstants.WMS_RESPONSE_TIMEOUT, 
-				"WMS response timeout", getFieldEditorParent()));   
+				Messages.WmsPreferencePage_timeout, getFieldEditorParent()));   
 	}
 
 }

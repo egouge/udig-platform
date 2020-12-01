@@ -12,15 +12,14 @@ package org.locationtech.udig.project.internal.commands.selection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.opengis.filter.Filter;
 
 /**

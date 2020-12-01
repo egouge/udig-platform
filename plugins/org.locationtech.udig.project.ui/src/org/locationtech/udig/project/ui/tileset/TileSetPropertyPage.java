@@ -42,7 +42,7 @@ public class TileSetPropertyPage extends PropertyPage implements IWorkbenchPrope
         try {
             info = resource.getInfo(null);
         } catch (IOException e) {
-            ProjectUIPlugin.trace( TileSetPropertyPage.class, "Unable to obtain info:"+e, e );
+            ProjectUIPlugin.trace( TileSetPropertyPage.class, "Unable to obtain info:"+e, e ); //$NON-NLS-1$
         }
         if (info != null) {
             this.tileControlPage = new TileSetControl(resource);

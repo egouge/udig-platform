@@ -11,18 +11,16 @@
  */
 package org.locationtech.udig.tools.internal;
 
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Display;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
 import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
 import org.locationtech.udig.project.ui.render.displayAdapter.ViewportPane;
 import org.locationtech.udig.project.ui.tool.AbstractModalTool;
 import org.locationtech.udig.project.ui.tool.ModalTool;
-
-import org.eclipse.swt.widgets.Canvas;
-import org.eclipse.swt.widgets.Display;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-
-import org.locationtech.jts.geom.Coordinate;
 
 /**
  * This is a tool that pans without using complex Transforms. It pans using the scoll functionality

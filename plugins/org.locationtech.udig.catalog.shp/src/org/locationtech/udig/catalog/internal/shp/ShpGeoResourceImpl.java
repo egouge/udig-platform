@@ -175,9 +175,9 @@ public class ShpGeoResourceImpl extends IGeoResource {
         if( !fileID.isFile() ){
             return null; // we are only checking for sidecar files 
         }
-        File file = fileID.toFile("sld");
+        File file = fileID.toFile("sld"); //$NON-NLS-1$
         if( !file.exists()){
-            file =fileID.toFile("SLD");
+            file =fileID.toFile("SLD"); //$NON-NLS-1$
             if( !file.exists()){
                 return null; // sidecar file not avaialble
             }
@@ -287,7 +287,7 @@ public class ShpGeoResourceImpl extends IGeoResource {
             } else if (sym instanceof TextSymbolizer) {
                 visit((TextSymbolizer) sym);
             } else
-                throw new RuntimeException("visit(Symbolizer) unsupported");
+                throw new RuntimeException("visit(Symbolizer) unsupported"); //$NON-NLS-1$
         }
 
         public void visit( PointSymbolizer ps ) {

@@ -60,7 +60,7 @@ public final class CacheContent extends StyleContent {
     public void save( IMemento memento, Object value ) {
         Boolean style = (Boolean) value;
         
-        memento.putBoolean("cache", style );
+        memento.putBoolean("cache", style ); //$NON-NLS-1$
         memento.putString("type", "CacheStyle"); //$NON-NLS-1$ //$NON-NLS-2$
         memento.putString("version", "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -71,7 +71,7 @@ public final class CacheContent extends StyleContent {
      * @see org.locationtech.udig.project.StyleContent#load(org.eclipse.ui.IMemento)
      */
     public Object load( IMemento momento ) {
-        Boolean style = momento.getBoolean("cache");
+        Boolean style = momento.getBoolean("cache"); //$NON-NLS-1$
         
         return style;
     }
@@ -107,8 +107,8 @@ public final class CacheContent extends StyleContent {
 //        }
         if( serviceID.isFile() ){
             String ext = serviceID.toExtension();
-            if( ext.toLowerCase().endsWith("jpg") ||
-                    ext.toLowerCase().endsWith("jpeg")){
+            if( ext.toLowerCase().endsWith("jpg") || //$NON-NLS-1$
+                    ext.toLowerCase().endsWith("jpeg")){ //$NON-NLS-1$
                 return true; // we want to cache JPEG
             }
         }

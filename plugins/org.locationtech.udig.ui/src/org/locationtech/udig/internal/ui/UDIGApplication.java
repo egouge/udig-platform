@@ -101,14 +101,15 @@ public class UDIGApplication implements IApplication {
                         .getBundle("org.locationtech.udig").getResource("about.mappings"); //$NON-NLS-1$ //$NON-NLS-2$  
                 String mappingsPathPath = FileLocator.toFileURL(mappingsUrl).getPath();
 
-                BufferedReader bR = new BufferedReader(new FileReader(mappingsPathPath));
-                String udigVersion = "version not available";
+                String udigVersion = "version not available"; //$NON-NLS-1$
                 String line = null;
-                while( (line = bR.readLine()) != null ) {
-                    if (line.startsWith("1=")) {
-                        udigVersion = line.split("=")[1];
-                        break;
-                    }
+                try(BufferedReader bR = new BufferedReader(new FileReader(mappingsPathPath))){
+                    while( (line = bR.readLine()) != null ) {
+	                    if (line.startsWith("1=")) { //$NON-NLS-1$
+	                        udigVersion = line.split("=")[1]; //$NON-NLS-1$
+	                        break;
+	                    }
+	                }
                 }
 
                 System.out.println("Version Information:"); //$NON-NLS-1$
@@ -137,8 +138,8 @@ public class UDIGApplication implements IApplication {
             display.dispose();
         }
         if (returnCode == PlatformUI.RETURN_RESTART) {
-        	String systemExitCode = System.getProperty("eclipse.exitcode");
-			if("24".equals(systemExitCode)) {
+        	String systemExitCode = System.getProperty("eclipse.exitcode"); //$NON-NLS-1$
+			if("24".equals(systemExitCode)) { //$NON-NLS-1$
         		return EXIT_RELAUNCH;
         	}
             return EXIT_RESTART;
@@ -161,7 +162,6 @@ public class UDIGApplication implements IApplication {
      * <p>
      * Subclasses can override, but pleaes call super.
      */
-    @SuppressWarnings("restriction")
     protected boolean init() {
         
         // We should kick the libs plugin to load the EPSG database now

@@ -13,6 +13,18 @@ package org.locationtech.udig.tools.internal;
 
 import java.awt.Point;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.Command;
 import org.locationtech.udig.project.command.NavCommand;
@@ -28,20 +40,6 @@ import org.locationtech.udig.project.ui.tool.AbstractModalTool;
 import org.locationtech.udig.project.ui.tool.ModalTool;
 import org.locationtech.udig.project.ui.tool.options.ToolOptionContributionItem;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Canvas;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
-
 /**
  * Provides Pan functionality for MapViewport; the technique used for panning is controlled via
  * preferences.
@@ -55,11 +53,11 @@ public class PanTool extends AbstractModalTool implements ModalTool {
     public static class OptionContribtionItem extends ToolOptionContributionItem {
         public IPreferenceStore fillFields( Composite parent ) {
             Button check = new Button(parent,  SWT.CHECK );
-            check.setText("Scale");
+            check.setText(Messages.PanTool_ScaleButton);
             addField( NavigationToolPreferencePage.SCALE, check );
          
             Button tiled = new Button(parent,  SWT.CHECK );
-            tiled.setText("Tiled");
+            tiled.setText(Messages.PanTool_TiledButton);
             addField( NavigationToolPreferencePage.TILED, tiled );
             
             return ToolsPlugin.getDefault().getPreferenceStore();
@@ -173,7 +171,7 @@ public class PanTool extends AbstractModalTool implements ModalTool {
         }
 
         public String getName() {
-            return "PanAndDiscard";
+            return "PanAndDiscard"; //$NON-NLS-1$
         }
 
         public void run( IProgressMonitor monitor ) throws Exception {

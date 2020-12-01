@@ -25,6 +25,7 @@ import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Project;
 import org.locationtech.udig.project.internal.impl.MapImpl;
 import org.locationtech.udig.project.ui.UDIGGenericAction;
+import org.locationtech.udig.project.ui.internal.Messages;
 
 /**
  * @author Andrea Antonello - www.hydrologis.com
@@ -43,7 +44,7 @@ public class ConsolidateAction extends UDIGGenericAction {
         projectDataFolder = checkProjectEnvironment();
 
         if (projectDataFolder == null) {
-            throw new RuntimeException("Problems consolidating...");
+            throw new RuntimeException("Problems consolidating..."); //$NON-NLS-1$
         }
 
         // get the maps
@@ -64,10 +65,10 @@ public class ConsolidateAction extends UDIGGenericAction {
                         if (msg != null) {
 
                             MessageDialog.openError(PlatformUI.getWorkbench().getDisplay()
-                                    .getActiveShell(), "Comsolidation Error", msg);
+                                    .getActiveShell(), Messages.ConsolidateAction_ErrorTitle, msg);
                         }
                     } else {
-                        System.out.println("Not resolved: " + layer.getName());
+                        System.out.println("Not resolved: " + layer.getName()); //$NON-NLS-1$
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -80,7 +81,7 @@ public class ConsolidateAction extends UDIGGenericAction {
         URI projectUri = project.eResource().getURI();
         String devicePath = projectUri.devicePath();
         String projectFolderFile = new File(devicePath).getParent();
-        File dataFolder = new File(projectFolderFile + File.separator + "data");
+        File dataFolder = new File(projectFolderFile + File.separator + "data"); //$NON-NLS-1$
         if (dataFolder.exists() || dataFolder.mkdirs()) {
             return dataFolder;
         }

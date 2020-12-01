@@ -84,7 +84,7 @@ public class ServiceFactoryImpl extends IServiceFactory {
      */
     private boolean isGeneric( ServiceExtension serviceExtension ){
         String name = serviceExtension.getClass().getName();
-        return name.toLowerCase().contains("geotools");
+        return name.toLowerCase().contains("geotools"); //$NON-NLS-1$
     }
     
     /*
@@ -136,7 +136,7 @@ public class ServiceFactoryImpl extends IServiceFactory {
                 if (CatalogPlugin.getDefault().isDebugging()) {
                     String name = serviceExtension.getClass().getName();
                     IStatus warning = new Status(IStatus.WARNING, CatalogPlugin.ID, name
-                            + " could not create params " + targetUrl, t);
+                            + " could not create params " + targetUrl, t); //$NON-NLS-1$
                     CatalogPlugin.getDefault().getLog().log(warning);
                 }
             }
@@ -240,12 +240,12 @@ public class ServiceFactoryImpl extends IServiceFactory {
 
         if (monitor == null)
             monitor = new NullProgressMonitor();
-        monitor.beginTask("dispose", list.size() * 10);
+        monitor.beginTask("dispose", list.size() * 10); //$NON-NLS-1$
         for( IService service : list ) {
             try {
                 service.dispose(new SubProgressMonitor(monitor, 10));
             } catch (Throwable t) {
-                CatalogPlugin.trace("Dispose " + service, t);
+                CatalogPlugin.trace("Dispose " + service, t); //$NON-NLS-1$
             }
         }
         monitor.done();

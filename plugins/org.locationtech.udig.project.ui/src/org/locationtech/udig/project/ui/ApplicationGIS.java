@@ -296,7 +296,7 @@ public class ApplicationGIS {
 
         final List<UDIGEditorInputDescriptor> newInputs = new ArrayList<UDIGEditorInputDescriptor>();
 
-        List<IConfigurationElement> extensions = ExtensionPointList.getExtensionPointList("org.locationtech.udig.project.ui.editorInputs");
+        List<IConfigurationElement> extensions = ExtensionPointList.getExtensionPointList("org.locationtech.udig.project.ui.editorInputs"); //$NON-NLS-1$
         Class toMatch;
         if( projectElement instanceof ProjectElementAdapter){
             toMatch = ((ProjectElementAdapter)projectElement).getBackingObject().getClass();
@@ -814,7 +814,7 @@ public class ApplicationGIS {
                     SortedSet<RenderContext> sortedContexts)
                     throws InvocationTargetException {
                 
-                monitor.beginTask("Rendering map", sortedContexts.size());
+                monitor.beginTask(Messages.ApplicationGIS_RenderingTaskName, sortedContexts.size());
                 RenderContext mainContext = decisive.getContext();
 
                 ILabelPainter labelPainter = mainContext.getLabelPainter();
@@ -977,7 +977,7 @@ public class ApplicationGIS {
      */
     public static void setActiveMapTracker( ActiveMapTracker activeMapTrackerToSet ) {
         if (activeMapTracker != null ){
-            throw new Error("This method has already been called! It is an error for non-uDig code to call this method");
+            throw new Error("This method has already been called! It is an error for non-uDig code to call this method"); //$NON-NLS-1$
         }
         activeMapTracker = activeMapTrackerToSet;
     }

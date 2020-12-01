@@ -129,7 +129,7 @@ public abstract class State {
     @Override
     public String toString() {
     	StringBuffer text = new StringBuffer();
-    	text.append("State:");
+    	text.append("State:"); //$NON-NLS-1$
     	text.append( getName() );
     	return text.toString();
     }

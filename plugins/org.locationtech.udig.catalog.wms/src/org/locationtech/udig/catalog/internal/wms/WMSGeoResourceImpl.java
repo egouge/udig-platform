@@ -100,9 +100,9 @@ public class WMSGeoResourceImpl extends IGeoResource {
         try {
             String name = layer.getName();
             if (name == null) {
-                WmsPlugin.log("Can't get a unique name for the identifier of WMSGeoResource: "
+                WmsPlugin.log("Can't get a unique name for the identifier of WMSGeoResource: " //$NON-NLS-1$
                         + layer, null);
-                throw new RuntimeException("This should be a WMSFolder not an IGeoResource");
+                throw new RuntimeException("This should be a WMSFolder not an IGeoResource"); //$NON-NLS-1$
             }
             identifier = new URL(service.getIdentifier().toString() + "#" + name); //$NON-NLS-1$
 
@@ -376,7 +376,6 @@ public class WMSGeoResourceImpl extends IGeoResource {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private static ImageDescriptor requestImage( IProgressMonitor monitor, Layer layer,
             WMSServiceImpl service ) throws IOException {
         WebMapServer wms = service.getWMS(monitor);
@@ -445,7 +444,7 @@ public class WMSGeoResourceImpl extends IGeoResource {
         try {
             ImageDescriptor imageDescriptor;
             request.setFormat(desiredFormat);
-            if( wms.getCapabilities().getVersion().startsWith("1.3") ){
+            if( wms.getCapabilities().getVersion().startsWith("1.3") ){ //$NON-NLS-1$
                 // NO STYLE as it is optional
             }
             else {
@@ -513,7 +512,6 @@ public class WMSGeoResourceImpl extends IGeoResource {
     }
 
     private class WMSResourceInfo extends IGeoResourceInfo {
-        @SuppressWarnings("unchecked")
         WMSResourceInfo( IProgressMonitor monitor ) throws IOException {
             WebMapServer wms = service(monitor).getWMS(monitor);
             WMSCapabilities caps = wms.getCapabilities();
@@ -555,7 +553,6 @@ public class WMSGeoResourceImpl extends IGeoResource {
             keywords = keywordsFromWMS.toArray(new String[keywordsFromWMS.size()]);
         }
 
-        @SuppressWarnings("unchecked")
         private void calculateBounds() {
             org.opengis.geometry.Envelope env = null;
             CoordinateReferenceSystem crs = null;

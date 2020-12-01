@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Map;
 
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
@@ -25,6 +26,7 @@ import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.IServiceFactory;
 import org.locationtech.udig.catalog.ServiceMover;
 import org.locationtech.udig.catalog.URLUtils;
+import org.locationtech.udig.catalog.shp.internal.Messages;
 
 /**
  * This class represents a Shapefile that is known to be on disk.
@@ -70,7 +72,7 @@ public class ShapeMover implements ServiceMover {
     		/*
              * shapefile are moved into a folder that has to exist
              */
-            return "Indicated directory does not exist:"+destinationFolder; 
+            return MessageFormat.format(Messages.ShapeMover_DirectoryNotFound,destinationFolder); 
     	}
         Map<String, Serializable> parametersMap = shapefile.getConnectionParams();
         
@@ -78,7 +80,7 @@ public class ShapeMover implements ServiceMover {
         File file = URLUtils.urlToFile(url);
         
         String completeShapeFilePath = file.getAbsolutePath();
-        completeShapeFilePath = completeShapeFilePath.replaceAll("\\\\", "/");
+        completeShapeFilePath = completeShapeFilePath.replaceAll("\\\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
         int dotPosition = completeShapeFilePath.lastIndexOf("."); //$NON-NLS-1$
         String completeShapefileBasePath = completeShapeFilePath.substring(0, dotPosition);
 
@@ -86,7 +88,7 @@ public class ShapeMover implements ServiceMover {
         try {
 			updateConnectionParameters(destinationFolder, parametersMap, completeShapeFilePath);
 		} catch (MalformedURLException e) {
-			return "Failed to update the service's connection Parameters";
+			return Messages.ShapeMover_UpdateFailed;
 		}
         
         for( String extention : extentions ) {
@@ -96,7 +98,7 @@ public class ShapeMover implements ServiceMover {
                 boolean success = tmpFile.renameTo(new File(destinationFolder, tmpFile
                         .getName()));
                 if (!success) {
-                    return "Wasn't able to move file: " + tmpFile.getAbsolutePath();
+                    return MessageFormat.format(Messages.ShapeMover_MoveFailure, tmpFile.getAbsolutePath());
                 }
             } else {// try uppercase
                 extention = extention.toUpperCase();
@@ -106,7 +108,7 @@ public class ShapeMover implements ServiceMover {
                     boolean success = tmpFile.renameTo(new File(destinationFolder, tmpFile
                             .getName()));
                     if (!success) {
-                        return "Wasn't able to move file: " + tmpFile.getAbsolutePath();
+                        return MessageFormat.format(Messages.ShapeMover_MoveFailure, tmpFile.getAbsolutePath());
                     }
                 }
             }
@@ -122,13 +124,13 @@ public class ShapeMover implements ServiceMover {
 	private void updateConnectionParameters(File destinationFolder,
 			Map<String, Serializable> parametersMap, String completeShapeFilePath)
 			throws MalformedURLException {
-		int lastSlash = completeShapeFilePath.lastIndexOf("/");
+		int lastSlash = completeShapeFilePath.lastIndexOf("/"); //$NON-NLS-1$
 		// keep the slash
 		String shpName = completeShapeFilePath.substring(lastSlash);
 		String destinationPath = destinationFolder.getAbsolutePath();
 		String urlString = destinationPath+shpName;
-		urlString = urlString.replaceAll("//", "/");
-		URL url = new URL("file://"+urlString);
+		urlString = urlString.replaceAll("//", "/"); //$NON-NLS-1$ //$NON-NLS-2$
+		URL url = new URL("file://"+urlString); //$NON-NLS-1$
 		parametersMap.put(ShapefileDataStoreFactory.URLP.key, 
 				url);
 	}

@@ -54,7 +54,6 @@ import org.geotools.util.Range;
  * @author jesse
  * @since 1.1.0
  */
-@SuppressWarnings("deprecation")
 public class MinMaxScaleCalculator implements StyleVisitor {
     
     private Set<Range<Double>> ranges = new HashSet<Range<Double>>();

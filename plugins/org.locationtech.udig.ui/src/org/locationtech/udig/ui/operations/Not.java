@@ -45,7 +45,7 @@ public class Not implements OpFilter {
 
     @Override
     public String toString() {
-        return "NOT "+filter;
+        return "NOT "+filter; //$NON-NLS-1$
     }
     
 }

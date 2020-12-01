@@ -10,15 +10,14 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.locationtech.udig.project.IMapListener;
 import org.locationtech.udig.project.MapEvent;
 import org.locationtech.udig.project.MapEvent.MapEventType;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.ProjectPlugin;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
 /**
  * Listens to the EMF events fired by maps and converts them into Map Events and fires the events.

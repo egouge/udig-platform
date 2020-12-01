@@ -11,20 +11,15 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
-import org.locationtech.udig.project.Interaction;
-
-import org.locationtech.udig.project.internal.ProjectPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.locationtech.udig.project.Interaction;
+import org.locationtech.udig.project.internal.ProjectPackage;
 
 /**
  * <!-- begin-user-doc -->

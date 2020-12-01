@@ -123,7 +123,7 @@ public class MemoryCatalog extends ISearch {
         URL query = resourceId.toURL();
         Set<IResolve> found = new LinkedHashSet<IResolve>();
 
-        monitor.beginTask("find " + resourceId, services.size());
+        monitor.beginTask("find " + resourceId, services.size()); //$NON-NLS-1$
         for( IService service : services ) {
             ID id = service.getID();
             URL identifier = service.getIdentifier();
@@ -181,7 +181,7 @@ public class MemoryCatalog extends ISearch {
             throws IOException {
         if (CatalogPlugin.getDefault().isDebugging()) {
             if (Display.getCurrent() != null) {
-                throw new IllegalStateException("search called from display thread");
+                throw new IllegalStateException("search called from display thread"); //$NON-NLS-1$
             }
         }
         if (monitor == null) monitor = new NullProgressMonitor();
@@ -218,11 +218,11 @@ public class MemoryCatalog extends ISearch {
                                 result.add(resource);
                             }
                         } catch (Throwable t) {
-                            CatalogPlugin.log("Could not search in resource:" + resoruceID, t);
+                            CatalogPlugin.log("Could not search in resource:" + resoruceID, t); //$NON-NLS-1$
                         }
                     }
                 } catch (IOException e) {
-                    CatalogPlugin.log("Could not search in service:" + serviceID, e);
+                    CatalogPlugin.log("Could not search in service:" + serviceID, e); //$NON-NLS-1$
                 } finally {
                     submonitor.done();
                 }

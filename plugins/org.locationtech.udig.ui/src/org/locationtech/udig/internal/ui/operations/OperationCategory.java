@@ -43,7 +43,7 @@ public class OperationCategory extends MenuManager{
 	 */
 	public OperationCategory(IConfigurationElement element) {
 		super( element.getAttribute("name"), element.getAttribute("id")); //$NON-NLS-1$ //$NON-NLS-2$
-		description = element.getAttribute("description");
+		description = element.getAttribute("description"); //$NON-NLS-1$
 	}
 	
 	public MenuManager createContextMenu(){

@@ -6,15 +6,6 @@ package org.locationtech.udig.project.internal.impl;
 import java.util.Collection;
 import java.util.List;
 
-import org.locationtech.udig.project.ILegendItem;
-import org.locationtech.udig.project.internal.ContextModel;
-import org.locationtech.udig.project.internal.Folder;
-import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.project.internal.LayerLegendItem;
-import org.locationtech.udig.project.internal.Map;
-import org.locationtech.udig.project.internal.ProjectFactory;
-import org.locationtech.udig.project.internal.ProjectPackage;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -25,12 +16,18 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.opengis.filter.Filter;
-
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.ILegendItem;
+import org.locationtech.udig.project.internal.ContextModel;
+import org.locationtech.udig.project.internal.Folder;
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.project.internal.LayerLegendItem;
+import org.locationtech.udig.project.internal.Map;
+import org.locationtech.udig.project.internal.ProjectFactory;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.opengis.filter.Filter;
 
 /**
  * ContextModel responsible for holding on to layers for an IMap.

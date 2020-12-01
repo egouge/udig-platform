@@ -9,15 +9,11 @@
  */
 package org.locationtech.udig.project.internal.command.navigation;
 
-import java.awt.Rectangle;
-
-import org.locationtech.udig.project.command.MapCommand;
-import org.locationtech.udig.project.internal.Messages;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.command.MapCommand;
+import org.locationtech.udig.project.internal.Messages;
 
 /**
  * Increases or decreases the size of the viewport(in world space) by a constant factor, zoom. The

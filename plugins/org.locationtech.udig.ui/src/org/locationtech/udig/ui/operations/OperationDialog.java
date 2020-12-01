@@ -101,7 +101,7 @@ public class OperationDialog extends TitleAreaDialog implements ITreeContentProv
     
     @Override
     protected void configureShell( Shell newShell ) {
-        newShell.setText("Operations");
+        newShell.setText(Messages.OperationDialog_OpShell);
         super.configureShell(newShell);
     }
     @Override
@@ -111,8 +111,8 @@ public class OperationDialog extends TitleAreaDialog implements ITreeContentProv
     @Override
     protected Control createContents( Composite parent ) {
         Control control = super.createContents(parent);
-        setTitle("Operations");
-        setMessage("What would you like to do:");
+        setTitle(Messages.OperationDialog_Title);
+        setMessage(Messages.OperationDialog_Message);
         return control;
     }
     @Override
@@ -143,7 +143,7 @@ public class OperationDialog extends TitleAreaDialog implements ITreeContentProv
                 Object selection = s.getFirstElement();
                 String title=null;
                 if( selection instanceof OperationDialog){
-                    setMessage( "What would you like to do:");
+                    setMessage( Messages.OperationDialog_Message);
                     button.setEnabled(false);
                 }
                 else if (selection instanceof OperationCategory){
@@ -152,7 +152,7 @@ public class OperationDialog extends TitleAreaDialog implements ITreeContentProv
                         setMessage( category.getDescription() );
                     }
                     else {
-                        setMessage( "Please select an operation:");
+                        setMessage( Messages.OperationDialog_Operation);
                     }
                     button.setEnabled(false);
                 }

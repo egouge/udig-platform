@@ -185,7 +185,7 @@ public class BasicFeatureRenderer extends RendererImpl {
         CoordinateReferenceSystem dataCRS = schema.getCoordinateReferenceSystem();
         if (!layerCRS.equals(dataCRS)) {
             // need to force the coordinate reference system to match the layer definition
-            FeatureLayer featureLayer = new FeatureLayer(featureSource, style, layer.getName()); //$NON-NLS-1$
+            FeatureLayer featureLayer = new FeatureLayer(featureSource, style, layer.getName());
             if( query == null ){
                 query = new Query(schema.getTypeName());
             }
@@ -274,8 +274,8 @@ public class BasicFeatureRenderer extends RendererImpl {
         }
 
         if(!rbe.isEstimateAccurate())
-            RendererPlugin.log("Assuming rendering buffer = " + rbe.getBuffer()
-                + ", but estimation is not accurate, you may want to set a buffer manually", null);
+            RendererPlugin.log("Assuming rendering buffer = " + rbe.getBuffer() //$NON-NLS-1$
+                + ", but estimation is not accurate, you may want to set a buffer manually", null); //$NON-NLS-1$
 
         // the actual amount we have to grow the rendering area by is half of the stroke/symbol sizes
         // plus one extra pixel for antialiasing effects
@@ -291,7 +291,7 @@ public class BasicFeatureRenderer extends RendererImpl {
                 getRenderer().stopRendering();
             } catch (Exception e) {
                 // log this exception with its state
-                RendererPlugin.log("Error stop rendering Renderer (with State " + getState()+ ")", e); //$NON-NLS-1$
+                RendererPlugin.log("Error stop rendering Renderer (with State " + getState()+ ")", e); //$NON-NLS-1$ //$NON-NLS-2$
             }
         }
     }
@@ -337,7 +337,7 @@ public class BasicFeatureRenderer extends RendererImpl {
         String endMessage = null;
         int endStatus = ILayer.DONE;
         try {
-            monitor.beginTask("rendering features", 100);
+            monitor.beginTask(Messages.BasicFeatureRenderer_TaskName, 100);
 
             if (getContext().getLayer().getSchema() == null
                     || getContext().getLayer().getSchema().getGeometryDescriptor() == null) {
@@ -358,7 +358,7 @@ public class BasicFeatureRenderer extends RendererImpl {
                 return;
             }
             try {
-                monitor.setTaskName("rendering features - area");
+                monitor.setTaskName(Messages.BasicFeatureRenderer_TaskNameAreas);
                 validBounds.transform(getContext().getLayer().getCRS(), true);
             } catch (TransformException te) {
                 RendererPlugin.log("viewable area is available in the layer CRS", te); //$NON-NLS-1$
@@ -464,8 +464,11 @@ public class BasicFeatureRenderer extends RendererImpl {
             if (monitor.isCanceled()){
                 return;
             }
-            if( paintArea == null || paintArea.isEmpty() || validBounds == null || validBounds.isEmpty() || validBounds.isNull() || validBounds.getWidth() <=0 || validBounds.getHeight()<=0 ){
-                System.out.println("nothing to draw");
+            if( paintArea == null || paintArea.isEmpty() || validBounds == null 
+            		|| validBounds.isEmpty() || validBounds.isNull()  
+            		|| Double.isNaN(validBounds.getWidth()) || Double.isNaN(validBounds.getHeight())
+            		|| validBounds.getWidth() <=0 || validBounds.getHeight()<=0){
+                System.out.println("nothing to draw"); //$NON-NLS-1$
                 // nothing to draw yet
             }
             else {
@@ -648,7 +651,7 @@ public class BasicFeatureRenderer extends RendererImpl {
 //                    // ignore data is getting out of range for this projection
 //                    return;
 //                }
-                ProjectPlugin.log( getContext().getLayer().getName() + " rendering error:"+e, e);
+                ProjectPlugin.log( getContext().getLayer().getName() + " rendering error:"+e, e); //$NON-NLS-1$
                 e.printStackTrace();
             }
 
@@ -676,7 +679,6 @@ public class BasicFeatureRenderer extends RendererImpl {
         }
     }
 
-    @SuppressWarnings("nls")
     public void refreshImage() {
         try {
             render(ProgressManager.instance().get());

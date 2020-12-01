@@ -65,7 +65,7 @@ public class ResetServiceHandler extends AbstractHandler {
 
             public void run() throws Exception {
                 List<IService> servers = new ArrayList<IService>();
-                for( Iterator selection = context.iterator(); selection.hasNext(); ) {
+                for( Iterator<?> selection = context.iterator(); selection.hasNext(); ) {
                     try {
                         servers.add((IService) selection.next());
                     } catch (ClassCastException huh) {

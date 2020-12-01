@@ -54,7 +54,7 @@ public class WMSPlugin extends AbstractUIPlugin {
         try {
             Thread.currentThread().setContextClassLoader(WebMapServer.class.getClassLoader());
             Logger logger = Logger.getLogger("org.geotools.data.ows");//$NON-NLS-1$
-            if (!isDebugging()) { //$NON-NLS-1$
+            if (!isDebugging()) {
                 logger.setLevel(Level.SEVERE);
             } else {
                 logger.setLevel(Level.FINEST);

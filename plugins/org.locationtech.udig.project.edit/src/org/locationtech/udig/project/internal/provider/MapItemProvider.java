@@ -234,12 +234,12 @@ public class MapItemProvider extends AbstractLazyLoadingItemProvider implements
      * 
      * @generated
      */
-    public static final String copyright = "uDig - User Friendly Desktop Internet GIS client\n"
-            + "http://udig.refractions.net\n" + "(C) 2004-2012, Refractions Research Inc.\n"
-            + "\n\n" + "All rights reserved. This program and the accompanying materials\n"
-            + "are made available under the terms of the Eclipse Public License v1.0\n"
-            + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n"
-            + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n";
+    public static final String copyright = "uDig - User Friendly Desktop Internet GIS client\n" //$NON-NLS-1$
+            + "http://udig.refractions.net\n" + "(C) 2004-2012, Refractions Research Inc.\n" //$NON-NLS-1$ //$NON-NLS-2$
+            + "\n\n" + "All rights reserved. This program and the accompanying materials\n" //$NON-NLS-1$ //$NON-NLS-2$
+            + "are made available under the terms of the Eclipse Public License v1.0\n" //$NON-NLS-1$
+            + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n" //$NON-NLS-1$
+            + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n"; //$NON-NLS-1$
 
     ViewportModelItemProvider modelProvider;
 
@@ -419,7 +419,7 @@ public class MapItemProvider extends AbstractLazyLoadingItemProvider implements
     protected void addBlackBoardInternalPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(
                 ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                getResourceLocator(), "blackboard", "blackboard ",
+                getResourceLocator(), "blackboard", "blackboard ", //$NON-NLS-1$ //$NON-NLS-2$
                 ProjectPackage.eINSTANCE.getMap_BlackBoardInternal(), true, null, null, null));
     }
 
@@ -556,7 +556,7 @@ public class MapItemProvider extends AbstractLazyLoadingItemProvider implements
                 label = toString.substring(lastSlash);
             }
         }
-        return label == null || label.length() == 0 ? "Unable to load map" : label;
+        return label == null || label.length() == 0 ? Messages.MapItemProvider_MapLoadError : label;
     }
 
     /**

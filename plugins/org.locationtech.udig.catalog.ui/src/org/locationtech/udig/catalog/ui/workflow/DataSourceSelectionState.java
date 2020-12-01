@@ -79,7 +79,7 @@ public class DataSourceSelectionState extends State {
                 }
             } catch (Throwable t) {
                 // log and keep going
-                CatalogPlugin.trace("Factory "+d.getId()+" unable to handle "+context, t);
+                CatalogPlugin.trace("Factory "+d.getId()+" unable to handle "+context, t); //$NON-NLS-1$ //$NON-NLS-2$
                 // CatalogPlugin.log(t.getLocalizedMessage(), t);
             }
         }
@@ -97,7 +97,7 @@ public class DataSourceSelectionState extends State {
                 for( Iterator<UDIGConnectionFactoryDescriptor> i= shortlist.iterator(); i.hasNext();){
                     UDIGConnectionFactoryDescriptor d = i.next();
                     String id = d.getId();
-                    if( "org.locationtech.udig.catalog.geotools.connection.dataStore".equals(id)){
+                    if( "org.locationtech.udig.catalog.geotools.connection.dataStore".equals(id)){ //$NON-NLS-1$
                         i.remove();
                     }
                 }
@@ -115,7 +115,7 @@ public class DataSourceSelectionState extends State {
             String value = context.toString();
             String type = context.getClass().getName();
             
-            CatalogPlugin.trace("Drag and Drop selected factory "+descriptor.getId() + " to handle "+type+":"+value, null );
+            CatalogPlugin.trace("Drag and Drop selected factory "+descriptor.getId() + " to handle "+type+":"+value, null ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
     }
 

@@ -11,15 +11,13 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
-import org.locationtech.udig.project.internal.LegendItem;
-import org.locationtech.udig.project.internal.ProjectPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.locationtech.udig.project.internal.LegendItem;
+import org.locationtech.udig.project.internal.ProjectPackage;
 
 /**
  * <!-- begin-user-doc -->

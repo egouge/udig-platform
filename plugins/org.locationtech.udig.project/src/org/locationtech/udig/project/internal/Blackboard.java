@@ -12,9 +12,8 @@ package org.locationtech.udig.project.internal;
 
 import java.util.List;
 
-import org.locationtech.udig.project.IBlackboard;
-
 import org.eclipse.emf.ecore.EObject;
+import org.locationtech.udig.project.IBlackboard;
 
 /**
  * Blackboard for the internal emf model.

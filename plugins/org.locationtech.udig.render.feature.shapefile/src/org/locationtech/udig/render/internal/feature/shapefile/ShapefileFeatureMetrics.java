@@ -36,8 +36,8 @@ import org.geotools.util.Range;
 public class ShapefileFeatureMetrics extends AbstractRenderMetrics {
 
     protected static List<String> EXPECTED = Collections.unmodifiableList(Arrays
-            .asList(new String[]{"org.locationtech.udig.project.view",
-                    "org.locationtech.udig.style.sld",}));
+            .asList(new String[]{"org.locationtech.udig.project.view", //$NON-NLS-1$
+                    "org.locationtech.udig.style.sld",})); //$NON-NLS-1$
 
     public ShapefileFeatureMetrics( IRenderContext context2, ShapefileFeatureMetricsFactory factory ) {
         super(context2, factory, EXPECTED);
@@ -73,7 +73,7 @@ public class ShapefileFeatureMetrics extends AbstractRenderMetrics {
 
     public Set<Range<Double>> getValidScaleRanges() {
         Style style = (Style) context.getLayer().getStyleBlackboard().get(
-                "org.locationtech.udig.style.sld");
+                "org.locationtech.udig.style.sld"); //$NON-NLS-1$
         return MinMaxScaleCalculator.getValidScaleRanges(style);
     }
 }

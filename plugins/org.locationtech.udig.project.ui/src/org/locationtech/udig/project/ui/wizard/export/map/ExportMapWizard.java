@@ -18,6 +18,7 @@ import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.locationtech.udig.core.internal.Icons;
 import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.project.ui.internal.ProjectUIPlugin;
 import org.locationtech.udig.project.ui.wizard.export.MapSelectorPage;
 import org.locationtech.udig.project.ui.wizard.export.image.MapSelectorPageWithScaleColumn;
@@ -35,11 +36,11 @@ public class ExportMapWizard extends Wizard implements IExportWizard {
 	 * Create a new instance
 	 */
 	public ExportMapWizard() {
-	    setWindowTitle("Export Map");
+	    setWindowTitle(Messages.ExportMapWizard_Title);
 	    String title = null; // will use default page title
-	    ImageDescriptor banner = ProjectUIPlugin.getDefault().getImageDescriptor( Icons.WIZBAN +"exportselection_wiz.gif" );
+	    ImageDescriptor banner = ProjectUIPlugin.getDefault().getImageDescriptor( Icons.WIZBAN +"exportselection_wiz.gif" ); //$NON-NLS-1$
 	    //setDefaultPageImageDescriptor(banner);
-	    mapSelector = new MapSelectorPageWithScaleColumn("Export Selection", title, banner );
+	    mapSelector = new MapSelectorPageWithScaleColumn(Messages.ExportMapWizard_SelectionTitle, title, banner );
 	}
 
 	/* (non-Javadoc)

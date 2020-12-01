@@ -46,13 +46,13 @@ public class MapPerspective implements IPerspectiveFactory {
         //        "org.locationtech.udig.project.ui.projectExplorer" ); //$NON-NLS-1$
         
         IFolderLayout folder = layout.createFolder("org.locationtech.udig.mapPerspective.selection", IPageLayout.BOTTOM, 0.25f, //$NON-NLS-1$
-                "org.locationtech.udig.project.ui.projectExplorer");
-        folder.addView("org.locationtech.udig.project.ui.layerManager");
-        folder.addView("org.locationtech.udig.ui.aoiView");
+                "org.locationtech.udig.project.ui.projectExplorer"); //$NON-NLS-1$
+        folder.addView("org.locationtech.udig.project.ui.layerManager"); //$NON-NLS-1$
+        folder.addView("org.locationtech.udig.ui.aoiView"); //$NON-NLS-1$
         
         layout.addView("org.locationtech.udig.catalog.ui.CatalogView", IPageLayout.BOTTOM, 0.65f, editorArea);         //$NON-NLS-1$
-        layout.addActionSet("org.locationtech.udig.helpMenuItems");
-        layout.addActionSet("org.locationtech.udig.ui.default");
+        layout.addActionSet("org.locationtech.udig.helpMenuItems"); //$NON-NLS-1$
+        layout.addActionSet("org.locationtech.udig.ui.default"); //$NON-NLS-1$
         layout.addPerspectiveShortcut(StylePerspective.ID_PERSPECTIVE);
     }
     

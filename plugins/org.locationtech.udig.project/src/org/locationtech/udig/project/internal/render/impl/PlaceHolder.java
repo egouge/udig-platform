@@ -11,12 +11,11 @@ package org.locationtech.udig.project.internal.render.impl;
 
 import java.awt.Graphics2D;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.render.Renderer;
 import org.locationtech.udig.project.render.RenderException;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * A renderer that does nothing.  It holds the place of a normal renderer and just shows a warning.  This is used

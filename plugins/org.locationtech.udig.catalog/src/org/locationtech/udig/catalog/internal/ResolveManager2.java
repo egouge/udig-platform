@@ -75,7 +75,7 @@ public class ResolveManager2 implements IResolveManager {
                 register(proxy);
             }
             catch (Throwable t){
-                CatalogPlugin.log(element.getNamespaceIdentifier()+" failed:"+t, t);
+                CatalogPlugin.log(element.getNamespaceIdentifier()+" failed:"+t, t); //$NON-NLS-1$
             }
         }
     }
@@ -90,8 +90,8 @@ public class ResolveManager2 implements IResolveManager {
             try {
                 return factory.canAdapt(resolve, targetClass);
             } catch (Throwable t) {
-                String msg = "IResolveAdapterFactory " + factory.getClass().getName()
-                        + " canAdapt check failed:" + t;
+                String msg = "IResolveAdapterFactory " + factory.getClass().getName() //$NON-NLS-1$
+                        + " canAdapt check failed:" + t; //$NON-NLS-1$
                 CatalogPlugin.trace(msg, t);
                 return false; // factory was unable to function
             }
@@ -109,7 +109,7 @@ public class ResolveManager2 implements IResolveManager {
                     }
                     catch( Throwable t ){
                         String factoryName = fallback.getClass().getName();
-                        CatalogPlugin.trace( "IResolveFactory "+factoryName+" unable to test for "+targetTypeName+":"+t, t);
+                        CatalogPlugin.trace( "IResolveFactory "+factoryName+" unable to test for "+targetTypeName+":"+t, t); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                     }
                 }
             }
@@ -142,7 +142,7 @@ public class ResolveManager2 implements IResolveManager {
                 }
                 catch( Throwable t ){
                     String factoryName = fallback.getClass().getName();
-                    CatalogPlugin.trace( "IResolveFactory "+factoryName+" unable to convert to "+targetTypeName+":"+t, t);
+                    CatalogPlugin.trace( "IResolveFactory "+factoryName+" unable to convert to "+targetTypeName+":"+t, t); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 }
             }
             return null; // unable to convert
@@ -378,7 +378,7 @@ public class ResolveManager2 implements IResolveManager {
         
         GenericResolveAdapterFactory( IResolveAdapterFactory factory ){
             if( factory == null ){
-                throw new NullPointerException("Factory required");
+                throw new NullPointerException("Factory required"); //$NON-NLS-1$
             }
             this.factory = factory;
         }
@@ -406,7 +406,7 @@ public class ResolveManager2 implements IResolveManager {
         }
         @Override
         public String toString() {
-            return "ManualResolveAdapterFactory "+factory.getClass().getName() +" excludes:"+excludes;
+            return "ManualResolveAdapterFactory "+factory.getClass().getName() +" excludes:"+excludes; //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
     /**
@@ -441,10 +441,10 @@ public class ResolveManager2 implements IResolveManager {
 
         public ResolveAdapterFactoryProxy(IConfigurationElement config) {
             this.config = config;
-            resolveName = config.getAttribute("resolveableType");
+            resolveName = config.getAttribute("resolveableType"); //$NON-NLS-1$
 
-            for (IConfigurationElement element : config.getChildren("resolve")) {
-                String adapterTypeName = element.getAttribute("type");
+            for (IConfigurationElement element : config.getChildren("resolve")) { //$NON-NLS-1$
+                String adapterTypeName = element.getAttribute("type"); //$NON-NLS-1$
                 adapterTypes.put(adapterTypeName, null);
             }
         }
@@ -463,9 +463,9 @@ public class ResolveManager2 implements IResolveManager {
         private synchronized void loadFactory() {
             if (factory == null) {
                 try {
-                    factory = (IResolveAdapterFactory) config.createExecutableExtension("class");
+                    factory = (IResolveAdapterFactory) config.createExecutableExtension("class"); //$NON-NLS-1$
                 } catch (CoreException problem) {
-                    String factoryName = config.getAttribute("class");
+                    String factoryName = config.getAttribute("class"); //$NON-NLS-1$
                     factory = new ExceptionResolveAdapaterFactory(factoryName, problem);
                 }
             }
@@ -543,7 +543,7 @@ public class ResolveManager2 implements IResolveManager {
                 monitor.beginTask(problem.toString(), 1);
                 monitor.done();
                 throw new IOException(
-                        "IResolveAdapterFactory " + factoryName + " unavailable:" + problem, problem); //$NON-NLS-1$
+                        "IResolveAdapterFactory " + factoryName + " unavailable:" + problem, problem); //$NON-NLS-1$ //$NON-NLS-2$
             }
 
             /** This factory is broken and cannot adapt anything */
@@ -568,7 +568,7 @@ public class ResolveManager2 implements IResolveManager {
 
             @Override
             public String getResolveName() {
-                return "java.lang.Void";
+                return "java.lang.Void"; //$NON-NLS-1$
             }
         }
     }

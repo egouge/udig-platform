@@ -12,6 +12,8 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.awt.Point;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.render.CompositeRenderContext;
@@ -21,10 +23,6 @@ import org.locationtech.udig.project.internal.render.RenderContext;
 import org.locationtech.udig.project.internal.render.RenderExecutor;
 import org.locationtech.udig.project.internal.render.Renderer;
 import org.locationtech.udig.project.render.IRenderContext;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * A RenderExecutor that runs MultiLayerRenderers such as WMSRenderer and MapGraphic Renderers.

@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.locationtech.udig.filter.ComboExpressionViewer;
+import org.locationtech.udig.style.sld.internal.Messages;
 
 public class FillEditorComponent {
     private ComboExpressionViewer fillTypeViewer;
@@ -26,23 +27,23 @@ public class FillEditorComponent {
         parent.setLayout(new GridLayout(2, false));
         
         Label label = new Label(parent, SWT.NONE);
-        label.setText("Fill Type");
-        label.setToolTipText("Select the type of fill");
+        label.setText(Messages.FillEditorComponent_FillType);
+        label.setToolTipText(Messages.FillEditorComponent_FillTypeTooltip);
         label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true));
         fillTypeViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         fillTypeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        fillTypeViewer.getControl().setToolTipText("Select the type of fill");
+        fillTypeViewer.getControl().setToolTipText(Messages.FillEditorComponent_FillTypeTooltip);
         
         label = new Label(parent, SWT.NONE);
-        label.setText("Colour");
-        label.setToolTipText("Select fill colour");
+        label.setText(Messages.FillEditorComponent_Color);
+        label.setToolTipText(Messages.FillEditorComponent_ColorTooltip);
         label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true));
         colourViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         colourViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         
         label = new Label(parent, SWT.NONE);
-        label.setText("Opacity");
-        label.setToolTipText("Select the opacity");
+        label.setText(Messages.FillEditorComponent_Opacity);
+        label.setToolTipText(Messages.FillEditorComponent_OpacityTooltip);
         label.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, true));
         opacityViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         opacityViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));

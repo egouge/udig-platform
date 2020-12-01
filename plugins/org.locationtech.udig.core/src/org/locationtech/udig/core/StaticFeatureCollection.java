@@ -26,7 +26,7 @@ public class StaticFeatureCollection extends AdaptorFeatureCollection {
     private Collection<SimpleFeature> features;
 
     public StaticFeatureCollection( Collection<SimpleFeature> features, SimpleFeatureType memberType) {
-        super("static",memberType);
+        super("static",memberType); //$NON-NLS-1$
         this.features=features;
     }
 

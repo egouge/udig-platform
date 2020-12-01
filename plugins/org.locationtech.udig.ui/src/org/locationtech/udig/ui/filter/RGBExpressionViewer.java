@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.util.Converters;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.Literal;
@@ -144,7 +145,7 @@ public class RGBExpressionViewer extends IExpressionViewer {
             redScale.setEnabled(true);
         }
         Label redLabel = new Label(control, SWT.SINGLE);
-        redLabel.setText(multiLine ? "Red" : "R");
+        redLabel.setText(multiLine ? Messages.RGBExpressionViewer_RedLong : Messages.RGBExpressionViewer_RedShort);
 
         redSpinner = new Spinner(control, SWT.BORDER);
         redSpinner.setMinimum(MIN);
@@ -158,7 +159,7 @@ public class RGBExpressionViewer extends IExpressionViewer {
             greenScale.setMinimum(MIN);
         }
         Label greenLabel = new Label(control, SWT.SINGLE);
-        greenLabel.setText(multiLine ? "Green" : "G");
+        greenLabel.setText(multiLine ? Messages.RGBExpressionViewer_GreenLong : Messages.RGBExpressionViewer_GreenShot);
         
         greenSpinner = new Spinner(control, SWT.BORDER);
         greenSpinner.setDigits(0);
@@ -172,7 +173,7 @@ public class RGBExpressionViewer extends IExpressionViewer {
             blueScale.setMinimum(MIN);
         }
         Label blueLabel = new Label(control, SWT.SINGLE);
-        blueLabel.setText(multiLine ? "Blue" : "B");
+        blueLabel.setText(multiLine ? Messages.RGBExpressionViewer_BlueLong : Messages.RGBExpressionViewer_BlueShort);
         
         blueSpinner = new Spinner(control, SWT.BORDER);
         blueSpinner.setDigits(0);
@@ -182,43 +183,43 @@ public class RGBExpressionViewer extends IExpressionViewer {
         // HEX
         colorText = new Text(control, SWT.SINGLE|SWT.READ_ONLY|SWT.BORDER);
         Label hexLabel = new Label(control, SWT.SINGLE);
-        hexLabel.setText("Color");
+        hexLabel.setText(Messages.RGBExpressionViewer_Color);
 
         
         if (multiLine) {
-            MigLayout layout = new MigLayout("insets 0", "[][][grow]", "[]");
+            MigLayout layout = new MigLayout("insets 0", "[][][grow]", "[]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             control.setLayout(layout);
             
-            redLabel.setLayoutData("cell 0 0, alignx trailing, gapx related");
-            redSpinner.setLayoutData("cell 1 0, wmin 60,alignx left, gapx related");
-            redScale.setLayoutData("cell 2 0, grow, width 200:100%:100%");
+            redLabel.setLayoutData("cell 0 0, alignx trailing, gapx related"); //$NON-NLS-1$
+            redSpinner.setLayoutData("cell 1 0, wmin 60,alignx left, gapx related"); //$NON-NLS-1$
+            redScale.setLayoutData("cell 2 0, grow, width 200:100%:100%"); //$NON-NLS-1$
             
-            greenLabel.setLayoutData("cell 0 1, alignx trailing, gapx related");
-            greenSpinner.setLayoutData("cell 1 1, wmin 60,alignx left, gapx related");
-            greenScale.setLayoutData("cell 2 1,grow, width 200:100%:100%");
+            greenLabel.setLayoutData("cell 0 1, alignx trailing, gapx related"); //$NON-NLS-1$
+            greenSpinner.setLayoutData("cell 1 1, wmin 60,alignx left, gapx related"); //$NON-NLS-1$
+            greenScale.setLayoutData("cell 2 1,grow, width 200:100%:100%"); //$NON-NLS-1$
             
-            blueLabel.setLayoutData("cell 0 2, alignx trailing, gapx related");
-            blueSpinner.setLayoutData("cell 1 2, wmin 60,alignx left, gapx related");
-            blueScale.setLayoutData("cell 2 2,grow, width 200:100%:100%");
+            blueLabel.setLayoutData("cell 0 2, alignx trailing, gapx related"); //$NON-NLS-1$
+            blueSpinner.setLayoutData("cell 1 2, wmin 60,alignx left, gapx related"); //$NON-NLS-1$
+            blueScale.setLayoutData("cell 2 2,grow, width 200:100%:100%"); //$NON-NLS-1$
             
-            hexLabel.setLayoutData("cell 0 3, alignx trailing, gapx related");
-            colorText.setLayoutData("cell 2 3 2 1,grow, width 200:100%:100%");
+            hexLabel.setLayoutData("cell 0 3, alignx trailing, gapx related"); //$NON-NLS-1$
+            colorText.setLayoutData("cell 2 3 2 1,grow, width 200:100%:100%"); //$NON-NLS-1$
 
         }
         else {
-            control.setLayout( new MigLayout("insets 0, flowx", "", ""));
+            control.setLayout( new MigLayout("insets 0, flowx", "", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             
-            redLabel.setLayoutData("gap related");
-            redSpinner.setLayoutData("gap unrelated");
+            redLabel.setLayoutData("gap related"); //$NON-NLS-1$
+            redSpinner.setLayoutData("gap unrelated"); //$NON-NLS-1$
             
-            greenLabel.setLayoutData("gap related");
-            greenSpinner.setLayoutData("gap unrelated");
+            greenLabel.setLayoutData("gap related"); //$NON-NLS-1$
+            greenSpinner.setLayoutData("gap unrelated"); //$NON-NLS-1$
             
-            blueLabel.setLayoutData("gap related");
-            blueSpinner.setLayoutData("gap unrelated");
+            blueLabel.setLayoutData("gap related"); //$NON-NLS-1$
+            blueSpinner.setLayoutData("gap unrelated"); //$NON-NLS-1$
             
-            hexLabel.setLayoutData("gap related");
-            colorText.setLayoutData("gap unrelated");
+            hexLabel.setLayoutData("gap related"); //$NON-NLS-1$
+            colorText.setLayoutData("gap unrelated"); //$NON-NLS-1$
         }   
         listen(true);
     }
@@ -271,7 +272,7 @@ public class RGBExpressionViewer extends IExpressionViewer {
         int b = blueSpinner.getSelection();
         Color c = new Color(r, g, b);
         
-        String cql = "#"+Integer.toHexString(c.getRGB() & 0x00ffffff);
+        String cql = "#"+Integer.toHexString(c.getRGB() & 0x00ffffff); //$NON-NLS-1$
         colorText.setText(cql);
         colorText.setEnabled(true);
         
@@ -299,7 +300,7 @@ public class RGBExpressionViewer extends IExpressionViewer {
                 feedback();
             }
             else {
-                feedback("Used with colour");
+                feedback(Messages.RGBExpressionViewer_useWithColor);
             }
         }
         refreshExpression();
@@ -340,14 +341,14 @@ public class RGBExpressionViewer extends IExpressionViewer {
                                 if (text != null) {
                                     colorText.setText(text);
                                 } else {
-                                    colorText.setText("#"+Integer.toHexString(color.getRGB()));
+                                    colorText.setText("#"+Integer.toHexString(color.getRGB())); //$NON-NLS-1$
                                 }
                                 colorText.setEnabled(true);
                                 return; // literal color displayed!
                             }
                         }
                         
-                        String cql = "";
+                        String cql = ""; //$NON-NLS-1$
                         if (expr != null) {
                             cql = ECQL.toCQL(expr);
                         }

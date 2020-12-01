@@ -71,6 +71,6 @@ public class AdaptingFilter<F extends Filter> implements Filter, IAdaptable {
 	}
 	@Override
 	public String toString() {
-	    return "Adapting:"+CQL.toCQL( wrapped );
+	    return "Adapting:"+CQL.toCQL( wrapped ); //$NON-NLS-1$
 	}
 }

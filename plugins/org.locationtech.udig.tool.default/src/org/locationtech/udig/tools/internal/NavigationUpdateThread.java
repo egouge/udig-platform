@@ -12,14 +12,13 @@ package org.locationtech.udig.tools.internal;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.internal.command.navigation.NavComposite;
 import org.locationtech.udig.project.internal.command.navigation.PanCommand;
 import org.locationtech.udig.project.internal.command.navigation.ZoomCommand;
 import org.locationtech.udig.project.ui.commands.TransformDrawCommand;
 import org.locationtech.udig.project.ui.tool.IToolContext;
-
-import org.locationtech.jts.geom.Coordinate;
 
 /**
  * Waits 1 second after the most recent request before running operation.

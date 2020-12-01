@@ -20,6 +20,7 @@ import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.internal.ui.CatalogView;
 import org.locationtech.udig.catalog.ui.CatalogTreeViewer;
 import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
+import org.locationtech.udig.catalog.ui.internal.Messages;
 import org.locationtech.udig.catalog.ui.workflow.EndConnectionState;
 import org.locationtech.udig.catalog.ui.workflow.State;
 import org.locationtech.udig.catalog.ui.workflow.Workflow;
@@ -41,7 +42,7 @@ public class CatalogImportWizard extends WorkflowWizard {
     public CatalogImportWizard(Workflow workflow,
             Map<Class<? extends State>, WorkflowWizardPageProvider> map) {
         super(workflow, map);
-        setWindowTitle("Import");
+        setWindowTitle(Messages.CatalogImportWizard_ImportWindowTitle);
     }
 
     /**

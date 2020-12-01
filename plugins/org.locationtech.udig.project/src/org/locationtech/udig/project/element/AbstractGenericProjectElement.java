@@ -15,12 +15,11 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.locationtech.udig.project.IProjectElement;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.ui.IMemento;
+import org.locationtech.udig.project.IProjectElement;
+import org.locationtech.udig.project.internal.ProjectPlugin;
 
 public abstract class AbstractGenericProjectElement implements
 		IGenericProjectElement {
@@ -35,7 +34,7 @@ public abstract class AbstractGenericProjectElement implements
 	 * 
 	 * EMF will ignore any before and after values.
 	 */
-	public static final String PROP_UPDATE_EMF = "UPDATE_EMF";
+	public static final String PROP_UPDATE_EMF = "UPDATE_EMF"; //$NON-NLS-1$
 
 	private String m_extId;
 	private ProjectElementAdapter projectElementAdapter;

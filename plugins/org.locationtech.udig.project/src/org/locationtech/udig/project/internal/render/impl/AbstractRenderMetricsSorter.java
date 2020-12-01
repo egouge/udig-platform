@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import org.geotools.util.Range;
 import org.locationtech.udig.project.IBlackboard;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IStyleBlackboard;
@@ -22,8 +23,6 @@ import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.render.MultiLayerRenderer;
 import org.locationtech.udig.project.render.AbstractRenderMetrics;
-
-import org.geotools.util.Range;
 
 /**
  * Sorts AbstractRenderMetrics objects based on how well the renderer 

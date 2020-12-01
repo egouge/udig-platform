@@ -14,6 +14,8 @@ package org.locationtech.udig.tools.internal;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.udig.project.internal.command.navigation.ZoomCommand;
 import org.locationtech.udig.project.render.IViewportModel;
 import org.locationtech.udig.project.ui.commands.DrawCommandFactory;
@@ -22,12 +24,6 @@ import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
 import org.locationtech.udig.project.ui.render.displayAdapter.ViewportPane;
 import org.locationtech.udig.project.ui.tool.AbstractModalTool;
 import org.locationtech.udig.project.ui.tool.ModalTool;
-
-import org.geotools.geometry.jts.JTS;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * This class Provides zoom box and click functionality.

@@ -13,7 +13,6 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.io.IOException;
 import java.util.Set;
 
-import org.eclipse.core.internal.registry.Extension;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.geotools.util.Range;
 import org.locationtech.udig.project.ILayer;

@@ -75,7 +75,7 @@ class FunctionContentProposalProvider implements IContentProposalProvider {
      */
     public IContentProposal[] getProposals( String contents, int position ) {
         String word = contents.substring(0, position);
-        int start = contents.lastIndexOf(" ", position);
+        int start = contents.lastIndexOf(" ", position); //$NON-NLS-1$
         if (start != -1) {
             word = contents.substring(start, position);
         }

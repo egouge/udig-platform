@@ -11,6 +11,8 @@
  */
 package org.locationtech.udig.ui.filter;
 
+import java.text.MessageFormat;
+
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
@@ -22,6 +24,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.util.Utilities;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 
@@ -83,8 +86,8 @@ public abstract class IFilterViewer extends Viewer {
     }
     
     public static boolean same( Filter before, Filter after ){
-        String beforeCql = before != null ? ECQL.toCQL(before) : "(empty)";
-        String afterCql = after != null ? ECQL.toCQL(after) : "(empty)";
+        String beforeCql = before != null ? ECQL.toCQL(before) : Messages.IFilterViewer_EmptyLabel;
+        String afterCql = after != null ? ECQL.toCQL(after) : Messages.IFilterViewer_EmptyLabel;
         
         return Utilities.equals(beforeCql, afterCql);
     }
@@ -134,8 +137,8 @@ public abstract class IFilterViewer extends Viewer {
         if( this.filter == newFilter ){
             return;
         }
-        String before = filter != null ? ECQL.toCQL(filter) : "(empty)";
-        String after = newFilter != null ? ECQL.toCQL(newFilter) : "(empty)";
+        String before = filter != null ? ECQL.toCQL(filter) : Messages.IFilterViewer_EmptyLabel;
+        String after = newFilter != null ? ECQL.toCQL(newFilter) : Messages.IFilterViewer_EmptyLabel;
         if (!Utilities.equals(before, after)){
             this.filter = newFilter;
             StructuredSelection selection = newFilter != null ? new StructuredSelection( newFilter) : StructuredSelection.EMPTY;
@@ -177,7 +180,7 @@ public abstract class IFilterViewer extends Viewer {
         }
     }
     protected void feedbackReplace( Filter filter ){
-        feedback("Unable to display dynamic filter: \n" + ECQL.toCQL(filter)+ "\nEdit to replace filter.");
+        feedback(MessageFormat.format(Messages.IFilterViewer_DisplayError, ECQL.toCQL(filter)));
     }
     /**
      * Provide warning feedback.
@@ -251,7 +254,7 @@ public abstract class IFilterViewer extends Viewer {
         }
         Control control = getControl();
         if (control != null && !control.isDisposed()) {
-            control.setToolTipText(error+":"+exception);
+            control.setToolTipText(error+":"+exception); //$NON-NLS-1$
         }
     }
 

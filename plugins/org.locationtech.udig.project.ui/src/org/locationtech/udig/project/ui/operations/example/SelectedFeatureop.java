@@ -23,6 +23,7 @@ import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.filter.FilterAttributeExtractor;
 import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.ui.operations.IOp;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -37,7 +38,7 @@ import org.opengis.filter.Filter;
 public class SelectedFeatureop implements IOp {
 
     public void op( final Display display, Object target, IProgressMonitor monitor ) throws Exception {
-        monitor.beginTask("Counting features", IProgressMonitor.UNKNOWN);
+        monitor.beginTask(Messages.SelectedFeatureop_TaskName, IProgressMonitor.UNKNOWN);
         monitor.worked(1);
 
         final ILayer layer = (ILayer) target;
@@ -64,7 +65,7 @@ public class SelectedFeatureop implements IOp {
                 	selectedCount++;
                 }
             	if(System.currentTimeMillis() - lastUpdate > 1000) {
-                	monitor.setTaskName("Count: Processed "+allCount+" features");
+                	monitor.setTaskName(MessageFormat.format(Messages.SelectedFeatureop_updateTaskName, allCount));
                 	lastUpdate = System.currentTimeMillis();
             	}
             }
@@ -73,9 +74,9 @@ public class SelectedFeatureop implements IOp {
             final int finalSelectedCount = selectedCount;
             display.asyncExec(new Runnable(){
                 public void run() {
-                    String pattern = "There are {0} features in the current layer, of which {1} are selected";
+                    String pattern = Messages.SelectedFeatureop_FeatureCountMessage;
                     String message = MessageFormat.format(pattern, finalAllCount, finalSelectedCount);
-                    MessageDialog.openInformation(display.getActiveShell(), "Selected Features", message);
+                    MessageDialog.openInformation(display.getActiveShell(), Messages.SelectedFeatureop_Title, message);
                 }
             });
         } finally {

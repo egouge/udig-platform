@@ -13,20 +13,20 @@ package org.locationtech.udig.catalog.ui;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Stack;
-
-import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.ui.workflow.EndConnectionState;
-import org.locationtech.udig.catalog.ui.workflow.WorkflowWizardPage;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.locationtech.udig.catalog.IService;
+import org.locationtech.udig.catalog.ui.internal.Messages;
+import org.locationtech.udig.catalog.ui.workflow.EndConnectionState;
+import org.locationtech.udig.catalog.ui.workflow.WorkflowWizardPage;
 
 /**
  * Abstract implementation of UDIGImportPage.
@@ -144,10 +144,10 @@ public abstract class AbstractUDIGImportPage extends WorkflowWizardPage implemen
         try {
             getContainer().run(false, true, runnable);
         } catch (InvocationTargetException e) {
-            setErrorMessage( "Could not connect:"+e.getCause().getMessage() );
+            setErrorMessage( MessageFormat.format(Messages.AbstractUDIGImportPage_ConnectError,e.getCause().getMessage()) );
             throw (RuntimeException) new RuntimeException( ).initCause( e );
         } catch (InterruptedException e) {
-            setErrorMessage( "Canceled");
+            setErrorMessage( Messages.AbstractUDIGImportPage_Cancelled);
             throw (RuntimeException) new RuntimeException( ).initCause( e );
         }
         if( !services.isEmpty() ){

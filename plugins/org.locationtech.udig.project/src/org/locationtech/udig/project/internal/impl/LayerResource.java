@@ -22,6 +22,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.catalog.ID;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IGeoResourceInfo;
@@ -33,10 +36,6 @@ import org.locationtech.udig.project.IResourceCachingInterceptor;
 import org.locationtech.udig.project.IResourceInterceptor;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.preferences.PreferenceConstants;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Wraps a IGeoResource for a layer.

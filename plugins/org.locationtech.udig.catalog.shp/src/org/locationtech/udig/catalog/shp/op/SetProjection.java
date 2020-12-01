@@ -27,6 +27,7 @@ import org.locationtech.udig.catalog.IResolve;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.internal.shp.ShpPlugin;
 import org.locationtech.udig.catalog.internal.shp.ShpServiceExtension;
+import org.locationtech.udig.catalog.shp.internal.Messages;
 import org.locationtech.udig.core.AdapterUtil;
 import org.locationtech.udig.ui.CRSChooserDialog;
 import org.locationtech.udig.ui.operations.IOp;
@@ -115,9 +116,9 @@ public class SetProjection implements IOp {
 					MessageDialog
 							.openError(
 									display.getActiveShell(),
-									"Error writing projection",
-									"An unexpected error occurred while setting the projection.\nPlease send error log.");
-					ShpPlugin.log("Error writing projection", e);
+									Messages.SetProjection_WriteErrorTitle,
+									Messages.SetProjection_WriteErrorMessage);
+					ShpPlugin.log("Error writing projection", e); //$NON-NLS-1$
 				}
 			}
 		});

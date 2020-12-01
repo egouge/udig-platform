@@ -36,7 +36,6 @@ import org.opengis.parameter.ParameterValueGroup;
  * @author jeichar
  * @since 1.1.0
  */
-@SuppressWarnings("deprecation")
 public class GridCoverageLoader {
     /** Resource being loaded ...*/
     protected IGeoResource resource;

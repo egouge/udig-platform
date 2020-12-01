@@ -13,9 +13,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
-import org.opengis.filter.Filter;
-
 import org.locationtech.jts.geom.Envelope;
+import org.opengis.filter.Filter;
 
 /**
  * Holds onto the list of layers for the IMap.

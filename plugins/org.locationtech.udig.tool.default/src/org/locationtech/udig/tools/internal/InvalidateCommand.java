@@ -12,12 +12,11 @@ package org.locationtech.udig.tools.internal;
 
 import java.awt.Rectangle;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.ui.commands.AbstractDrawCommand;
 import org.locationtech.udig.project.ui.commands.IDrawCommand;
 import org.locationtech.udig.project.ui.commands.TransformDrawCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * @author jesse

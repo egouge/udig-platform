@@ -11,15 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-
-import org.locationtech.udig.project.command.Command;
-import org.locationtech.udig.project.command.CommandManager;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.Project;
-import org.locationtech.udig.project.internal.ProjectElement;
-import org.locationtech.udig.project.internal.ProjectPackage;
-import org.locationtech.udig.project.internal.commands.DefaultErrorHandler;
-
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,14 +19,19 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.locationtech.udig.project.command.Command;
+import org.locationtech.udig.project.command.CommandManager;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.Project;
+import org.locationtech.udig.project.internal.ProjectElement;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.locationtech.udig.project.internal.commands.DefaultErrorHandler;
 
 /**
  * Default implementation
@@ -358,7 +354,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
     private static String findProjectResourcePath(URI projectURI) {
         String projectPath = projectURI.toFileString();
         if (projectURI.hasAuthority()) { //remove '//' character (added in URI from emf version 2.9 and onward
-            projectPath = StringUtils.removeStart(projectPath, "//");
+            projectPath = StringUtils.removeStart(projectPath, "//"); //$NON-NLS-1$
         }
         projectPath = projectPath.substring(0, projectPath.lastIndexOf(File.separatorChar));
         while (projectPath.startsWith(File.separator + File.separator)) {
@@ -376,7 +372,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
             URI elementPathUri = projectElement.eResource().getURI();
             elementPath = elementPathUri.toFileString();
             if (elementPathUri.hasAuthority()) { //remove '//' character (added in URI from emf version 2.9 and onward
-                elementPath = StringUtils.removeStart(elementPath, "//");
+                elementPath = StringUtils.removeStart(elementPath, "//"); //$NON-NLS-1$
             }
             elementPath = elementPath.substring(0, elementPath.lastIndexOf(File.separatorChar));
             while (elementPath.startsWith(File.separator + File.separator)) {

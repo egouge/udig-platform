@@ -97,7 +97,7 @@ class UDIGDisplaySafeCondition implements Condition{
             try{
 				readAndDispatch = current.readAndDispatch();
             }catch (Throwable e) {
-            	UiPlugin.log("error occurred in a display event", e);
+            	UiPlugin.log("error occurred in a display event", e); //$NON-NLS-1$
 			}
 
             // findbugs note:  this is correct behaviour.  It is closed outside this method

@@ -11,13 +11,12 @@
  */
 package org.locationtech.udig.project.internal.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.Command;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.command.navigation.AbstractNavCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**

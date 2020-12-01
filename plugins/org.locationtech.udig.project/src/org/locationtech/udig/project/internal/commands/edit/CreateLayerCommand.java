@@ -6,6 +6,7 @@ package org.locationtech.udig.project.internal.commands.edit;
 import java.net.URL;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IResolve;
@@ -13,8 +14,6 @@ import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Creates a layer and adds it to the executing map.  The resources must already exist

@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.ServiceExtension;
 import org.locationtech.udig.catalog.ServiceExtension2;
 import org.locationtech.udig.catalog.wms.internal.Messages;
 
@@ -132,8 +131,8 @@ public class WMSCServiceExtension implements ServiceExtension2 {
         if (PROTOCOL==null || PROTOCOL.indexOf("http") == -1) { //$NON-NLS-1$ supports 'https' too.
             return Messages.WMSServiceExtension_protocol + "'"+PROTOCOL+"'"; //$NON-NLS-1$ //$NON-NLS-2$
         }
-        int found = QUERY == null ? -1 : QUERY.toUpperCase().indexOf( "TILED=TRUE" );
-        if( found != -1){ //$NON-NLS-1$
+        int found = QUERY == null ? -1 : QUERY.toUpperCase().indexOf( "TILED=TRUE" ); //$NON-NLS-1$
+        if( found != -1){ 
             return null; // this is a WMSC URL :-)
         }
         return Messages.WMSCServiceExtension_nottiled;

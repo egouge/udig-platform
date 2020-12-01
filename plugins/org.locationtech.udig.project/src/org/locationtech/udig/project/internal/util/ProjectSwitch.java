@@ -3,8 +3,10 @@
  */
 package org.locationtech.udig.project.internal.util;
 
-import java.util.List;
-
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.locationtech.udig.catalog.IResolveChangeListener;
 import org.locationtech.udig.core.IBlockingAdaptable;
 import org.locationtech.udig.project.IAbstractContext;
@@ -19,7 +21,6 @@ import org.locationtech.udig.project.IProject;
 import org.locationtech.udig.project.IProjectElement;
 import org.locationtech.udig.project.IStyleBlackboard;
 import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.project.internal.AbstractContext;
 import org.locationtech.udig.project.internal.Blackboard;
 import org.locationtech.udig.project.internal.BlackboardEntry;
 import org.locationtech.udig.project.internal.ContextModel;
@@ -38,12 +39,6 @@ import org.locationtech.udig.project.internal.StyleBlackboard;
 import org.locationtech.udig.project.internal.StyleEntry;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IViewportModel;
-
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch </b> for the model's inheritance hierarchy. It supports the

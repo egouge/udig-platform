@@ -278,24 +278,24 @@ public class FilterInput {
     public String toString() {
         StringBuilder build = new StringBuilder();
         build.append( getClass().getSimpleName() );
-        build.append(" ");
+        build.append(" "); //$NON-NLS-1$
         if( required ){
-            build.append("required ");
+            build.append("required "); //$NON-NLS-1$
         }
         if( viewerId != null ){
-            build.append(" viewerId:");
+            build.append(" viewerId:"); //$NON-NLS-1$
             build.append( viewerId );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( feedback != null ){
-            build.append( " feedback:" );
+            build.append( " feedback:" ); //$NON-NLS-1$
             build.append(feedback.getControl().getClass().getSimpleName() );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( schema != null ){
-            build.append(" schema:");
+            build.append(" schema:"); //$NON-NLS-1$
             build.append( schema.getTypeName() );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         return build.toString();
     }

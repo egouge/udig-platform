@@ -18,13 +18,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.geotools.gce.image.WorldImageFormat;
+import org.geotools.gce.image.WorldImageFormatFactory;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.ServiceExtension2;
 import org.locationtech.udig.catalog.URLUtils;
 import org.locationtech.udig.catalog.worldimage.internal.Messages;
-
-import org.geotools.gce.image.WorldImageFormat;
-import org.geotools.gce.image.WorldImageFormatFactory;
 
 /**
  * Provides the interface to the catalog service extension point.
@@ -124,7 +123,7 @@ public class WorldImageServiceExtension implements ServiceExtension2 {
         }
         File file = URLUtils.urlToFile(id);
         if(file == null) {
-            return "Not a file";
+            return Messages.WorldImageServiceExtension_NotAFile;
         }
         String path = file.getAbsolutePath();
         String fileExt = path.substring(path.lastIndexOf('.') + 1).toLowerCase();

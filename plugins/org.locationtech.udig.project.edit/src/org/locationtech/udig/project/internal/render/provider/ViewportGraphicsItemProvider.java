@@ -75,7 +75,7 @@ public class ViewportGraphicsItemProvider extends ItemProviderAdapter
      * @generated NOT
      */
     public String getText( Object object ) {
-        return "ViewportGraphics";
+        return "ViewportGraphics"; //$NON-NLS-1$
     }
 
     /**

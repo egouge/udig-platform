@@ -79,9 +79,9 @@ public class BoundsStrategy {
 			try {
 				destinationBox = boundsToDisplay.transform(model.getCRS(), true);
 			} catch (TransformException e) {
-				ProjectUIPlugin.log("Unable to transform to the viewport's CRS (ApplicationGIS#drawMap()", e);
+				ProjectUIPlugin.log("Unable to transform to the viewport's CRS (ApplicationGIS#drawMap()", e); //$NON-NLS-1$
 			} catch (FactoryException e) {
-				ProjectUIPlugin.log("Unable to transform to the viewport's CRS (ApplicationGIS#drawMap()", e);
+				ProjectUIPlugin.log("Unable to transform to the viewport's CRS (ApplicationGIS#drawMap()", e); //$NON-NLS-1$
 			}
 			model.zoomToBox(destinationBox);
 		}else{

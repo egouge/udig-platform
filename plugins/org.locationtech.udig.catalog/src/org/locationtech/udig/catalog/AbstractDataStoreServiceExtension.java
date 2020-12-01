@@ -12,6 +12,7 @@ package org.locationtech.udig.catalog;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Map;
 
 import org.locationtech.udig.catalog.internal.Messages;
@@ -138,7 +139,7 @@ public abstract class AbstractDataStoreServiceExtension implements
                 host = host.substring(0, host.length() - 12);
             }
         }
-        Integer the_port = url.getPort() == -1 ? new Integer(5432) : new Integer(url.getPort());
+        Integer the_port = url.getPort() == -1 ? Integer.valueOf(5432) : Integer.valueOf(url.getPort());
         String path = url.getPath();
         String the_database;
         String the_schema;

@@ -106,7 +106,6 @@ public class GeometryTextTransfer extends AbstractTextStrategizedTransfer implem
 		/**
 		 * @see Transfer#nativeToJava
 		 */
-		@SuppressWarnings("deprecation")//$NON-NLS-1$
 		public Object nativeToJava(TransferData transferData) {
 			String string = (String) TextTransfer.getInstance().nativeToJava(
 					transferData);
@@ -148,7 +147,6 @@ public class GeometryTextTransfer extends AbstractTextStrategizedTransfer implem
 		/**
 		 * @see Transfer#nativeToJava
 		 */
-		@SuppressWarnings("deprecation")//$NON-NLS-1$
 		public Object nativeToJava(TransferData transferData) {
 			// JONES
 			return null;

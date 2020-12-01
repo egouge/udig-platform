@@ -12,10 +12,9 @@ package org.locationtech.udig.project.internal;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IService;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal

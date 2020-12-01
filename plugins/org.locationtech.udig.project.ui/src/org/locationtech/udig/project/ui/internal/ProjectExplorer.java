@@ -888,7 +888,7 @@ public class ProjectExplorer extends ViewPart
      * @param elementChild the element to select.
      */
     public void setSelection( IProjectElement element, Object elementChild ) {
-        throw new UnsupportedOperationException("This method has not been implemented yet");
+        throw new UnsupportedOperationException("This method has not been implemented yet"); //$NON-NLS-1$
     }
 
     private class SetSelectionListener implements InputChangedListener {

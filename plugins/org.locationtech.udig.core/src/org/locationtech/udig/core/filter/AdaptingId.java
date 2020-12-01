@@ -35,6 +35,6 @@ class AdaptingId extends AdaptingFilter<Id> implements Id {
         return wrapped.getIdentifiers();
     }
     public String toString() {
-        return "Adapting:"+wrapped.getIDs();
+        return "Adapting:"+wrapped.getIDs(); //$NON-NLS-1$
     }
 }

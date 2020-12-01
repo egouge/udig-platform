@@ -106,7 +106,7 @@ public class ArcGridServiceExtension implements ServiceExtension {
 		String file = url.getFile();
 		file = file.toLowerCase();
 		
-		return(file.endsWith(".asc") || file.endsWith(".grd") || file.endsWith(".asc.gz") );
+		return(file.endsWith(".asc") || file.endsWith(".grd") || file.endsWith(".asc.gz") ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	private String arcGridFile(File file) {

@@ -103,6 +103,10 @@ public class Messages extends NLS {
 	public static String SetViewportBBoxCommand_setViewArea;
 	public static String SetViewportHeight_setViewHeight;
 	public static String SetApplicabilityCommand_name;
+
+	public static String SetLayersVisibilityCommand_Name;
+
+	public static String SetLayerVisibilityCommand_Name;
 	public static String SetViewportWidth_setViewWidth;
 	public static String ZoomExtentCommand_name;
 	public static String DeleteManyFeaturesCommand_name;
@@ -117,6 +121,8 @@ public class Messages extends NLS {
 	public static String ExportProjectWizard_Exporting;
 	public static String ExportSelectionPage_Destination;
 	public static String ExportSelectionPage_MissingDir;
+	public static String ExportSelectionPage_PageName;
+
 	public static String ExportSelectionPage_Project;
 	public static String ExportSelectionPage_SelectProject;
 	public static String ExportSelectionPage_ExportProject;

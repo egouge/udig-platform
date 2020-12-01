@@ -17,7 +17,6 @@ import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.project.preferences.PreferenceConstants;
-
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**

@@ -19,15 +19,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
-import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.ui.graphics.SLDs;
-import org.opengis.style.SemanticType;
+import org.geotools.feature.NameImpl;
 import org.geotools.ows.wms.StyleImpl;
 import org.geotools.ows.wms.WebMapServer;
-import org.geotools.feature.NameImpl;
 import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.PointSymbolizer;

@@ -215,12 +215,12 @@ class FeatureTableContentProvider implements ILazyContentProvider, IProvider<Col
                     source.addFeatureListener(listener);
                 } else {
                     UiPlugin.trace(UiPlugin.ID, FeatureTableContentProvider.class,
-                            "Unable to adapt to FeatureSource (to listen for changes):" + input,
+                            "Unable to adapt to FeatureSource (to listen for changes):" + input, //$NON-NLS-1$
                             null);
                 }
             } else {
                 UiPlugin.trace(UiPlugin.ID, FeatureTableContentProvider.class,
-                        "Unable to access FeatureSource (to listen for changes):" + newInput, null);
+                        "Unable to access FeatureSource (to listen for changes):" + newInput, null); //$NON-NLS-1$
             }
 
             if (newInput == null)
@@ -331,7 +331,7 @@ class FeatureTableContentProvider implements ILazyContentProvider, IProvider<Col
                 return;
             } catch (IndexOutOfBoundsException e) {
                 error(input, Messages.FeatureTableContentProvider_unexpectedErro
-                        + " " + Messages.FeatureTableContentProvider_probablecharseterror, false);
+                        + " " + Messages.FeatureTableContentProvider_probablecharseterror, false); //$NON-NLS-1$
                 UiPlugin.log("error loading features in table view", e); //$NON-NLS-1$
                 return;
             } catch (Throwable t) {

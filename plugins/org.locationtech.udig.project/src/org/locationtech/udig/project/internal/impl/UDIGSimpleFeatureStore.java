@@ -16,20 +16,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.project.LayerEvent;
-import org.locationtech.udig.project.ProjectBlackboardConstants;
-import org.locationtech.udig.project.internal.EditManager;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-
 import org.geotools.data.DataStore;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FeatureEvent;
 import org.geotools.data.FeatureListener;
 import org.geotools.data.FeatureReader;
-import org.geotools.data.FeatureSource;
 import org.geotools.data.FeatureStore;
 import org.geotools.data.Query;
 import org.geotools.data.QueryCapabilities;
@@ -40,6 +31,14 @@ import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKTWriter;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.Interaction;
+import org.locationtech.udig.project.LayerEvent;
+import org.locationtech.udig.project.internal.EditManager;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
@@ -48,9 +47,6 @@ import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.Id;
 import org.opengis.filter.identity.FeatureId;
-
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.io.WKTWriter;
 
 /**
  * A SimpleFeatureStore decorator that does not allow the transaction to be set more than once.
@@ -144,7 +140,7 @@ public class UDIGSimpleFeatureStore implements SimpleFeatureStore, UDIGStore {
                     Id id = (Id) selectFilter;
                     where = id.getIDs().toString();
                 }
-                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:"
+                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:" //$NON-NLS-1$ //$NON-NLS-2$
                         + wkt;
                 ProjectPlugin.log(msg);
                 throw new IOException(msg);
@@ -196,7 +192,7 @@ public class UDIGSimpleFeatureStore implements SimpleFeatureStore, UDIGStore {
      */
     private void setTransactionInternal() {
         if (!layer.getInteraction(Interaction.EDIT)) {
-            String message = "Attempted to open a transaction on a non-editable layer (Aborted)";
+            String message = "Attempted to open a transaction on a non-editable layer (Aborted)"; //$NON-NLS-1$
             IllegalStateException illegalStateException = new IllegalStateException( message );
             ProjectPlugin.log(message, illegalStateException);
             throw illegalStateException;

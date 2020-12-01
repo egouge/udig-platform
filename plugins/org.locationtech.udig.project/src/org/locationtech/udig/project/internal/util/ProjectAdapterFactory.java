@@ -10,6 +10,11 @@
  */
 package org.locationtech.udig.project.internal.util;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.locationtech.udig.catalog.IResolveChangeListener;
 import org.locationtech.udig.core.IBlockingAdaptable;
 import org.locationtech.udig.project.IAbstractContext;
@@ -24,7 +29,6 @@ import org.locationtech.udig.project.IProject;
 import org.locationtech.udig.project.IProjectElement;
 import org.locationtech.udig.project.IStyleBlackboard;
 import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.project.internal.AbstractContext;
 import org.locationtech.udig.project.internal.Blackboard;
 import org.locationtech.udig.project.internal.BlackboardEntry;
 import org.locationtech.udig.project.internal.ContextModel;
@@ -43,12 +47,6 @@ import org.locationtech.udig.project.internal.StyleBlackboard;
 import org.locationtech.udig.project.internal.StyleEntry;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IViewportModel;
-
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.util

@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.locationtech.udig.ui.internal.Messages;
 
 /**
  * Class DatePickerDialog. A dialog where the user can select a dateValue using a month/dateValue
@@ -111,7 +112,7 @@ public class DateTimePickerDialog extends Dialog {
 
         if (allowNullOption) {
             unsetDateCheckbox = new Button(client, SWT.CHECK);
-            unsetDateCheckbox.setText("set to null");
+            unsetDateCheckbox.setText(Messages.DateTimePickerDialog_setNull);
             unsetDateCheckbox.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, false, 2, 0));
         }
 

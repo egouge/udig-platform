@@ -10,18 +10,17 @@
  */
 package org.locationtech.udig.project.internal.commands.edit;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.data.FeatureStore;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.core.internal.FeatureUtils;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.data.FeatureStore;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
-import org.geotools.feature.FeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;

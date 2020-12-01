@@ -14,18 +14,8 @@ package org.locationtech.udig.catalog.ui.search;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.locationtech.udig.catalog.CatalogPlugin;
-import org.locationtech.udig.catalog.IResolve;
-import org.locationtech.udig.catalog.ISearch;
-import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
-import org.locationtech.udig.catalog.ui.ResolveContentProvider;
-import org.locationtech.udig.catalog.ui.ResolveLabelProviderSimple;
-import org.locationtech.udig.catalog.ui.ResolveTitlesDecorator;
-import org.locationtech.udig.ui.PlatformGIS;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -57,6 +47,17 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.geotools.data.FeatureSource;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.udig.catalog.CatalogPlugin;
+import org.locationtech.udig.catalog.IResolve;
+import org.locationtech.udig.catalog.ISearch;
+import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
+import org.locationtech.udig.catalog.ui.ResolveContentProvider;
+import org.locationtech.udig.catalog.ui.ResolveLabelProviderSimple;
+import org.locationtech.udig.catalog.ui.ResolveTitlesDecorator;
+import org.locationtech.udig.catalog.ui.internal.Messages;
+import org.locationtech.udig.ui.PlatformGIS;
+
+import com.ibm.icu.text.MessageFormat;
 
 /**
  * Composite used to provide list of resource to be searched.
@@ -109,7 +110,7 @@ public class ResourceSearchComposite extends Composite implements ISelectionProv
         setLayout(new GridLayout(1, false));
     
         Label hintLabel = new Label(this, SWT.NONE);
-        hintLabel.setText("Start typing in search term");
+        hintLabel.setText(Messages.ResourceSearchComposite_searchHint);
     
         text = new Text(this, SWT.BORDER | SWT.SEARCH | SWT.ICON_SEARCH );
         text.addKeyListener(keyListener);
@@ -171,7 +172,7 @@ public class ResourceSearchComposite extends Composite implements ISelectionProv
             @Override
             public void run() {
                 if( text != null && !text.isDisposed() ){
-                    text.setText( search != null ? search : "" );
+                    text.setText( search != null ? search : "" ); //$NON-NLS-1$
                     doSearch( 0 );                
                 }
             }
@@ -276,11 +277,11 @@ public class ResourceSearchComposite extends Composite implements ISelectionProv
             if( monitor == null ) monitor = new NullProgressMonitor();
             
             try {
-                monitor.beginTask( "Seaching for "+searchText, catalogs.size()*100 );
+                monitor.beginTask( "Seaching for "+searchText, catalogs.size()*100 ); //$NON-NLS-1$
                 final List<IResolve> resolves = new CopyOnWriteArrayList<IResolve>();
                 for (ISearch search : catalogs) {
                     try {
-                        monitor.subTask("Search "+search.getTitle() +" for "+searchText );
+                        monitor.subTask("Search "+search.getTitle() +" for "+searchText ); //$NON-NLS-1$ //$NON-NLS-2$
                         List<IResolve> searchResults = search.search(searchText, bounds, null);
                         monitor.worked(10);
                         IProgressMonitor searchMonitor = new SubProgressMonitor( monitor,10, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK );
@@ -297,7 +298,7 @@ public class ResourceSearchComposite extends Composite implements ISelectionProv
                 doSearchCallback(resolves);
                 return Status.OK_STATUS;
             } catch (Exception e) {
-                String message = "Unable to complete search for '"+searchText+"':"+e;
+                String message = MessageFormat.format(Messages.ResourceSearchComposite_searchError, searchText, e.getMessage());
                 Status failure = new Status( IStatus.ERROR, CatalogUIPlugin.ID, message, e );
                 return failure;
             } finally {

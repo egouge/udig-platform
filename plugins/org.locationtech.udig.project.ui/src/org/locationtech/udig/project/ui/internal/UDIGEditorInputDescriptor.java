@@ -53,7 +53,7 @@ public class UDIGEditorInputDescriptor {
             } catch (CoreException e) {
                 ProjectUIPlugin.log("Error creating input type", e); //$NON-NLS-1$
                 return null;
-            } //$NON-NLS-1$
+            } 
             input.setProjectElement(element);
             instances.put(element, input);
         }

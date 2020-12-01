@@ -181,7 +181,7 @@ public class CatalogExport {
         HashMap<Class<? extends State>, WorkflowWizardPageProvider> map = new HashMap<Class<? extends State>, WorkflowWizardPageProvider>();
         String title = Messages.LayerSelectionPage_title;
         ImageDescriptor banner = CatalogUIPlugin.getDefault().getImageDescriptor(ImageConstants.PATH_WIZBAN+"exportshapefile_wiz.gif"); //$NON-NLS-1$
-        ExportResourceSelectionPage page = new ExportResourceSelectionPage("Select Layers", title, banner ); 
+        ExportResourceSelectionPage page = new ExportResourceSelectionPage(Messages.CatalogExport_LayersPage, title, banner ); 
         map.put(ExportResourceSelectionState.class, new BasicWorkflowWizardPageFactory(page));
 
         //TODO: add export support for formats other than shapefile

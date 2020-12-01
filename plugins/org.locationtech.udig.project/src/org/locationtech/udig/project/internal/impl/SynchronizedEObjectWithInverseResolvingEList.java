@@ -12,9 +12,9 @@ package org.locationtech.udig.project.internal.impl;
 import java.util.Collection;
 import java.util.concurrent.locks.Lock;
 
-import org.locationtech.udig.ui.UDIGDisplaySafeLock;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.locationtech.udig.ui.UDIGDisplaySafeLock;
 
 /**
  * Synchronizes reads and writes. When iterating its recommend to use {@link #syncedIteration(IEListVisitor)} otherwise 

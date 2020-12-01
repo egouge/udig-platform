@@ -10,6 +10,7 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMapCompositionListener;
 import org.locationtech.udig.project.MapCompositionEvent;
@@ -18,8 +19,6 @@ import org.locationtech.udig.project.internal.ContextModel;
 import org.locationtech.udig.project.internal.ContextModelListenerAdapter;
 import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.ProjectPlugin;
-
-import org.eclipse.emf.common.notify.Notification;
 
 /**
      * Listens for EMF events that indicate map composition changes and creates and fires the associated MapCompositionEvents 

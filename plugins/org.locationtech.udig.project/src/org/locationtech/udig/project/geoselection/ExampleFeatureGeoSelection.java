@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.locationtech.udig.project.ILayer;
-
 import org.opengis.feature.simple.SimpleFeature;
 
 /**

@@ -179,7 +179,7 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         if (statusBar == null)
             return; // shouldn't happen if the tool is being used.
 
-        IPreferenceStore preferenceStore = new ScopedPreferenceStore(InstanceScope.INSTANCE, "org.locationtech.udig.ui");
+        IPreferenceStore preferenceStore = new ScopedPreferenceStore(InstanceScope.INSTANCE, "org.locationtech.udig.ui"); //$NON-NLS-1$
 
         String units = preferenceStore.getString(org.locationtech.udig.ui.preferences.PreferenceConstants.P_DEFAULT_UNITS);
         if (units.equals( org.locationtech.udig.ui.preferences.PreferenceConstants.AUTO_UNITS) && CRSUtil.isCoordinateReferenceSystemImperial(context.getCRS())){
@@ -247,8 +247,8 @@ public class DistanceTool extends SimpleTool implements KeyListener {
         }
 
         final String message = MessageFormat.format(Messages.DistanceTool_distance, 
-        		round(result.getValue().doubleValue(), 2) + " " + result.getUnit(), 
-        		round(resultLastSegment.getValue().doubleValue(), 2) + " " + resultLastSegment.getUnit());
+        		round(result.getValue().doubleValue(), 2) + " " + result.getUnit(),  //$NON-NLS-1$
+        		round(resultLastSegment.getValue().doubleValue(), 2) + " " + resultLastSegment.getUnit()); //$NON-NLS-1$
 
         getContext().updateUI(new Runnable(){
             public void run() {

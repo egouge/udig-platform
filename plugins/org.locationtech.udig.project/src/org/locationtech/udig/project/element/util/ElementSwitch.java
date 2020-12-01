@@ -12,19 +12,14 @@
  */
 package org.locationtech.udig.project.element.util;
 
-import java.util.List;
-
-import org.locationtech.udig.project.IProjectElement;
-import org.locationtech.udig.project.element.*;
-import org.locationtech.udig.project.element.ElementPackage;
-import org.locationtech.udig.project.element.ProjectElementAdapter;
-import org.locationtech.udig.project.internal.ProjectElement;
-
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.locationtech.udig.project.IProjectElement;
+import org.locationtech.udig.project.element.ElementPackage;
+import org.locationtech.udig.project.element.ProjectElementAdapter;
+import org.locationtech.udig.project.internal.ProjectElement;
 
 /**
  * <!-- begin-user-doc -->

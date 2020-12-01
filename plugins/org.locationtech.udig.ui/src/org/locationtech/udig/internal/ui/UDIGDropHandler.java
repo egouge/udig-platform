@@ -162,7 +162,7 @@ public class UDIGDropHandler extends DropTargetAdapter {
             DropTarget target = (DropTarget) event.getSource();
             Control control = target.getControl();
             
-            System.out.println("UDIGDropHandler.dragEnter "+control.toString()+": Setting event.detail to COPY"); //$NON-NLS-1$
+            System.out.println("UDIGDropHandler.dragEnter "+control.toString()+": Setting event.detail to COPY"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         event.detail = DND.DROP_COPY;
     }
@@ -203,9 +203,9 @@ public class UDIGDropHandler extends DropTargetAdapter {
         if (actions != null && !actions.isEmpty()){
             List<IDropAction> filteredActions = filterActions(event,actions);
             
-            UiPlugin.trace(Trace.DND, getClass(), "Target "+getTarget()+" found "+filteredActions.size()+" drop actions",null); //$NON-NLS-1$ //$NON-NLS-2$ 
+            UiPlugin.trace(Trace.DND, getClass(), "Target "+getTarget()+" found "+filteredActions.size()+" drop actions",null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
             for( IDropAction action : filteredActions ){
-                UiPlugin.trace(Trace.DND, getClass(), " * Action "+action.getName()+" implementation "+action.getClass().getSimpleName(), null ); //$NON-NLS-1$
+                UiPlugin.trace(Trace.DND, getClass(), " * Action "+action.getName()+" implementation "+action.getClass().getSimpleName(), null ); //$NON-NLS-1$ //$NON-NLS-2$
             }
 
             actionJob.addActions(this, filteredActions);
@@ -239,7 +239,7 @@ public class UDIGDropHandler extends DropTargetAdapter {
         if (UiPlugin.isDebugging(Trace.DND)) {
             String type = data.getClass().getSimpleName();
             String value = data.getClass().isArray() ?
-                    Array.getLength( data )+" items" :
+                    Array.getLength( data )+" items" : //$NON-NLS-1$
                     data.toString();
             
             UiPlugin.trace(Trace.DND, UDIGDropHandler.class,
@@ -282,7 +282,7 @@ public class UDIGDropHandler extends DropTargetAdapter {
         if (!actions.isEmpty()){
             UiPlugin.trace(Trace.DND, getClass(), data+" dropped on "+getTarget()+" found "+actions.size()+" drop actions",null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             for( IDropAction action : actions ){
-                UiPlugin.trace(Trace.DND, getClass(), " * Action "+action.getName()+" implementation "+action.getClass().getSimpleName(), null ); //$NON-NLS-1$
+                UiPlugin.trace(Trace.DND, getClass(), " * Action "+action.getName()+" implementation "+action.getClass().getSimpleName(), null ); //$NON-NLS-1$ //$NON-NLS-2$
             }
             
             actionJob.addActions(this, actions);

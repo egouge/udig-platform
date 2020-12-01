@@ -13,13 +13,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableCommand;
 import org.locationtech.udig.project.internal.LayerLegendItem;
 import org.locationtech.udig.project.internal.Map;
-
-import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * Abstract parent class for layer move commands.

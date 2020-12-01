@@ -18,18 +18,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.Trace;
-import org.locationtech.udig.project.internal.render.RenderContext;
-import org.locationtech.udig.project.internal.render.Renderer;
-import org.locationtech.udig.project.internal.render.RendererDecorator;
-import org.locationtech.udig.project.internal.render.ViewportModel;
-import org.locationtech.udig.project.preferences.PreferenceConstants;
-import org.locationtech.udig.project.render.IRenderContext;
-import org.locationtech.udig.project.render.IRenderer;
-import org.locationtech.udig.project.render.RenderException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -43,9 +31,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.geotools.data.FeatureStore;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.Trace;
+import org.locationtech.udig.project.internal.render.RenderContext;
+import org.locationtech.udig.project.internal.render.Renderer;
+import org.locationtech.udig.project.internal.render.RendererDecorator;
+import org.locationtech.udig.project.internal.render.ViewportModel;
+import org.locationtech.udig.project.preferences.PreferenceConstants;
+import org.locationtech.udig.project.render.IRenderContext;
+import org.locationtech.udig.project.render.IRenderer;
+import org.locationtech.udig.project.render.RenderException;
 
 public class TilingRenderer implements Renderer, RendererDecorator {
 

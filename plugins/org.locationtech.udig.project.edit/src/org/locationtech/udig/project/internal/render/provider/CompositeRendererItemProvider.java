@@ -42,14 +42,14 @@ public class CompositeRendererItemProvider extends RendererItemProvider
      * @generated
      */
     public static final String copyright = 
-            "uDig - User Friendly Desktop Internet GIS client\n"
-          + "http://udig.refractions.net\n"
-          + "(C) 2004-2012, Refractions Research Inc.\n"
-          + "\n\n"
-          + "All rights reserved. This program and the accompanying materials\n"
-          + "are made available under the terms of the Eclipse Public License v1.0\n"
-          + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n"
-          + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n";
+            "uDig - User Friendly Desktop Internet GIS client\n" //$NON-NLS-1$
+          + "http://udig.refractions.net\n" //$NON-NLS-1$
+          + "(C) 2004-2012, Refractions Research Inc.\n" //$NON-NLS-1$
+          + "\n\n" //$NON-NLS-1$
+          + "All rights reserved. This program and the accompanying materials\n" //$NON-NLS-1$
+          + "are made available under the terms of the Eclipse Public License v1.0\n" //$NON-NLS-1$
+          + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n" //$NON-NLS-1$
+          + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n"; //$NON-NLS-1$
 
     /**
      * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
@@ -92,8 +92,8 @@ public class CompositeRendererItemProvider extends RendererItemProvider
      */
     public String getText( Object object ) {
         String label = ((MultiLayerRenderer) object).getName();
-        return label == null || label.length() == 0 ? "CompositeRenderer" :
-                "CompositeRenderer" + " " + label; 
+        return label == null || label.length() == 0 ? "CompositeRenderer" : //$NON-NLS-1$
+                "CompositeRenderer" + " " + label;  //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     /**

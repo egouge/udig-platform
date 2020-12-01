@@ -12,6 +12,7 @@ package org.locationtech.udig.catalog.ui.workflow;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.locationtech.udig.catalog.ui.internal.Messages;
 
 /**
  * A state that tracks intermediate pages.
@@ -60,7 +61,7 @@ public class IntermediateState extends State {
 
     @Override
     public String getName() {
-        return "Intermediate Page";
+        return Messages.IntermediateState_PageName;
     }
 
     public State getEndState() {

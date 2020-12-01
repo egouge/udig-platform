@@ -108,7 +108,7 @@ public class ReshapeDialog extends Dialog {
                     }
                 }
                 if( !changed && originalFeatureType.getAttributeCount() == count ){
-                    showFeedback("Transform does not modify any content",null);
+                    showFeedback(Messages.ReshapeDialog_NotModified,null);
                 }
             }
             catch (Throwable t){
@@ -137,11 +137,11 @@ public class ReshapeDialog extends Dialog {
         GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
         panel.setLayoutData(gridData);
 
-        panel.setLayout(new MigLayout( "fillx","[grow,fill]","[][grow,fill][][]") );
+        panel.setLayout(new MigLayout( "fillx","[grow,fill]","[][grow,fill][][]") ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         
         Label label = new Label(panel, SWT.LEFT );
-        label.setText("Transform");
-        label.setLayoutData("width pref!,left,wrap");
+        label.setText(Messages.ReshapeDialog_TransformLabel);
+        label.setLayoutData("width pref!,left,wrap"); //$NON-NLS-1$
         
         feedbackDecorator = new ControlDecoration(label, SWT.RIGHT|SWT.TOP);
 
@@ -149,16 +149,16 @@ public class ReshapeDialog extends Dialog {
         text.setEditable(true);
         text.setText(getDefaultText());
         
-        text.setLayoutData("wrap, height 100:pref:100%");
+        text.setLayoutData("wrap, height 100:pref:100%"); //$NON-NLS-1$
         
         text.addListener(SWT.Modify, listener);
 
         label = new Label(panel, SWT.LEFT );
-        label.setText("How would you like to handle the result:");
-        label.setLayoutData("width pref!,wrap");
+        label.setText(Messages.ReshapeDialog_ResultMessage);
+        label.setLayoutData("width pref!,wrap"); //$NON-NLS-1$
 
         actionCombo = new Combo(panel, SWT.READ_ONLY);
-        actionCombo.setLayoutData( "width pref!");
+        actionCombo.setLayoutData( "width pref!"); //$NON-NLS-1$
         actionCombo(actionCombo);
 
         
@@ -262,7 +262,7 @@ public class ReshapeDialog extends Dialog {
             }
             else {
                 // fix up really long CQL messages
-                errormessage = errormessage.replaceAll("\\n\\s+", " ");
+                errormessage = errormessage.replaceAll("\\n\\s+", " "); //$NON-NLS-1$ //$NON-NLS-2$
             }
             if( message == null ){
                 message = MessageFormat.format(Messages.ReshapeOperation_3,errormessage);

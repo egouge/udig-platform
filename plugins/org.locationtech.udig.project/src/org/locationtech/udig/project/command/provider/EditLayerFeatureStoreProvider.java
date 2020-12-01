@@ -11,12 +11,11 @@ package org.locationtech.udig.project.command.provider;
 
 import java.io.IOException;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.data.FeatureStore;
 import org.locationtech.udig.core.IBlockingProvider;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.MapCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.data.FeatureStore;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 

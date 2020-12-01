@@ -154,7 +154,7 @@ public class CatalogImpl extends ICatalog {
             try {
                 service.dispose(new NullProgressMonitor());
             } catch (Throwable t) {
-                CatalogPlugin.trace("dispose " + id, t);
+                CatalogPlugin.trace("dispose " + id, t); //$NON-NLS-1$
             }
             return found;
         }
@@ -273,8 +273,8 @@ public class CatalogImpl extends ICatalog {
         if (monitor == null)
             monitor = new NullProgressMonitor();
 
-        monitor.beginTask("acquire", 100);
-        monitor.subTask("acquire services");
+        monitor.beginTask("acquire", 100); //$NON-NLS-1$
+        monitor.subTask("acquire services"); //$NON-NLS-1$
 
         monitor.worked(10);
         try {
@@ -282,7 +282,7 @@ public class CatalogImpl extends ICatalog {
             possible = constructServices(url, monitor);
 
             if (possible.isEmpty()) {
-                throw new IOException("Unable to connect to any service supporting " + url);
+                throw new IOException("Unable to connect to any service supporting " + url); //$NON-NLS-1$
             }
             
             createdService = possible.get(0);
@@ -293,7 +293,7 @@ public class CatalogImpl extends ICatalog {
                 return createdService;
             } catch (Throwable t) {
                 // usually indicates an IOException as the service is unable to connect
-                CatalogPlugin.trace("trouble connecting to " + createdService.getID(), t);
+                CatalogPlugin.trace("trouble connecting to " + createdService.getID(), t); //$NON-NLS-1$
             }
 
         } finally {
@@ -333,15 +333,15 @@ public class CatalogImpl extends ICatalog {
         
         if (monitor == null) monitor = new NullProgressMonitor();
 
-        monitor.beginTask("acquire", 100);
-        monitor.subTask("acquire services");
+        monitor.beginTask("acquire", 100); //$NON-NLS-1$
+        monitor.subTask("acquire services"); //$NON-NLS-1$
 
         try {
 
             possible = constructServices(connectionParameters, monitor);
 
             if (possible.isEmpty()) {
-                throw new IOException("Unable to connect to any service ");
+                throw new IOException("Unable to connect to any service "); //$NON-NLS-1$
             }
 
             createdService = possible.get(0);
@@ -351,7 +351,7 @@ public class CatalogImpl extends ICatalog {
                 return createdService;
             } catch (Throwable t) {
                 // usually indicates an IOException as the service is unable to connect
-                CatalogPlugin.trace("trouble connecting to " + createdService.getID(), t);
+                CatalogPlugin.trace("trouble connecting to " + createdService.getID(), t); //$NON-NLS-1$
             }
 
         } finally {
@@ -676,7 +676,7 @@ public class CatalogImpl extends ICatalog {
         
         if( CatalogPlugin.getDefault().isDebugging() ){
             if( Display.getCurrent() != null ){
-                throw new IllegalStateException("search called from display thread");
+                throw new IllegalStateException("search called from display thread"); //$NON-NLS-1$
             }
         }
         
@@ -715,11 +715,11 @@ public class CatalogImpl extends ICatalog {
                                 result.add(resource);
                             }
                         } catch (Throwable t) {
-                            CatalogPlugin.log("Could not search in resource:" + resoruceID, t);
+                            CatalogPlugin.log("Could not search in resource:" + resoruceID, t); //$NON-NLS-1$
                         }
                     }
                 } catch (IOException e) {
-                    CatalogPlugin.log("Could not search in service:" + serviceID, e);
+                    CatalogPlugin.log("Could not search in service:" + serviceID, e); //$NON-NLS-1$
                 } finally {
                     submonitor.done();
                 }
@@ -845,8 +845,8 @@ public class CatalogImpl extends ICatalog {
             try {
                 listener.changed(event);
             } catch (Throwable die) {
-                CatalogPlugin.log("Catalog event could not be delivered to "
-                        + listener.getClass().getSimpleName() + ":" + listener.toString(), die);
+                CatalogPlugin.log("Catalog event could not be delivered to " //$NON-NLS-1$
+                        + listener.getClass().getSimpleName() + ":" + listener.toString(), die); //$NON-NLS-1$
                 die.printStackTrace();
             }
         }
@@ -1010,7 +1010,7 @@ public class CatalogImpl extends ICatalog {
             CatalogPlugin.trace("Unable to restore catalog:"+e, e); //$NON-NLS-1$
             try {
                 loadFromFileOld(factory, e);
-                CatalogPlugin.trace("Restored from old catalog format",null);
+                CatalogPlugin.trace("Restored from old catalog format",null); //$NON-NLS-1$
             }
             catch (Throwable e2) {
                 CatalogPlugin.log("Unable to restore from old catalog format", e); //$NON-NLS-1$
@@ -1094,7 +1094,7 @@ public class CatalogImpl extends ICatalog {
                         .createExecutableExtension("class"); //$NON-NLS-1$
                 interceptor.run(service);
             } catch (Exception e) {
-                CatalogPlugin.trace( activity +" "+element.getAttribute("class")+":"+e, e); //$NON-NLS-1$
+                CatalogPlugin.trace( activity +" "+element.getAttribute("class")+":"+e, e); //$NON-NLS-1$  //$NON-NLS-2$ //$NON-NLS-3$
             }
         }
     }
@@ -1121,7 +1121,7 @@ public class CatalogImpl extends ICatalog {
                         .createExecutableExtension("class"); //$NON-NLS-1$
                 interceptor.run(resource);
             } catch (Exception e) {
-                CatalogPlugin.trace( activity +" "+element.getAttribute("class")+":"+e, e); //$NON-NLS-1$
+                CatalogPlugin.trace( activity +" "+element.getAttribute("class")+":"+e, e); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         }
     }
@@ -1230,35 +1230,35 @@ public class CatalogImpl extends ICatalog {
 
         IServiceFactory factory = CatalogPlugin.getDefault().getServiceFactory();
 
-        monitor.beginTask("Check", 1);
-        monitor.subTask("Check available services");
+        monitor.beginTask("Check", 1); //$NON-NLS-1$
+        monitor.subTask("Check available services"); //$NON-NLS-1$
 
         try {
             List<IService> possible = factory.createService(url);
             monitor.worked(urlProcessCount);
 
             IProgressMonitor monitor3 = new SubProgressMonitor(monitor, 60);
-            monitor3.beginTask("connect", possible.size() * 10);
+            monitor3.beginTask("connect", possible.size() * 10); //$NON-NLS-1$
 
             for( Iterator<IService> iterator = possible.iterator(); iterator.hasNext(); ) {
                 IService service = iterator.next();
 
                 if (service == null) continue;
 
-                monitor3.subTask("connect " + service.getID());
+                monitor3.subTask("connect " + service.getID()); //$NON-NLS-1$
                 try {
                     // try connecting
                     IServiceInfo info = service.getInfo(new SubProgressMonitor(monitor3, 10));
 
                     if (info == null) {
-                        CatalogPlugin.trace("unable to connect to " + service.getID(), null);
+                        CatalogPlugin.trace("unable to connect to " + service.getID(), null); //$NON-NLS-1$
                         continue; // skip unable to connect
                     }
 
                     availableServices.add(service);
                 } catch (Throwable t) {
                     // usually indicates an IOException as the service is unable to connect
-                    CatalogPlugin.trace("trouble connecting to " + service.getID(), t);
+                    CatalogPlugin.trace("trouble connecting to " + service.getID(), t); //$NON-NLS-1$
                 }
             }
             monitor3.done();
@@ -1294,7 +1294,7 @@ public class CatalogImpl extends ICatalog {
                     try {
                         IServiceInfo info = service.getInfo(new SubProgressMonitor(monitor, 10));
                         if (info == null) {
-                            CatalogPlugin.trace("unable to connect to " + service.getID(), null);
+                            CatalogPlugin.trace("unable to connect to " + service.getID(), null); //$NON-NLS-1$
                             continue; // skip unable to connect
                         }
                         availableServices.add(service);

@@ -235,46 +235,46 @@ public class ExpressionInput extends FilterInput {
     public String toString() {
         StringBuilder build = new StringBuilder();
         build.append( getClass().getSimpleName() );
-        build.append(" ");
+        build.append(" "); //$NON-NLS-1$
         if( required ){
-            build.append("required ");
+            build.append("required "); //$NON-NLS-1$
         }
         if( viewerId != null ){
-            build.append(" viewerId:");
+            build.append(" viewerId:"); //$NON-NLS-1$
             build.append( viewerId );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( feedback != null ){
-            build.append( " feedback:" );
+            build.append( " feedback:" ); //$NON-NLS-1$
             build.append(feedback.getControl().getClass().getSimpleName() );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( schema != null ){
-            build.append(" schema:");
+            build.append(" schema:"); //$NON-NLS-1$
             build.append( schema.getTypeName() );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( binding != null ){
-            build.append(" binding:");
+            build.append(" binding:"); //$NON-NLS-1$
             build.append( binding.getSimpleName() );
-            build.append(" " );
+            build.append(" " ); //$NON-NLS-1$
         }
         if( defaultLiteral != null ){
-            build.append(" default:");
+            build.append(" default:"); //$NON-NLS-1$
             build.append( defaultLiteral );
-            build.append(" " );
+            build.append(" " ); //$NON-NLS-1$
         }
         if( min != null || max != null ){
-            build.append("limit: ");
+            build.append("limit: "); //$NON-NLS-1$
             build.append( min );
-            build.append(" .. ");
+            build.append(" .. "); //$NON-NLS-1$
             build.append( max );
-            build.append(" ");
+            build.append(" "); //$NON-NLS-1$
         }
         if( options != null ){
-            build.append(" options:");
+            build.append(" options:"); //$NON-NLS-1$
             build.append( options );
-            build.append(" " );
+            build.append(" " ); //$NON-NLS-1$
             
         }
         return build.toString();

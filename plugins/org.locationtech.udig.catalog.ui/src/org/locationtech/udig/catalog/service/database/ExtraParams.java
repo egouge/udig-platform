@@ -97,7 +97,7 @@ public abstract class ExtraParams {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		throw new IllegalStateException(param.type+" is not one of the types that are handled by convertValue().  Method must be overridden; Param:"+param);
+		throw new IllegalStateException(param.type+" is not one of the types that are handled by convertValue().  Method must be overridden; Param:"+param); //$NON-NLS-1$
 	}
 	/**
 	 * Create a cell editor for editing the value of this parameter.
@@ -117,7 +117,7 @@ public abstract class ExtraParams {
 			@Override
 			public CellEditor createCellEditor(Composite parent) {
 				TextCellEditor textCellEditor = new TextCellEditor(parent);
-				textCellEditor.setValue(defaultValue==null?"":defaultValue);
+				textCellEditor.setValue(defaultValue==null?"":defaultValue); //$NON-NLS-1$
 				return textCellEditor;
 			}
 
@@ -152,7 +152,7 @@ public abstract class ExtraParams {
 			}
 			
 			if(current >= options.length) {
-				CatalogUIPlugin.log("ERROR:  "+defaultValue+" is not one of the legal options", new Exception());
+				CatalogUIPlugin.log("ERROR:  "+defaultValue+" is not one of the legal options", new Exception()); //$NON-NLS-1$ //$NON-NLS-2$
 				current = 0;
 			}
 		}
@@ -184,7 +184,7 @@ public abstract class ExtraParams {
 					}
 					index++;
 				}
-				throw new IllegalArgumentException(value+" is not one of the options in the combo:"+(Arrays.toString(options)));
+				throw new IllegalArgumentException(value+" is not one of the options in the combo:"+(Arrays.toString(options))); //$NON-NLS-1$
 			}
 
 			@Override

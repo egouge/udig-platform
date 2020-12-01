@@ -307,10 +307,10 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
                             dialog.run(false, false, progressRunnable);
                         } catch (InvocationTargetException e) {
                             // won't happen
-                            ProjectPlugin.log("", e);
+                            ProjectPlugin.log("", e); //$NON-NLS-1$
                         } catch (InterruptedException e) {
                             // won't happen
-                            ProjectPlugin.log("", e);
+                            ProjectPlugin.log("", e); //$NON-NLS-1$
                         }
 
                     }
@@ -644,7 +644,7 @@ public class EditManagerImpl extends EObjectImpl implements EditManager {
         FeatureStore<SimpleFeatureType, SimpleFeature> store = layer.getResource(
                 FeatureStore.class, null);
         FeatureCollection<SimpleFeatureType, SimpleFeature> c = new org.geotools.feature.collection.AdaptorFeatureCollection(
-                "copyCollection", store.getSchema()) {
+                "copyCollection", store.getSchema()) { //$NON-NLS-1$
             @Override
             public int size() {
                 return 1;

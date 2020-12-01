@@ -9,14 +9,13 @@
  */
 package org.locationtech.udig.project.internal.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Adds a Layer item to the map. More specifically, adds a Layer item into the LegendItem list of

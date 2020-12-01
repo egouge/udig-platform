@@ -42,8 +42,8 @@ public class MemoryGridCoverageMetrics extends AbstractRenderMetrics {
      */
     private static List<String> listExpectedStyleIds(){
         ArrayList<String> styleIds = new ArrayList<String>();
-        styleIds.add("org.locationtech.udig.style.sld");
-        styleIds.add("org.locationtech.udig.style.cache");
+        styleIds.add("org.locationtech.udig.style.sld"); //$NON-NLS-1$
+        styleIds.add("org.locationtech.udig.style.cache"); //$NON-NLS-1$
         return styleIds;
     }
     
@@ -95,7 +95,7 @@ public class MemoryGridCoverageMetrics extends AbstractRenderMetrics {
     }
 
     public boolean canStyle( String styleID, Object value ) {
-        if( "org.locationtech.udig.style.cache".equals(styleID)){
+        if( "org.locationtech.udig.style.cache".equals(styleID)){ //$NON-NLS-1$
             if( Boolean.TRUE.equals( value )){
                 return true; // user turned on caching
             }
@@ -126,7 +126,7 @@ public class MemoryGridCoverageMetrics extends AbstractRenderMetrics {
             return MinMaxScaleCalculator.getValidScaleRanges(style);
         }
         else {
-            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);            
+            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);             //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             return new HashSet<Range<Double>>();
         }
     }

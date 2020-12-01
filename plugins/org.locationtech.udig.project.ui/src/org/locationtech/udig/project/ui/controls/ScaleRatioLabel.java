@@ -209,7 +209,7 @@ public class ScaleRatioLabel extends ContributionItem implements KeyListener, Fo
     private void go() {
         String newScale=combo.getText().trim();
         try{
-        	double d = nf.parse(newScale.replace(" ","")).doubleValue();
+        	double d = nf.parse(newScale.replace(" ","")).doubleValue();  //$NON-NLS-1$//$NON-NLS-2$
             SetScaleCommand command=new SetScaleCommand(d);
             this.mapPart.getMap().sendCommandASync(command);
         }catch(Exception e){
@@ -246,7 +246,7 @@ public class ScaleRatioLabel extends ContributionItem implements KeyListener, Fo
     }
     
     String toLabel( double scaleDenominator ){
-        return "1:" + nf.format( scaleDenominator );
+        return "1:" + nf.format( scaleDenominator ); //$NON-NLS-1$
     }
     
     private void updateScale() {
@@ -259,7 +259,7 @@ public class ScaleRatioLabel extends ContributionItem implements KeyListener, Fo
                 String item = toLabel( scaleDenominator );
                 combo.add( item );
             }
-            combo.setText( toLabel(viewportModel.getScaleDenominator())); //$NON-NLS-1$
+            combo.setText( toLabel(viewportModel.getScaleDenominator()));
             combo.setToolTipText(combo.getText());
         } else {
             combo.setText(""); //$NON-NLS-1$

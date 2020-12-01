@@ -38,13 +38,13 @@ public class PDFImageExportFormat extends ImageExportFormat {
 
 
     private static final int PDF_DEFAULT_USER_UNIT = 72;
-    private static final String PREFSTORE_PARAM_MARGIN_TOP = "MarginTop";
-    private static final String PREFSTORE_PARAM_MARGIN_BOTTOM = "MarginBottom";
-    private static final String PREFSTORE_PARAM_MARGIN_RIGHT = "MarginRight";
-    private static final String PREFSTORE_PARAM_MARGIN_LEFT = "MarginLeft";
-    private static final String PREFSTORE_PARAM_DPI = "DPI";
-    private static final String PREFSTORE_PARAM_PAGEFORMAT = "Pageformat";
-    private static final String PREFSTORE_PARAM_LANDSCAPE = "Landscape";
+    private static final String PREFSTORE_PARAM_MARGIN_TOP = "MarginTop"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_MARGIN_BOTTOM = "MarginBottom"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_MARGIN_RIGHT = "MarginRight"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_MARGIN_LEFT = "MarginLeft"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_DPI = "DPI"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_PAGEFORMAT = "Pageformat"; //$NON-NLS-1$
+    private static final String PREFSTORE_PARAM_LANDSCAPE = "Landscape"; //$NON-NLS-1$
 
     private Combo dpiCombo;
     private Spinner marginTopSpinner;
@@ -59,7 +59,7 @@ public class PDFImageExportFormat extends ImageExportFormat {
     }
 
     public String getName() {
-        return "PDF";
+        return "PDF"; //$NON-NLS-1$
     }
 
     @Override
@@ -97,7 +97,7 @@ public class PDFImageExportFormat extends ImageExportFormat {
     }
 
     private void createDpiCombo(Group group) {
-        ImageExportPage.createLabel(group, "DPI:");
+        ImageExportPage.createLabel(group, Messages.PDFImageExportFormat_DPILabel);
         dpiCombo = new Combo(group, SWT.READ_ONLY);
         dpiCombo.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true,
                 false));

@@ -5,17 +5,16 @@ package org.locationtech.udig.project.command.provider;
 
 import java.io.IOException;
 
-import org.locationtech.udig.core.IBlockingProvider;
-import org.locationtech.udig.core.internal.FeatureUtils;
-import org.locationtech.udig.project.ILayer;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
 import org.geotools.feature.FeatureIterator;
+import org.geotools.util.factory.GeoTools;
+import org.locationtech.udig.core.IBlockingProvider;
+import org.locationtech.udig.core.internal.FeatureUtils;
+import org.locationtech.udig.project.ILayer;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
@@ -30,7 +29,7 @@ public class FIDFeatureProvider implements IBlockingProvider<SimpleFeature> {
     public FIDFeatureProvider( String fid2, IBlockingProvider<ILayer> layer2 ) {
         this.layerProvider = layer2;
         if( fid2 == null ){
-            throw new NullPointerException("Fid must not be null");
+            throw new NullPointerException("Fid must not be null"); //$NON-NLS-1$
         }
         this.fid = fid2;
     }
@@ -43,15 +42,14 @@ public class FIDFeatureProvider implements IBlockingProvider<SimpleFeature> {
             
             if( monitor == null ) monitor = new NullProgressMonitor();                
             try {
-                monitor.beginTask("Get Feature", 100 );
+                monitor.beginTask("Get Feature", 100 ); //$NON-NLS-1$
                 
                 ILayer layer = layerProvider.get( new SubProgressMonitor(monitor, 25) );
                 FeatureSource<SimpleFeatureType, SimpleFeature> source = layer
                         .getResource(FeatureSource.class, new SubProgressMonitor(monitor, 25));
                 
-                FeatureIterator<SimpleFeature> iter = source.getFeatures(fidFilter).features();
                 monitor.worked(25);
-                try {
+                try(FeatureIterator<SimpleFeature> iter = source.getFeatures(fidFilter).features()){
                     if (iter.hasNext()) {
                         feature = iter.next();
                     }
@@ -59,8 +57,6 @@ public class FIDFeatureProvider implements IBlockingProvider<SimpleFeature> {
                         // feature not available
                     }
                     monitor.worked(25);
-                } finally {
-                    iter.close();
                 }
             } catch (IOException e) {
                 throw (RuntimeException) new RuntimeException().initCause(e);

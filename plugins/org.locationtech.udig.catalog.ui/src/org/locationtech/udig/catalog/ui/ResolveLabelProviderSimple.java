@@ -12,13 +12,15 @@
 package org.locationtech.udig.catalog.ui;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.Map;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.ID;
 import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IGeoResourceInfo;
 import org.locationtech.udig.catalog.IProcess;
 import org.locationtech.udig.catalog.IResolve;
 import org.locationtech.udig.catalog.IResolveChangeEvent;
@@ -26,13 +28,6 @@ import org.locationtech.udig.catalog.IResolveChangeListener;
 import org.locationtech.udig.catalog.IResolveFolder;
 import org.locationtech.udig.catalog.ISearch;
 import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.IServiceInfo;
-
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.LabelProviderChangedEvent;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * Label generation for IResolve (must be non-blocking and quick).
@@ -118,7 +113,7 @@ public class ResolveLabelProviderSimple extends LabelProvider implements IResolv
                         return name;
                     }
                     if (id.getTypeQualifier() != null) {
-                        return title + "(" + id.getTypeQualifier() + ")";
+                        return title + "(" + id.getTypeQualifier() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                     } else {
                         return title;
                     }

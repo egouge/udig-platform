@@ -44,11 +44,11 @@ public abstract class IServiceExtension implements ServiceExtension, ServiceExte
     public abstract IService createService( URL id, Map<String, Serializable> params );
 
     public String reasonForFailure( Map<String, Serializable> params ) {
-        return "not supported";
+        return "not supported"; //$NON-NLS-1$
     }
 
     public String reasonForFailure( URL url ) {
-        return "not supported";
+        return "not supported"; //$NON-NLS-1$
     }
 
 }

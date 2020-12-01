@@ -12,10 +12,10 @@ package org.locationtech.udig.project.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
-
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.locationtech.udig.project.internal.Messages;
 
 /**
  * Set the visiblity of the layer
@@ -34,7 +34,7 @@ public class SetLayersVisibilityCommand extends AbstractCommand implements Undoa
     }
 
     public String getName() {
-        return "Set Layer Visibility";
+        return Messages.SetLayersVisibilityCommand_Name;
     }
 
     public void run( IProgressMonitor monitor ) throws Exception {

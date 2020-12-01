@@ -36,9 +36,9 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public class AOILayerStrategy extends IAOIStrategy {
 
-    private static final String AOI_GEOMETRY = "aoiGeometry";
-    private static final String AOI_LAYER = "aoiLayer";
-    private static String name = "Layer";    
+    private static final String AOI_GEOMETRY = "aoiGeometry"; //$NON-NLS-1$
+    private static final String AOI_LAYER = "aoiLayer"; //$NON-NLS-1$
+    private static String name = "Layer";     //$NON-NLS-1$
     /**
      * This layer is looked up by id on the layer blackboard
      */

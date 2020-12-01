@@ -85,7 +85,7 @@ final public class GeoSelectionService implements IGeoSelectionService {
      */
     public void registerSelectionManager(String id,  IGeoSelectionManager selectionManager ) {
         if(registeredManagers.containsKey(id))
-            throw new IllegalArgumentException("The IGeoSelectionManager instance with id= "+id+" is already registered");
+            throw new IllegalArgumentException("The IGeoSelectionManager instance with id= "+id+" is already registered"); //$NON-NLS-1$ //$NON-NLS-2$
         
          registeredManagers.put(id, selectionManager);
     }
@@ -110,14 +110,14 @@ final public class GeoSelectionService implements IGeoSelectionService {
             String type = element.getName();
             
             
-            if(type.equals("geoSelectionListener")){
+            if(type.equals("geoSelectionListener")){ //$NON-NLS-1$
 
                 try {
 
-                    String id = element.getAttribute("id");
-                    String managerId = element.getAttribute("managerId");
+                    String id = element.getAttribute("id"); //$NON-NLS-1$
+                    String managerId = element.getAttribute("managerId"); //$NON-NLS-1$
 
-                    Object listenerObj = element.createExecutableExtension("class");
+                    Object listenerObj = element.createExecutableExtension("class"); //$NON-NLS-1$
                     IGeoSelectionChangedListener listener = (IGeoSelectionChangedListener)listenerObj;
 
                     IGeoSelectionManager manager = getSelectionManager(managerId);

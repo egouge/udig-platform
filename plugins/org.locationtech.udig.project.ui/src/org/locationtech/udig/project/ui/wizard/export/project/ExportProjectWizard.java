@@ -33,14 +33,14 @@ import org.locationtech.udig.project.ui.internal.ProjectUIPlugin;
  */
 public class ExportProjectWizard extends Wizard implements IExportWizard, IRunnableWithProgress {
 
-    private String destinationDirectory = "";
+    private String destinationDirectory = ""; //$NON-NLS-1$
     private IStructuredSelection selection;
     
     /** prompts the user about what to export; select projects to export, and directory to export */
     private ExportSelectionPage selectionPage;
     
     ImageDescriptor wizardPageIconDescriptor = 
-        ProjectUIPlugin.imageDescriptorFromPlugin(ProjectUIPlugin.ID, "icons/wizban/exportproject_wiz.png");
+        ProjectUIPlugin.imageDescriptorFromPlugin(ProjectUIPlugin.ID, "icons/wizban/exportproject_wiz.png"); //$NON-NLS-1$
 
     /* (non-Javadoc)
      * @see org.eclipse.jface.wizard.Wizard#performFinish()

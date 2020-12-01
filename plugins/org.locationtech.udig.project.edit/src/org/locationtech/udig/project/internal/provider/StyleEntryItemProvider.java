@@ -162,7 +162,7 @@ public class StyleEntryItemProvider extends ItemProviderAdapter implements
      */
     public String getText(Object object) {
         String label = ((StyleEntry) object).getID();
-        return label == null || label.length() == 0 ? "StyleEntry" : label;
+        return label == null || label.length() == 0 ? "StyleEntry" : label; //$NON-NLS-1$
     }
 
     /**

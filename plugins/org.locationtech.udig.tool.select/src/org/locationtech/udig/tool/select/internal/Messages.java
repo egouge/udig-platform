@@ -15,7 +15,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
     private static final String BUNDLE_NAME = "org.locationtech.udig.tool.select.internal.messages"; //$NON-NLS-1$
-    public static String ArrowSelection_0;
+    public static String AOILayerPage_LayerLabel;
+	public static String AOILayerSelectionTool_NavButton;
+	public static String ArrowSelection_0;
     public static String TableView_0;
     public static String TableView_1;
     public static String TableView_allCheckText;

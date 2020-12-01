@@ -58,9 +58,9 @@ public class WMSCCapabilitiesResponse extends GetCapabilitiesResponse {
         }finally{
             response.dispose();
         }
-        InputStream inputStream = new ByteArrayInputStream(getCaps_xml.getBytes());
         
-        try {
+        
+        try (InputStream inputStream = new ByteArrayInputStream(getCaps_xml.getBytes())){
             Map<String, Object> hints = new HashMap<String, Object>();
             hints.put(DocumentHandler.DEFAULT_NAMESPACE_HINT_KEY, WMSCSchema.getInstance());
             hints.put(DocumentFactory.VALIDATION_HINT, Boolean.FALSE);
@@ -77,9 +77,7 @@ public class WMSCCapabilitiesResponse extends GetCapabilitiesResponse {
             }
             
             this.capabilities = (Capabilities)object;
-        } finally {
-            inputStream.close();
-        }
+        } 
     }
     
     static String convertStreamToString(InputStream is) {

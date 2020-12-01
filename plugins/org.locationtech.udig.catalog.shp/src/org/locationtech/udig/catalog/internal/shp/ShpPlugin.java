@@ -53,7 +53,7 @@ public class ShpPlugin extends AbstractUIPlugin {
      */
     public void start( BundleContext context ) throws Exception {
         super.start(context);
-        Logger logger = Logging.getLogger("org.geotools.data.shapefile");
+        Logger logger = Logging.getLogger("org.geotools.data.shapefile"); //$NON-NLS-1$
         //Logger logger = ShapefileDataStoreFactory.LOGGER; gt-11 it is not visible
         
         if (ShpPlugin.isDebugging(SHP_TRACE_FINEST) || ShpPlugin.isDebugging(SHP_TRACE_FINE)) {
@@ -185,7 +185,7 @@ public class ShpPlugin extends AbstractUIPlugin {
                 return Charset.forName(charsetName).name();
             } catch (Exception e) {
             	getDefault().getLog().log(new Status(IStatus.WARNING, ID, 
-            			"Unable to parse charset " + charsetName + ". Default UI charset will be used for shp encoding"));
+            			"Unable to parse charset " + charsetName + ". Default UI charset will be used for shp encoding")); //$NON-NLS-1$ //$NON-NLS-2$
             }               
         }
         return UiPlugin.getDefault().getPreferenceStore().getString(

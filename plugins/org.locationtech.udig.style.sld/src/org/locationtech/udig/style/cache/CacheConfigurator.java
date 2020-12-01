@@ -21,6 +21,7 @@ import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
 import org.geotools.data.FeatureSource;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.style.IStyleConfigurator;
+import org.locationtech.udig.style.sld.internal.Messages;
 import org.opengis.coverage.grid.GridCoverage;
 
 import net.miginfocom.swt.MigLayout;
@@ -64,13 +65,13 @@ public class CacheConfigurator extends IStyleConfigurator {
     
     @Override
     public void createControl( Composite parent ) {
-        parent.setLayout(new MigLayout("", "[right]rel[left, grow]", "30"));
+        parent.setLayout(new MigLayout("", "[right]rel[left, grow]", "30"));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         
         Label label = new Label( parent, SWT.NONE );
-        label.setText("Cache");
+        label.setText(Messages.CacheConfigurator_CacheLabel);
         
         cacheCheckbox = new Button( parent, SWT.CHECK);
-        cacheCheckbox.setLayoutData("span,wrap");
+        cacheCheckbox.setLayoutData("span,wrap"); //$NON-NLS-1$
         
         cacheCheckbox.addSelectionListener(listener);
     }

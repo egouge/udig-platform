@@ -67,10 +67,10 @@ public class And implements OpFilter {
     @Override
     public String toString() {
         StringBuilder build = new StringBuilder();
-        build.append("AND (");
+        build.append("AND ("); //$NON-NLS-1$
         for( OpFilter filter : filters ) {
             build.append( filter );
-            build.append(",");
+            build.append(","); //$NON-NLS-1$
         }
         build.setCharAt(build.length()-1, ')');
         return build.toString();

@@ -13,14 +13,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.project.internal.render.RenderPackage;
 import org.locationtech.udig.project.internal.render.Renderer;
 import org.locationtech.udig.project.internal.render.impl.RenderExecutorComposite;
 import org.locationtech.udig.ui.graphics.AWTSWTImageUtils;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 
 /**

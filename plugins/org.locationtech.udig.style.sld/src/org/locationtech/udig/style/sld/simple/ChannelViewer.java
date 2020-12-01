@@ -217,7 +217,7 @@ public class ChannelViewer {
      */
     private void drawHistogram() {
         if (histogramData == null){
-            lblHistogram.setText("Loading ...");
+            lblHistogram.setText(Messages.ChannelViewer_Loading);
             return;
         }
         Image oldImage = lblHistogram.getImage();

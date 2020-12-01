@@ -1,5 +1,5 @@
 /*
- *    uDig - User Friendly Desktop Internet GIS client
+  *    uDig - User Friendly Desktop Internet GIS client
  *    http://udig.refractions.net
  *    (C) 2012, Refractions Research Inc.
  *
@@ -71,7 +71,7 @@ public class DataSourceSelectionPage extends WorkflowWizardPage implements
 		super("dataSourceWizardPage"); //$NON-NLS-1$
 		setTitle(Messages.DataSourceSelectionPage_pageTitle); 
 		setDescription(Messages.DataSourceSelectionPage_defaultMessage);
-		setImageDescriptor(CatalogUIPlugin.imageDescriptorFromPlugin(CatalogUIPlugin.ID, "icons/wizban/add_wiz.gif"));
+		setImageDescriptor(CatalogUIPlugin.imageDescriptorFromPlugin(CatalogUIPlugin.ID, "icons/wizban/add_wiz.gif")); //$NON-NLS-1$
 	}
 
 	/**

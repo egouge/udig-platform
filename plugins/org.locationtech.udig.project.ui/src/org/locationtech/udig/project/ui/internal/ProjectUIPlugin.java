@@ -72,7 +72,7 @@ public class ProjectUIPlugin extends AbstractUdigUIPlugin {
 
     private static final String ADAPTER_FACTORIES_ID = "org.locationtech.udig.project.ui.itemProviderAdapterFactories"; //$NON-NLS-1$
 
-    public static final String MOUSE_SPEED_KEY = "MOUSE_SPEED_KEY";
+    public static final String MOUSE_SPEED_KEY = "MOUSE_SPEED_KEY"; //$NON-NLS-1$
 
     private PropertySheetPage propertySheetPage;
 
@@ -286,7 +286,7 @@ public class ProjectUIPlugin extends AbstractUdigUIPlugin {
      * @param e exception, may be null.
      */
     public static void trace( Class caller, String message, Throwable e ) {
-        trace(caller.getSimpleName()+": "+message, e); //$NON-NLS-1$ //$NON-NLS-2$
+        trace(caller.getSimpleName()+": "+message, e); //$NON-NLS-1$
     }
     
     /**

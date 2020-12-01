@@ -21,6 +21,7 @@ import org.eclipse.ui.forms.widgets.TableWrapData;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 import org.eclipse.ui.part.Page;
 import org.locationtech.udig.filter.ComboExpressionViewer;
+import org.locationtech.udig.style.sld.internal.Messages;
 
 /**
  * 
@@ -52,11 +53,11 @@ public class MarkEditorPage extends Page {
         markComposite = new Composite(parent, SWT.NONE);
         markComposite.setLayout(new GridLayout(2, false));
         titleLabel = new Label(markComposite, SWT.NONE);
-        titleLabel.setText("Mark");
+        titleLabel.setText(Messages.MarkEditorPage_Mark);
         titleLabel.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 2, 1));
         
         Label label = new Label(markComposite, SWT.NONE);
-        label.setText("Marker Type");
+        label.setText(Messages.MarkEditorPage_MarkType);
         
         markerTypeCombo = new ComboExpressionViewer(markComposite, SWT.SINGLE);
         markerTypeCombo.getControl().setLayoutData(new TableWrapData(TableWrapData.LEFT));

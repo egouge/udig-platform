@@ -293,7 +293,7 @@ public class OperationMenuFactory {
      */
     public void addWorkbenchMenus( IMenuService menuService ) { 
         String locationURI;
-        locationURI = "menu:org.eclipse.ui.main.menu?after=additions";
+        locationURI = "menu:org.eclipse.ui.main.menu?after=additions"; //$NON-NLS-1$
         menuService.addContributionFactory( new AbstractContributionFactory(locationURI,null){
             @Override
             public void createContributionItems( IServiceLocator serviceLocator,
@@ -302,7 +302,7 @@ public class OperationMenuFactory {
             }
         });
         
-        locationURI = "menu:edit?after=additions";
+        locationURI = "menu:edit?after=additions"; //$NON-NLS-1$
         menuService.addContributionFactory( new AbstractContributionFactory(locationURI,null){
             @Override
             public void createContributionItems( IServiceLocator serviceLocator,

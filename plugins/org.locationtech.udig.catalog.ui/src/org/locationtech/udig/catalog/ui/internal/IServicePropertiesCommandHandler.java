@@ -58,7 +58,7 @@ public class IServicePropertiesCommandHandler extends AbstractHandler implements
         IWorkbenchPart activePart = activeWorkbenchWindow.getActivePage().getActivePart();
         ISelectionProvider provider = activePart.getSite().getSelectionProvider();
         if( provider == null ){
-            MessageDialog.openInformation( activeWorkbenchWindow.getShell(), "Service Properties", "Please select a service");
+            MessageDialog.openInformation( activeWorkbenchWindow.getShell(), Messages.IServicePropertiesCommandHandler_PropertiesTitle, Messages.IServicePropertiesCommandHandler_PropertiesMessage);
             return null;
         }
         ISelectionProvider selectionProvider = new ServiceSelectionProvider( provider );

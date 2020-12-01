@@ -11,10 +11,9 @@
  */
 package org.locationtech.udig.project.internal;
 
-import org.locationtech.udig.project.ILegendItem;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.locationtech.udig.project.ILegendItem;
 
 /**
  * <!-- begin-user-doc -->

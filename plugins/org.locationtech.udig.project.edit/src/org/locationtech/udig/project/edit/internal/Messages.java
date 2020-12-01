@@ -15,6 +15,10 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.locationtech.udig.project.edit.internal.messages"; //$NON-NLS-1$
+	public static String LayerItemProvider_DefaultLayerName;
+	public static String LazyMapLayerProvider_0;
+	public static String LazyMapLayerProvider_MapLoadError;
+	public static String MapItemProvider_MapLoadError;
 	public static String ProjectItemProvider_loading;
 	static {
 		// initialize resource bundle

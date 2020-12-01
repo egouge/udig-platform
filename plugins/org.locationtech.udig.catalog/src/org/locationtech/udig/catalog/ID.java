@@ -19,7 +19,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.geotools.data.DataUtilities;
 import org.geotools.util.URLs;
 import org.locationtech.udig.core.internal.CorePlugin;
 
@@ -132,7 +131,7 @@ public class ID implements Serializable {
 						File canonicalFile = file.getCanonicalFile();
 						canonicalFile = new File(canonicalPath.substring(0, canonicalPath.length() - fragment.length() - 1));
 						URI canonicalURI = canonicalFile.toURI();
-						this.uri = new URI(canonicalURI.toASCIIString()+"#"+uri.getRawFragment());
+						this.uri = new URI(canonicalURI.toASCIIString()+"#"+uri.getRawFragment()); //$NON-NLS-1$
 						
 						// this results in "re"encoding messing up use of spaces
 //						this.uri = new URI(canonicalURI.getScheme(),
@@ -154,7 +153,7 @@ public class ID implements Serializable {
 					}
 				} catch (Throwable t) {
 					//file = null;
-					System.err.println("Trouble matching file for:"+ uri );
+					System.err.println("Trouble matching file for:"+ uri ); //$NON-NLS-1$
 					//file = DataUtilities.urlToFile(url);
 				}
 			}
@@ -275,7 +274,7 @@ public class ID implements Serializable {
         int dot = name.lastIndexOf('.');
         int beginIndex = (slash == -1 && slash < name.length() - 1 ? 0 : slash) + 1;
         if( dot == -1 || dot < beginIndex || dot == name.length()-1 ){
-            return ""; // no extension
+            return ""; // no extension //$NON-NLS-1$
         }
         else {
             return name.substring(dot+1);
@@ -330,9 +329,9 @@ public class ID implements Serializable {
         }
     }
     private String stripChildRef() {
-        int splitHash = id.indexOf("#"); // search for first #
+        int splitHash = id.indexOf("#"); // search for first # //$NON-NLS-1$
         if( splitHash != -1 ){
-            int splitSlash = id.indexOf("/", splitHash );
+            int splitSlash = id.indexOf("/", splitHash ); //$NON-NLS-1$
             if( splitSlash != -1 ){
                 return id.substring(0, splitSlash );
             }
@@ -381,14 +380,14 @@ public class ID implements Serializable {
     }
 
     public boolean isLocal(){
-        return id.contains("localhost");
+        return id.contains("localhost"); //$NON-NLS-1$
     }
     
     /**
      * @return true if ID represents a child
      */
     public boolean isChild() {
-        return id.toString().contains("#");
+        return id.toString().contains("#"); //$NON-NLS-1$
     }
     /**
      * @return true if ID represents a File

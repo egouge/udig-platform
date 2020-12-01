@@ -15,7 +15,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-
 import org.locationtech.jts.geom.Envelope;
 
 /**

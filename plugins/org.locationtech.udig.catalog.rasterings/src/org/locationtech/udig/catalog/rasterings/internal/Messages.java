@@ -17,6 +17,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.locationtech.udig.catalog.rasterings.internal.messages"; //$NON-NLS-1$
 	public static String AbstractRasterGeoResource_resolve;
 	public static String AbstractRasterService_resolve;
+	public static String AbstractRasterServiceInfo_lookingUpMetadata;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

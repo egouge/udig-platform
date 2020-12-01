@@ -12,11 +12,10 @@ package org.locationtech.udig.project.internal.interceptor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.geotools.styling.Style;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IResourceCachingInterceptor;
-
-import org.geotools.styling.Style;
 import org.opengis.coverage.grid.GridCoverage;
 
 /**

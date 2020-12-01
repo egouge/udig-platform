@@ -13,11 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.geotools.util.Range;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IStyleBlackboard;
 import org.locationtech.udig.project.internal.render.Renderer;
-
-import org.geotools.util.Range;
 
 
 /**

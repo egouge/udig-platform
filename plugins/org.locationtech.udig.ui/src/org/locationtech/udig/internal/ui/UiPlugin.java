@@ -173,7 +173,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
             // application or product.
             String message = "Unable to parse version from about.mappings file. Defaulting to a blank string."; //$NON-NLS-1$
             //this.getLog().log(new Status(IStatus.INFO, ID, 0, message, null));
-            this.version = "";
+            this.version = ""; //$NON-NLS-1$
             return;
         }
         Bundle pluginBundle = product.getDefiningBundle();
@@ -184,7 +184,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
                 mappingsURL = FileLocator.resolve(mappingsURL);
             } catch (IOException e) {
                 mappingsURL = null;
-                String message = "Unable to find " + mappingsURL + " Defaulting to a blank string."; //$NON-NLS-1$
+                String message = "Unable to find " + mappingsURL + " Defaulting to a blank string."; //$NON-NLS-1$ //$NON-NLS-2$
                 this.getLog().log(new Status(IStatus.ERROR, ID, 0, message, e));
             }
         }
@@ -304,7 +304,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
     private static void trace( String message, Throwable e ) {
         if (getDefault().isDebugging()) {
             if (message != null){
-                System.out.println(message); //$NON-NLS-1$
+                System.out.println(message); 
             }
             if (e != null){
                 e.printStackTrace(System.out);
@@ -329,7 +329,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
      * @param e exception, may be null.
      */
     public static void trace( Class< ? > caller, String message, Throwable e ) {
-        trace(caller.getSimpleName() + ": " + message, e); //$NON-NLS-1$ //$NON-NLS-2$
+        trace(caller.getSimpleName() + ": " + message, e); //$NON-NLS-1$ 
     }
 
     /**
@@ -380,7 +380,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
      * Returns the max heap size in MB
      */
     public static int getMaxHeapSize() throws IOException {
-        final Pattern pattern = Pattern.compile("Xmx([0-9]+)([mMgGkKbB])");
+        final Pattern pattern = Pattern.compile("Xmx([0-9]+)([mMgGkKbB])"); //$NON-NLS-1$
         final int[] heapS = new int[1];
         processAppIni(true, new Function<String, String>(){
 
@@ -419,7 +419,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
 
             public String apply( String line ) {
                 if (line.matches(".*Xmx([0-9]+)([mMgGkKbB]).*")) { //$NON-NLS-1$
-                    line = line.replaceFirst("Xmx([0-9]+)([mMgGkKbB])", "Xmx" + maxHeapSize + "M"); //$NON-NLS-1$ //$NON-NLS-2$
+                    line = line.replaceFirst("Xmx([0-9]+)([mMgGkKbB])", "Xmx" + maxHeapSize + "M"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 }
                 return line;
             }
@@ -431,7 +431,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
     /**
      * The quote used to delimit multiple proxies.
      */
-    private static final String PROXYQUOTES = "'";
+    private static final String PROXYQUOTES = "'"; //$NON-NLS-1$
 
     /**
      * Sets the proxy.
@@ -445,39 +445,33 @@ public class UiPlugin extends AbstractUdigUIPlugin {
     public static void setProxy( String proxyHost, String proxyPort, String proxyNonHost ) throws FileNotFoundException,
             IOException {
         File iniFile = getIniFile();
-        BufferedReader bR = null;
+        
         StringBuilder sB = new StringBuilder();
-        try {
-            bR = new BufferedReader(new FileReader(iniFile));
+        try (BufferedReader bR = new BufferedReader(new FileReader(iniFile))){
             String line = null;
             while( (line = bR.readLine()) != null ) {
-                if (line.matches(".*Dhttp.proxy.*") || line.matches(".*Dhttp.nonProxy.*")) {
+                if (line.matches(".*Dhttp.proxy.*") || line.matches(".*Dhttp.nonProxy.*")) { //$NON-NLS-1$ //$NON-NLS-2$
                     continue;
                 }
-                if (line.matches("")) {
+                if (line.matches("")) { //$NON-NLS-1$
                     continue;
                 }
-                sB.append(line).append("\n");
+                sB.append(line).append("\n"); //$NON-NLS-1$
             }
-        } finally {
-            bR.close();
         }
 
         if (proxyHost != null && proxyHost.length() > 0 && proxyPort != null && proxyPort.length() > 0) {
-            sB.append("-D" + RuntimeFieldEditor.PROXYHOST + "=").append(proxyHost).append("\n");
-            sB.append("-D" + RuntimeFieldEditor.PROXYPORT + "=").append(proxyPort).append("\n");
+            sB.append("-D" + RuntimeFieldEditor.PROXYHOST + "=").append(proxyHost).append("\n");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+            sB.append("-D" + RuntimeFieldEditor.PROXYPORT + "=").append(proxyPort).append("\n");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
             if (proxyNonHost != null && proxyNonHost.length() > 0) {
                 // add quotes for multiple non proxy hosts
                 proxyNonHost = PROXYQUOTES + proxyNonHost + PROXYQUOTES;
-                sB.append("-D" + RuntimeFieldEditor.PROXYNONHOSTS + "=").append(proxyNonHost).append("\n");
+                sB.append("-D" + RuntimeFieldEditor.PROXYNONHOSTS + "=").append(proxyNonHost).append("\n");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
             }
         }
-        BufferedWriter bW = null;
-        try {
-            bW = new BufferedWriter(new FileWriter(iniFile));
+        
+        try (BufferedWriter bW = new BufferedWriter(new FileWriter(iniFile))){
             bW.write(sB.toString());
-        } finally {
-            bW.close();
         }
 
     }
@@ -496,25 +490,26 @@ public class UiPlugin extends AbstractUdigUIPlugin {
         if (iniFile == null) {
             return properties;
         }
-        BufferedReader bR = new BufferedReader(new FileReader(iniFile));
+        
         String line = null;
-        while( (line = bR.readLine()) != null ) {
-            if (line.matches(".*D" + RuntimeFieldEditor.PROXYHOST + ".*")) {
-                String proxyHost = line.split("=")[1].trim();
-                properties.put(RuntimeFieldEditor.PROXYHOST, proxyHost);
-            }
-            if (line.matches(".*D" + RuntimeFieldEditor.PROXYPORT + ".*")) {
-                String proxyPort = line.split("=")[1].trim();
-                properties.put(RuntimeFieldEditor.PROXYPORT, proxyPort);
-            }
-            if (line.matches(".*D" + RuntimeFieldEditor.PROXYNONHOSTS + ".*")) {
-                String proxyNonHosts = line.split("=")[1].trim();
-                // remove quotes if there are
-                proxyNonHosts = proxyNonHosts.replaceAll(PROXYQUOTES, "");
-                properties.put(RuntimeFieldEditor.PROXYNONHOSTS, proxyNonHosts);
-            }
+        try(BufferedReader bR = new BufferedReader(new FileReader(iniFile))){
+	        while( (line = bR.readLine()) != null ) {
+	            if (line.matches(".*D" + RuntimeFieldEditor.PROXYHOST + ".*")) {
+	                String proxyHost = line.split("=")[1].trim();
+	                properties.put(RuntimeFieldEditor.PROXYHOST, proxyHost);
+	            }
+	            if (line.matches(".*D" + RuntimeFieldEditor.PROXYPORT + ".*")) {
+	                String proxyPort = line.split("=")[1].trim();
+	                properties.put(RuntimeFieldEditor.PROXYPORT, proxyPort);
+	            }
+	            if (line.matches(".*D" + RuntimeFieldEditor.PROXYNONHOSTS + ".*")) {
+	                String proxyNonHosts = line.split("=")[1].trim();
+	                // remove quotes if there are
+	                proxyNonHosts = proxyNonHosts.replaceAll(PROXYQUOTES, "");
+	                properties.put(RuntimeFieldEditor.PROXYNONHOSTS, proxyNonHosts);
+	            }
+	        }
         }
-        bR.close();
 
         return properties;
     }
@@ -551,7 +546,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
         }
 
         if (!readOnly) {
-            UiPlugin.log("udig.ini changed:" + iniFile, null);
+            UiPlugin.log("udig.ini changed:" + iniFile, null); //$NON-NLS-1$
         }
     }
 
@@ -643,7 +638,7 @@ public class UiPlugin extends AbstractUdigUIPlugin {
 
         final String configurationID = store.getString(prefConstant);
 
-        if (configurationID != null && !configurationID.equals("")) {
+        if (configurationID != null && !configurationID.equals("")) { //$NON-NLS-1$
             try {
                 final Object[] configObj = new Object[1];
                 final Throwable[] error = new Throwable[1];

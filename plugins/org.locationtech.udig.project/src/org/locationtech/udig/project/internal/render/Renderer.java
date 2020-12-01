@@ -9,10 +9,9 @@
  */
 package org.locationtech.udig.project.internal.render;
 
+import org.eclipse.emf.ecore.EObject;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.IRenderer;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * The EMF object extension to the IRenderer interface.  Non-udig developers should not have to reference this class.

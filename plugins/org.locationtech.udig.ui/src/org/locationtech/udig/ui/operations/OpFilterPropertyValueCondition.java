@@ -141,7 +141,7 @@ class OpFilterPropertyValueCondition implements OpFilter {
     @Override
     public String toString() {
         if( propertyValueInstance == null ){
-            return "PropertyValue "+propertyElement.getAttribute("class");
+            return "PropertyValue "+propertyElement.getAttribute("class"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         else {
             return propertyValueInstance.getClass().getSimpleName();

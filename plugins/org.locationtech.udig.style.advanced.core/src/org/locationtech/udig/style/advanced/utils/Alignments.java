@@ -17,12 +17,12 @@ import org.locationtech.udig.ui.graphics.SLDs;
  * @author Andrea Antonello (www.hydrologis.com)
  */
 public enum Alignments {
-    TOP("top"), //
-    MIDDLE("middle"), //
-    BOTTOM("bottom"), //
-    LEFT("left"), //
-    CENTER("center"), //
-    RIGHT("right");
+    TOP("top"), // //$NON-NLS-1$
+    MIDDLE("middle"), // //$NON-NLS-1$
+    BOTTOM("bottom"), // //$NON-NLS-1$
+    LEFT("left"), // //$NON-NLS-1$
+    CENTER("center"), // //$NON-NLS-1$
+    RIGHT("right"); //$NON-NLS-1$
 
     private String defString = null;
     Alignments( String defString ) {

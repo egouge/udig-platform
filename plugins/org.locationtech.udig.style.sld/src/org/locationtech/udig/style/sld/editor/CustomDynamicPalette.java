@@ -17,6 +17,7 @@ import org.geotools.brewer.color.ColorBrewer;
 import org.geotools.brewer.color.PaletteSuitability;
 import org.geotools.brewer.color.PaletteType;
 import org.geotools.brewer.color.SampleScheme;
+import org.locationtech.udig.style.sld.internal.Messages;
 
 /**
  * A dynamic palette that adapts to whatever number of classes through interpolation.
@@ -53,18 +54,18 @@ public class CustomDynamicPalette extends BrewerPalette {
     public CustomDynamicPalette( TABLE tableType ) {
         switch( tableType ) {
         case RAINBOW:
-            setName("Dynamic Rainbow");
-            setDescription("A rainbow colors palette dynamically adapting to the number of classes");
+            setName(Messages.CustomDynamicPalette_RainbowName);
+            setDescription(Messages.CustomDynamicPalette_RainbowTooltip);
             current = rainbow;
             break;
         case ELEVATION:
-            setName("Dynamic Elevation");
-            setDescription("An elevation colors palette dynamically adapting to the number of classes");
+            setName(Messages.CustomDynamicPalette_DynamicElevation);
+            setDescription(Messages.CustomDynamicPalette_DynamicElevationTooltip);
             current = elevation;
             break;
         case GREY:
-            setName("Dynamic Greyscale");
-            setDescription("A greyscale palette dynamically adapting to the number of classes");
+            setName(Messages.CustomDynamicPalette_Greyscale);
+            setDescription(Messages.CustomDynamicPalette_GreyscaleTooltip);
             current = grey;
             break;
 

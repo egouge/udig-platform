@@ -11,6 +11,8 @@
  */
 package org.locationtech.udig.ui.filter;
 
+import java.text.MessageFormat;
+
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
@@ -22,6 +24,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.util.Utilities;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.expression.Expression;
 
@@ -129,8 +132,8 @@ public abstract class IExpressionViewer extends Viewer {
         if( this.expression == newExpression ){
             return;
         }
-        String before = expression != null ? ECQL.toCQL(expression) : "(empty)";
-        String after = newExpression != null ? ECQL.toCQL(newExpression) : "(empty)";
+        String before = expression != null ? ECQL.toCQL(expression) : Messages.IExpressionViewer_EmptyValue;
+        String after = newExpression != null ? ECQL.toCQL(newExpression) : Messages.IExpressionViewer_EmptyValue;
         if (!Utilities.equals(before, after)){
             this.expression = newExpression;
             feedback(); // clear any outstanding feedback as our value matches our display now
@@ -174,11 +177,11 @@ public abstract class IExpressionViewer extends Viewer {
     }
 
     protected void feedbackReplace( Expression expression ){
-        String cql = "";
+        String cql = ""; //$NON-NLS-1$
         if (expression != null) {
             cql = ECQL.toCQL(expression);
         }
-        feedback("Unable to display dynamic expression: \n" + cql + "\nEdit to replace expression.");
+        feedback(MessageFormat.format(Messages.IExpressionViewer_DisplayError, cql));
     }
     
     /**
@@ -253,7 +256,7 @@ public abstract class IExpressionViewer extends Viewer {
         }
         Control control = getControl();
         if (control != null && !control.isDisposed()) {
-            control.setToolTipText(error+":"+exception);
+            control.setToolTipText(error+":"+exception); //$NON-NLS-1$
         }
     }
 

@@ -99,7 +99,7 @@ public class PlatformGeoSelectionManager extends AbstractGeoSelectionManager {
                             activePage.addPartListener(partListener);
                             initialized = true;
                             
-                            LOGGER.info("PlatformGeoSelectionManager is INITIALIZED.");
+                            LOGGER.info("PlatformGeoSelectionManager is INITIALIZED."); //$NON-NLS-1$
                             
                             Map activeMap = ApplicationGISInternal.getActiveMap();
                             if(activeMap != ApplicationGIS.NO_MAP)
@@ -309,7 +309,7 @@ public class PlatformGeoSelectionManager extends AbstractGeoSelectionManager {
 
         public void partClosed( IWorkbenchPartReference partRef ) {
             if (partRef.getPart(false) instanceof MapEditorPart) {
-                System.out.println("MapEditor is closed");
+                System.out.println("MapEditor is closed"); //$NON-NLS-1$
 
                 if(!PlatformUI.getWorkbench().isClosing()){
 
@@ -322,7 +322,7 @@ public class PlatformGeoSelectionManager extends AbstractGeoSelectionManager {
                      * that there is no geoselection available.
                      */
                     if(part == null){
-                        LOGGER.log(Level.FINE, "The last MapEditor was closed. Notify listeners with NULL geoselection");
+                        LOGGER.log(Level.FINE, "The last MapEditor was closed. Notify listeners with NULL geoselection"); //$NON-NLS-1$
                         clearSelections();
                     }
                 }

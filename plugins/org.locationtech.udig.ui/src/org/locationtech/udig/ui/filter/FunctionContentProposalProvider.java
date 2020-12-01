@@ -24,6 +24,7 @@ import org.eclipse.jface.fieldassist.IContentProposal;
 import org.eclipse.jface.fieldassist.IContentProposalProvider;
 import org.geotools.filter.FunctionFinder;
 import org.geotools.filter.text.generated.parsers.CQLParser;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.filter.capability.FunctionName;
 import org.opengis.parameter.Parameter;
 /**
@@ -76,7 +77,7 @@ class FunctionContentProposalProvider implements IContentProposalProvider {
     private Set<String> generateGrammer(boolean includeFilter) {
         Set<String> generate = new HashSet<String>();
         for( String tokenImage : CQLParser.tokenImage ){
-            if( tokenImage.startsWith("\"")){
+            if( tokenImage.startsWith("\"")){ //$NON-NLS-1$
                 String token = tokenImage.substring(1,tokenImage.length()-1);
                 if( token.isEmpty() ) continue;
                 if( Character.isLetter( token.charAt(0) ) ){
@@ -103,7 +104,7 @@ class FunctionContentProposalProvider implements IContentProposalProvider {
      */
     public IContentProposal[] getProposals(String contents, int position) {
         String word = contents.substring(0, position);
-        int start = word.lastIndexOf(" ", position);
+        int start = word.lastIndexOf(" ", position); //$NON-NLS-1$
         if (start != -1) {
             word = contents.substring(start, position);
         }
@@ -162,28 +163,31 @@ class FunctionContentProposalProvider implements IContentProposalProvider {
                     if (description.getArguments() != null && !description.getArguments().isEmpty()) {
                         for (Parameter<?> param : description.getArguments()) {
                             if (seperator == null) {
-                                builder.append("(");
-                                seperator = ",";
+                                builder.append("("); //$NON-NLS-1$
+                                seperator = ","; //$NON-NLS-1$
                             } else {
                                 builder.append(seperator);
                             }
                             builder.append(param.getName());
                         }
 
-                        builder.append(")\nWhere:\n");
+                        builder.append(")\n"); //$NON-NLS-1$
+                        builder.append(Messages.FunctionContentProposalProvider_Where);
+                        builder.append("\n"); //$NON-NLS-1$
                         for (Parameter<?> param : description.getArguments()) {
-                            builder.append("  ");
+                            builder.append("  "); //$NON-NLS-1$
                             describeParameter(builder, param);
-                            builder.append("\n");
+                            builder.append("\n"); //$NON-NLS-1$
                         }
                     }
                     if (description.getReturn() != null) {
-                        builder.append("Result:\n");
+                        builder.append(Messages.FunctionContentProposalProvider_Result);
+                        builder.append("\n"); //$NON-NLS-1$
                         Parameter<?> param = description.getReturn();
                         
-                        builder.append(" ");
+                        builder.append(" "); //$NON-NLS-1$
                         describeParameter(builder, param);
-                        builder.append("\n");
+                        builder.append("\n"); //$NON-NLS-1$
                     }
                     return builder.toString();
                 }
@@ -192,60 +196,60 @@ class FunctionContentProposalProvider implements IContentProposalProvider {
 
             private void describeParameter(StringBuilder builder, Parameter<?> param) {
                 builder.append(param.getName());
-                builder.append(" ");
+                builder.append(" "); //$NON-NLS-1$
                 if( param.getType() != Object.class ){
                     builder.append( param.getType().getSimpleName() );
-                    builder.append(" ");
+                    builder.append(" "); //$NON-NLS-1$
                 }
                 
-                builder.append(": ");
+                builder.append(": "); //$NON-NLS-1$
                 if (param.isRequired()) {
-                    builder.append("Required ");
+                    builder.append(Messages.FunctionContentProposalProvider_Required);
                 }
                 if ( param.getMinOccurs() == 1 && param.getMaxOccurs() == 1){
                     // ignore
                 }
                 else if ( param.getMinOccurs() == 0 && param.getMaxOccurs() == 1){
-                    builder.append("Optional ");
+                    builder.append(Messages.FunctionContentProposalProvider_Optional);
                 }
                 else {
-                    builder.append("(");
+                    builder.append("("); //$NON-NLS-1$
                     builder.append(param.getMinOccurs());
-                    builder.append("-");
+                    builder.append("-"); //$NON-NLS-1$
                     if (param.getMaxOccurs() < 0 || param.getMaxOccurs() == Integer.MAX_VALUE ) {
-                        builder.append("unbound");
+                        builder.append(Messages.FunctionContentProposalProvider_Unbounded);
                     } else {
                         builder.append(param.getMaxOccurs());
                     }
-                    builder.append(") ");
+                    builder.append(") "); //$NON-NLS-1$
                 }
                 if (param.getDescription() != null) {
                     builder.append(param.getDescription());
-                    builder.append(" ");
+                    builder.append(" "); //$NON-NLS-1$
                 }
                 
                 if( param instanceof org.geotools.data.Parameter){
                     // advanced tips!
                     org.geotools.data.Parameter<?> parameter = (org.geotools.data.Parameter<?>) param;
                     if( parameter.metadata.containsKey( OPTIONS )){
-                        builder.append( " Options: ");
+                        builder.append( Messages.FunctionContentProposalProvider_Options);
                         builder.append( parameter.metadata.get( OPTIONS ));
-                        builder.append(" ");
+                        builder.append(" "); //$NON-NLS-1$
                     }
                     if( parameter.metadata.containsKey( LENGTH )){
-                        builder.append( " Length: ");
+                        builder.append( Messages.FunctionContentProposalProvider_Length);
                         builder.append( parameter.metadata.get( LENGTH ));
-                        builder.append(" ");
+                        builder.append(" "); //$NON-NLS-1$
                     }
                     if( parameter.metadata.containsKey( MIN )){
-                        builder.append( " Min: ");
+                        builder.append( Messages.FunctionContentProposalProvider_Minimum);
                         builder.append( parameter.metadata.get( MIN ));
-                        builder.append(" ");
+                        builder.append(" "); //$NON-NLS-1$
                     }
                     if( parameter.metadata.containsKey( MAX )){
-                        builder.append( " Max: ");
+                        builder.append( Messages.FunctionContentProposalProvider_Maximum);
                         builder.append( parameter.metadata.get( MAX ));
-                        builder.append(" ");
+                        builder.append(" "); //$NON-NLS-1$
                     }
                 }
             }

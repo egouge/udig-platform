@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.filter.Filter;
 
 /**
@@ -183,10 +184,10 @@ public class CQLFilterViewer extends IFilterViewer {
         if( txt == null ){
             return null;
         }
-        else if( "INCLDUE".equals( txt.trim() )){
+        else if( "INCLDUE".equals( txt.trim() )){ //$NON-NLS-1$
             return Filter.INCLUDE;
         }
-        else if( "EXCLUDE".equals( txt.trim() )){
+        else if( "EXCLUDE".equals( txt.trim() )){ //$NON-NLS-1$
             return Filter.EXCLUDE;
         }
         return ECQL.toFilter(txt);
@@ -197,10 +198,10 @@ public class CQLFilterViewer extends IFilterViewer {
             return null;
         }
         else if( filter == Filter.INCLUDE ){
-            return "INCLUDE";
+            return "INCLUDE"; //$NON-NLS-1$
         }
         else if( filter == Filter.EXCLUDE ){
-            return "EXCLUDE";
+            return "EXCLUDE"; //$NON-NLS-1$
         }
         return ECQL.toCQL(filter);
     }
@@ -227,7 +228,7 @@ public class CQLFilterViewer extends IFilterViewer {
         }
         if (parsedFilter == null) {
             if (input != null && input.isRequired() ) {
-                feedback("Required", true);
+                feedback(Messages.CQLFilterViewer_Required, true);
                 return null;
             }
         }
@@ -264,8 +265,8 @@ public class CQLFilterViewer extends IFilterViewer {
                         return;
 
                     if (filter == null) {
-                        text.setText("");
-                        feedback("Empty");
+                        text.setText(""); //$NON-NLS-1$
+                        feedback(Messages.CQLFilterViewer_Empty);
                     } else {
                         String cql = toCQL(filter);
                         text.setText(cql);

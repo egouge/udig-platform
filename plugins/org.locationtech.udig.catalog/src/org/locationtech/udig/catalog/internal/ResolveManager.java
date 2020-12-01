@@ -152,9 +152,9 @@ public class ResolveManager implements IResolveManager {
 		if (requiredType == null) {
 			String badPuppy = element.getContributor().getName();
 			if (badPuppy == null) {
-				badPuppy = "A plugin";
+				badPuppy = "A plugin"; //$NON-NLS-1$
 			}
-			System.out.println(badPuppy + " failed to configure ResolveAdaptorFactory: requiredType missing ");
+			System.out.println(badPuppy + " failed to configure ResolveAdaptorFactory: requiredType missing "); //$NON-NLS-1$
 			return false; // this should not happen! did you forget to fill in
 							// their XML resoleableType info?
 		}
@@ -179,7 +179,7 @@ public class ResolveManager implements IResolveManager {
     	IConfigurationElement[] resolveList  = element.getChildren("resolve"); //$NON-NLS-1$
         for( IConfigurationElement child : resolveList ) {
             String resolveType=child.getAttribute("type"); //$NON-NLS-1$
-            if( !resolveType.startsWith("net.refractions") && !resolveType.startsWith("org.locationtech.udig") ){
+            if( !resolveType.startsWith("net.refractions") && !resolveType.startsWith("org.locationtech.udig") ){ //$NON-NLS-1$ //$NON-NLS-2$
                 // We first try a class loader trick to grab the target class
                 // without forcing the load of the plugin where the element
                 // comes from (this works in may cases where the type is something
@@ -326,7 +326,7 @@ public class ResolveManager implements IResolveManager {
             try {
                 factory = (IResolveAdapterFactory) element.createExecutableExtension("class"); //$NON-NLS-1$        	
             } catch (CoreException e) {
-                String message = "Marking IResolveAdaptorFactory as unavaiable:"+e;
+                String message = "Marking IResolveAdaptorFactory as unavaiable:"+e; //$NON-NLS-1$
                 IStatus status = new Status( IStatus.WARNING, element.getContributor().getName(), message, e);
                 CatalogPlugin.getDefault().getLog().log(status);
                 factory = new BrokenIResolveAdapaterFactory(e);

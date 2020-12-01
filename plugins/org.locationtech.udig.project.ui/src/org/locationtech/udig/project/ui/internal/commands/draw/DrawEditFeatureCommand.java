@@ -87,7 +87,7 @@ public class DrawEditFeatureCommand extends AbstractDrawCommand {
         if (feature == null)
             return;
 
-        @SuppressWarnings("unchecked") List<Adapter> list = model.getMapInternal().getEditManagerInternal().eAdapters(); //$NON-NLS-1$
+        @SuppressWarnings("unchecked") List<Adapter> list = model.getMapInternal().getEditManagerInternal().eAdapters(); 
         if (!list.contains(editListener))
             list.add(editListener);
         MathTransform mt = null;
@@ -127,7 +127,6 @@ public class DrawEditFeatureCommand extends AbstractDrawCommand {
     /**
      * @see org.locationtech.udig.project.ui.commands.AbstractDrawCommand#setValid(boolean)
      */
-    @SuppressWarnings("unchecked")//$NON-NLS-1$
     public void setValid( boolean valid ) {
         super.setValid(valid);
         if (!valid) {
@@ -149,19 +148,19 @@ public class DrawEditFeatureCommand extends AbstractDrawCommand {
             } catch (TransformException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             } catch (MismatchedDimensionException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             } catch (FactoryException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             }

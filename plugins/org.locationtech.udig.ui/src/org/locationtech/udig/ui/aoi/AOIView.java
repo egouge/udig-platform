@@ -18,7 +18,7 @@ import org.locationtech.udig.aoi.IAOIService;
 import org.locationtech.udig.aoi.IAOIStrategy;
 import org.locationtech.udig.internal.ui.UiPlugin;
 import org.locationtech.udig.ui.PlatformGIS;
-
+import org.locationtech.udig.ui.internal.Messages;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -186,7 +186,7 @@ public class AOIView extends ViewPart {
                 content.setLayout(new FillLayout());
     
                 Label label = new Label( content, SWT.LEFT | SWT.TOP | SWT.WRAP );
-                label.setText("Current Area of Interest used for filtering content.");
+                label.setText(Messages.AOIView_AoiTooltip);
                 
                 placeholder = content;
             }
@@ -253,7 +253,7 @@ public class AOIView extends ViewPart {
         IAOIService service = PlatformGIS.getAOIService();
         String id = service.getProxy().getId();
         
-        memento.putString("AOI", id );
+        memento.putString("AOI", id ); //$NON-NLS-1$
     }
 
     @Override
@@ -263,7 +263,7 @@ public class AOIView extends ViewPart {
         parent.setLayout(layout);
         Label label = new Label(parent, SWT.LEFT);
         label.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false));
-        label.setText("Area of Interest: ");
+        label.setText(Messages.AOIView_AOI);
 
         // get the current strategy
         IAOIService aOIService = PlatformGIS.getAOIService();

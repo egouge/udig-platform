@@ -13,11 +13,10 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.SortedSet;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.render.AbstractRenderMetrics;
-
-import org.eclipse.emf.common.notify.Notification;
 
 /**
  * Creates Renderers and RenderContexts.

@@ -85,10 +85,10 @@ public final class FilterContent extends StyleContent {
         }
         if (filter != null && filter != Filter.INCLUDE) {
             String cql = CQL.toCQL(filter);
-            memento.putString("cql", cql);
+            memento.putString("cql", cql); //$NON-NLS-1$
         }
         if (aoiFilter != null && aoiFilter == true) {
-            memento.putString("aoi", "true");
+            memento.putString("aoi", "true"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         memento.putString("type", "FilterContent"); //$NON-NLS-1$ //$NON-NLS-2$
         memento.putString("version", "1.0"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -100,20 +100,20 @@ public final class FilterContent extends StyleContent {
      * @see org.locationtech.udig.project.StyleContent#load(org.eclipse.ui.IMemento)
      */
     public Object load( IMemento memento ) {
-        String type = memento.getString("type");
-        String version = memento.getString("version");
-        if( "FilterContent".equals(type) && "1.0".equals(version)){
-            String cql = memento.getString("cql");
+        String type = memento.getString("type"); //$NON-NLS-1$
+        String version = memento.getString("version"); //$NON-NLS-1$
+        if( "FilterContent".equals(type) && "1.0".equals(version)){ //$NON-NLS-1$ //$NON-NLS-2$
+            String cql = memento.getString("cql"); //$NON-NLS-1$
             Filter filter = null;
             if (cql != null && cql.length() != 0) {
                 try {
                     filter = CQL.toFilter(cql);
                 } catch (CQLException eek) {
-                    SLDPlugin.log("Could not restore filter:" + eek, eek);
+                    SLDPlugin.log("Could not restore filter:" + eek, eek); //$NON-NLS-1$
                 }
             }
             String aoi = memento.getString("aoiFilter"); //$NON-NLS-1$
-            boolean isAOI = "true".equalsIgnoreCase(aoi);
+            boolean isAOI = "true".equalsIgnoreCase(aoi); //$NON-NLS-1$
     
             if (isAOI) {
                 FilterStyle styleFilter = new FilterStyle();

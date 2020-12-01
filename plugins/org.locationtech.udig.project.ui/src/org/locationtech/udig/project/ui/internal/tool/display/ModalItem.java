@@ -355,7 +355,7 @@ public abstract class ModalItem implements ILazyOpListener {
      */
     public void setLargeImageDescriptor( ImageDescriptor imageDescriptor ) {
         this.largeImageDescriptor = imageDescriptor;
-        IMAGES.remove(getId()+"Large");
+        IMAGES.remove(getId()+"Large"); //$NON-NLS-1$
     }
     
     /**

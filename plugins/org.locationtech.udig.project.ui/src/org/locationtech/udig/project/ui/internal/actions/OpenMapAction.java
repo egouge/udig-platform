@@ -75,7 +75,7 @@ public class OpenMapAction implements IViewActionDelegate,
     public void loadMapFromURL(URL url, IProject target, boolean openMap) {
 
         if (url == null) {
-            throw new IllegalArgumentException("URL cannot be null.");
+            throw new IllegalArgumentException("URL cannot be null."); //$NON-NLS-1$
         }
 
         IProjectElement elem = null;
@@ -92,14 +92,14 @@ public class OpenMapAction implements IViewActionDelegate,
             MessageDialog
                     .openError(
                             activeShell,
-                            "Error reading map file",
-                            "An unexpected error occurred while reading the map file.\nPlease send error log.");
+                            Messages.OpenMapAction_ErrorTitle,
+                            Messages.OpenMapAction_ErrorMessage);
             return;
         }
 
         if (!(elem instanceof IMap)) {
-            MessageDialog.openError(activeShell, "Error reading map file",
-                    "The selected file does.");
+            MessageDialog.openError(activeShell, Messages.OpenMapAction_ErrorTitle,
+                    Messages.OpenMapAction_ErrorMessage2);
             return;
         }
 
@@ -124,12 +124,12 @@ public class OpenMapAction implements IViewActionDelegate,
     public void loadMapFromString(String filename, IProject target,
             boolean openMap) {
         if (filename == null) {
-            throw new IllegalArgumentException("Filename cannot be null.");
+            throw new IllegalArgumentException("Filename cannot be null."); //$NON-NLS-1$
         }
 
         File f = new File(filename);
         if (!f.exists()) {
-            throw new RuntimeException("File does not exist: "
+            throw new RuntimeException("File does not exist: " //$NON-NLS-1$
                     + f.getAbsolutePath());
         }
 

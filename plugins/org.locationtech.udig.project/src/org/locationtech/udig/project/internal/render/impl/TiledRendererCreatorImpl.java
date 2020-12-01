@@ -18,11 +18,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.geotools.data.FeatureSource;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.core.internal.ExtensionPointUtil;
 import org.locationtech.udig.project.ILayer;
@@ -40,10 +43,6 @@ import org.locationtech.udig.project.render.AbstractRenderMetrics;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
 import org.locationtech.udig.project.render.IRenderMetricsFactory;
 import org.locationtech.udig.project.render.IRenderer;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.geotools.data.FeatureSource;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 public class TiledRendererCreatorImpl implements RendererCreator {
     

@@ -243,19 +243,19 @@ public class DrawFeatureCommand extends AbstractDrawCommand {
             } catch (TransformException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             } catch (MismatchedDimensionException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             } catch (FactoryException e) {
                 if( !errorReported ){
                     errorReported = true;
-                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e);
+                    ProjectUIPlugin.log("error calculating valid area, this will not be reported again", e); //$NON-NLS-1$
                 }
                 return null;
             }

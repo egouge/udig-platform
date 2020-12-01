@@ -107,7 +107,7 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
     private static final String EPSG_4269 = "EPSG:4269"; //$NON-NLS-1$
     private static final ReferencedEnvelope NILL_BOX = new ReferencedEnvelope(0, 0, 0, 0,
             DefaultGeographicCRS.WGS84);
-    private static final String EPSG_CODE = "CRS_EPSG_CODE";
+    private static final String EPSG_CODE = "CRS_EPSG_CODE"; //$NON-NLS-1$
 
     /**
      * Construct a new BasicWMSRenderer
@@ -575,7 +575,7 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
     public static ReferencedEnvelope calculateRequestBBox(List<Layer> wmsLayers,
             ReferencedEnvelope viewport, CoordinateReferenceSystem requestCRS)
             throws MismatchedDimensionException, TransformException, FactoryException {
-        return calculateRequestBBox(wmsLayers, viewport, requestCRS, "1.1.1");
+        return calculateRequestBBox(wmsLayers, viewport, requestCRS, "1.1.1"); //$NON-NLS-1$
     }
     /**
      * Using the viewport bounds and combined wms layer extents, determines an appropriate bounding
@@ -843,7 +843,7 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
         }        
         codes.addAll(CRSUtil.extractAuthorityCodes(crs));
 
-        final String DONT_FIND = "DONT_FIND";
+        final String DONT_FIND = "DONT_FIND"; //$NON-NLS-1$
         boolean search = map.getBlackboard().get(EPSG_CODE) != DONT_FIND;
         if (codes.isEmpty() && search) {
             PlatformGIS.syncInDisplayThread(new Runnable() {
@@ -874,10 +874,10 @@ public class BasicWMSRenderer2 extends RendererImpl implements IMultiLayerRender
 
                         });
                     } catch (InvocationTargetException e) {
-                        WMSPlugin.log("Error tracking down EPSG Code", e);
+                        WMSPlugin.log("Error tracking down EPSG Code", e); //$NON-NLS-1$
                         dontFind(map, DONT_FIND);
                     } catch (InterruptedException e) {
-                        WMSPlugin.log("Error tracking down EPSG Code", e);
+                        WMSPlugin.log("Error tracking down EPSG Code", e); //$NON-NLS-1$
                         dontFind(map, DONT_FIND);
                     }
                     dontFind(map, DONT_FIND);

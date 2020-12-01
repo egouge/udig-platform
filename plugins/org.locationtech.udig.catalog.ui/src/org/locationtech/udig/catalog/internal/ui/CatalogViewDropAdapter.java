@@ -45,7 +45,7 @@ public class CatalogViewDropAdapter extends ViewerDropAdapter {
                 local.acquire( url, null );  // add to catalog if needed
                 
             } catch (IOException e) {
-                CatalogUIPlugin.log( "Drag and Drop "+url, e);
+                CatalogUIPlugin.log( "Drag and Drop "+url, e); //$NON-NLS-1$
             }
             //List<IService> candidates = serviceFactory.createService((URL) data);
         } else if (data instanceof java.util.Map) {
@@ -53,7 +53,7 @@ public class CatalogViewDropAdapter extends ViewerDropAdapter {
             try {
                 local.acquire(connectionParams, null);
             } catch (IOException e) {
-                CatalogUIPlugin.log( "Drag and Drop "+connectionParams, e);
+                CatalogUIPlugin.log( "Drag and Drop "+connectionParams, e); //$NON-NLS-1$
             }
             //List<IService> candidates = serviceFactory.createService( connectionParams );            
         } else if (data instanceof String || data instanceof String[]) {

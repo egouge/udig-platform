@@ -9,8 +9,6 @@
  */
 package org.locationtech.udig.project.command;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.internal.Map;
 

@@ -21,6 +21,12 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.swt.graphics.RGB;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.ProjectBlackboardConstants;
 import org.locationtech.udig.project.internal.ProjectPlugin;
@@ -38,13 +44,6 @@ import org.locationtech.udig.project.preferences.PreferenceConstants;
 import org.locationtech.udig.project.render.ILabelPainter;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.RenderException;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * <ul>
@@ -72,14 +71,14 @@ public class CompositeRendererImpl extends RendererImpl implements MultiLayerRen
      * @generated NOT
      */
     public static final String copyright = 
-          "uDig - User Friendly Desktop Internet GIS client\n"
-        + "http://udig.refractions.net\n"
-        + "(C) 2004-2012, Refractions Research Inc.\n"
-        + "\n\n"
-        + "All rights reserved. This program and the accompanying materials\n"
-        + "are made available under the terms of the Eclipse Public License v1.0\n"
-        + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n"
-        + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n";
+          "uDig - User Friendly Desktop Internet GIS client\n" //$NON-NLS-1$
+        + "http://udig.refractions.net\n" //$NON-NLS-1$
+        + "(C) 2004-2012, Refractions Research Inc.\n" //$NON-NLS-1$
+        + "\n\n" //$NON-NLS-1$
+        + "All rights reserved. This program and the accompanying materials\n" //$NON-NLS-1$
+        + "are made available under the terms of the Eclipse Public License v1.0\n" //$NON-NLS-1$
+        + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n" //$NON-NLS-1$
+        + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n"; //$NON-NLS-1$
     
     static final AffineTransform IDENTITY = new AffineTransform();
     CompositeContextListener contextListener = new CompositeContextListener(){
@@ -388,7 +387,7 @@ public class CompositeRendererImpl extends RendererImpl implements MultiLayerRen
                         cache.end(g, new Rectangle(displaySize));
                     }
                     catch( Throwable t ){
-                        ProjectPlugin.trace( CompositeRenderContextImpl.class,"painting labels failed", t );
+                        ProjectPlugin.trace( CompositeRenderContextImpl.class,"painting labels failed", t ); //$NON-NLS-1$
                     }
                 }
 

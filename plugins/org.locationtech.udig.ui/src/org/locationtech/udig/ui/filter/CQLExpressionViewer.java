@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.filter.Filter;
 import org.opengis.filter.expression.Expression;
 
@@ -192,7 +193,7 @@ public class CQLExpressionViewer extends IExpressionViewer {
         if( txt == null ){
             return null;
         }
-        else if( "".equals( txt.trim() )){
+        else if( "".equals( txt.trim() )){ //$NON-NLS-1$
             return Expression.NIL;
         }
         return ECQL.toExpression(txt);
@@ -203,7 +204,7 @@ public class CQLExpressionViewer extends IExpressionViewer {
             return null;
         }
         else if( expression == Expression.NIL ){
-            return "";
+            return ""; //$NON-NLS-1$
         }
         return ECQL.toCQL(expression);
     }
@@ -230,7 +231,7 @@ public class CQLExpressionViewer extends IExpressionViewer {
         }
         if (parsedExpr == null || parsedExpr == Expression.NIL) {
             if (input != null && input.isRequired() ) {
-                feedback("Required", true);
+                feedback(Messages.CQLExpressionViewer_Required, true);
                 return null;
             }
         }
@@ -266,8 +267,8 @@ public class CQLExpressionViewer extends IExpressionViewer {
                         return;
 
                     if (expression == null) {
-                        text.setText("");
-                        feedback("Empty");
+                        text.setText(""); //$NON-NLS-1$
+                        feedback(Messages.CQLExpressionViewer_Empty);
                     } else {
                         String cql = toCQL(expression);
                         text.setText(cql);

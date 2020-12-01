@@ -13,9 +13,6 @@ package org.locationtech.udig.tool.info.internal;
 
 import java.util.List;
 
-import org.locationtech.udig.tool.info.LayerPointInfo;
-import org.locationtech.udig.ui.ImageCache;
-
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -23,6 +20,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.locationtech.udig.tool.info.LayerPointInfo;
+import org.locationtech.udig.ui.ImageCache;
 
 /**
  * Display Information from InfoTool as a Tree.

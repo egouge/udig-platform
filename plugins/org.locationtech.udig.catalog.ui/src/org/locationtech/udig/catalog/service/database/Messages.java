@@ -14,7 +14,8 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
     private static final String BUNDLE_NAME = "org.locationtech.udig.catalog.service.database.messages"; //$NON-NLS-1$
-    public static String DatabaseWizardLocalization_brokenElements;
+    public static String DatabaseServiceDialect_7;
+	public static String DatabaseWizardLocalization_brokenElements;
     public static String DatabaseWizardLocalization_changePasswordQuery;
     public static String DatabaseWizardLocalization_confirmRemoveConnection;
     public static String DatabaseWizardLocalization_database;

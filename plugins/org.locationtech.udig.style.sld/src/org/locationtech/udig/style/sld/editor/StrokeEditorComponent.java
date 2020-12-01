@@ -16,6 +16,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.locationtech.udig.filter.ComboExpressionViewer;
+import org.locationtech.udig.style.sld.internal.Messages;
 
 public class StrokeEditorComponent {
     // One of graphic fill, graphic stroke or solid
@@ -37,37 +38,37 @@ public class StrokeEditorComponent {
     public void createControl( Composite parent ) {
         parent.setLayout(new GridLayout(2, false));
         
-        createLabel(parent, "Stroke Type", "Select the desired stroke type.", 2);
+        createLabel(parent, Messages.StrokeEditorComponent_StrokeType, Messages.StrokeEditorComponent_StrokeTypeTooltip, 2);
         strokeTypeViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         strokeTypeViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
         strokeTypeViewer.setOptions(new String[] {"Solid", "Graphic Fill", "Graphic Stroke"});
         
-        createLabel(parent, "Width", "Select the Stroke Width");
+        createLabel(parent, Messages.StrokeEditorComponent_Width, Messages.StrokeEditorComponent_WidthTooltip);
         widthViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         widthViewer.getControl().setLayoutData(new GridData(SWT.FILL,SWT.FILL, true, false));
         widthViewer.setOptions(new int[] {1, 2, 3, 5, 10});
         
-        createLabel(parent, "Opacity", "Select the Opacity of the stroke");
+        createLabel(parent, Messages.StrokeEditorComponent_Opacity, Messages.StrokeEditorComponent_OpacityTooltip);
         opacityViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         opacityViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         opacityViewer.setOptions(new double[] { 0.0, 0.25, 0.5, 0.75, 1.0});
         
-        createLabel(parent, "Line Join", "Select the line join method");
+        createLabel(parent, Messages.StrokeEditorComponent_LineJoin, Messages.StrokeEditorComponent_LineJoinTooltip);
         lineJoinViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         lineJoinViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         lineJoinViewer.setOptions(new String[] {"mitre", "round", "bevel"});
         
-        createLabel(parent, "Line Cap", "Select the line cap style");
+        createLabel(parent, Messages.StrokeEditorComponent_LineCap, Messages.StrokeEditorComponent_LineCapTooltip);
         lineCapViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         lineCapViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         lineCapViewer.setOptions(new String[] {"butt", "round", "square"});
         
-        createLabel(parent, "Dash Array", "Describe the dash array sequence");
+        createLabel(parent, Messages.StrokeEditorComponent_DashArray, Messages.StrokeEditorComponent_DashArrayTooltip);
         dashArrayViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         dashArrayViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         dashArrayViewer.setOptions(new String[] {"solid", "dot", "dash", "dash-dot", "dash-dot-dot", "dot-dot"});
         
-        createLabel(parent, "Dash Offset", "Select the dash offset");
+        createLabel(parent, Messages.StrokeEditorComponent_DashOffset, Messages.StrokeEditorComponent_DashOffsetTooltip);
         dashOffsetViewer = new ComboExpressionViewer(parent, SWT.SINGLE);
         dashOffsetViewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         dashOffsetViewer.setOptions(new double[] {0.0, 0.25, 0.5, 0.75, 1.0});

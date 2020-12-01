@@ -119,10 +119,10 @@ public class WMSCTilePreferencesPage extends FieldEditorPreferencePage implement
 		String dir = diskCacheFieldEditor.getStringValue();
 		
 		String setDir = CatalogPlugin.getDefault().getPreferenceStore().getString(PreferenceConstants.P_WMSCTILE_DISKDIR);
-		if (dir.equals("") && setDir != null && !setDir.equals("") ) {
+		if (dir.equals("") && setDir != null && !setDir.equals("") ) { //$NON-NLS-1$ //$NON-NLS-2$
 			dir = setDir;
 		}
-		else if (dir.equals("")) {
+		else if (dir.equals("")) { //$NON-NLS-1$
 			return false;
 		}
 		TileImageReadWriter tileReadWriter = new TileImageReadWriter(null, dir);

@@ -27,7 +27,7 @@ public abstract class AbstractUdigUIPlugin extends AbstractUIPlugin {
     /**
      * the default Icon path to access images
      */
-    public static final String DEFAULT_ICON_PATH = "icons/";
+    public static final String DEFAULT_ICON_PATH = "icons/"; //$NON-NLS-1$
 
     /**
      * The constructor.

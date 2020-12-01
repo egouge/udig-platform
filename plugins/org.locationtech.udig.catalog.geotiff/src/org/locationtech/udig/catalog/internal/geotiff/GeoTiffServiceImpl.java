@@ -20,17 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.locationtech.udig.catalog.IServiceInfo;
-import org.locationtech.udig.catalog.geotiff.internal.Messages;
-import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
-import org.locationtech.udig.catalog.rasterings.AbstractRasterService;
-import org.locationtech.udig.catalog.rasterings.AbstractRasterServiceInfo;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
 import org.geotools.coverage.grid.io.GridFormatFactorySpi;
 import org.geotools.gce.geotiff.GeoTiffFormat;
+import org.locationtech.udig.catalog.geotiff.internal.Messages;
+import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
+import org.locationtech.udig.catalog.rasterings.AbstractRasterService;
+import org.locationtech.udig.catalog.rasterings.AbstractRasterServiceInfo;
 
 /**
  * Provides a handle to a geotiff service allowing the service to be lazily 

@@ -11,10 +11,9 @@
  */
 package org.locationtech.udig.project.internal.commands.selection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * MapCommand that commits the current Transaction.

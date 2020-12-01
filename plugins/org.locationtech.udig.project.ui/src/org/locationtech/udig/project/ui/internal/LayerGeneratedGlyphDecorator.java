@@ -353,7 +353,7 @@ public class LayerGeneratedGlyphDecorator implements ILabelDecorator {
         // resource.getIdentifier() which is non blocking
         //
     	if( layer.hasResource(ITransientResolve.class)){
-    		layerName += " *";
+    		layerName += " *"; //$NON-NLS-1$
     	}
     	return layerName;
     }

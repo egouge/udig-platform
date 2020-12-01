@@ -124,7 +124,7 @@ public class ColorMapLegendCreator {
 	 * @return <code>true</code> if no data entry, <code>false</code> otherwise
 	 */
 	private static boolean isNoData(ColorMapEntry entry){
-		if (entry.getLabel() != null && entry.getLabel().equals("-no data-")){
+		if (entry.getLabel() != null && entry.getLabel().equals("-no data-")){ //$NON-NLS-1$
 			return true;
 		}
 		return false;

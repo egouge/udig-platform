@@ -58,7 +58,7 @@ public class MapEditorActionBarContributor extends EditorActionBarContributor {
     	if( isEclipse4() ) {
     		ApplicationGIS.getToolManager().contributeActionTools(toolBarManager, getActionBars());
     		ToolBarManager mgrA = new ToolBarManager();
-    		mgrA.add(new Action("Dummy") {
+    		mgrA.add(new Action("Dummy") { //$NON-NLS-1$
 			});
     		toolBarManager.add(new ToolBarContributionItem(mgrA));
     	}

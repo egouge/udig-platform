@@ -11,6 +11,8 @@ package org.locationtech.udig.project.command;
 
 import java.net.URL;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.core.StaticBlockingProvider;
 import org.locationtech.udig.project.ILayer;
@@ -26,11 +28,7 @@ import org.locationtech.udig.project.internal.commands.edit.SetEditFeatureComman
 import org.locationtech.udig.project.internal.commands.edit.SetGeometryCommand;
 import org.locationtech.udig.project.internal.commands.edit.WriteEditFeatureCommand;
 import org.locationtech.udig.project.internal.commands.selection.CommitCommand;
-
 import org.opengis.feature.simple.SimpleFeature;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
 
 /**
  * Creates Edit commands which must be used to modify editable feature data. API internal classes

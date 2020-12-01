@@ -107,12 +107,12 @@ public class UDIGConnectionFactoryDescriptor {
     public String getId() {
 	    // check for backwards compatibility
 		IConfigurationElement configurationElement = wizardPages.get(0).getConfigurationElement();
-        String deprecatedId = configurationElement.getAttribute("id");
-        String id = this.factoryDescriptor.getConfigurationElement().getAttribute("id");
+        String deprecatedId = configurationElement.getAttribute("id"); //$NON-NLS-1$
+        String id = this.factoryDescriptor.getConfigurationElement().getAttribute("id"); //$NON-NLS-1$
          if( id!=null && id.trim().length()>0 ){
              return id;
          }
-        return deprecatedId; //$NON-NLS-1$
+        return deprecatedId;
 	}
     
     /**
@@ -190,11 +190,11 @@ public class UDIGConnectionFactoryDescriptor {
     @Override
     public String toString() {
         StringBuilder build = new StringBuilder( factory.getClass().getSimpleName() );
-        build.append(" Info");
+        build.append(" Info"); //$NON-NLS-1$
         if( !wizardPages.isEmpty() ){
-            build.append(" '");
+            build.append(" '"); //$NON-NLS-1$
             build.append( getLabel(0) );
-            build.append("'");
+            build.append("'"); //$NON-NLS-1$
         }
         return build.toString();
     }

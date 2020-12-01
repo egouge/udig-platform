@@ -15,6 +15,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.locationtech.udig.core.internal.ExtensionPointList;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.interceptor.LayerInterceptor;
@@ -22,11 +27,6 @@ import org.locationtech.udig.project.interceptor.MapInterceptor;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.Trace;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.InternalEObject;
 
 /**
  * Wraps a EList and makes sure that when a layer is added the layer interceptor is fired and a deep

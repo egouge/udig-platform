@@ -10,13 +10,12 @@
  */
 package org.locationtech.udig.project.preferences;
 
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.interceptor.ResourceCacheInterceptor;
-
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.RGB;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.interceptor.ResourceCacheInterceptor;
 
 /**
  * Class used to initialize default preference values.

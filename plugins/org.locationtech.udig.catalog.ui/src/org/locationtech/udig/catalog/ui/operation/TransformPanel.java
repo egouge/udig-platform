@@ -16,6 +16,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import net.miginfocom.swt.MigLayout;
+
+import org.locationtech.udig.catalog.ui.internal.Messages;
 import org.locationtech.udig.internal.ui.UDigByteAndLocalTransfer;
 import org.locationtech.udig.ui.filter.ExpressionInput;
 import org.locationtech.udig.ui.filter.ExpressionViewer;
@@ -69,14 +71,14 @@ public class TransformPanel extends Composite {
     /**
      * A definition value has been modified
      */
-    public static final String MODIFY = "Modify";
+    public static final String MODIFY = "Modify"; //$NON-NLS-1$
 
     /**
      * The list of definitions has been reorded
      */
-    public static final String ORDER = "Order";
+    public static final String ORDER = "Order"; //$NON-NLS-1$
 
-    private static final String NO_CONTENT = "--";
+    private static final String NO_CONTENT = "--"; //$NON-NLS-1$
 
     private List<TransformProcess.Definition> transform;
 
@@ -164,7 +166,7 @@ public class TransformPanel extends Composite {
             listen(false);
             try {
                 if (definition == null) {
-                    name.setText("");
+                    name.setText(""); //$NON-NLS-1$
                     expression.setExpression(Expression.NIL);
 
                     enable(false);
@@ -268,22 +270,22 @@ public class TransformPanel extends Composite {
     }
 
     protected Control createExpressionTable(Composite parent) {
-        setLayout(new MigLayout("insets 0", "[grow,fill][]",
-                "[][][][][grow,fill][][][][grow,fill][][]"));
+        setLayout(new MigLayout("insets 0", "[grow,fill][]", //$NON-NLS-1$ //$NON-NLS-2$
+                "[][][][][grow,fill][][][][grow,fill][][]")); //$NON-NLS-1$
 
         Label label = new Label(this, SWT.LEFT);
-        label.setText("Transform");
-        label.setLayoutData("cell 0 0 2 1,width pref!,left");
+        label.setText(Messages.TransformPanel_Transform);
+        label.setLayoutData("cell 0 0 2 1,width pref!,left"); //$NON-NLS-1$
 
         Button button = new Button(this, SWT.CENTER);
-        button.setText("Add");
-        button.setLayoutData("cell 1 1 1 1,grow");
+        button.setText(Messages.TransformPanel_AddButton);
+        button.setLayoutData("cell 1 1 1 1,grow"); //$NON-NLS-1$
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 int row = table.getTable().getSelectionIndex();
                 Definition definition = new Definition();
-                definition.name = "";
+                definition.name = ""; //$NON-NLS-1$
                 definition.expression = Expression.NIL;
                 transform.add(row, definition);
                 table.refresh();
@@ -292,8 +294,8 @@ public class TransformPanel extends Composite {
         });
 
         button = new Button(this, SWT.CENTER);
-        button.setText("Up");
-        button.setLayoutData("cell 1 2 1 1,grow");
+        button.setText(Messages.TransformPanel_UpButton);
+        button.setLayoutData("cell 1 2 1 1,grow"); //$NON-NLS-1$
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -311,8 +313,8 @@ public class TransformPanel extends Composite {
         });
 
         button = new Button(this, SWT.CENTER);
-        button.setText("Down");
-        button.setLayoutData("cell 1 3 1 1,grow");
+        button.setText(Messages.TransformPanel_DownButton);
+        button.setLayoutData("cell 1 3 1 1,grow"); //$NON-NLS-1$
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -330,8 +332,8 @@ public class TransformPanel extends Composite {
         });
 
         button = new Button(this, SWT.CENTER);
-        button.setText("Remove");
-        button.setLayoutData("cell 1 5 1 1,grow");
+        button.setText(Messages.TransformPanel_RemoveButton);
+        button.setLayoutData("cell 1 5 1 1,grow"); //$NON-NLS-1$
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
@@ -357,13 +359,13 @@ public class TransformPanel extends Composite {
         table = new TableViewer(this, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
         table.setContentProvider(ArrayContentProvider.getInstance());
         table.getControl().setLayoutData(
-                "cell 0 1 1 5, grow, height 200:50%:70%,width 300:pref:100%");
+                "cell 0 1 1 5, grow, height 200:50%:70%,width 300:pref:100%"); //$NON-NLS-1$
 
         TableViewerColumn column = new TableViewerColumn(table, SWT.NONE);
         column.getColumn().setWidth(100);
         column.getColumn().setMoveable(false);
         column.getColumn().setResizable(true);
-        column.getColumn().setText("Attribute");
+        column.getColumn().setText(Messages.TransformPanel_AttributeColumn);
         column.setLabelProvider(new ColumnLabelProvider() {
             @Override
             public String getText(Object element) {
@@ -375,7 +377,7 @@ public class TransformPanel extends Composite {
         column.getColumn().setWidth(60);
         column.getColumn().setMoveable(false);
         column.getColumn().setResizable(true);
-        column.getColumn().setText("Type");
+        column.getColumn().setText(Messages.TransformPanel_TypeColumn);
         column.getColumn().setAlignment(SWT.CENTER);
         column.setLabelProvider(new ColumnLabelProvider() {
             @Override
@@ -388,7 +390,7 @@ public class TransformPanel extends Composite {
         column.getColumn().setWidth(140);
         column.getColumn().setMoveable(false);
         column.getColumn().setResizable(true);
-        column.getColumn().setText("Expression");
+        column.getColumn().setText(Messages.TransformPanel_ExpressionColumn);
         column.setLabelProvider(new ColumnLabelProvider() {
             @Override
             public String getText(Object element) {
@@ -449,20 +451,20 @@ public class TransformPanel extends Composite {
         });
 
         definitionLabel = new Label(this, SWT.LEFT);
-        definitionLabel.setText("Definition");
-        definitionLabel.setLayoutData("cell 0 6 2 1, width pref!,left");
+        definitionLabel.setText(Messages.TransformPanel_DefinitionColumn);
+        definitionLabel.setLayoutData("cell 0 6 2 1, width pref!,left"); //$NON-NLS-1$
 
         feedbackDecorator = new ControlDecoration(definitionLabel, SWT.RIGHT | SWT.TOP);
 
         name = new Text(this, SWT.SINGLE | SWT.BORDER);
         name.setEditable(true);
-        name.setText("");
-        name.setLayoutData("cell 0 7 2 1");
+        name.setText(""); //$NON-NLS-1$
+        name.setLayoutData("cell 0 7 2 1"); //$NON-NLS-1$
 
         expression = new ExpressionViewer(this, SWT.MULTI);
         // expression.setInput(expressionInput);
         expression.getControl()
-                .setLayoutData("cell 0 8 2 1,height 200:50%:50%,width 300:pref:100%");
+                .setLayoutData("cell 0 8 2 1,height 200:50%:50%,width 300:pref:100%"); //$NON-NLS-1$
         expression.addSelectionChangedListener(expressionListener);
 
         // start up with nothing selected

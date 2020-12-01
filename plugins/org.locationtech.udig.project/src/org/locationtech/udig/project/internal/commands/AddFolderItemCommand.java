@@ -9,12 +9,11 @@
  */
 package org.locationtech.udig.project.internal.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Folder;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Adds a Folder item to the map. More specifically, adds a Folder item into the LegendItem list of

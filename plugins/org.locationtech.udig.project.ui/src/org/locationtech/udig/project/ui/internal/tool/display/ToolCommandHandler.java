@@ -91,7 +91,7 @@ public class ToolCommandHandler extends AbstractHandler {
             }
         }
         else {
-            ProjectUIPlugin.trace(ToolCommandHandler.class, "Command Handler unable to find matching PalletteContainer or ModalToolCateogry: "+event, null);
+            ProjectUIPlugin.trace(ToolCommandHandler.class, "Command Handler unable to find matching PalletteContainer or ModalToolCateogry: "+event, null); //$NON-NLS-1$
         }
         return null;
     }

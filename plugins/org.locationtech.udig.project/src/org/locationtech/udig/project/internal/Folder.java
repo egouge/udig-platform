@@ -12,11 +12,9 @@
 package org.locationtech.udig.project.internal;
 
 import java.util.List;
-import org.locationtech.udig.project.IFolder;
 
+import org.locationtech.udig.project.IFolder;
 import org.locationtech.udig.project.ILegendItem;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
  * <!-- begin-user-doc -->

@@ -3,32 +3,22 @@
  */
 package org.locationtech.udig.project.internal.render.util;
 
-import java.util.List;
-
-import org.locationtech.udig.project.IAbstractContext;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.internal.AbstractContext;
-import org.locationtech.udig.project.internal.render.CompositeRenderContext;
 import org.locationtech.udig.project.internal.render.MultiLayerRenderer;
-import org.locationtech.udig.project.internal.render.RenderContext;
 import org.locationtech.udig.project.internal.render.RenderExecutor;
 import org.locationtech.udig.project.internal.render.RenderManager;
 import org.locationtech.udig.project.internal.render.RenderPackage;
 import org.locationtech.udig.project.internal.render.Renderer;
-import org.locationtech.udig.project.internal.render.RendererCreator;
 import org.locationtech.udig.project.internal.render.ViewportModel;
-import org.locationtech.udig.project.render.ICompositeRenderContext;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IRenderer;
 import org.locationtech.udig.project.render.IViewportModel;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplayListener;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch </b> for the model's inheritance hierarchy. It supports the

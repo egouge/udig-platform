@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
@@ -23,8 +24,6 @@ import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.Trace;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Used to process a series of objects into layers that can be inserted into the Map Layer list.
@@ -97,7 +96,7 @@ public class AddLayersCommand extends AbstractCommand implements UndoableMapComm
                     }
                 }
                 catch (Throwable t){
-                    ProjectPlugin.log("Unable to add "+o,t);
+                    ProjectPlugin.log("Unable to add "+o,t); //$NON-NLS-1$
                 }
             }
         }

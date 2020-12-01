@@ -29,7 +29,6 @@ import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.FilterFactory;
 import org.opengis.filter.Id;
@@ -91,8 +90,8 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
         FeatureCollection<SimpleFeatureType, SimpleFeature>  results = store.getFeatures(filter);
 
         Name[] names = featureType.getAttributeDescriptors().stream().map(e->e.getName()).toArray(Name[]::new);
-        FeatureIterator<SimpleFeature> reader = results.features();
-        try {
+        
+        try(FeatureIterator<SimpleFeature> reader = results.features()) {
             if (reader.hasNext()) {
                 try {                    
                     store.modifyFeatures(names, editFeature
@@ -106,9 +105,6 @@ public class WriteFeatureChangesCommand extends AbstractEditCommand implements U
                 added=true;
                 store.addFeatures(new StaticFeatureCollection(Collections.singleton(editFeature), featureType));
             }
-        } finally {
-            if (reader != null)
-                reader.close();
         }
     }
 

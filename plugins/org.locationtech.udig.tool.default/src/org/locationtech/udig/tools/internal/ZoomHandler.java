@@ -9,11 +9,10 @@
  */
 package org.locationtech.udig.tools.internal;
 
-import org.locationtech.udig.project.ui.tool.AbstractToolCommandHandler;
-import org.locationtech.udig.project.ui.tool.ActionTool;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.locationtech.udig.project.ui.tool.AbstractToolCommandHandler;
+import org.locationtech.udig.project.ui.tool.ActionTool;
 
 /**
  * Handles zoom in, out and show all commands

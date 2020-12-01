@@ -12,6 +12,12 @@ package org.locationtech.udig.project.internal.commands.edit;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.data.FeatureSource;
+import org.geotools.data.FeatureStore;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.core.IBlockingProvider;
 import org.locationtech.udig.core.StaticBlockingProvider;
 import org.locationtech.udig.core.internal.FeatureUtils;
@@ -20,13 +26,6 @@ import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.data.FeatureSource;
-import org.geotools.data.FeatureStore;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
-import org.geotools.feature.FeatureCollection;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;

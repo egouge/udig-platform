@@ -14,13 +14,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.geotools.geometry.jts.ReferencedEnvelope;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * Used by the map viewers/editors to manage the rendering process. Responsibilities:

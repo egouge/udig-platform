@@ -277,8 +277,8 @@ public class ToolManager implements IToolManager {
     }
 
 	private String getCategoryIdAttribute(IConfigurationElement element) {
-		String id  = element.getAttribute("categoryId");
-		return id == null? "" : id;
+		String id  = element.getAttribute("categoryId"); //$NON-NLS-1$
+		return id == null? "" : id; //$NON-NLS-1$
 	}
     
 
@@ -831,17 +831,17 @@ public class ToolManager implements IToolManager {
             // since this is the top level menu bar why would it not be visible?
             manager.setVisible(true);
         }        
-        IMenuManager mapMenu = manager.findMenuUsingPath("map");        
+        IMenuManager mapMenu = manager.findMenuUsingPath("map");         //$NON-NLS-1$
         if( mapMenu == null ){
             // Once again the hosting RCP application should of provided
             // us with a Map menu; but let's be careful and make our own here
             // if needed.
             // See UDIGActionBarAdvisor for hosting requirements.
-            mapMenu = new MenuManager(Messages.ToolManager_menu_manager_title, "map");
+            mapMenu = new MenuManager(Messages.ToolManager_menu_manager_title, "map"); //$NON-NLS-1$
             manager.add(mapMenu);
-            mapMenu.add(new GroupMarker("mapStart"));
+            mapMenu.add(new GroupMarker("mapStart")); //$NON-NLS-1$
             mapMenu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
-            mapMenu.add(new GroupMarker("mapEnd"));
+            mapMenu.add(new GroupMarker("mapEnd")); //$NON-NLS-1$
         }        
         // churn through each category and add stuff as needed
         // note we check with the cmdService to see what we if the actionSet
@@ -1334,7 +1334,7 @@ public class ToolManager implements IToolManager {
         enterLock.lock();
         try{
             if (zoomToSelectionAction == null) {
-                zoomToSelectionAction = getToolAction("org.locationtech.udig.tool.default.show.selection", "org.locationtech.udig.tool.category.zoom");
+                zoomToSelectionAction = getToolAction("org.locationtech.udig.tool.default.show.selection", "org.locationtech.udig.tool.category.zoom"); //$NON-NLS-1$ //$NON-NLS-2$
             }
             
             return zoomToSelectionAction;
@@ -2016,7 +2016,7 @@ public class ToolManager implements IToolManager {
 			activeTool.getContext().getViewportPane().setCursor(toolCursor);
         }
         catch (Throwable eek){
-            System.err.println("Trouble activating "+modalTool+":"+eek);
+            System.err.println("Trouble activating "+modalTool+":"+eek); //$NON-NLS-1$ //$NON-NLS-2$
             try {
                 activeTool.setActive(false); // hope it does a better at cleaning up
             }

@@ -17,6 +17,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.ui.PlatformUI;
+import org.locationtech.udig.style.sld.internal.Messages;
 
 /**
  * Listens to the BorderColor Listener and lets the user choose the outline color of the theme's polygons.
@@ -66,15 +67,15 @@ public class BorderColorComboListener implements SelectionListener {
             Color color = new Color( rgb.red, rgb.green, rgb.blue);
             return color;
         default:
-            throw new IllegalArgumentException("This method needs to be updated since outline has been modified");
+            throw new IllegalArgumentException("This method needs to be updated since outline has been modified"); //$NON-NLS-1$
         }
     }
     
     public enum Outline {
-        NONE("None"),
-        BLACK("Black"),
-        WHITE("White"),
-        CUSTOM("Custom");
+        NONE(Messages.BorderColorComboListener_None), 
+        BLACK(Messages.BorderColorComboListener_Black),
+        WHITE(Messages.BorderColorComboListener_White),
+        CUSTOM(Messages.BorderColorComboListener_Custom);
         
         public final String label;
 

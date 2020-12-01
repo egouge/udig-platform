@@ -9,17 +9,6 @@
  */
 package org.locationtech.udig.catalog.ui.property;
 
-import java.io.IOException;
-
-import net.miginfocom.swt.MigLayout;
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.catalog.ui.internal.Messages;
-import org.locationtech.udig.ui.filter.ExpressionInput;
-import org.locationtech.udig.ui.filter.ExpressionViewer;
-import org.locationtech.udig.ui.filter.IExpressionViewer;
-
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -27,11 +16,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.geotools.data.simple.SimpleFeatureSource;
-import org.geotools.filter.text.cql2.CQLException;
-import org.geotools.filter.text.ecql.ECQL;
-import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.filter.expression.Expression;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IGeoResourceInfo;
+import org.locationtech.udig.catalog.ui.internal.Messages;
+
+import net.miginfocom.swt.MigLayout;
 
 /**
  * Property Page providing a summary of {@link IGeoResource} items.
@@ -62,20 +51,20 @@ public class ResourcePropertyPage extends PropertyPage implements IWorkbenchProp
         page.setLayout(new MigLayout(layoutConst, colConst, rowConst));
         
         Label label = new Label(page, SWT.NONE);
-        label.setText("ID:");
+        label.setText(Messages.ResourcePropertyPage_IdLabel);
         
         Text text = new Text( page, SWT.SINGLE | SWT.BORDER );
         text.setText( resource.getDisplayID() );
         text.setEditable(false);
-        text.setLayoutData("width 100:300:,wrap");
+        text.setLayoutData("width 100:300:,wrap"); //$NON-NLS-1$
         
         label = new Label(page, SWT.NONE);
-        label.setText("Title:");
+        label.setText(Messages.ResourcePropertyPage_TitleLabel);
         
         text = new Text( page, SWT.SINGLE | SWT.BORDER );
         
         String title = resource.getTitle();
-        text.setText( title != null ? title : "(automaticly generated)" );
+        text.setText( title != null ? title : Messages.ResourcePropertyPage_AutoGeneratre );
         text.setEditable(false);
         
         return page;

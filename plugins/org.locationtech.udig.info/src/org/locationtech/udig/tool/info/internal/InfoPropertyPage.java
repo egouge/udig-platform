@@ -11,12 +11,6 @@ package org.locationtech.udig.tool.info.internal;
 
 import java.io.IOException;
 
-import net.miginfocom.swt.MigLayout;
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.ui.filter.ExpressionInput;
-import org.locationtech.udig.ui.filter.ExpressionViewer;
-import org.locationtech.udig.ui.filter.IExpressionViewer;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -27,8 +21,14 @@ import org.eclipse.ui.dialogs.PropertyPage;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.ui.filter.ExpressionInput;
+import org.locationtech.udig.ui.filter.ExpressionViewer;
+import org.locationtech.udig.ui.filter.IExpressionViewer;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.expression.Expression;
+
+import net.miginfocom.swt.MigLayout;
 
 /**
  * Configuration of Info properties for {@link IGeoResource} items.

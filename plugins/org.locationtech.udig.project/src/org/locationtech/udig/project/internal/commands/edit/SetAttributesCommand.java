@@ -28,7 +28,6 @@ import org.locationtech.udig.project.command.provider.EditLayerProvider;
 import org.locationtech.udig.project.internal.Messages;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.FilterFactory;
 import org.opengis.filter.Id;
@@ -62,7 +61,7 @@ public class SetAttributesCommand extends AbstractEditCommand implements Undoabl
             IBlockingProvider<ILayer> layer, String xpath[], Object value[]) {
         Validate.notNull(xpath);
         Validate.notNull(value);
-        Validate.isTrue(xpath.length == value.length, "xpath and values do not have same lenght");
+        Validate.isTrue(xpath.length == value.length, "xpath and values do not have same lenght"); //$NON-NLS-1$
         this.xpath = xpath;
         this.value = value;
         this.oldValue = new Object[xpath.length];
@@ -80,7 +79,7 @@ public class SetAttributesCommand extends AbstractEditCommand implements Undoabl
     public SetAttributesCommand(String xpath[], Object value[]) {
         Validate.notNull(xpath);
         Validate.notNull(value);
-        Validate.isTrue(xpath.length == value.length, "xpath and values do not have same lenght");
+        Validate.isTrue(xpath.length == value.length, "xpath and values do not have same lenght"); //$NON-NLS-1$
         editFeature = new EditFeatureProvider(this);
         editLayer = new EditLayerProvider(this);
         this.oldValue = new Object[xpath.length];

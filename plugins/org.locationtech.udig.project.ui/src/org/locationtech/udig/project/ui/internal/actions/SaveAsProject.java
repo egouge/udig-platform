@@ -73,12 +73,12 @@ public class SaveAsProject implements IWorkbenchWindowActionDelegate {
                 URI origURI = project.eResource().getURI();
                 File file = new File(origURI.toFileString());
 
-                String destinationUdigFolder = path + File.separator + project.getName() + ".udig";
+                String destinationUdigFolder = path + File.separator + project.getName() + ".udig"; //$NON-NLS-1$
                 String destinationProject = destinationUdigFolder + File.separator + file.getName();
 
                 File dest = new File(destinationUdigFolder);
                 if (dest.exists()) {
-                    boolean isOk = MessageDialog.openConfirm(shell, Messages.SaveProject_Export, //$NON-NLS-1$
+                    boolean isOk = MessageDialog.openConfirm(shell, Messages.SaveProject_Export, 
                             Messages.SaveProject_Overwrite);
                     if (isOk) {
                         try {
@@ -95,10 +95,10 @@ public class SaveAsProject implements IWorkbenchWindowActionDelegate {
                     ExportProjectUtils.exportProject(project, path, ProgressManager.instance().get(null));
                     File destPrj = new File(destinationProject);
                     if (destPrj.exists()) {
-                        MessageDialog.openInformation(shell, Messages.SaveProject_Export, //$NON-NLS-1$
+                        MessageDialog.openInformation(shell, Messages.SaveProject_Export, 
                                 Messages.SaveProject_Success);
                     } else {
-                        MessageDialog.openError(shell, Messages.SaveProject_Export, //$NON-NLS-1$
+                        MessageDialog.openError(shell, Messages.SaveProject_Export, 
                                 Messages.SaveProject_Fail);
                     }
 

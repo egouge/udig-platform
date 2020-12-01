@@ -27,6 +27,7 @@ public class Messages extends NLS {
     public static String WorldImageServiceExtension_mustBeFIle;
     public static String WorldImageServiceExtension_needsFile;
     public static String WorldImageServiceExtension_noID;
+	public static String WorldImageServiceExtension_NotAFile;
     public static String WorldImageServiceExtension_or;
 	static {
 		// initialize resource bundle

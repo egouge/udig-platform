@@ -22,9 +22,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IExportedPreferences;
+import org.eclipse.core.runtime.preferences.IPreferencesService;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.ICatalog;
 import org.locationtech.udig.catalog.ID;
@@ -35,12 +40,6 @@ import org.locationtech.udig.catalog.ServiceParameterPersister;
 import org.locationtech.udig.catalog.URLUtils;
 import org.locationtech.udig.project.internal.impl.LayerImpl;
 import org.locationtech.udig.ui.ProgressManager;
-
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.IExportedPreferences;
-import org.eclipse.core.runtime.preferences.IPreferencesService;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 

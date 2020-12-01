@@ -21,6 +21,8 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.locationtech.udig.ui.internal.messages"; //$NON-NLS-1$
+	public static String AOIView_AOI;
+	public static String AOIView_AoiTooltip;
 	public static String AttributeValidator_missingAtt1;
     public static String AttributeValidator_missingAtt2;
     public static String AttributeValidator_restriction;
@@ -29,7 +31,11 @@ public class Messages extends NLS {
     public static String BooleanCellEditor_TRUE;
     public static String CharSetFieldEditor_select;
     public static String CharsetSelectionDialog_title;
-    public static String CRSChooser_unknownWKT;
+    public static String CQLExpressionViewer_Empty;
+	public static String CQLExpressionViewer_Required;
+	public static String CQLFilterViewer_Empty;
+	public static String CQLFilterViewer_Required;
+	public static String CRSChooser_unknownWKT;
 	public static String CRSChooserDialog_title;
 	public static String ErrorManager_very_informative_error;
 	public static String ExceptionDisplayer_very_informative_error;
@@ -57,14 +63,25 @@ public class Messages extends NLS {
     public static String FileExportOperation_finishStatus;
     public static String FileExportOperation_prompt;
     public static String FileExportOperation_writingStatus;
+	public static String FilterViewer_FilterEditor;
     public static String OpAction_errorMessage;
     public static String OpAction_errorTitle;
     public static String OperationDialog_Message;
-    public static String OperationDialog_Operate;
+	public static String OperationDialog_Operate;
+	public static String OperationDialog_Operation;
+	public static String OperationDialog_OpShell;
     public static String OperationDialog_PleaseSelect;
     public static String OperationDialog_Title;
 	public static String OperationLabelProvider_unknown;
     public static String PlatformGIS_background;
+	public static String RGBExpressionViewer_BlueLong;
+	public static String RGBExpressionViewer_BlueShort;
+	public static String RGBExpressionViewer_Color;
+	public static String RGBExpressionViewer_GreenLong;
+	public static String RGBExpressionViewer_GreenShot;
+	public static String RGBExpressionViewer_RedLong;
+	public static String RGBExpressionViewer_RedShort;
+	public static String RGBExpressionViewer_useWithColor;
 	public static String RunOperationDialog_run_operation;
 	public static String RuntimeFieldEditor_error;
     public static String RuntimeFieldEditor_locale;
@@ -86,6 +103,9 @@ public class Messages extends NLS {
     public static String SubmitIssueDialog_instructions;
     public static String SubmitIssueDialog_copy;
     public static String ShutdownTaskList_shutDown;
+	public static String SpinnerExpressionViewer_Numeric;
+	public static String SpinnerExpressionViewer_Text;
+	public static String SpinnerExpressionViewer_Value;
     public static String TransferPreference_transfer_preference_description;
 	public static String FeatureTextTransfer_transfer_name;
 	public static String FeatureTextTransfer_strategy_wkt_name;
@@ -118,6 +138,16 @@ public class Messages extends NLS {
 	public static String FeatureTypeEditor_integerType;
 	public static String FeatureTypeEditor_dateType;
 	public static String FeatureTypeEditor_stringType;
+	public static String FeatureTypeEditor_UnknownCRS;
+	public static String FunctionContentProposalProvider_Length;
+	public static String FunctionContentProposalProvider_Maximum;
+	public static String FunctionContentProposalProvider_Minimum;
+	public static String FunctionContentProposalProvider_Optional;
+	public static String FunctionContentProposalProvider_Options;
+	public static String FunctionContentProposalProvider_Required;
+	public static String FunctionContentProposalProvider_Result;
+	public static String FunctionContentProposalProvider_Unbounded;
+	public static String FunctionContentProposalProvider_Where;
 	public static String UDIGApplication_error2;
 	public static String UDIGApplication_error1;
 	public static String UDIGApplication_title;
@@ -152,7 +182,9 @@ public class Messages extends NLS {
 	public static String UDIGApplication_error_jai_warning_text;
 	public static String UDIGApplication_error_jai_warning_title;
     public static String UDIGApplication_helpstring;
-    public static String UDIGWorkbenchWindowAdvisor_classNotFound;
+    public static String UDIGStartup_ContinueButton;
+	public static String UDIGStartup_ExitButton;
+	public static String UDIGWorkbenchWindowAdvisor_classNotFound;
     public static String UDIGWorkbenchWindowAdvisor_specifiedButNotFound;
 	public static String RuntimePreferences_desc;
 	public static String UiPreferences_advancedGraphics_label;
@@ -196,12 +228,27 @@ public class Messages extends NLS {
 //    public static String orientation_automatic_tooltip;
     
     public static String addAttributeAction_label;
-    public static String DefaultExpressionViewer_attribute;
+    public static String DateTimeCellEditor_pickDate;
+	public static String DateTimePickerDialog_setNull;
+	public static String DefaultExpressionViewer_attribute;
     public static String DefaultExpressionViewer_operation;
     public static String DefaultExpressionViewer_value;
+	public static String DefaultFilterViewer_Attribute;
+	public static String DefaultFilterViewer_InsertButton;
+	public static String DefaultFilterViewer_Operation;
+	public static String DefaultFilterViewer_Value;
 
     public static String ExceptionDetailsEditorMessage;
+	public static String ExpressionViewer_ExpressionEditor;
     
+	public static String IExpressionViewer_DisplayError;
+	public static String IExpressionViewer_EmptyValue;
+	public static String IFilterViewer_DisplayError;
+	public static String IFilterViewer_EmptyLabel;
+	public static String IncludeFilterViewer_DisableBtn;
+	public static String IncludeFilterViewer_EnableBtn;
+	public static String IncludeFilterViewer_UnableToRepresentFilter;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

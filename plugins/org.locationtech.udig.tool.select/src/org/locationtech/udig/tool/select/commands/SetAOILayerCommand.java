@@ -55,7 +55,7 @@ public class SetAOILayerCommand extends AbstractCommand implements UndoableMapCo
     private Envelope bbox = null;
     private ReferencedEnvelope bounds;
     private MapMouseEvent mouseEvent;
-    private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer";
+    private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer"; //$NON-NLS-1$
 
     /**
      * Creates a new instance of SetConndaryCommand

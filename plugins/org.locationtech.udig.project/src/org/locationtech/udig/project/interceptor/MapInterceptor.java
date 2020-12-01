@@ -21,9 +21,9 @@ import org.locationtech.udig.project.internal.Map;
 public interface MapInterceptor {
     static final String MAP_INTERCEPTOR_EXTENSIONPOINT = "org.locationtech.udig.project.mapInterceptor"; //$NON-NLS-1$
 
-    public static final String CLOSING_ID = "mapClosing";
+    public static final String CLOSING_ID = "mapClosing"; //$NON-NLS-1$
     
-    public static final String OPENING_ID = "mapOpening";
+    public static final String OPENING_ID = "mapOpening"; //$NON-NLS-1$
     /**
      * Performs an action on or with the intercepted map.
      *

@@ -244,7 +244,7 @@ public abstract class ViewerFactory<V extends Viewer> {
      * @return id used to identify this viewer
      */
     public String getId() {
-        String id = config.getAttribute("id");
+        String id = config.getAttribute("id"); //$NON-NLS-1$
         return id;
     }
     /**
@@ -252,7 +252,7 @@ public abstract class ViewerFactory<V extends Viewer> {
      * @return display name (human readable translated)
      */
     public String getDisplayName() {
-        String name = config.getAttribute("name");
+        String name = config.getAttribute("name"); //$NON-NLS-1$
         return name;
     }
 

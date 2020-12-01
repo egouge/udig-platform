@@ -9,13 +9,11 @@
  */
 package org.locationtech.udig.project.internal.render;
 
+import org.eclipse.emf.ecore.EObject;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * 

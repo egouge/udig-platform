@@ -251,7 +251,7 @@ public final class SLDContent extends StyleContent {
         SLDContentManager sldContentManager = new SLDContentManager(styleBuilder, style);
         sldContentManager.addSymbolizer(rasterSymbolizer);
         
-        style.setName("simpleStyle");
+        style.setName("simpleStyle"); //$NON-NLS-1$
               
         return style;
     }

@@ -359,9 +359,9 @@ public class WMSCTileUtils {
             IProgressMonitor monitor) throws IOException {
         if( monitor == null ) monitor = new NullProgressMonitor();
         
-        monitor.beginTask("TileSet generation", 100 );
+        monitor.beginTask("TileSet generation", 100 ); //$NON-NLS-1$
         try {
-            if (server == null ) { //$NON-NLS-1$
+            if (server == null ) { 
                 WmsPlugin.log("WebMapService required", new ServiceNotFoundException()); //$NON-NLS-1$
                 return null;
             }
@@ -384,8 +384,8 @@ public class WMSCTileUtils {
             TileSet tileset = new WMSTileSet();
     
             ReferencedEnvelope bounds = info.getBounds();
-            if (bounds == null ) { //$NON-NLS-1$
-                WmsPlugin.log("Bounds required for TileSet definition", new NullPointerException("Bounds required for tileset definitio")); //$NON-NLS-1$
+            if (bounds == null ) {
+                WmsPlugin.log("Bounds required for TileSet definition", new NullPointerException("Bounds required for tileset definitio")); //$NON-NLS-1$ //$NON-NLS-2$
                 return null;
             }
             double minX = bounds.getMinimum(0);

@@ -80,11 +80,11 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Activator implements BundleActivator {
 
     public static String ID = "org.locationtech.udig.libs"; //$NON-NLS-1$
-    public static String JDBC_DATA_TRACE_FINE = "org.locationtech.udig.libs/debug/data/jdbc/fine";
-    public static String JDBC_TRACE_FINE = "org.locationtech.udig.libs/debug/jdbc/fine";
+    public static String JDBC_DATA_TRACE_FINE = "org.locationtech.udig.libs/debug/data/jdbc/fine"; //$NON-NLS-1$
+    public static String JDBC_TRACE_FINE = "org.locationtech.udig.libs/debug/jdbc/fine"; //$NON-NLS-1$
 
-    private static final String DATABASES_FOLDER_NAME = "databases";
-    private static final String EPSG_DATABASEFOLDER_PREFIX = "epsg_v";
+    private static final String DATABASES_FOLDER_NAME = "databases"; //$NON-NLS-1$
+    private static final String EPSG_DATABASEFOLDER_PREFIX = "epsg_v"; //$NON-NLS-1$
 
     public void start( final BundleContext context ) throws Exception {
         if (Platform.getOS().equals(Platform.OS_WIN32)) {
@@ -115,10 +115,10 @@ public class Activator implements BundleActivator {
         
         // Suppress JAI warnings when native support unavailable 
         JAI.getDefaultInstance().setImagingListener(new ImagingListener() {
-            final Logger LOGGER = Logging.getLogger("javax.media.jai");
+            final Logger LOGGER = Logging.getLogger("javax.media.jai"); //$NON-NLS-1$
             public boolean errorOccurred(String message, Throwable thrown, Object where,
                     boolean isRetryable) throws RuntimeException {
-                if (message.contains("Continuing in pure Java mode")) {
+                if (message.contains("Continuing in pure Java mode")) { //$NON-NLS-1$
                     LOGGER.log(Level.FINE, message, thrown);
                 } else {
                     LOGGER.log(Level.INFO, message, thrown);
@@ -130,25 +130,25 @@ public class Activator implements BundleActivator {
 //        ClassLoader cl = Thread.currentThread().getContextClassLoader();
 //        Thread.currentThread().setContextClassLoader(GeoTools.class.getClassLoader());
 //        try {
-        Logger jdbcLogger = Logging.getLogger("org.geotools.jdbc");
-        Logger jdbcDataLogger = Logging.getLogger("org.geotools.data.jdbc");
+        Logger jdbcLogger = Logging.getLogger("org.geotools.jdbc"); //$NON-NLS-1$
+        Logger jdbcDataLogger = Logging.getLogger("org.geotools.data.jdbc"); //$NON-NLS-1$
         
         ConsoleHandler handler = new ConsoleHandler();
         handler.setLevel(Level.FINEST);
         
-        Logging.getLogger("org.geotools").addHandler(handler);
+        Logging.getLogger("org.geotools").addHandler(handler); //$NON-NLS-1$
         if (isDebugging(JDBC_TRACE_FINE)) {
             jdbcLogger.setLevel(Level.FINEST);
-            Logging.getLogger("org.geotools.data.store").addHandler(handler);
-            Logging.getLogger("org.geotools.data.store").setLevel(Level.FINEST); // ContentDataStore too
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureReader").addHandler(handler);
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureReader").setLevel(Level.FINEST);
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureSource").addHandler(handler);
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureSource").setLevel(Level.FINEST);
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureStore").addHandler(handler);
-            Logging.getLogger("org.geotools.data.store.JDBCFeatureStore").setLevel(Level.FINEST);
-            Logging.getLogger("org.geotools.data.store.SQLDialect").addHandler(handler);
-            Logging.getLogger("org.geotools.data.store.SQLDialect").setLevel(Level.FINEST);
+            Logging.getLogger("org.geotools.data.store").addHandler(handler); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store").setLevel(Level.FINEST); // ContentDataStore too //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureReader").addHandler(handler); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureReader").setLevel(Level.FINEST); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureSource").addHandler(handler); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureSource").setLevel(Level.FINEST); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureStore").addHandler(handler); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.JDBCFeatureStore").setLevel(Level.FINEST); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.SQLDialect").addHandler(handler); //$NON-NLS-1$
+            Logging.getLogger("org.geotools.data.store.SQLDialect").setLevel(Level.FINEST); //$NON-NLS-1$
         } else {
             jdbcLogger.setLevel(Level.INFO);
         }
@@ -199,7 +199,7 @@ public class Activator implements BundleActivator {
 
         monitor.beginTask(Messages.Activator_EPSG_DATABASE, 100);
         
-        Logger epsgLogger = Logging.getLogger("org.geotools.referencing.factory");
+        Logger epsgLogger = Logging.getLogger("org.geotools.referencing.factory"); //$NON-NLS-1$
         try {
             epsgLogger.setLevel(Level.SEVERE);
     
@@ -289,7 +289,7 @@ public class Activator implements BundleActivator {
         boolean created = directory.exists() || directory.mkdirs();
         if( created ){
             if( isDebugging() ){
-                System.out.println("EPSG database location: "+file);
+                System.out.println("EPSG database location: "+file); //$NON-NLS-1$
             }
             System.setProperty( ThreadedHsqlEpsgFactory.DIRECTORY_KEY, directory.toString() );
         }
@@ -447,7 +447,7 @@ public class Activator implements BundleActivator {
             // Show EPSG authority chain if in debug mode
             //
             if (Platform.inDebugMode()) {
-            	System.out.println("Coordinate Reference System definitions supplied by:");
+            	System.out.println("Coordinate Reference System definitions supplied by:"); //$NON-NLS-1$
                 CRS.main(new String[]{"-dependencies"}); //$NON-NLS-1$
             }
             // Verify EPSG authority configured correctly

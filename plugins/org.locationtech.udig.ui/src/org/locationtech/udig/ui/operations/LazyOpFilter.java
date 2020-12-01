@@ -192,6 +192,6 @@ public class LazyOpFilter implements OpFilter {
 
     @Override
     public String toString() {
-        return "LazyOpFilter "+this.opFilter;
+        return "LazyOpFilter "+this.opFilter; //$NON-NLS-1$
     }
 }

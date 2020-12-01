@@ -157,7 +157,7 @@ public final class NorthArrowMapGraphic implements MapGraphic{
             g.setColor(Color.BLACK);
             int offset = 10;
             if (g.getGraphics(Graphics2D.class) != null) {
-            	offset = g.getGraphics(Graphics2D.class).getFontMetrics().stringWidth("N");
+            	offset = g.getGraphics(Graphics2D.class).getFontMetrics().stringWidth("N"); //$NON-NLS-1$
             }
             g.drawString("N", arrowCenterX-(int)Math.ceil(offset / 2.0), nTop, ViewportGraphics.ALIGN_LEFT, ViewportGraphics.ALIGN_MIDDLE); //$NON-NLS-1$
             

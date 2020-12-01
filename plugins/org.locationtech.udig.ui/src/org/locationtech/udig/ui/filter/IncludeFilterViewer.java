@@ -10,6 +10,8 @@
  */
 package org.locationtech.udig.ui.filter;
 
+import java.text.MessageFormat;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -17,6 +19,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.geotools.filter.text.ecql.ECQL;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.filter.Filter;
 
 /**
@@ -80,7 +83,7 @@ public class IncludeFilterViewer extends IFilterViewer {
         });
 
         enableButton.setBounds(20, 31, 90, 16);
-        enableButton.setText("Enable");
+        enableButton.setText(Messages.IncludeFilterViewer_EnableBtn);
 
         disableButton = new Button(control, SWT.RADIO);
         disableButton.addSelectionListener(new SelectionAdapter() {
@@ -91,7 +94,7 @@ public class IncludeFilterViewer extends IFilterViewer {
             }
         });
         disableButton.setBounds(20, 53, 90, 16);
-        disableButton.setText("Disable");
+        disableButton.setText(Messages.IncludeFilterViewer_DisableBtn);
     }
 
     /**
@@ -112,9 +115,9 @@ public class IncludeFilterViewer extends IFilterViewer {
      */
     public String getValidationMessage() {
         if (enableButton.getSelection() && disableButton.getSelection()) {
-            return "Unable to represent " + ECQL.toCQL(filter);
+            return MessageFormat.format(Messages.IncludeFilterViewer_UnableToRepresentFilter, ECQL.toCQL(filter));
         } else if (!enableButton.getSelection() && !disableButton.getSelection()) {
-            return "Unable to represent " + ECQL.toCQL(filter);
+            return MessageFormat.format(Messages.IncludeFilterViewer_UnableToRepresentFilter, ECQL.toCQL(filter));
         }
         return null; // all good then
     }

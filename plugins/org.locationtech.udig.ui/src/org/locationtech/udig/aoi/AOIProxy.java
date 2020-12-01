@@ -51,7 +51,7 @@ public class AOIProxy extends IAOIStrategy {
      */
     public AOIProxy(IConfigurationElement config) {
         configElement = config;
-        id = configElement.getAttribute("id");
+        id = configElement.getAttribute("id"); //$NON-NLS-1$
     }
     
     @Override
@@ -71,7 +71,7 @@ public class AOIProxy extends IAOIStrategy {
 
     @Override
     public String getName() {
-        return configElement.getAttribute("name");
+        return configElement.getAttribute("name"); //$NON-NLS-1$
     }
     
     /**
@@ -81,10 +81,10 @@ public class AOIProxy extends IAOIStrategy {
     public synchronized IAOIStrategy getStrategy(){
         if (strategy == null) {
             try {
-                strategy = (IAOIStrategy)configElement.createExecutableExtension("class");
+                strategy = (IAOIStrategy)configElement.createExecutableExtension("class"); //$NON-NLS-1$
             } catch (CoreException e) {
-                String name = configElement.getAttribute("class");
-                blame( "Strategy "+name+" not available ("+id+")", e );
+                String name = configElement.getAttribute("class"); //$NON-NLS-1$
+                blame( "Strategy "+name+" not available ("+id+")", e ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         }
         return strategy;
@@ -97,15 +97,15 @@ public class AOIProxy extends IAOIStrategy {
             // check if the page has supplied some crazy dynamic page thing
             page = getStrategy().createPage();
         } catch (Throwable t) {
-            blame("Page " + id + " not available", t);
+            blame("Page " + id + " not available", t); //$NON-NLS-1$ //$NON-NLS-2$
         }
         if (page == null) {
-            String name = configElement.getAttribute("page");
+            String name = configElement.getAttribute("page"); //$NON-NLS-1$
             if (name != null && !name.isEmpty()) {
                 try {
-                    page = (IPageBookViewPage) configElement.createExecutableExtension("page");
+                    page = (IPageBookViewPage) configElement.createExecutableExtension("page"); //$NON-NLS-1$
                 } catch (CoreException e) {
-                    blame("Page " + name + " not available (" + id + ")", e);
+                    blame("Page " + name + " not available (" + id + ")", e); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 }
             }
         }

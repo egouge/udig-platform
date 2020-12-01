@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Display;
 import org.locationtech.udig.project.internal.Project;
 import org.locationtech.udig.project.internal.ProjectElement;
 import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.ui.IDropAction;
 
 /**
@@ -111,8 +112,8 @@ public class MoveProjectElement extends IDropAction {
             MessageDialog
                     .openError(
                             Display.getDefault().getActiveShell(),
-                            "Error saving projects",
-                            "An error occurred while attempting to save projects.  Please verify you have write access to the project files and no other applications have locked the files.");
+                            Messages.MoveProjectElement_SaveErrorTitle,
+                            Messages.MoveProjectElement_SaveErrorMsg1);
             return;
         }
 
@@ -126,8 +127,8 @@ public class MoveProjectElement extends IDropAction {
             MessageDialog
                     .openError(
                             Display.getDefault().getActiveShell(),
-                            "Error saving projects",
-                            "An error occurred while attempting to save projects.  Please verify you have write access to the project files and no other applications have locked the files.");
+                            Messages.MoveProjectElement_SaveErrorTitle,
+                            Messages.MoveProjectElement_SaveErrorMsg1);
             return;
         }
     }

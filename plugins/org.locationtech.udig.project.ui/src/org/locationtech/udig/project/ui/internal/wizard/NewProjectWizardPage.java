@@ -60,7 +60,7 @@ public class NewProjectWizardPage extends WizardPage {
 
         Composite composite = new Composite(parent, SWT.NONE);
 
-        projectNameEditor = new StringFieldEditor("newproject.name",
+        projectNameEditor = new StringFieldEditor("newproject.name", //$NON-NLS-1$
                 Messages.NewProjectWizardPage_label_projectName, composite) {
             protected boolean doCheckState() {
                 return validate();
@@ -74,7 +74,7 @@ public class NewProjectWizardPage extends WizardPage {
         gd.horizontalSpan = 2;
         textControl.setLayoutData(gd);
 
-        projectDirectoryEditor = new DirectoryFieldEditor("newproject.directory",
+        projectDirectoryEditor = new DirectoryFieldEditor("newproject.directory", //$NON-NLS-1$
                 Messages.NewProjectWizardPage_label_projectDir, composite) {
             protected boolean doCheckState() {
                 return validate();
@@ -132,7 +132,7 @@ public class NewProjectWizardPage extends WizardPage {
             return false;
         }
 
-        File f = new File(projectPath + File.separator + projectName + ".udig");
+        File f = new File(projectPath + File.separator + projectName + ".udig"); //$NON-NLS-1$
         if (f.exists()) {
             setErrorMessage(Messages.NewProjectWizardPage_err_project_exists);
             setPageComplete(false);

@@ -14,6 +14,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.swt.graphics.RGB;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IGeoResourceInfo;
 import org.locationtech.udig.project.IMap;
@@ -31,11 +35,6 @@ import org.locationtech.udig.project.internal.ProjectFactory;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.Trace;
 import org.locationtech.udig.project.preferences.PreferenceConstants;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.swt.graphics.RGB;
 
 public class CreateMapCommand extends AbstractCommand implements UndoableMapCommand {
 
@@ -72,7 +71,7 @@ public class CreateMapCommand extends AbstractCommand implements UndoableMapComm
                         title = info.getTitle();
                     }
                 }
-                if (title != null && !title.contains("(") ){
+                if (title != null && !title.contains("(") ){ //$NON-NLS-1$
                     name = title;
                 }
                 if( name == null ){

@@ -9,10 +9,9 @@
  */
 package org.locationtech.udig.project.internal;
 
-import org.locationtech.udig.project.IProjectElement;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.locationtech.udig.project.IProjectElement;
 
 /**
  * The interface that describes an Element that can be part of a Project.

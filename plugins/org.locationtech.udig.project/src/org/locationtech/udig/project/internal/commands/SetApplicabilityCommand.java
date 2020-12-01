@@ -9,14 +9,13 @@
  */
 package org.locationtech.udig.project.internal.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.Interaction;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * Command for setting the applicability of a layer.  

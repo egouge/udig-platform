@@ -11,7 +11,6 @@
 package org.locationtech.udig.project.internal.interceptor;
 
 import org.locationtech.udig.project.interceptor.FeatureInterceptor;
-
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
 import org.opengis.feature.simple.SimpleFeature;

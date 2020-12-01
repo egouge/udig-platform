@@ -128,15 +128,17 @@ public class CachingFeatureSource implements SimpleFeatureSource {
         cloned.getHints().remove(Hints.GEOMETRY_DISTANCE);
 
         SimpleFeatureCollection features = wrapped.getFeatures(cloned);
-        SimpleFeatureIterator fi = features.features();
-        index = null;
-        STRtree newIndex = new STRtree();
-        while (fi.hasNext()) {
-            // consider turning all geometries into packed ones, to save space
-            Feature f = fi.next();
-            newIndex.insert(ReferencedEnvelope.reference(f.getBounds()), f);
+        
+	    index = null;
+	    STRtree newIndex = new STRtree();
+	    try(SimpleFeatureIterator fi = features.features()){
+	        while (fi.hasNext()) {
+	            // consider turning all geometries into packed ones, to save space
+	            Feature f = fi.next();
+	            newIndex.insert(ReferencedEnvelope.reference(f.getBounds()), f);
+	        }
         }
-        fi.close();
+        
         index = newIndex;
         cachedQuery = query;
         cachedBounds = getEnvelope(query.getFilter());
@@ -192,11 +194,11 @@ public class CachingFeatureSource implements SimpleFeatureSource {
         String schemaName = wrapped.getSchema().getName().getLocalPart();
         if (query.getTypeName() != null && !schemaName.equals(query.getTypeName())) {
             throw new IllegalStateException(
-                    "Typename mismatch, query asks for '"
+                    "Typename mismatch, query asks for '" //$NON-NLS-1$
                             + query.getTypeName()
-                            + " but this feature source provides '"
+                            + " but this feature source provides '" //$NON-NLS-1$
                             + schemaName
-                            + "'");
+                            + "'"); //$NON-NLS-1$
         }
 
         return getFeatureCollection(query, getEnvelope(query.getFilter()));
@@ -215,7 +217,7 @@ public class CachingFeatureSource implements SimpleFeatureSource {
             return new CachingFeatureCollection(bounds, base, alternate, query);
         } catch (Exception e) {
             throw new IllegalStateException(
-                    "Error occurred extracting features from the spatial index", e);
+                    "Error occurred extracting features from the spatial index", e); //$NON-NLS-1$
         }
     }
 
@@ -361,7 +363,7 @@ public class CachingFeatureSource implements SimpleFeatureSource {
             try {
                 return getCount(query);
             } catch (Exception e) {
-                throw new RuntimeException("Failed to count features", e);
+                throw new RuntimeException("Failed to count features", e); //$NON-NLS-1$
             }
         }
 
@@ -370,7 +372,7 @@ public class CachingFeatureSource implements SimpleFeatureSource {
             try {
                 return CachingFeatureSource.this.getBounds(query);
             } catch (Exception e) {
-                throw new RuntimeException("Failed to count features", e);
+                throw new RuntimeException("Failed to count features", e); //$NON-NLS-1$
             }
         }
 
@@ -388,7 +390,7 @@ public class CachingFeatureSource implements SimpleFeatureSource {
                         features = index.query((Envelope) index.getRoot().getBounds());
                     }
                 } catch (Exception e) {
-                    throw new RuntimeException("Failed to get data", e);
+                    throw new RuntimeException("Failed to get data", e); //$NON-NLS-1$
                 }
             }
             Iterator<SimpleFeature> it = features.iterator();
@@ -482,12 +484,12 @@ public class CachingFeatureSource implements SimpleFeatureSource {
                 SimpleFeatureType original, SimpleFeatureType target) {
             if (target.equals(original)) {
                 throw new IllegalArgumentException(
-                        "FeatureReader allready produces contents with the correct schema");
+                        "FeatureReader allready produces contents with the correct schema"); //$NON-NLS-1$
             }
 
             if (target.getAttributeCount() > original.getAttributeCount()) {
                 throw new IllegalArgumentException(
-                        "Unable to retype  FeatureReader<SimpleFeatureType, SimpleFeature> (origional does not cover requested type)");
+                        "Unable to retype  FeatureReader<SimpleFeatureType, SimpleFeature> (origional does not cover requested type)"); //$NON-NLS-1$
             }
 
             String xpath;
@@ -500,9 +502,9 @@ public class CachingFeatureSource implements SimpleFeatureSource {
 
                 if (!attrib.equals(original.getDescriptor(xpath))) {
                     throw new IllegalArgumentException(
-                            "Unable to retype  FeatureReader<SimpleFeatureType, SimpleFeature> (origional does not cover "
+                            "Unable to retype  FeatureReader<SimpleFeatureType, SimpleFeature> (origional does not cover " //$NON-NLS-1$
                                     + xpath
-                                    + ")");
+                                    + ")"); //$NON-NLS-1$
                 }
             }
 

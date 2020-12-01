@@ -194,7 +194,7 @@ public class ConnectionFactoryManager {
 			    catch( CoreException eek){
 			        if(CatalogPlugin.getDefault().isDebugging()){
 			            String toLoad = element.getAttribute( classAttribute );
-	                    System.out.println("Unable to load:"+toLoad+":"+eek);   
+	                    System.out.println("Unable to load:"+toLoad+":"+eek);    //$NON-NLS-1$ //$NON-NLS-2$
 	                }
 			        throw eek;
 			    }

@@ -9,18 +9,16 @@
  */
 package org.locationtech.udig.project.internal.commands.edit;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.udig.core.IBlockingProvider;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.command.UndoableCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.referencing.CRS;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import org.locationtech.jts.geom.Geometry;
 
 /**
  * Sets the geometry attribute of a feature.

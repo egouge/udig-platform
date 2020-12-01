@@ -14,14 +14,13 @@ import java.util.Set;
 
 import javax.swing.Icon;
 
-import org.locationtech.udig.catalog.IGeoResourceInfo;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.IResourceInterceptor;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.locationtech.udig.catalog.IGeoResourceInfo;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.IResourceInterceptor;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**

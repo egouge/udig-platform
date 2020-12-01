@@ -215,11 +215,11 @@ public class CatalogExportWizard extends WorkflowWizard implements IExportWizard
                     String geometryType = ((Geometry) feature.getDefaultGeometry())
                             .getGeometryType();
 
-                    if (geometryType.endsWith("Point")) {
+                    if (geometryType.endsWith("Point")) { //$NON-NLS-1$
                         pointCollection.add(feature);
-                    } else if (geometryType.endsWith("LineString")) {
+                    } else if (geometryType.endsWith("LineString")) { //$NON-NLS-1$
                         lineCollection.add(feature);
-                    } else if (geometryType.endsWith("Polygon")) {
+                    } else if (geometryType.endsWith("Polygon")) { //$NON-NLS-1$
                         polygonCollection.add(feature);
                     }
                 }
@@ -570,7 +570,7 @@ public class CatalogExportWizard extends WorkflowWizard implements IExportWizard
         ICatalog catalog = CatalogPlugin.getDefault().getLocalCatalog();
         URL url = URLUtils.fileToURL(file);
         List<IService> services = sFactory.createService(url);
-        monitor.beginTask("add to catalog", services.size() * 10);
+        monitor.beginTask("add to catalog", services.size() * 10); //$NON-NLS-1$
         for( IService service : services ) {
             IService registeredService = catalog.add(service);
             SubProgressMonitor monitor2 = new SubProgressMonitor(monitor, 10);
@@ -614,7 +614,7 @@ public class CatalogExportWizard extends WorkflowWizard implements IExportWizard
     private org.opengis.filter.Filter createGeometryTypeFilter( String geomName, String type )
             throws IllegalFilterException {
         FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2(null);
-        Function function = ff.function("geometryType", ff.property(geomName));
+        Function function = ff.function("geometryType", ff.property(geomName)); //$NON-NLS-1$
         return ff.equal(function, ff.literal(type)); //$NON-NLS-1$
     }
     

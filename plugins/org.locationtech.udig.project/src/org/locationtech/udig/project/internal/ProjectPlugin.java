@@ -3,17 +3,12 @@
  */
 package org.locationtech.udig.project.internal;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.locationtech.udig.project.internal.impl.ProjectRegistryImpl;
-import org.locationtech.udig.ui.PostShutdownTask;
-import org.locationtech.udig.ui.ShutdownTaskList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -28,6 +23,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.locationtech.udig.project.internal.impl.ProjectRegistryImpl;
+import org.locationtech.udig.ui.PostShutdownTask;
+import org.locationtech.udig.ui.ShutdownTaskList;
 import org.osgi.framework.BundleContext;
 
 /**

@@ -28,7 +28,7 @@ enum ParserState {
         void parse( UdigMemento memento, BufferedReader reader, String context ) throws IOException {
             String line = removeWhite(reader.readLine());
             
-            if( line.equals(_memento_+"{") ){
+            if( line.equals(_memento_+"{") ){ //$NON-NLS-1$
                 MEMENTO.parse(memento, reader, null);
             }
         }
@@ -37,7 +37,7 @@ enum ParserState {
         @Override
         void parse( UdigMemento memento, BufferedReader reader, String context ) throws IOException {
             String line = removeWhite(reader.readLine());
-            while( !line.equals("}") ){
+            while( !line.equals("}") ){ //$NON-NLS-1$
                 for( ParserState state : ParserState.values() ) {
                     if( line.startsWith(state.token.name()) ){
                         state.parse(memento,reader, null);
@@ -51,11 +51,11 @@ enum ParserState {
 
     },
     DATA(_data_) {
-        final Pattern PATTERN = Pattern.compile("\\s*\\|(.*)\\|.*\\{"); 
+        final Pattern PATTERN = Pattern.compile("\\s*\\|(.*)\\|.*\\{");  //$NON-NLS-1$
         @Override
         void parse( UdigMemento memento, BufferedReader reader, String context ) throws IOException {
             String line = reader.readLine();
-            while( !removeWhite(line).equals("}") ){
+            while( !removeWhite(line).equals("}") ){ //$NON-NLS-1$
                 Matcher matcher = PATTERN.matcher(line);
                 if(matcher.find()){
                     String key = checkNullToken(matcher.group(1));
@@ -70,7 +70,7 @@ enum ParserState {
         @Override
         void parse( UdigMemento memento, BufferedReader reader, String context ) throws IOException {
             String line = removeWhite(reader.readLine());
-            while( !line.equals("}") ){
+            while( !line.equals("}") ){ //$NON-NLS-1$
                 TYPE.parse(memento, reader, line);
 
                 line = removeWhite(reader.readLine());
@@ -86,10 +86,10 @@ enum ParserState {
     TYPE(_none_) {
         @Override
         void parse( UdigMemento memento, BufferedReader reader, String context ) throws IOException {
-            String typeName =checkNullToken(context.substring(0, context.indexOf("{")));
+            String typeName =checkNullToken(context.substring(0, context.indexOf("{"))); //$NON-NLS-1$
             String line = removeWhite(reader.readLine());
-            while( !line.equals("}") ){
-                if(line.equals(_memento_+"{")){
+            while( !line.equals("}") ){ //$NON-NLS-1$
+                if(line.equals(_memento_+"{")){ //$NON-NLS-1$
                     UdigMemento newMem = memento.createChild(typeName);
                     MEMENTO.parse(newMem, reader, null);
                 }
@@ -108,11 +108,11 @@ enum ParserState {
         String line = reader.readLine();
         StringBuilder val = new StringBuilder();
         boolean isFirst = true;
-        while( !removeWhite(line).equals("}") ){
+        while( !removeWhite(line).equals("}") ){ //$NON-NLS-1$
             if(isFirst){
                 isFirst=false;
             }else{
-                val.append("\n");
+                val.append("\n"); //$NON-NLS-1$
             }
             val.append(line);
             line = reader.readLine();
@@ -125,9 +125,9 @@ enum ParserState {
     
     private static String removeWhite( String line ) {
         if( line==null ){
-            return "";
+            return ""; //$NON-NLS-1$
         }
-        return line.replaceAll("\\s*","");
+        return line.replaceAll("\\s*",""); //$NON-NLS-1$ //$NON-NLS-2$
     }
     private static String checkNullToken( String value ) {
         if( value.equals(__null__.name()) ){

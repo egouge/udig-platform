@@ -79,7 +79,7 @@ public class DropMap extends IDropAction {
         if (getData() instanceof String) {
             String string = (String) getData();
             try {
-                string = URLDecoder.decode(string, "UTF-8");
+                string = URLDecoder.decode(string, "UTF-8"); //$NON-NLS-1$
             } catch (UnsupportedEncodingException e2) {
                 // so ignore...
             }
@@ -131,7 +131,7 @@ public class DropMap extends IDropAction {
         } else if (getData() instanceof String) {
             String string = (String) getData();
             try {
-                string = URLDecoder.decode(string, "UTF-8");
+                string = URLDecoder.decode(string, "UTF-8"); //$NON-NLS-1$
             } catch (UnsupportedEncodingException e2) {
                 // so ignore...
             }

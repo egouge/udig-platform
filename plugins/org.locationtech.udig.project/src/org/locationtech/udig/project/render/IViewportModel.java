@@ -14,14 +14,12 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.SortedSet;
 
-import org.locationtech.udig.project.IMap;
-import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
-
 import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * Models the Viewport on the map.

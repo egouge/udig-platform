@@ -64,7 +64,7 @@ public class MovedService extends IService implements IForward  {
         return identifier;
     }
     public Throwable getMessage() {
-        return new IllegalStateException("Service has moved to "+forward );
+        return new IllegalStateException("Service has moved to "+forward ); //$NON-NLS-1$
     }
 
     public Status getStatus() {

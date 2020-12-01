@@ -57,7 +57,7 @@ public class Image2Pdf {
             doc.open();
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", baos);
+            ImageIO.write(image, "png", baos); //$NON-NLS-1$
             Image iTextImage = Image.getInstance(baos.toByteArray());
 
             doc.setPageSize(documentPageSize);
@@ -111,7 +111,7 @@ public class Image2Pdf {
             rectangle = PageSize.A0;
             break;
         default:
-            System.err.println("Cannot handle Paper to PageSize");
+            System.err.println("Cannot handle Paper to PageSize"); //$NON-NLS-1$
         }
 
         if (landscape) {

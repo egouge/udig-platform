@@ -211,7 +211,7 @@ public class MosaicInfoPanel {
                 // get File
                
                 // Commented out as Simone has removed the API we were using                
-                String locationAttributeName = "location"; // imageReader.getLocationAttributeName();
+                String locationAttributeName = "location"; // imageReader.getLocationAttributeName(); //$NON-NLS-1$
                 Object attribute = f.getAttribute(locationAttributeName);
                 Literal eq = getFilterFactory().literal(attribute);
                 Filter filter = getFilterFactory().equals(
@@ -464,7 +464,7 @@ public class MosaicInfoPanel {
         
         protected IStatus run( IProgressMonitor monitor ) {
             // Commented out as Simone has removed the API we were using            
-            String location = "location"; // this.imageReader.getLocationAttributeName();
+            String location = "location"; // this.imageReader.getLocationAttributeName(); //$NON-NLS-1$
             final Filter filter = getFilterFactory().equals(
                     ff.property( location ),
                     ff.literal(this.feature.getAttribute(location)));

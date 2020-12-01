@@ -16,6 +16,16 @@ import java.awt.Rectangle;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.Job;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.CRS;
+import org.geotools.referencing.crs.DefaultEngineeringCRS;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.Messages;
@@ -27,21 +37,9 @@ import org.locationtech.udig.project.internal.render.SelectionLayer;
 import org.locationtech.udig.project.render.IRenderContext;
 import org.locationtech.udig.project.render.IRenderer;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.core.runtime.jobs.ISchedulingRule;
-import org.eclipse.core.runtime.jobs.Job;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.crs.DefaultEngineeringCRS;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.TransformException;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * An eclipse job that renders a layer. Allows each renderer to run in a separate thread.
@@ -252,7 +250,7 @@ public class RenderJob extends Job {
                 bounds = combineRequests();
                 if( bounds.isNull() || bounds.isEmpty()){
                 	// nothing to draw! Should we draw everything?
-                	System.out.println("We combined requests down to nothing?");
+                	System.out.println("We combined requests down to nothing?"); //$NON-NLS-1$
                 	continue;
                 }
                 startRendering(bounds, monitor);
@@ -277,7 +275,7 @@ public class RenderJob extends Job {
     			CoordinateReferenceSystem envCRS = env.getCoordinateReferenceSystem();
     			if( env.isNull() || env.isEmpty() || envCRS == null){
     				// these are "invalid" requests and we will skip them
-    				System.out.println("We are skipping an empty request");
+    				System.out.println("We are skipping an empty request"); //$NON-NLS-1$
     				continue; // skip!
     			}
     			
@@ -339,13 +337,13 @@ public class RenderJob extends Job {
             requests.add( getExecutor().getContext().getImageBounds() );
     	}
     	else if (envelope.getCoordinateReferenceSystem() == null ){
-    		throw new IllegalArgumentException("You have asked us to draw a region of the screen without a CRS. Did you intend the viewport CRS?");
+    		throw new IllegalArgumentException("You have asked us to draw a region of the screen without a CRS. Did you intend the viewport CRS?"); //$NON-NLS-1$
     	}
     	else if (envelope.isNull()){
-    		throw new IllegalArgumentException("The provided envelope had isNull true");
+    		throw new IllegalArgumentException("The provided envelope had isNull true"); //$NON-NLS-1$
     	}
     	else if (envelope.isEmpty()){
-    		throw new IllegalArgumentException("The provided envelope was empty");
+    		throw new IllegalArgumentException("The provided envelope was empty"); //$NON-NLS-1$
     	}
     	else {
             requests.add(envelope);

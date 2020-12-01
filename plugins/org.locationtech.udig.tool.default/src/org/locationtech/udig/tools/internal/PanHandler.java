@@ -11,12 +11,11 @@
  */
 package org.locationtech.udig.tools.internal;
 
-import org.locationtech.udig.project.ui.tool.IToolHandler;
-import org.locationtech.udig.project.ui.tool.Tool;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.locationtech.udig.project.ui.tool.IToolHandler;
+import org.locationtech.udig.project.ui.tool.Tool;
 
 /**
  * Handles the pan right,left,up and down commands

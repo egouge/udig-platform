@@ -242,7 +242,7 @@ public class MapViewer implements MapPart {
     		IEditorSite editorSite = (IEditorSite) site;
     		return editorSite.getActionBars().getStatusLineManager();
     	}
-    	throw new NullPointerException( "Unable to determine StatusLineManager");
+    	throw new NullPointerException( "Unable to determine StatusLineManager"); //$NON-NLS-1$
     }
 
     /**

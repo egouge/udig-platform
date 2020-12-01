@@ -116,5 +116,5 @@ public class PreferenceConstants {
      *
      * @see ScaleUtils#calculateClosestScale
      */
-	public static final String P_ZOOM_REQUIRED_CLOSENESS = "P_ZOOM_REQUIRED_CLOSENESS";
+	public static final String P_ZOOM_REQUIRED_CLOSENESS = "P_ZOOM_REQUIRED_CLOSENESS"; //$NON-NLS-1$
 }

@@ -11,10 +11,9 @@ package org.locationtech.udig.project;
 
 import java.util.EventObject;
 
-import org.locationtech.udig.project.internal.ProjectPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.geotools.data.FeatureEvent;
+import org.locationtech.udig.project.internal.ProjectPackage;
 
 /**
  * An event indicating a change in a layer.

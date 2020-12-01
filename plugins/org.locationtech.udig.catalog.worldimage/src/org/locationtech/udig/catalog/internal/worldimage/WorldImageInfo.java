@@ -3,10 +3,9 @@
  */
 package org.locationtech.udig.catalog.internal.worldimage;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResourceInfo;
-
-import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 final class WorldImageInfo extends
@@ -15,8 +14,8 @@ final class WorldImageInfo extends
 
 	WorldImageInfo(
 			AbstractRasterGeoResource resource, CoordinateReferenceSystem crs) {
-		super(resource, "WorldImage", "world image", ".gif", ".jpg",
-				".jpeg", ".tif", ".tiff", ".png");
+		super(resource, "WorldImage", "world image", ".gif", ".jpg", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				".jpeg", ".tif", ".tiff", ".png"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		this.crs = crs;
 	}
 

@@ -24,6 +24,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.ows.wms.Layer;
+import org.geotools.ows.wms.StyleImpl;
+import org.geotools.ows.wms.WebMapServer;
+import org.geotools.ows.wms.request.GetFeatureInfoRequest;
+import org.geotools.ows.wms.request.GetMapRequest;
+import org.geotools.ows.wms.response.GetFeatureInfoResponse;
+import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.render.ICompositeRenderContext;
@@ -32,24 +42,11 @@ import org.locationtech.udig.render.internal.wms.basic.BasicWMSRenderer2;
 import org.locationtech.udig.style.wms.WMSStyleContent;
 import org.locationtech.udig.tool.info.InfoPlugin;
 import org.locationtech.udig.tool.info.LayerPointInfo;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.ows.wms.Layer;
-import org.geotools.ows.wms.StyleImpl;
-import org.geotools.ows.wms.WebMapServer;
-import org.geotools.ows.wms.request.GetFeatureInfoRequest;
-import org.geotools.ows.wms.request.GetMapRequest;
-import org.geotools.ows.wms.response.GetFeatureInfoResponse;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.xml.sax.SAXException;
-
-import org.locationtech.jts.geom.Envelope;
 
 public class WMSDescribeLayer {
     
@@ -227,7 +224,7 @@ public class WMSDescribeLayer {
         }
         else {
             // supply an empty String as per UDIG-1507
-            getmap.setProperty(GetMapRequest.STYLES, "");
+            getmap.setProperty(GetMapRequest.STYLES, ""); //$NON-NLS-1$
         }
         
         final GetFeatureInfoRequest request = wms.createGetFeatureInfoRequest( getmap );                       
@@ -269,14 +266,13 @@ public class WMSDescribeLayer {
                 // if ("text/plain".equals( CONTENT_TYPE ) ||
                 // "text/html".equals( CONTENT_TYPE )) {
                 String result = ""; //$NON-NLS-1$
-                InputStream input = getResponse().getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                String line = null;
-                while( (line = reader.readLine()) != null ) {
-                    result = result + line;
+                try(InputStream input = getResponse().getInputStream();
+                		BufferedReader reader = new BufferedReader(new InputStreamReader(input))){
+                	String line = null;
+                	while( (line = reader.readLine()) != null ) {
+                		result = result + line;
+                	}
                 }
-                reader.close();
-                input.close();
                 return result;
                 // } else if ( LayerPointInfo.GML.equals( CONTENT_TYPE ) ) {
                 // // parse w/ GML parser from WFS !

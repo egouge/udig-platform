@@ -53,11 +53,11 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class ProjectElementAdapterItemProvider extends ItemProviderAdapter implements
         IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
         IItemLabelProvider, IItemPropertySource {
-    private static final String LABEL_PROVIDER_ATT = "labelProvider";
+    private static final String LABEL_PROVIDER_ATT = "labelProvider"; //$NON-NLS-1$
 
-    private static final String LABEL_ATT = "label";
+    private static final String LABEL_ATT = "label"; //$NON-NLS-1$
 
-    private static final String ICON_ATT = "icon";
+    private static final String ICON_ATT = "icon"; //$NON-NLS-1$
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -179,7 +179,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
                 }
             } catch (CoreException e) {
                 // not good log this
-                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: "
+                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: " //$NON-NLS-1$
                         + extensionId, e);
             }
         }
@@ -211,7 +211,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
                 }
             } catch (CoreException e) {
                 // not good log this
-                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: "
+                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: " //$NON-NLS-1$
                         + extensionId, e);
             }
         }
@@ -243,7 +243,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
                 }
             } catch (CoreException e) {
                 // not good log this
-                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: "
+                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: " //$NON-NLS-1$
                         + extensionId, e);
             }
         }
@@ -278,7 +278,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
                 }
             } catch (CoreException e) {
                 // not good log this
-                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: "
+                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: " //$NON-NLS-1$
                         + extensionId, e);
             }
         }
@@ -312,7 +312,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
         ProjectElementAdapter projectElementAdapter = ((ProjectElementAdapter) object);
         IGenericProjectElement backingObject = projectElementAdapter.getBackingObject();
         if (backingObject == null) {
-            return projectElementAdapter.getName() + "- No backing object";
+            return projectElementAdapter.getName() + "- No backing object"; //$NON-NLS-1$
         }
         String extensionId = backingObject.getExtensionId();
         IConfigurationElement extension = findExtension(extensionId);
@@ -328,7 +328,7 @@ public class ProjectElementAdapterItemProvider extends ItemProviderAdapter imple
                 }
             } catch (CoreException e) {
                 // not good log this
-                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: "
+                ProjectEditPlugin.log("Unable to load the LabelProvider for Element: " //$NON-NLS-1$
                         + extensionId, e);
             }
         }

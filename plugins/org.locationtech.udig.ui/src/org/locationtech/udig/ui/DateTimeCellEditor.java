@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.locationtech.udig.ui.internal.Messages;
 
 /**
  * Class represents a special cell editor which will open a calendar/date dialog in which a date and
@@ -31,7 +32,7 @@ import org.eclipse.swt.widgets.Control;
  */
 public class DateTimeCellEditor extends DialogCellEditor {
 
-    private DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); //$NON-NLS-1$
 
     public DateTimeCellEditor() {
         super();
@@ -48,7 +49,7 @@ public class DateTimeCellEditor extends DialogCellEditor {
     @Override
     protected Object openDialogBox(Control cellEditorWindow) {
         DateTimePickerDialog dialog = new DateTimePickerDialog(cellEditorWindow.getShell(),
-                "choose date:", true);
+                Messages.DateTimeCellEditor_pickDate, true);
         Date d = (Date) doGetValue();
         java.util.Calendar c = Calendar.getInstance();
         if (d != null) {

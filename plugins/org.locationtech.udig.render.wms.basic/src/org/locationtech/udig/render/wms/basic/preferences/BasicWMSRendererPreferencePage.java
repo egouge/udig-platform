@@ -109,11 +109,11 @@ public class BasicWMSRendererPreferencePage
 
       @Override
       protected String getNewInputObject(){
-         String str = new String("image/");  
+         String str = new String("image/");   //$NON-NLS-1$
          InputDialog dialog = new InputDialog(
                         Display.getCurrent().getActiveShell(),
-                        "New Image Type",
-                        "Enter the image type",
+                        "New Image Type", //$NON-NLS-1$
+                        "Enter the image type", //$NON-NLS-1$
                         str,
                         null
          );
@@ -121,7 +121,7 @@ public class BasicWMSRendererPreferencePage
          if(result == Window.OK){
             str = dialog.getValue();
          }
-         if( "image/".equals( str )){
+         if( "image/".equals( str )){ //$NON-NLS-1$
              return null; // nothing to add
          }
          return str;

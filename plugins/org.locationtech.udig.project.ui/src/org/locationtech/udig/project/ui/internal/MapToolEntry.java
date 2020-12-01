@@ -46,11 +46,11 @@ public class MapToolEntry extends ToolEntry {
 	    StringBuilder build = new StringBuilder();
 	    if( tooltip != null){
 	        build.append(tooltip);
-	        build.append(" ");
+	        build.append(" "); //$NON-NLS-1$
 	    }
-	    build.append("(");
+	    build.append("("); //$NON-NLS-1$
 	    build.append( shortcut );
-	    build.append(")");
+	    build.append(")"); //$NON-NLS-1$
 	    return build.toString();
 	}
     public ModalTool getMapTool() {

@@ -11,13 +11,12 @@ package org.locationtech.udig.project.internal;
 
 import java.awt.Color;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
 import org.locationtech.udig.core.internal.ExtensionPointUtil;
 import org.locationtech.udig.project.StyleContent;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
 
 /**
  * Responsible for determining the initial "default" styles placed on the layer style blackboard.

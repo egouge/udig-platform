@@ -19,9 +19,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.ows.ServiceException;
 import org.locationtech.udig.catalog.IResolve;
 import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.IResolve.Status;
 import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
 import org.locationtech.udig.catalog.wmsc.server.Capability;
 import org.locationtech.udig.catalog.wmsc.server.TiledWebMapServer;
@@ -29,9 +30,6 @@ import org.locationtech.udig.catalog.wmsc.server.VendorSpecificCapabilities;
 import org.locationtech.udig.catalog.wmsc.server.WMSCCapabilities;
 import org.locationtech.udig.catalog.wmsc.server.WMSTileSet;
 import org.locationtech.udig.ui.UDIGDisplaySafeLock;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.ows.ServiceException;
 
 /**
  * A WMS-C Service. See Specifications:
@@ -127,11 +125,11 @@ public class WMSCServiceImpl extends IService {
                             this.msg = null;
                         }
                         else {
-                            this.msg = new IllegalStateException("VendorCapabilities does not contain titles");
+                            this.msg = new IllegalStateException("VendorCapabilities does not contain titles"); //$NON-NLS-1$
                         }
                     }
                     else {
-                        this.msg = new IllegalStateException("VendorCapabilities not available");
+                        this.msg = new IllegalStateException("VendorCapabilities not available"); //$NON-NLS-1$
                     }
                 }
             } finally {

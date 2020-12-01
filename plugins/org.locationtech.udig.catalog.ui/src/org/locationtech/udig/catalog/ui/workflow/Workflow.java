@@ -331,7 +331,7 @@ public class Workflow {
             } catch (Throwable t) {
                 CatalogUIPlugin.log(t.getLocalizedMessage(), t);
                 if( Platform.inDevelopmentMode() ){
-                	System.out.println( "Could not "+current.getName()+":"+t.getLocalizedMessage() );
+                	System.out.println( "Could not "+current.getName()+":"+t.getLocalizedMessage() ); //$NON-NLS-1$ //$NON-NLS-2$
                 	t.printStackTrace();
                 }
             } finally {
@@ -577,33 +577,33 @@ public class Workflow {
     @Override
     public String toString() {
     	StringBuffer text = new StringBuffer();
-    	text.append("Workflow: Start ");
+    	text.append("Workflow: Start "); //$NON-NLS-1$
     	if( started ){
-    		text.append(" -> ");
+    		text.append(" -> "); //$NON-NLS-1$
     	}
     	else {
-    		text.append( " -- " );    		
+    		text.append( " -- " );    		 //$NON-NLS-1$
     	}
     	for( State state : states ){
     		if( state == current){
-    			text.append("[");
+    			text.append("["); //$NON-NLS-1$
     		}
     		text.append( state.getName() );
     		if( state == current){
-    			text.append("]");
+    			text.append("]"); //$NON-NLS-1$
     		}
     		if( this.queue.contains( state )){
-    			text.append(" -- ");
+    			text.append(" -- "); //$NON-NLS-1$
         	}
         	else {
-        		text.append( " -> " );    		
+        		text.append( " -> " );    		 //$NON-NLS-1$
         	}
     	}
     	if( this.finished ){
-    		text.append( "[Finish]" );
+    		text.append( "[Finish]" ); //$NON-NLS-1$
     	}
     	else {
-    		text.append( "Finish" );
+    		text.append( "Finish" ); //$NON-NLS-1$
     	}
     	return text.toString();
     }

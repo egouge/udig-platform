@@ -70,7 +70,7 @@ public class ConnectionFailureState extends State {
     public void init( IProgressMonitor monitor ) throws IOException {
         
         if( params==null && urls==null ){
-            reports.put( "msg", Collections.singletonList(new Data("msg", "No Connection Information", "For some reason the previous wizard page did not"))); //$NON-NLS-1$ //$NON-NLS-2$
+            reports.put( "msg", Collections.singletonList(new Data("msg", Messages.ConnectionFailureState_NoConnection, Messages.ConnectionFailureState_WizardError))); //$NON-NLS-1$ //$NON-NLS-2$
             return ;
         }
         
@@ -98,7 +98,7 @@ public class ConnectionFailureState extends State {
                     }
                 }
                 if( data.isEmpty())
-                    data.add(new Data(id, name, "Implementation does not provide any debug information"));
+                    data.add(new Data(id, name, Messages.ConnectionFailureState_NoData));
                 
             }catch(Throwable e){
                 data.add(new Data(id, name, e.getLocalizedMessage()));

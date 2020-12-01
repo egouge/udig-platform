@@ -14,22 +14,11 @@ import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
-import org.locationtech.udig.catalog.internal.wmsc.WMSCServiceExtension;
-import org.locationtech.udig.catalog.internal.wmsc.WMSCServiceImpl;
-import org.locationtech.udig.catalog.ui.AbstractUDIGImportPage;
-import org.locationtech.udig.catalog.ui.UDIGConnectionPage;
-import org.locationtech.udig.catalog.ui.workflow.EndConnectionState;
-import org.locationtech.udig.catalog.wms.internal.Messages;
-import org.locationtech.udig.core.RecentHistory;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -46,6 +35,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
+import org.locationtech.udig.catalog.IService;
+import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
+import org.locationtech.udig.catalog.internal.wmsc.WMSCServiceExtension;
+import org.locationtech.udig.catalog.internal.wmsc.WMSCServiceImpl;
+import org.locationtech.udig.catalog.ui.AbstractUDIGImportPage;
+import org.locationtech.udig.catalog.ui.UDIGConnectionPage;
+import org.locationtech.udig.catalog.ui.workflow.EndConnectionState;
+import org.locationtech.udig.catalog.wms.internal.Messages;
+import org.locationtech.udig.core.RecentHistory;
 
 /**
  * WMS-C connection wizard.

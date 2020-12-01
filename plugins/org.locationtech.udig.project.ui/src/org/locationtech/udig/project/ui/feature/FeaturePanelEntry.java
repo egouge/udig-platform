@@ -49,15 +49,15 @@ public class FeaturePanelEntry {
     public FeaturePanelEntry( IExtension extension, IConfigurationElement definition ) {
         this.PLUGIN_ID = definition.getDeclaringExtension().getNamespaceIdentifier();
         if (extension.getUniqueIdentifier() == null) {
-            this.EXTENSION_ID = "";
+            this.EXTENSION_ID = "";  //$NON-NLS-1$
         } else {
-            this.EXTENSION_ID = "(" + extension.getUniqueIdentifier() + ")";
+            this.EXTENSION_ID = "(" + extension.getUniqueIdentifier() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
         }
         this.definition = definition;
-        id = definition.getAttribute("id");
-        name = definition.getAttribute("name");
-        title = definition.getAttribute("title");
-        description = definition.getAttribute("description");
+        id = definition.getAttribute("id"); //$NON-NLS-1$
+        name = definition.getAttribute("name"); //$NON-NLS-1$
+        title = definition.getAttribute("title"); //$NON-NLS-1$
+        description = definition.getAttribute("description"); //$NON-NLS-1$
 
         this.definition = definition;
 
@@ -67,12 +67,12 @@ public class FeaturePanelEntry {
         } else {
             matcher = FeatureTypeMatch.ALL;
         }
-        if( definition.getAttribute("labelProvider") != null ){
+        if( definition.getAttribute("labelProvider") != null ){ //$NON-NLS-1$
             try {
-                labelProvider = (ILabelProvider) definition.createExecutableExtension("labelProvider");
+                labelProvider = (ILabelProvider) definition.createExecutableExtension("labelProvider"); //$NON-NLS-1$
             } catch (CoreException e) {
-                String target = definition.getAttribute("panel");
-                log("Could not create feature label provider" + target, e);
+                String target = definition.getAttribute("panel"); //$NON-NLS-1$
+                log("Could not create feature label provider" + target, e); //$NON-NLS-1$
             }
         }
         // to be configured later
@@ -90,11 +90,11 @@ public class FeaturePanelEntry {
             return false; // cannot check an empty site
         }
         if (check == null) {
-            if (definition.getAttribute("check") == null) {
+            if (definition.getAttribute("check") == null) { //$NON-NLS-1$
                 check = IFeaturePanelCheck.NONE;
             } else {
                 try {
-                    check = (IFeaturePanelCheck) definition.createExecutableExtension("check");
+                    check = (IFeaturePanelCheck) definition.createExecutableExtension("check"); //$NON-NLS-1$
                 } catch (CoreException e) {
                     check = IFeaturePanelCheck.NONE; // fail!
                 }
@@ -173,10 +173,10 @@ public class FeaturePanelEntry {
      */
     public IFeaturePanel createFeaturePanel() {
         try {
-            return (IFeaturePanel) definition.createExecutableExtension("panel");
+            return (IFeaturePanel) definition.createExecutableExtension("panel"); //$NON-NLS-1$
         } catch (CoreException e) {
-            String target = definition.getAttribute("panel");
-            log("Could not create feature " + target, e);
+            String target = definition.getAttribute("panel"); //$NON-NLS-1$
+            log("Could not create feature " + target, e); //$NON-NLS-1$
             return null;
         }
     }

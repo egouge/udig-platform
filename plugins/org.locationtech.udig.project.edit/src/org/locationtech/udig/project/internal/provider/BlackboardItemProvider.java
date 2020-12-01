@@ -116,7 +116,7 @@ public class BlackboardItemProvider extends ItemProviderAdapter implements
      * @generated NOT
      */
     public String getText(Object object) {
-        return "Blackboard";
+        return "Blackboard"; //$NON-NLS-1$
     }
 
     /**

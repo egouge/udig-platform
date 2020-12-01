@@ -3,12 +3,11 @@
  */
 package org.locationtech.udig.project.internal.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.UndoableCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * This command does nothing it simply.  If undone it will undo the previous command so it it

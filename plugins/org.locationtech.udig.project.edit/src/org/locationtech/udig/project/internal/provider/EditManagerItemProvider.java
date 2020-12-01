@@ -183,7 +183,7 @@ public class EditManagerItemProvider extends ItemProviderAdapter implements
     public String getText(Object object) {
         SimpleFeature labelValue = ((EditManager) object).getEditFeature();
         String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ? "Edit Manager" : label;
+        return label == null || label.length() == 0 ? "Edit Manager" : label; //$NON-NLS-1$
     }
 
     /**

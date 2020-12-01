@@ -48,7 +48,7 @@ public class ExportSelectionPage extends WizardPage {
     private Project selectedProject;
     
     public ExportSelectionPage(String title, String description, ImageDescriptor pageIcon) {
-        super("Export Selection Page", title, pageIcon);
+        super(Messages.ExportSelectionPage_PageName, title, pageIcon);
         setDescription(description);
     }
     
@@ -81,7 +81,7 @@ public class ExportSelectionPage extends WizardPage {
                 URI uri = registery.getCurrentProject().getID();
                 if( uri != null ){
                     String selected = uri.toFileString();
-                    this.getDialogSettings().put("projectSelect", selected );
+                    this.getDialogSettings().put("projectSelect", selected ); //$NON-NLS-1$
                 }                        
             }
         } 
@@ -89,7 +89,7 @@ public class ExportSelectionPage extends WizardPage {
 		Composite projectPanel = new Composite(parent, SWT.NONE);
 		projectPanel.setLayout(new GridLayout(1, false));
 		projectPanel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        project = new ComboFieldEditor("projectSelect",
+        project = new ComboFieldEditor("projectSelect", //$NON-NLS-1$
         		Messages.ExportSelectionPage_Project, projects, projectPanel );
         project.setPage( this ); 
         project.setPropertyChangeListener( new IPropertyChangeListener(){
@@ -104,7 +104,7 @@ public class ExportSelectionPage extends WizardPage {
 		Composite filePanel = new Composite(parent, SWT.NONE);
 		filePanel.setLayout(new GridLayout(1, false));
 		filePanel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        editor = new DirectoryFieldEditor("directorySelect",
+        editor = new DirectoryFieldEditor("directorySelect", //$NON-NLS-1$
         		Messages.ExportSelectionPage_Destination, filePanel){
             {
                 setValidateStrategy( VALIDATE_ON_KEY_STROKE );

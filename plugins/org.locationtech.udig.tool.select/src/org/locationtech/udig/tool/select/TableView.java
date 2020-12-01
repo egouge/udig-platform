@@ -170,7 +170,7 @@ public class TableView extends ViewPart implements ISelectionProvider, IUDIGView
     private static final String INITIAL_TEXT = Messages.TableView_search;
 
     protected static final String ANY = Messages.TableView_search_any;
-    protected static final String CQL = "CQL";
+    protected static final String CQL = "CQL"; //$NON-NLS-1$
     
     /** filter the content by the current AOI */
     private boolean aoiFilter = false;
@@ -1052,7 +1052,7 @@ public class TableView extends ViewPart implements ISelectionProvider, IUDIGView
                 //}
                 TableItem tableItem=(TableItem) item;
                 int columnIndex = feature.getFeatureType().indexOf(property);
-                tableItem.setText(columnIndex+1, value != null ? value.toString() : "");
+                tableItem.setText(columnIndex+1, value != null ? value.toString() : ""); //$NON-NLS-1$
                 
                 UndoableComposite composite = new UndoableComposite();
                 composite.getCommands().add(new SetEditingFlag(true));
@@ -1437,7 +1437,7 @@ public class TableView extends ViewPart implements ISelectionProvider, IUDIGView
                     }, null );
                     table.select( selection );
                 } catch (Exception e ){
-                    Status status = new Status(Status.WARNING, "org.locationtech.udig.ui", e.getLocalizedMessage(), e );
+                    Status status = new Status(Status.WARNING, "org.locationtech.udig.ui", e.getLocalizedMessage(), e ); //$NON-NLS-1$
                     UIPlugin.getDefault().getLog().log( status );
                     searchWidget.setToolTipText( e.getLocalizedMessage() );
                 }

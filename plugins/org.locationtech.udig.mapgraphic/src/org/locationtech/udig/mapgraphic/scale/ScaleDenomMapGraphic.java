@@ -70,7 +70,7 @@ public class ScaleDenomMapGraphic implements MapGraphic {
 		String str =  "1:" + denomStr; //$NON-NLS-1$
 		//check if a prefix is provided
 		if (StringUtils.trimToNull(background.getLabel()) != null){
-                    str = background.getLabel() + " " + str;
+                    str = background.getLabel() + " " + str; //$NON-NLS-1$
                 } 
 		Rectangle2D bnds = g.getStringBounds(str);
 		

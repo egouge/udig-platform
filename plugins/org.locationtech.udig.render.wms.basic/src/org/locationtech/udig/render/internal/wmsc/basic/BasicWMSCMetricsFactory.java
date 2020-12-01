@@ -48,7 +48,7 @@ public class BasicWMSCMetricsFactory implements IRenderMetricsFactory {
         try {
             tileset = context.getLayer().getResource(TileSet.class, null);
         } catch (IOException e) {
-            WMSPlugin.log("Cannot create render metrics from wmsc", e);
+            WMSPlugin.log("Cannot create render metrics from wmsc", e); //$NON-NLS-1$
         }
         return new BasicWMSCRenderMetrics(context, this, tileset);
     }

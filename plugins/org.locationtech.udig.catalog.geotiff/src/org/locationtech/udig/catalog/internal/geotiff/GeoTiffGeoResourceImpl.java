@@ -13,15 +13,13 @@ package org.locationtech.udig.catalog.internal.geotiff;
 
 import java.io.IOException;
 
-import org.locationtech.udig.catalog.IGeoResourceInfo;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.geotiff.internal.Messages;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResourceInfo;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterService;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 
 
 /**

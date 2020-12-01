@@ -13,6 +13,11 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.geotools.brewer.color.BrewerPalette;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.ILegendItem;
 import org.locationtech.udig.project.IMap;
@@ -21,14 +26,7 @@ import org.locationtech.udig.project.command.NavCommandStack;
 import org.locationtech.udig.project.internal.render.RenderManager;
 import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.ui.palette.ColourScheme;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.notify.Adapter;
-import org.geotools.brewer.color.BrewerPalette;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.opengis.filter.Filter;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal

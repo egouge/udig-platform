@@ -83,7 +83,7 @@ public class NewProjectWizard extends Wizard implements INewWizard {
             projectPath = projectPath.substring(0, projectPath.length() - 2);
         }
         Project project = ProjectPlugin.getPlugin().getProjectRegistry()
-                .getProject(projectPath + File.separator + projectName + ".udig"); //$NON-NLS-1$ //$NON-NLS-2$
+                .getProject(projectPath + File.separator + projectName + ".udig"); //$NON-NLS-1$
         project.setName(projectName);
         Resource projectResource = project.eResource();
         try {

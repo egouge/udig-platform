@@ -37,7 +37,7 @@ public interface OpFilter {
         }
         
         public String toString() {
-            return "TRUE";
+            return "TRUE"; //$NON-NLS-1$
         }
         
     };
@@ -61,7 +61,7 @@ public interface OpFilter {
         public void removeListener( IOpFilterListener listener ) {
         }
         public String toString() {
-            return "FALSE";
+            return "FALSE"; //$NON-NLS-1$
         }
         
     };

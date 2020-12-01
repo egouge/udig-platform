@@ -15,18 +15,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.SortedSet;
 
-import org.locationtech.udig.project.internal.Map;
-import org.locationtech.udig.project.internal.render.impl.ViewportModelImpl;
-import org.locationtech.udig.project.render.IViewportModel;
-import org.locationtech.udig.project.render.displayAdapter.IMapDisplayListener;
-
 import org.eclipse.emf.ecore.EObject;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.internal.Map;
+import org.locationtech.udig.project.render.IViewportModel;
+import org.locationtech.udig.project.render.displayAdapter.IMapDisplayListener;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.render

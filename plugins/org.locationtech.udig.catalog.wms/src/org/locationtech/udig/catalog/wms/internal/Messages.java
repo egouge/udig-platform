@@ -36,6 +36,8 @@ public class Messages extends NLS {
 	public static String WMSCTileUtils_preloadtitle;
 	public static String WMSCTileUtils_preloadtask;
 	public static String WMSCTileUtils_preloadtasksub;
+	public static String WmsPreferencePage_description;
+	public static String WmsPreferencePage_timeout;
 	public static String WMSPreferencePage_wmstimeout;
 	
 	static {

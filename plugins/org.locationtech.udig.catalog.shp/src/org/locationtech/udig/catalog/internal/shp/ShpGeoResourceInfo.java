@@ -50,8 +50,7 @@ class ShpGeoResourceInfo extends IGeoResourceInfo {
 
             if (bounds == null) {
                 bounds = new ReferencedEnvelope(new Envelope(), getCRS());
-                FeatureIterator<SimpleFeature> iter = source.getFeatures().features();
-                try {
+                try( FeatureIterator<SimpleFeature> iter = source.getFeatures().features()) {
                     while( iter.hasNext() ) {
                         SimpleFeature element = iter.next();
                         if (bounds.isNull())
@@ -59,8 +58,6 @@ class ShpGeoResourceInfo extends IGeoResourceInfo {
                         else
                             bounds.include(element.getBounds());
                     }
-                } finally {
-                    iter.close();
                 }
             }
         } catch (Exception e) {
@@ -79,7 +76,7 @@ class ShpGeoResourceInfo extends IGeoResourceInfo {
 
         title = featureType.getName().getLocalPart();
         title = title.replace('_', ' ');
-		title = title.replace("%20", " ");
+		title = title.replace("%20", " ");  //$NON-NLS-1$//$NON-NLS-2$
         title = title.trim();
     }
         

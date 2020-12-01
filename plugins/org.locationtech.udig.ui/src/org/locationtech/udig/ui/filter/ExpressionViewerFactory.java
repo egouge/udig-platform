@@ -93,7 +93,7 @@ public abstract class ExpressionViewerFactory extends ViewerFactory<IExpressionV
     // Factory and Extension Point Support
     //
     /** General purpose {@link IFilterViewer} suitable for use as a default */
-    public static final String CQL_EXPRESSION_VIEWER = "org.locationtech.udig.ui.filter.cqlExpressionViewer";
+    public static final String CQL_EXPRESSION_VIEWER = "org.locationtech.udig.ui.filter.cqlExpressionViewer"; //$NON-NLS-1$
 
     /** Extension point ID each "expressionViewer" will be processed into our {@link #factoryList()} */
     public static final String FILTER_VIEWER_EXTENSION = FilterViewerFactory.FILTER_VIEWER_EXTENSION;
@@ -142,11 +142,11 @@ public abstract class ExpressionViewerFactory extends ViewerFactory<IExpressionV
             IConfigurationElement[] configurationElements = extensionPoint
                     .getConfigurationElements();
             for (IConfigurationElement configuration : configurationElements) {
-                if ("expressionViewer".equals(configuration.getName())) {
+                if ("expressionViewer".equals(configuration.getName())) { //$NON-NLS-1$
                     try {
                         ExpressionViewerFactory factory;
                         factory = (ExpressionViewerFactory) configuration
-                                .createExecutableExtension("class");
+                                .createExecutableExtension("class"); //$NON-NLS-1$
                         factory.init(configuration);
 
                         list.add(factory);

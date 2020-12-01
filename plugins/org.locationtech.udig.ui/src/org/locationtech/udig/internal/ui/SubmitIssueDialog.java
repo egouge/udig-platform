@@ -157,12 +157,10 @@ public class SubmitIssueDialog extends TitleAreaDialog {
     private String getLogText( IProgressMonitor monitor ) {
         String filename = Platform.getLogFileLocation().toOSString();
         File file = new File(filename);
-        FileReader in = null;
-        BufferedReader br = null;
-        try {
-            StringBuilder content = new StringBuilder();
-            in = new FileReader(file);
-            br = new BufferedReader(in);
+        
+        StringBuilder content = new StringBuilder();
+        try(FileReader in = new FileReader(file);
+            BufferedReader br = new BufferedReader(in)){
             String line;
             while( (line = br.readLine()) != null ) {
                 content.append(line);
@@ -171,14 +169,6 @@ public class SubmitIssueDialog extends TitleAreaDialog {
             return content.toString();
         } catch (IOException e) {
             return null;
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-                if (in != null)
-                    in.close();
-            } catch (IOException e) {
-            }
         }
     }
 

@@ -11,12 +11,11 @@
  */
 package org.locationtech.udig.project;
 
-import org.locationtech.udig.project.internal.Project;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.geotools.feature.DecoratingFeature;
+import org.locationtech.udig.project.internal.Project;
+import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.opengis.feature.simple.SimpleFeature;
 
 /**

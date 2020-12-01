@@ -11,21 +11,10 @@
  */
 package org.locationtech.udig.catalog.ui.wizard;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IResolve;
-import org.locationtech.udig.catalog.internal.ui.ImageConstants;
-import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
-import org.locationtech.udig.catalog.ui.internal.Messages;
-import org.locationtech.udig.catalog.ui.search.ResourceSearchComposite;
-import org.locationtech.udig.catalog.ui.workflow.ResourceSearchState;
-import org.locationtech.udig.catalog.ui.workflow.State;
-import org.locationtech.udig.catalog.ui.workflow.WorkflowWizardPage;
 
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.PageChangedEvent;
@@ -37,6 +26,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IResolve;
+import org.locationtech.udig.catalog.internal.ui.ImageConstants;
+import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
+import org.locationtech.udig.catalog.ui.internal.Messages;
+import org.locationtech.udig.catalog.ui.search.ResourceSearchComposite;
+import org.locationtech.udig.catalog.ui.workflow.ResourceSearchState;
+import org.locationtech.udig.catalog.ui.workflow.State;
+import org.locationtech.udig.catalog.ui.workflow.WorkflowWizardPage;
 
 /**
  * Allow the user to search for a resource to include in the map.
@@ -94,7 +92,7 @@ public class ResourceSearchPage extends WorkflowWizardPage implements IPageChang
             super.setState(state);            
         }
         else {
-            throw new IllegalArgumentException("ResourceSearchState required");
+            throw new IllegalArgumentException("ResourceSearchState required"); //$NON-NLS-1$
         }
     }
     

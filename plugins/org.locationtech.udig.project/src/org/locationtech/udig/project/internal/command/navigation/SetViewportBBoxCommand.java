@@ -11,19 +11,17 @@ package org.locationtech.udig.project.internal.command.navigation;
 
 import java.text.MessageFormat;
 
-import org.locationtech.udig.project.command.MapCommand;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.render.ViewportModel;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.project.command.MapCommand;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * Sets the viewport's bounding box. The bbox have a positive width and height

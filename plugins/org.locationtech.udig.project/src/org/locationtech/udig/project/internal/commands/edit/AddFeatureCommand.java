@@ -13,19 +13,18 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.data.FeatureStore;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.core.internal.FeatureUtils;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.command.AbstractCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.data.FeatureStore;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory;
@@ -55,7 +54,7 @@ public class AddFeatureCommand extends AbstractCommand implements UndoableMapCom
             return;
         }
         FeatureCollection<SimpleFeatureType, SimpleFeature> c = new org.geotools.feature.collection.AdaptorFeatureCollection(
-                "addFeatureCollection", resource.getSchema()){
+                "addFeatureCollection", resource.getSchema()){ //$NON-NLS-1$
             @Override
             public int size() {
                 return 1;
@@ -99,11 +98,9 @@ public class AddFeatureCommand extends AbstractCommand implements UndoableMapCom
             FeatureCollection<SimpleFeatureType, SimpleFeature> features = resource.getFeatures(
                                                                                         filterFactory.id(
                                                                                                 FeatureUtils.stringToId(filterFactory, fid)));
-            FeatureIterator<SimpleFeature> iter = features.features();
-            try {
+            
+            try (FeatureIterator<SimpleFeature> iter = features.features()){
                 return iter.next();
-            } finally {
-                iter.close();
             }
         }
         return null;

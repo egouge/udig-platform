@@ -11,9 +11,8 @@ package org.locationtech.udig.project.internal;
 
 import java.util.List;
 
-import org.locationtech.udig.project.IProject;
-
 import org.eclipse.emf.ecore.EObject;
+import org.locationtech.udig.project.IProject;
 
 /**
  * The read/write interface for IProject.

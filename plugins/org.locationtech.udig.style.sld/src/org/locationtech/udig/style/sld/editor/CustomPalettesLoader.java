@@ -81,28 +81,28 @@ public class CustomPalettesLoader implements IStartup {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(stream);
-        String name = fixToString(document.getElementsByTagName("name").item(0).getFirstChild().toString());
-        String description = fixToString(document.getElementsByTagName("description").item(0).getFirstChild().toString());
+        String name = fixToString(document.getElementsByTagName("name").item(0).getFirstChild().toString()); //$NON-NLS-1$
+        String description = fixToString(document.getElementsByTagName("description").item(0).getFirstChild().toString()); //$NON-NLS-1$
 
         SampleScheme scheme = new SampleScheme();
 
-        NodeList samples = document.getElementsByTagName("sample");
+        NodeList samples = document.getElementsByTagName("sample"); //$NON-NLS-1$
 
         for( int i = 0; i < samples.getLength(); i++ ) {
             Node sample = samples.item(i);
-            int size = Integer.parseInt(sample.getAttributes().getNamedItem("size").getNodeValue());
+            int size = Integer.parseInt(sample.getAttributes().getNamedItem("size").getNodeValue()); //$NON-NLS-1$
             String values = fixToString(sample.getFirstChild().toString());
             int[] list = new int[size];
             StringTokenizer tok = new StringTokenizer(values);
 
             for( int j = 0; j < size; j++ ) {
-                list[j] = Integer.parseInt(tok.nextToken(","));
+                list[j] = Integer.parseInt(tok.nextToken(",")); //$NON-NLS-1$
             }
 
             scheme.setSampleScheme(size, list);
         }
 
-        NodeList palettes = document.getElementsByTagName("palette");
+        NodeList palettes = document.getElementsByTagName("palette"); //$NON-NLS-1$
 
         for( int i = 0; i < palettes.getLength(); i++ ) {
             BrewerPalette pal = new BrewerPalette();
@@ -112,38 +112,38 @@ public class CustomPalettesLoader implements IStartup {
             for( int j = 0; j < paletteInfo.getLength(); j++ ) {
                 Node item = paletteInfo.item(j);
 
-                if (item.getNodeName().equals("name")) {
+                if (item.getNodeName().equals("name")) { //$NON-NLS-1$
                     pal.setName(fixToString(item.getFirstChild().toString()));
                 }
 
-                if (item.getNodeName().equals("description")) {
+                if (item.getNodeName().equals("description")) { //$NON-NLS-1$
                     pal.setDescription(fixToString(item.getFirstChild().toString()));
                 }
 
-                if (item.getNodeName().equals("colors")) {
+                if (item.getNodeName().equals("colors")) { //$NON-NLS-1$
                     StringTokenizer oTok = new StringTokenizer(fixToString(item.getFirstChild().toString()));
                     List<Color> colors = new ArrayList<Color>();
 
                     while( oTok.hasMoreTokens() ) {
-                        String entry = oTok.nextToken(":");
+                        String entry = oTok.nextToken(":"); //$NON-NLS-1$
                         StringTokenizer iTok = new StringTokenizer(entry);
-                        int r = Integer.parseInt(iTok.nextToken(",").trim());
-                        int g = Integer.parseInt(iTok.nextToken(",").trim());
-                        int b = Integer.parseInt(iTok.nextToken(",").trim());
+                        int r = Integer.parseInt(iTok.nextToken(",").trim()); //$NON-NLS-1$
+                        int g = Integer.parseInt(iTok.nextToken(",").trim()); //$NON-NLS-1$
+                        int b = Integer.parseInt(iTok.nextToken(",").trim()); //$NON-NLS-1$
                         colors.add(new Color(r, g, b));
                     }
 
                     pal.setColors((Color[]) colors.toArray(new Color[colors.size()]));
                 }
 
-                if (item.getNodeName().equals("suitability")) {
+                if (item.getNodeName().equals("suitability")) { //$NON-NLS-1$
                     NodeList schemeSuitability = item.getChildNodes();
 
                     for( int k = 0; k < schemeSuitability.getLength(); k++ ) {
                         Node palScheme = schemeSuitability.item(k);
 
-                        if (palScheme.getNodeName().equals("scheme")) {
-                            int paletteSize = Integer.parseInt(palScheme.getAttributes().getNamedItem("size").getNodeValue());
+                        if (palScheme.getNodeName().equals("scheme")) { //$NON-NLS-1$
+                            int paletteSize = Integer.parseInt(palScheme.getAttributes().getNamedItem("size").getNodeValue()); //$NON-NLS-1$
 
                             String values = fixToString(palScheme.getFirstChild().toString());
                             String[] list = new String[6];
@@ -152,7 +152,7 @@ public class CustomPalettesLoader implements IStartup {
                             // obtain all 6 values, which should each be
                             // G=GOOD, D=DOUBTFUL, B=BAD, or ?=UNKNOWN.
                             for( int m = 0; m < 6; m++ ) {
-                                list[m] = tok.nextToken(",");
+                                list[m] = tok.nextToken(","); //$NON-NLS-1$
                             }
 
                             suitability.setSuitability(paletteSize, list);
@@ -197,9 +197,9 @@ public class CustomPalettesLoader implements IStartup {
      * @return A String with the modified input.
      */
     private String fixToString( String input ) {
-        if (input.startsWith("[") && input.endsWith("]")) {
+        if (input.startsWith("[") && input.endsWith("]")) { //$NON-NLS-1$ //$NON-NLS-2$
             input = input.substring(1, input.length() - 1); // remove []
-            input = input.replaceAll("#text: ", ""); // remove "#text: "
+            input = input.replaceAll("#text: ", ""); // remove "#text: " //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         return input;

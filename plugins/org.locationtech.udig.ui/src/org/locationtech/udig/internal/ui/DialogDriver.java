@@ -62,7 +62,7 @@ public class DialogDriver{
 	}
 
 	public static Button findButton(Control[] children, int id, Shell shell) {
-		if (((Integer) shell.getDefaultButton().getData()).intValue() == id) //$NON-NLS-1$
+		if (((Integer) shell.getDefaultButton().getData()).intValue() == id) 
 			return shell.getDefaultButton();
 
 		for (Control child : children) {

@@ -136,7 +136,7 @@ public class RendererItemProvider extends ItemProviderAdapter implements
      */
     public String getText(Object object) {
         String label = ((Renderer) object).getName();
-        return label == null || label.length() == 0 ? "Renderer" : label;
+        return label == null || label.length() == 0 ? "Renderer" : label; //$NON-NLS-1$
     }
 
     /**

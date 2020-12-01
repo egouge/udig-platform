@@ -12,9 +12,8 @@
  */
 package org.locationtech.udig.project.element;
 
-import org.locationtech.udig.project.IProject;
-
 import org.eclipse.emf.ecore.EFactory;
+import org.locationtech.udig.project.IProject;
 
 /**
  * <!-- begin-user-doc -->

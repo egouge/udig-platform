@@ -119,7 +119,7 @@ public interface ImageConstants {
     public final static String DATA_WIZBAN = PATH_WIZBAN + "catalog_wiz.gif"; //$NON-NLS-1$
     
     /** <code>DATA_WIZBAN</code> field used for selecting resources */
-    public static final String CHOOSE_LAYER_WIZARD = PATH_WIZBAN+"chooselayer_wiz.gif";
+    public static final String CHOOSE_LAYER_WIZARD = PATH_WIZBAN+"chooselayer_wiz.gif"; //$NON-NLS-1$
 
     /**
      * Misc icons

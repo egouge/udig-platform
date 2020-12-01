@@ -11,16 +11,14 @@ package org.locationtech.udig.project.command;
 
 import java.util.List;
 
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.commands.selection.BBoxSelectionCommand;
 import org.locationtech.udig.project.internal.commands.selection.FIDSelectCommand;
 import org.locationtech.udig.project.internal.commands.selection.NoSelectCommand;
 import org.locationtech.udig.project.internal.commands.selection.SelectCommand;
-
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.filter.Filter;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * A factory which can be used to create all the standard selection commands.

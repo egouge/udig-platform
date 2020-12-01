@@ -3,13 +3,10 @@
  */
 package org.locationtech.udig.project.internal.render.impl;
 
+import org.eclipse.emf.ecore.EClass;
 import org.locationtech.udig.project.internal.render.MultiLayerRenderer;
 import org.locationtech.udig.project.internal.render.RenderPackage;
 import org.locationtech.udig.project.render.RenderException;
-import org.locationtech.udig.project.render.IRenderContext;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '

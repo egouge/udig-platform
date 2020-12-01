@@ -11,10 +11,9 @@
  */
 package org.locationtech.udig.project.internal.commands.edit;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * A command that rollsback current changes.

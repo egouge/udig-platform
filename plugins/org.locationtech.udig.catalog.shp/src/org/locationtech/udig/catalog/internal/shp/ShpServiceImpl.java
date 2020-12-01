@@ -23,9 +23,6 @@ import java.util.concurrent.locks.Lock;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.geotools.data.FeatureReader;
-import org.geotools.data.Query;
-import org.geotools.data.Transaction;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
 import org.locationtech.udig.catalog.ICatalog;
@@ -69,12 +66,12 @@ public class ShpServiceImpl extends IService {
     public ShpServiceImpl( URL url, Map<String, Serializable> params ) {
         //this.url = url;
         if( url == null ){
-            throw new NullPointerException("ShpService requres a URL");
+            throw new NullPointerException("ShpService requres a URL"); //$NON-NLS-1$
         }
         try {
             id = new ID(url);
         } catch (Throwable t) {
-            throw new IllegalArgumentException("Unable to create ID from:"+url,t);
+            throw new IllegalArgumentException("Unable to create ID from:"+url,t); //$NON-NLS-1$
         }
         this.params = params;
         Serializable memorymapped = params.get("memory mapped buffer"); //$NON-NLS-1$

@@ -14,16 +14,10 @@ import java.awt.Rectangle;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.locationtech.udig.project.render.ILabelPainter;
-
-import org.geotools.geometry.GeometryFactoryFinder;
-import org.geotools.geometry.jts.JTS;
-import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.geotools.renderer.label.LabelCacheImpl;
 import org.geotools.renderer.lite.LabelCache;
 import org.geotools.renderer.lite.SynchronizedLabelCache;
-
-import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.udig.project.render.ILabelPainter;
 
 
 /**

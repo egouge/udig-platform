@@ -32,7 +32,7 @@ import org.opengis.referencing.operation.TransformException;
  */
 public class MapCrsAOIStrategy extends IAOIStrategy {
 
-	private static String name = "Map CRS";
+	private static String name = "Map CRS"; //$NON-NLS-1$
 	
 	@Override
 	public ReferencedEnvelope getExtent() {

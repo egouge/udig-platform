@@ -12,12 +12,11 @@
  */
 package org.locationtech.udig.project.element;
 
-import org.locationtech.udig.project.internal.ProjectPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
+import org.locationtech.udig.project.internal.ProjectPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -21,6 +21,8 @@ public class Messages extends NLS {
 	public static String BasicFeatureRenderer_rendering_status;
 	public static String BasicFeatureRenderer_renderingProblem;
 	public static String BasicFeatureRenderer_request_timed_out;
+	public static String BasicFeatureRenderer_TaskName;
+	public static String BasicFeatureRenderer_TaskNameAreas;
     public static String BasicFeatureRenderer_warning1;
 	static {
 		// initialize resource bundle

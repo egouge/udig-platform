@@ -15,6 +15,7 @@ import net.miginfocom.swt.MigLayout;
 import org.locationtech.udig.project.ProjectBlackboardConstants;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.style.IStyleConfigurator;
+import org.locationtech.udig.style.sld.internal.Messages;
 import org.locationtech.udig.ui.filter.FilterInput;
 import org.locationtech.udig.ui.filter.FilterViewer;
 import org.locationtech.udig.ui.filter.IFilterViewer;
@@ -124,7 +125,7 @@ public class FilterConfigurator extends IStyleConfigurator {
     protected FilterStyle getFilterStyle() {
         Layer layer = getLayer();
         if( !canStyle(layer)){
-            throw new IllegalStateException("Layer "+layer.getName()+" cannot be filtered" );
+            throw new IllegalStateException("Layer "+layer.getName()+" cannot be filtered" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         
         FilterStyle current = (FilterStyle) getStyleBlackboard().get(STYLE_ID);
@@ -136,27 +137,27 @@ public class FilterConfigurator extends IStyleConfigurator {
 
     @Override
     public void createControl( Composite parent ) {
-        MigLayout layout = new MigLayout("insets panel", "[][fill]", "[fill][]");
+        MigLayout layout = new MigLayout("insets panel", "[][fill]", "[fill][]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         parent.setLayout(layout);
         Label label;
         
         label = new Label(parent, SWT.SINGLE );
-        label.setText("Automatic Filter");
-        label.setLayoutData("cell 0 0,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration
+        label.setText(Messages.FilterConfigurator_AutoFilter);
+        label.setLayoutData("cell 0 0,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration //$NON-NLS-1$
 
         
         // Area of Interest filter button
         aoiButton = new Button(parent, SWT.CHECK);
-        aoiButton.setText("Area of Interest");
-        aoiButton.setLayoutData("cell 1 0 2 1, left, grow x" );
+        aoiButton.setText(Messages.FilterConfigurator_AOI);
+        aoiButton.setLayoutData("cell 1 0 2 1, left, grow x" ); //$NON-NLS-1$
         
         label = new Label(parent, SWT.SINGLE );
-        label.setText("Manual Filter");
-        label.setLayoutData("cell 0 1,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration
+        label.setText(Messages.FilterConfigurator_MnaulFilter);
+        label.setLayoutData("cell 0 1,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration //$NON-NLS-1$
         
         ControlDecoration decoration = new ControlDecoration(label, SWT.RIGHT | SWT.TOP );
         filterViewer = new FilterViewer(parent, SWT.MULTI );
-        filterViewer.getControl().setLayoutData("cell 1 1,grow,width 200:100%:100%,height 60:100%:100%");
+        filterViewer.getControl().setLayoutData("cell 1 1,grow,width 200:100%:100%,height 60:100%:100%"); //$NON-NLS-1$
         
         FilterInput input = new FilterInput();
         input.setFeedback( decoration );

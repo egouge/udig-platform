@@ -69,7 +69,7 @@ public class Pair<T,V> {
 
     @Override
     public String toString() {
-    	return "Pair("+left+", "+right+")";
+    	return "Pair("+left+", "+right+")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
     
     @Override
@@ -81,7 +81,6 @@ public class Pair<T,V> {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public boolean equals( Object obj ) {
         if (this == obj)

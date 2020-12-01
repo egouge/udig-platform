@@ -58,7 +58,7 @@ public interface Constants {
     public static final String ADD_EXT=IWorkbenchActionConstants.ADD_EXT;
     public static final String EDIT_END=IWorkbenchActionConstants.EDIT_END;
     /** menu path: "edit/other" */
-    public static final String OTHER = "other";
+    public static final String OTHER = "other"; //$NON-NLS-1$
     /** menu path: "edit/commit" */
     public static final String COMMIT_EXT = "commit.exe"; //$NON-NLS-1$
     
@@ -86,7 +86,7 @@ public interface Constants {
     /** menu path: "tools" */
     public static final String M_TOOL="tools"; //$NON-NLS-1$
     /** menu path: "tools/action.ext" */
-    public static final String TOOL_ACTION="action.ext"; //$NON-NLS-U1$
+    public static final String TOOL_ACTION="action.ext";  //$NON-NLS-1$
     /** menu path: "tools/modal.ext" */
     public static final String TOOL_MODAL="modal.ext"; //$NON-NLS-1$
     

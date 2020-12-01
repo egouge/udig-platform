@@ -21,3 +21,4 @@ Import-Package: javax.media.jai,
  org.geotools.renderer.lite.gridcoverage2d,
  org.jaitools.numeric
 Automatic-Module-Name: org.locationtech.udig.style.sld.raster
+Bundle-RequiredExecutionEnvironment: JavaSE-11

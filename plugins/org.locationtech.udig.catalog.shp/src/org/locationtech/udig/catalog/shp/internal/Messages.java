@@ -15,6 +15,11 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.locationtech.udig.catalog.shp.internal.messages"; //$NON-NLS-1$
+	public static String SetProjection_WriteErrorMessage;
+	public static String SetProjection_WriteErrorTitle;
+	public static String ShapeMover_DirectoryNotFound;
+	public static String ShapeMover_MoveFailure;
+	public static String ShapeMover_UpdateFailed;
 	public static String ShpPreferencePage_rtree;
 	public static String ShpPreferencePage_typechoice;
 	public static String ShpPreferencePage_createindex;

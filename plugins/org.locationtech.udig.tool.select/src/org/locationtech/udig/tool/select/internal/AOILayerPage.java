@@ -47,7 +47,7 @@ public class AOILayerPage extends Page {
     private ComboViewer comboViewer;
 //    private ListViewer listViewer;
     
-    private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer";
+    private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer"; //$NON-NLS-1$
 
     private ISelectionChangedListener comboListener = new ISelectionChangedListener(){
         @Override
@@ -123,7 +123,7 @@ public class AOILayerPage extends Page {
         page.setLayout(layout);
 
         Label comboLabel = new Label(page, SWT.LEFT);
-        comboLabel.setText("Layer:");
+        comboLabel.setText(Messages.AOILayerPage_LayerLabel);
         comboLabel.pack();
         
         listenStrategy(true);

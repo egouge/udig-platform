@@ -49,7 +49,7 @@ public class SetLayerNameInterceptor implements LayerInterceptor {
             label = info.getName(); // really should not be empty?
         }
         if( label == null || label.trim().length() == 0){
-            label = "newLayer";
+            label = "newLayer"; //$NON-NLS-1$
         }
         layer.setName(label);
     }

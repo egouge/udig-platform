@@ -12,6 +12,19 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.ICatalog;
 import org.locationtech.udig.catalog.ID;
@@ -29,22 +42,6 @@ import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.ui.PlatformGIS;
 import org.locationtech.udig.ui.ProgressManager;
 import org.locationtech.udig.ui.palette.ColourScheme;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Layer Factory</b></em>'.
@@ -64,12 +61,12 @@ public class LayerFactoryImpl extends EObjectImpl implements LayerFactory {
      * 
      * @generated NOT
      */
-    public static final String copyright = "uDig - User Friendly Desktop Internet GIS client\n"
-            + "http://udig.refractions.net\n" + "(C) 2004-2012, Refractions Research Inc.\n"
-            + "\n\n" + "All rights reserved. This program and the accompanying materials\n"
-            + "are made available under the terms of the Eclipse Public License v1.0\n"
-            + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n"
-            + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n";
+    public static final String copyright = "uDig - User Friendly Desktop Internet GIS client\n" //$NON-NLS-1$
+            + "http://udig.refractions.net\n" + "(C) 2004-2012, Refractions Research Inc.\n" //$NON-NLS-1$ //$NON-NLS-2$
+            + "\n\n" + "All rights reserved. This program and the accompanying materials\n" //$NON-NLS-1$ //$NON-NLS-2$
+            + "are made available under the terms of the Eclipse Public License v1.0\n" //$NON-NLS-1$
+            + "(http://www.eclipse.org/legal/epl-v10.html), and the Refractions BSD\n" //$NON-NLS-1$
+            + "License v1.0 (http://udig.refractions.net/files/bsd3-v10.html).\n"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -376,7 +373,7 @@ public class LayerFactoryImpl extends EObjectImpl implements LayerFactory {
         if (resolves.isEmpty()) {
             // Identifier lookup is being inconsistent; this often happens when code trips up over
             // converting URLs to and from Files
-            throw new IOException("Could not find " + layerResourceID + " in local catalog");
+            throw new IOException("Could not find " + layerResourceID + " in local catalog"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         EList resources = new EDataTypeUniqueEList(IGeoResource.class, this,
                 ProjectPackage.LAYER__GEO_RESOURCES);

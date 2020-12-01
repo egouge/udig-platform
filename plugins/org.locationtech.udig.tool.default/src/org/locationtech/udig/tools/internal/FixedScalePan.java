@@ -13,6 +13,10 @@ package org.locationtech.udig.tools.internal;
 
 import java.awt.Point;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.Command;
 import org.locationtech.udig.project.command.NavCommand;
@@ -24,12 +28,6 @@ import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
 import org.locationtech.udig.project.ui.render.displayAdapter.ViewportPane;
 import org.locationtech.udig.project.ui.tool.AbstractModalTool;
 import org.locationtech.udig.project.ui.tool.ModalTool;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
 
 
 /**

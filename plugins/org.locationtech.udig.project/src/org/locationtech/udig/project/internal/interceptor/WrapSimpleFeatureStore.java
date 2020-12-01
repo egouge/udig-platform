@@ -9,16 +9,11 @@
  */
 package org.locationtech.udig.project.internal.interceptor;
 
+import org.geotools.data.simple.SimpleFeatureStore;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IResourceInterceptor;
-import org.locationtech.udig.project.internal.impl.UDIGFeatureStore;
 import org.locationtech.udig.project.internal.impl.UDIGSimpleFeatureStore;
 import org.locationtech.udig.project.internal.impl.UDIGStore;
-
-import org.geotools.data.FeatureStore;
-import org.geotools.data.simple.SimpleFeatureStore;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 
 /**
  * Wraps a SimpleFeatureStore in a UDIGSimpleFeatureStore.

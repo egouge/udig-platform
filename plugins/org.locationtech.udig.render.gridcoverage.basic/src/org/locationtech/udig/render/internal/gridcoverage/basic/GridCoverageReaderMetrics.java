@@ -45,8 +45,8 @@ public class GridCoverageReaderMetrics extends AbstractRenderMetrics {
      */
     private static List<String> listExpectedStyleIds(){
         ArrayList<String> styleIds = new ArrayList<String>();
-        styleIds.add("org.locationtech.udig.style.sld");
-        styleIds.add("org.locationtech.udig.style.cache");
+        styleIds.add("org.locationtech.udig.style.sld"); //$NON-NLS-1$
+        styleIds.add("org.locationtech.udig.style.cache"); //$NON-NLS-1$
         return styleIds;
     }
     
@@ -71,8 +71,8 @@ public class GridCoverageReaderMetrics extends AbstractRenderMetrics {
         }
         else if (id.isFile() ){
             String filename = id.toBaseFile();
-            if( filename.toLowerCase().endsWith("jpg") ||
-                    filename.toLowerCase().endsWith("jpeg")){
+            if( filename.toLowerCase().endsWith("jpg") || //$NON-NLS-1$
+                    filename.toLowerCase().endsWith("jpeg")){ //$NON-NLS-1$
                 this.latencyMetric = LATENCY_LOCAL;
                 this.timeToDrawMetric = DRAW_IMAGE_COMPRESSED;
             }
@@ -112,7 +112,7 @@ public class GridCoverageReaderMetrics extends AbstractRenderMetrics {
     }
 
     public boolean canStyle( String styleID, Object value ) {
-        if( "org.locationtech.udig.style.cache".equals(styleID)){
+        if( "org.locationtech.udig.style.cache".equals(styleID)){ //$NON-NLS-1$
             if( Boolean.FALSE.equals( value )){
                 return true; // user turned off caching
             }
@@ -146,7 +146,7 @@ public class GridCoverageReaderMetrics extends AbstractRenderMetrics {
             return MinMaxScaleCalculator.getValidScaleRanges(style);
         }
         else {
-            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);            
+            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);             //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             return new HashSet<Range<Double>>();
         }
 

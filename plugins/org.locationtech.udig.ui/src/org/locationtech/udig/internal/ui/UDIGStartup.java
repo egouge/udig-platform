@@ -126,7 +126,7 @@ public class UDIGStartup implements IStartup {
                                     null,
                                     message,
                                     MessageDialog.ERROR,
-                                    new String[]{"Exit","Continue"}, 0 );
+                                    new String[]{Messages.UDIGStartup_ExitButton,Messages.UDIGStartup_ContinueButton}, 0 );
                             int answer = dialog.open();
                             if( answer == 0 ){
                                 PlatformUI.getWorkbench().close();

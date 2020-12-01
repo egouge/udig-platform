@@ -13,6 +13,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
+import org.geotools.data.FeatureStore;
+import org.geotools.data.Transaction;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.feature.simple.SimpleFeatureBuilder;
+import org.geotools.referencing.CRS;
+import org.geotools.util.factory.GeoTools;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.udig.core.internal.ExtensionPointList;
 import org.locationtech.udig.core.internal.FeatureUtils;
 import org.locationtech.udig.core.internal.GeometryBuilder;
@@ -21,22 +33,9 @@ import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.UndoableMapCommand;
 import org.locationtech.udig.project.interceptor.FeatureInterceptor;
-import org.locationtech.udig.project.interceptor.MapInterceptor;
 import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
-import org.geotools.data.FeatureStore;
-import org.geotools.data.Transaction;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
-import org.geotools.feature.simple.SimpleFeatureBuilder;
-import org.geotools.referencing.CRS;
 import org.opengis.feature.Feature;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -44,9 +43,6 @@ import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.filter.FilterFactory;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.util.CodeList;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
 
 /**
  * Creates a new feature in the current edit layer.
@@ -110,7 +106,7 @@ public class CreateFeatureCommand extends AbstractEditCommand implements Undoabl
         // final SimpleFeature newFeature = SimpleFeatureBuilder.build(type, attrs, "newFeature"
         // + new Random().nextInt());
 
-        String proposedFid = "newFeature"+"newFeature" + new Random().nextInt();
+        String proposedFid = "newFeature"+"newFeature" + new Random().nextInt(); //$NON-NLS-1$ //$NON-NLS-2$
         final SimpleFeature newFeature = SimpleFeatureBuilder.template(type, proposedFid );
 
         Class geomType = type.getGeometryDescriptor().getType().getBinding();
@@ -228,14 +224,14 @@ public class CreateFeatureCommand extends AbstractEditCommand implements Undoabl
         List<IConfigurationElement> interceptors = ExtensionPointList
                 .getExtensionPointList(FeatureInterceptor.EXTENSION_ID);
         for( IConfigurationElement element : interceptors ) {
-            String id = element.getAttribute("id");
+            String id = element.getAttribute("id"); //$NON-NLS-1$
             if (FeatureInterceptor.CREATED_ID.equals(element.getName())) {
                 try {
                     FeatureInterceptor interceptor = (FeatureInterceptor) element
-                            .createExecutableExtension("class");
+                            .createExecutableExtension("class"); //$NON-NLS-1$
                     interceptor.run(feature);
                 } catch (Exception e) {
-                    ProjectPlugin.log("FeatureInterceptor " + id + ":" + e, e);
+                    ProjectPlugin.log("FeatureInterceptor " + id + ":" + e, e); //$NON-NLS-1$ //$NON-NLS-2$
                 }
             }
         }

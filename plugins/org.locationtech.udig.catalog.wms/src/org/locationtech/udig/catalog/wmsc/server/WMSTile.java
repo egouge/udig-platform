@@ -359,12 +359,9 @@ public class WMSTile implements Tile {
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             request.performPostOutput(out);
-            InputStream in = new ByteArrayInputStream(out.toByteArray());
 
-            try {
+            try(InputStream in = new ByteArrayInputStream(out.toByteArray())) {
                 httpResponse = httpClient.post(finalURL, in, postContentType);
-            } finally {
-                in.close();
             }
         } else {
             httpResponse = httpClient.get(finalURL);

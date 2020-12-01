@@ -12,6 +12,20 @@ import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.List;
 
+import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.geometry.jts.Decimator;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.LiteShape2;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.CRS;
+import org.geotools.referencing.ReferencingFactoryFinder;
+import org.geotools.referencing.operation.matrix.GeneralMatrix;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.udig.project.IEditManager;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
@@ -25,17 +39,6 @@ import org.locationtech.udig.project.internal.render.ViewportModel;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IViewportModel;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.geotools.data.FeatureSource;
-import org.geotools.data.Query;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.geometry.jts.Decimator;
-import org.geotools.geometry.jts.JTS;
-import org.geotools.geometry.jts.LiteShape2;
-import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.ReferencingFactoryFinder;
-import org.geotools.referencing.operation.matrix.GeneralMatrix;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.FactoryException;
@@ -44,11 +47,6 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.TransformException;
-
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Envelope;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
 
 /**
  * Default implementation 

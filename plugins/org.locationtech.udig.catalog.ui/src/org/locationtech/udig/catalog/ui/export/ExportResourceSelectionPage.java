@@ -360,7 +360,6 @@ public class ExportResourceSelectionPage extends WorkflowWizardPage implements I
 
     private static class ResourceContentProvider implements ITreeContentProvider {
 
-        @SuppressWarnings("unchecked")
         public Object[] getElements( Object inputElement ) {
             return getChildren(inputElement);
         }
@@ -463,8 +462,8 @@ public class ExportResourceSelectionPage extends WorkflowWizardPage implements I
             case 2:
                 if( data.getCharset()==null ) {
                     //addition to handle problem with charset always being set to ISO-8859-1 
-                    data.setCharset((System.getProperty("shp.encoding") != null) ? 
-                            Charset.forName(System.getProperty("shp.encoding")) : Charset.defaultCharset()); 
+                    data.setCharset((System.getProperty("shp.encoding") != null) ?  //$NON-NLS-1$
+                            Charset.forName(System.getProperty("shp.encoding")) : Charset.defaultCharset());  //$NON-NLS-1$
                 } 
                 return data.getCharset().displayName();
 

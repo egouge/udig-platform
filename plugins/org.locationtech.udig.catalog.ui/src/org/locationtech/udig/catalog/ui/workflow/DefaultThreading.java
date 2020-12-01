@@ -68,7 +68,7 @@ public class DefaultThreading implements ThreadingStrategy {
                         runnable.run();
                     } catch (Throwable e) {
                         exception[0] = e;
-                        CatalogUIPlugin.log( e.getMessage() , e); //$NON-NLS-1$
+                        CatalogUIPlugin.log( e.getMessage() , e); 
                     } finally {
                         done[0] = true;
                     }

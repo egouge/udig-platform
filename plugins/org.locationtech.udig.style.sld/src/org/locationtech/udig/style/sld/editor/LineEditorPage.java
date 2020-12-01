@@ -25,6 +25,7 @@ import org.geotools.styling.StyleBuilder;
 import org.locationtech.udig.filter.ExpressionViewer;
 import org.locationtech.udig.style.sld.IStyleEditorPageContainer;
 import org.locationtech.udig.style.sld.SLDContentManager;
+import org.locationtech.udig.style.sld.internal.Messages;
 import org.locationtech.udig.ui.graphics.SLDs;
 import org.opengis.filter.expression.Expression;
 
@@ -55,20 +56,20 @@ public class LineEditorPage extends StyleEditorPage {
     public void createPageContent( Composite parent ) {
         // leave enough room for feedback decoration on fields!
         int required = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
-        parent.setLayout( new MigLayout("","[right]"+required+"[left,grow]") );
+        parent.setLayout( new MigLayout("","[right]"+required+"[left,grow]") ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     	
         Label label = new Label(parent, SWT.LEFT );
-        label.setText("Size");
+        label.setText(Messages.LineEditorPage_SizeLabel);
 
         size = new ExpressionViewer( parent, SWT.SINGLE | SWT.BORDER );
         size.setRequired(true);
-        size.getControl().setLayoutData("growx, wrap");
+        size.getControl().setLayoutData("growx, wrap"); //$NON-NLS-1$
         
         label = new Label(parent, SWT.LEFT );
-        label.setText("Color");
+        label.setText(Messages.LineEditorPage_ColorLabel);
         
         color = new ExpressionViewer( parent, SWT.SINGLE | SWT.BORDER );
-        color.getControl().setLayoutData("growx, wrap");
+        color.getControl().setLayoutData("growx, wrap"); //$NON-NLS-1$
         
         listen( true );
     }
@@ -91,7 +92,7 @@ public class LineEditorPage extends StyleEditorPage {
         
         if( message != null ){
             if( size.getInput() == Expression.NIL ){
-                message = "Size is required";   
+                message = Messages.LineEditorPage_SizeRequired;   
             }
         }
         // check over content and return

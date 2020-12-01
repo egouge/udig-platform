@@ -20,4 +20,5 @@ Require-Bundle: org.locationtech.udig.project,
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.media.jai
 Automatic-Module-Name: org.locationtech.udig.render.gridcoverage.basic
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 

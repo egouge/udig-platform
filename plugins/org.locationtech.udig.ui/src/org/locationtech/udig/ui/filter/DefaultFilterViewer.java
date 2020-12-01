@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
@@ -159,7 +160,7 @@ public class DefaultFilterViewer extends CQLFilterViewer {
         lblAttribute = null;
         if (isMultiline) {
             lblAttribute = new Label(control, SWT.NONE);
-            lblAttribute.setText("Attribute:");
+            lblAttribute.setText(Messages.DefaultFilterViewer_Attribute);
         }
         attribute = new Combo(control, SWT.DROP_DOWN | SWT.READ_ONLY);
         attribute.addSelectionListener(new SelectionAdapter() {
@@ -193,7 +194,7 @@ public class DefaultFilterViewer extends CQLFilterViewer {
         lblOperation = null;
         if (isMultiline) {
             lblOperation = new Label(control, SWT.NONE);
-            lblOperation.setText("Operation:");
+            lblOperation.setText(Messages.DefaultFilterViewer_Operation);
         }
 
         operation = new Combo(control, SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -202,13 +203,13 @@ public class DefaultFilterViewer extends CQLFilterViewer {
         lblValue = null;
         if (isMultiline) {
             lblValue = new Label(control, SWT.NONE);
-            lblValue.setText("Value:");
+            lblValue.setText(Messages.DefaultFilterViewer_Value);
         }
         value = new Combo(control, SWT.DROP_DOWN | SWT.READ_ONLY);
         value.setEnabled(false); // need to select an attribute before we can suggest values
 
         insert = new Button(control, SWT.NONE);
-        insert.setText("Insert");
+        insert.setText(Messages.DefaultFilterViewer_InsertButton);
         insert.addSelectionListener(insertButtonListener);
         
         setLayout(isMultiline);
@@ -222,30 +223,30 @@ public class DefaultFilterViewer extends CQLFilterViewer {
      */
     private void setLayout(boolean isMultiline) {
         if (isMultiline) {
-            MigLayout layout = new MigLayout("insets 0", "[][][][][][][grow]", "[grow][]");
+            MigLayout layout = new MigLayout("insets 0", "[][][][][][][grow]", "[grow][]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             control.setLayout(layout);
 
-            text.setLayoutData("span,grow,width 200:100%:100%,height 60:100%:100%");
+            text.setLayoutData("span,grow,width 200:100%:100%,height 60:100%:100%"); //$NON-NLS-1$
             setPreferredTextSize(40, 5);
 
-            lblAttribute.setLayoutData("cell 0 1,alignx trailing,gapx related");
-            attribute.setLayoutData("cell 1 1,wmin 60,alignx left,gapx rel");
+            lblAttribute.setLayoutData("cell 0 1,alignx trailing,gapx related"); //$NON-NLS-1$
+            attribute.setLayoutData("cell 1 1,wmin 60,alignx left,gapx rel"); //$NON-NLS-1$
 
-            lblOperation.setLayoutData("cell 2 1,alignx trailing,gapx related");
-            operation.setLayoutData("cell 3 1,wmin 60,alignx left,gapx rel");
+            lblOperation.setLayoutData("cell 2 1,alignx trailing,gapx related"); //$NON-NLS-1$
+            operation.setLayoutData("cell 3 1,wmin 60,alignx left,gapx rel"); //$NON-NLS-1$
 
-            lblValue.setLayoutData("cell 4 1,alignx trailing,gapx related");
-            value.setLayoutData("cell 5 1,wmin 60,alignx left,gapx related");
+            lblValue.setLayoutData("cell 4 1,alignx trailing,gapx related"); //$NON-NLS-1$
+            value.setLayoutData("cell 5 1,wmin 60,alignx left,gapx related"); //$NON-NLS-1$
             
-            insert.setLayoutData("cell 6 1,alignx left,gapx unrel");
+            insert.setLayoutData("cell 6 1,alignx left,gapx unrel"); //$NON-NLS-1$
         } else {
-            control.setLayout(new MigLayout("insets 0, flowx", "", ""));
+            control.setLayout(new MigLayout("insets 0, flowx", "", "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-            text.setLayoutData("grow,width 200:70%:100%, gap unrelated");
-            attribute.setLayoutData("width 90:20%:100%, gap related");
-            operation.setLayoutData("width 60:10%:100%, gap related");
-            value.setLayoutData("width 60:10%:100%, gap related");
-            insert.setLayoutData("gap related");
+            text.setLayoutData("grow,width 200:70%:100%, gap unrelated"); //$NON-NLS-1$
+            attribute.setLayoutData("width 90:20%:100%, gap related"); //$NON-NLS-1$
+            operation.setLayoutData("width 60:10%:100%, gap related"); //$NON-NLS-1$
+            value.setLayoutData("width 60:10%:100%, gap related"); //$NON-NLS-1$
+            insert.setLayoutData("gap related"); //$NON-NLS-1$
         }
     }
 
@@ -264,12 +265,12 @@ public class DefaultFilterViewer extends CQLFilterViewer {
         }
         AttributeType type = descriptor.getType();
         if (Number.class.isAssignableFrom(type.getBinding())) {
-            options.add("0");
-            options.add("1");
-            options.add("2");
-            options.add("3");
-            options.add("4");
-            options.add("5");
+            options.add("0"); //$NON-NLS-1$
+            options.add("1"); //$NON-NLS-1$
+            options.add("2"); //$NON-NLS-1$
+            options.add("3"); //$NON-NLS-1$
+            options.add("4"); //$NON-NLS-1$
+            options.add("5"); //$NON-NLS-1$
         }
         return options;
     }

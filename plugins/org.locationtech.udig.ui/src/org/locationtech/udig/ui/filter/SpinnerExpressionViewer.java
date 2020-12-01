@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.filter.text.ecql.ECQL;
+import org.locationtech.udig.ui.internal.Messages;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.PropertyDescriptor;
@@ -143,7 +144,7 @@ public class SpinnerExpressionViewer extends IExpressionViewer {
         Label comboLabel=null;
         if( multiLine){
             comboLabel = new Label(control, SWT.NONE);
-            comboLabel.setText("Numeric:");
+            comboLabel.setText(Messages.SpinnerExpressionViewer_Numeric);
         } 
         combo = new ComboViewer(control, SWT.DEFAULT);
         combo.setContentProvider(ArrayContentProvider.getInstance());
@@ -162,7 +163,7 @@ public class SpinnerExpressionViewer extends IExpressionViewer {
         Label spinnerLabel=null;
         if( multiLine){
             spinnerLabel = new Label(control, SWT.NONE);
-            spinnerLabel.setText("Value:");
+            spinnerLabel.setText(Messages.SpinnerExpressionViewer_Value);
         } 
         spinner = new Spinner(control, SWT.DEFAULT);
         spinner.setMinimum(0);
@@ -173,28 +174,28 @@ public class SpinnerExpressionViewer extends IExpressionViewer {
         Label textLabel=null;
         if( multiLine){
             textLabel = new Label(control, SWT.NONE);
-            textLabel.setText("Text:");
+            textLabel.setText(Messages.SpinnerExpressionViewer_Text);
         }
         text = new Text(control,SWT.SINGLE | SWT.READ_ONLY | SWT.BORDER | SWT.NO_SCROLL );
         text.setEditable(false);
         
         if( multiLine ){
-            control.setLayout(new MigLayout("insets 0","[][][grow]","[]"));
+            control.setLayout(new MigLayout("insets 0","[][][grow]","[]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             
-            comboLabel.setLayoutData("cell 0 0, alignx trailing");
-            combo.getControl().setLayoutData("cell 1 0, width 200:30%:100%,gap related");
+            comboLabel.setLayoutData("cell 0 0, alignx trailing"); //$NON-NLS-1$
+            combo.getControl().setLayoutData("cell 1 0, width 200:30%:100%,gap related"); //$NON-NLS-1$
             
-            spinnerLabel.setLayoutData("cell 0 1, alignx trailing");
-            spinner.setLayoutData("cell 1 1, width 200:30%:300%,gap related");
+            spinnerLabel.setLayoutData("cell 0 1, alignx trailing"); //$NON-NLS-1$
+            spinner.setLayoutData("cell 1 1, width 200:30%:300%,gap related"); //$NON-NLS-1$
             
-            textLabel.setLayoutData("cell 0 2, alignx trailing");
-            text.setLayoutData("cell 1 2, grow,width 200:pref:100%,gap related");
+            textLabel.setLayoutData("cell 0 2, alignx trailing"); //$NON-NLS-1$
+            text.setLayoutData("cell 1 2, grow,width 200:pref:100%,gap related"); //$NON-NLS-1$
         }
         else {
-            control.setLayout(new MigLayout("insets 0","flowx",""));
-            combo.getControl().setLayoutData("width 200:30%:100%");
-            spinner.setLayoutData("width 200:30%:300%,gap unrelated");
-            text.setLayoutData("grow,width 200:pref:100%,gap unrelated");
+            control.setLayout(new MigLayout("insets 0","flowx","")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            combo.getControl().setLayoutData("width 200:30%:100%"); //$NON-NLS-1$
+            spinner.setLayoutData("width 200:30%:300%,gap unrelated"); //$NON-NLS-1$
+            text.setLayoutData("grow,width 200:pref:100%,gap unrelated"); //$NON-NLS-1$
         }
         listen(true);
     }
@@ -327,7 +328,7 @@ public class SpinnerExpressionViewer extends IExpressionViewer {
                         spinner.setSelection(value);
                         if (message == null) {
                             if( isPercent ){
-                                text.setText( value +"%");
+                                text.setText( value +"%"); //$NON-NLS-1$
                             }
                             else {
                                 text.setText( String.valueOf(value) );

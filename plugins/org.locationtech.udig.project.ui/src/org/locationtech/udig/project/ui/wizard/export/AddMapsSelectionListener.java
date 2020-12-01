@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.locationtech.udig.project.ui.AdapterFactoryLabelProviderDecorator;
 import org.locationtech.udig.project.ui.ApplicationGIS;
+import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.project.ui.internal.ProjectExplorer;
 
 /**
@@ -76,12 +77,12 @@ final class AddMapsSelectionListener implements SelectionListener {
 
 		@Override
 		protected Control createDialogArea(Composite parent) {
-			getShell().setText("Map Selector");
+			getShell().setText(Messages.AddMapsSelectionListener_ShellTitle);
 
 			Composite comp = (Composite) super.createDialogArea(parent);
 
 			Label label = new Label(comp, SWT.NONE);
-			label.setText("Select Maps to Export:");
+			label.setText(Messages.AddMapsSelectionListener_ExportLabel);
 
 			viewer = new TreeViewer(comp, SWT.MULTI | SWT.BORDER);
 			viewer.setContentProvider(new ContentProvider());

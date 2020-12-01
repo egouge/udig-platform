@@ -9,16 +9,14 @@
  */
 package org.locationtech.udig.project.internal.command.navigation;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Envelope;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.render.ViewportModel;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.referencing.CRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.command.navigation

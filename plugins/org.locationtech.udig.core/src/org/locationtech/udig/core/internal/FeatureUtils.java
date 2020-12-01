@@ -189,7 +189,6 @@ public class FeatureUtils {
     /**
      * Maps the default geometry attribute regardless of whether they are the same type.
      */
-    @SuppressWarnings("unchecked")
     private static void mapGeometryAttributes( SimpleFeatureType sourceSchema, SimpleFeatureType targetSchema, Map<String, String> queryAttributes ) {
         // Now we'll match the geometry on type only. I don't care if it has the same type name.
         GeometryDescriptor defaultGeometry = targetSchema.getGeometryDescriptor();
@@ -228,7 +227,6 @@ public class FeatureUtils {
     /**
      * Maps attributes with the same name and same types to each other.
      */
-    @SuppressWarnings("unchecked")
     private static void performDirectMapping( SimpleFeatureType sourceSchema, SimpleFeatureType targetSchema, Map<String, String> queryAttributes ) {
         for( int i = 0; i < sourceSchema.getAttributeCount(); i++ ) {
             AttributeDescriptor source = sourceSchema.getDescriptor(i);
@@ -253,7 +251,7 @@ public class FeatureUtils {
     * @return
     */
     public static FeatureCollection<SimpleFeatureType, SimpleFeature> toFeatureCollection( final Collection<SimpleFeature> collection, SimpleFeatureType type ) {
-        return new AdaptorFeatureCollection("collection",type){
+        return new AdaptorFeatureCollection("collection",type){ //$NON-NLS-1$
             @Override
             protected void closeIterator( Iterator arg0 ) {
             }
@@ -361,7 +359,7 @@ public class FeatureUtils {
                                     destSchema.getDescriptor(i).getType().getBinding(), 
                                     source.getAttribute(name), mon);
                         } catch (Exception e) {
-                        	CorePlugin.log("", e);
+                        	CorePlugin.log("", e); //$NON-NLS-1$
                         }
                     } else {
                         attributes[i] = destSchema.getDescriptor(i).getDefaultValue();
@@ -682,10 +680,10 @@ public class FeatureUtils {
             final String propertyName) {
 
         if (featureType == null) {
-            throw new IllegalArgumentException("featureType cannot be null");
+            throw new IllegalArgumentException("featureType cannot be null"); //$NON-NLS-1$
         }
         if (propertyName == null) {
-            throw new IllegalArgumentException("propertyName cannot be null");
+            throw new IllegalArgumentException("propertyName cannot be null"); //$NON-NLS-1$
         }
 
         final String internalPropertyName = propertyName.trim();
@@ -727,10 +725,10 @@ public class FeatureUtils {
             final List<String> propertyNames) {
 
         if (featureType == null) {
-            throw new IllegalArgumentException("featureType cannot be null");
+            throw new IllegalArgumentException("featureType cannot be null"); //$NON-NLS-1$
         }
         if (propertyNames == null) {
-            throw new IllegalArgumentException("propertyName cannot be null");
+            throw new IllegalArgumentException("propertyName cannot be null"); //$NON-NLS-1$
         }
 
         List<String> nameList = new LinkedList<String>();
@@ -762,7 +760,6 @@ public class FeatureUtils {
  * @param fid the feature id
  * @return
  */
-@SuppressWarnings("unchecked")
 public static Filter id(String fid) {
     FilterFactory factory = CommonFactoryFinder.getFilterFactory2(GeoTools
             .getDefaultHints());

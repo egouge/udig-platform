@@ -85,15 +85,15 @@ public class FeatureTypeMatch {
         @Override
         public String toString() {
             StringBuffer buf = new StringBuffer();
-            buf.append("match(");
+            buf.append("match("); //$NON-NLS-1$
             if (this.name != null) {
                 buf.append(this.name);
             }
             if (this.type != null) {
-                buf.append(" ");
+                buf.append(" "); //$NON-NLS-1$
                 buf.append(type.getSimpleName());
             }
-            buf.append(")");
+            buf.append(")"); //$NON-NLS-1$
             return buf.toString();
         }
     }
@@ -238,7 +238,7 @@ public class FeatureTypeMatch {
     @Override
     public String toString() {
         StringBuffer buf = new StringBuffer();
-        buf.append("FeatureTypeMatch ");
+        buf.append("FeatureTypeMatch "); //$NON-NLS-1$
         if (this.namespace != null) {
             buf.append(this.namespace);
         }
@@ -247,7 +247,7 @@ public class FeatureTypeMatch {
             for( int i = 0; i < this.attributes.length; i++ ) {
                 buf.append(this.attributes[i]);
                 if (i < this.attributes.length - 1) {
-                    buf.append(",");
+                    buf.append(","); //$NON-NLS-1$
                 }
             }
         }

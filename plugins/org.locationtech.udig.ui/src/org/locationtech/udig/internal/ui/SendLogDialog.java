@@ -216,12 +216,10 @@ public class SendLogDialog extends TitleAreaDialog {
             text.append("\r\n"); //$NON-NLS-1$
             String body = "body=" + URLEncoder.encode(text.toString(), "UTF-8"); //$NON-NLS-1$//$NON-NLS-2$
             
-            OutputStream outStream;
-            outStream = connection.getOutputStream();
-            outStream.write(body.getBytes());
-            outStream.flush();
-            outStream.close();
-
+            try(OutputStream outStream = connection.getOutputStream()){
+            	outStream.write(body.getBytes());
+            	outStream.flush();
+            }
             connection.getResponseCode();
         } catch (Exception e) {
             UiPlugin.log("Error log submission failed", e); //$NON-NLS-1$
@@ -247,12 +245,9 @@ public class SendLogDialog extends TitleAreaDialog {
     private String getLogText( IProgressMonitor monitor ) {
         String filename = Platform.getLogFileLocation().toOSString();
         File file = new File(filename);
-        FileReader in = null;
-        BufferedReader br = null;
-        try {
-            StringBuilder content = new StringBuilder();
-            in = new FileReader(file);
-            br = new BufferedReader(in);
+        StringBuilder content = new StringBuilder();
+        try(FileReader in = new FileReader(file);
+        	BufferedReader br = new BufferedReader(in)){
             String line;
             while( (line = br.readLine()) != null ) {
                 content.append(line);
@@ -261,14 +256,6 @@ public class SendLogDialog extends TitleAreaDialog {
             return content.toString();
         } catch (IOException e) {
             return null;
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-                if (in != null)
-                    in.close();
-            } catch (IOException e) {
-            }
         }
     }
     

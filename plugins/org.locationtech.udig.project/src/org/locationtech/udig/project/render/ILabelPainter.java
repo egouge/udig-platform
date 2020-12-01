@@ -9,8 +9,6 @@
  */
 package org.locationtech.udig.project.render;
 
-import java.awt.Rectangle;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.geotools.renderer.lite.LabelCache;
 

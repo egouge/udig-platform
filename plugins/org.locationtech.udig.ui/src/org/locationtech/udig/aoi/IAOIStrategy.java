@@ -75,7 +75,7 @@ public abstract class IAOIStrategy {
      */
     public void addListener( AOIListener listener ) {
         if( listener == null ){
-            throw new NullPointerException("AOIService listener required to be non null");
+            throw new NullPointerException("AOIService listener required to be non null"); //$NON-NLS-1$
         }
         if( !listeners.contains(listener)){
             listeners.add(listener);

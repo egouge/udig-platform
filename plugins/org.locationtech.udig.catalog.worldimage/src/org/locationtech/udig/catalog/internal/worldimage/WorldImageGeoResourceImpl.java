@@ -22,12 +22,6 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.HashMap;
 
-import org.locationtech.udig.catalog.CatalogPlugin;
-import org.locationtech.udig.catalog.URLUtils;
-import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
-import org.locationtech.udig.catalog.rasterings.GridCoverageLoader;
-import org.locationtech.udig.catalog.worldimage.internal.Messages;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.geotools.data.PrjFileReader;
@@ -35,6 +29,11 @@ import org.geotools.parameter.DefaultParameterDescriptor;
 import org.geotools.parameter.DefaultParameterDescriptorGroup;
 import org.geotools.parameter.ParameterGroup;
 import org.geotools.referencing.crs.DefaultEngineeringCRS;
+import org.locationtech.udig.catalog.CatalogPlugin;
+import org.locationtech.udig.catalog.URLUtils;
+import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
+import org.locationtech.udig.catalog.rasterings.GridCoverageLoader;
+import org.locationtech.udig.catalog.worldimage.internal.Messages;
 import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.referencing.FactoryException;

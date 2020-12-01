@@ -412,7 +412,7 @@ public class CRSChooser {
                     }
                 }
             } catch (FactoryException e) {
-            	UiPlugin.trace( CRSChooser.class, "CRS Authority:"+e.getMessage(), e );
+            	UiPlugin.trace( CRSChooser.class, "CRS Authority:"+e.getMessage(), e ); //$NON-NLS-1$
             }
         }
         return descriptions;
@@ -483,7 +483,7 @@ public class CRSChooser {
                 // then we have the wrong factory
                 // is there a better way to do this?
             }catch (Exception e) {
-                UiPlugin.log("Error creating CRS object, trying more...", e);
+                UiPlugin.log("Error creating CRS object, trying more...", e); //$NON-NLS-1$
             }
         }
         try {
@@ -582,7 +582,7 @@ public class CRSChooser {
         if (selectedCRS == null) {
             String crsCode = (String) ((IStructuredSelection) codesList.getSelection()).getFirstElement();
             if(sourceCRS != null && crsCode!=null && crsCode.equals(sourceCRS.getName().toString())){
-                System.out.println("source crs: " + sourceCRS.getName().toString());
+                System.out.println("source crs: " + sourceCRS.getName().toString()); //$NON-NLS-1$
                 return sourceCRS;
             }
             return createCRS(searchText.getText());

@@ -129,12 +129,12 @@ public class SLDContentManager {
      */
     public void init( StyleBuilder styleBuilder, Style style ) {
         if( styleBuilder == null ){
-            throw new NullPointerException("StyleBuilder required");
+            throw new NullPointerException("StyleBuilder required"); //$NON-NLS-1$
         }
         this.styleBuilder = styleBuilder;
         
         if( style == null ){
-            throw new NullPointerException("Style required");   
+            throw new NullPointerException("Style required");    //$NON-NLS-1$
         }
         this.style = style;
         this.featureTypeStyle = null;

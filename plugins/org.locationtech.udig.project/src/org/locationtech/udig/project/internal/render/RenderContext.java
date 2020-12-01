@@ -14,16 +14,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import javax.media.jai.TileCache;
-
+import org.geotools.data.Query;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.internal.AbstractContext;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.render.IRenderContext;
-
-import org.geotools.data.Query;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 /**
  * @see IRenderContext

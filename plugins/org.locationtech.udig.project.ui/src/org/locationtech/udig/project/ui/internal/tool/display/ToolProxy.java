@@ -327,11 +327,11 @@ public class ToolProxy extends ModalItem implements ModalTool, ActionTool {
                             
                             for ( IConfigurationElement toolElement : toolElementChildren){
                                 
-                                if(toolElement.getAttribute("class") != null){
+                                if(toolElement.getAttribute("class") != null){ //$NON-NLS-1$
                                     try {
-                                        String contributionId = toolElement.getAttribute("id");
+                                        String contributionId = toolElement.getAttribute("id"); //$NON-NLS-1$
                                         
-                                        Object optionsContribution = toolElement.createExecutableExtension("class");
+                                        Object optionsContribution = toolElement.createExecutableExtension("class"); //$NON-NLS-1$
                                         ContributionItem contributionItem = (ContributionItem) optionsContribution;
                                         contributionItem.setId(contributionId);
                                         
@@ -523,7 +523,7 @@ public class ToolProxy extends ModalItem implements ModalTool, ActionTool {
      */
     protected void runModeless() {
         if (type != ACTION) {
-            throw new IllegalStateException("runModeless expects ACTION");
+            throw new IllegalStateException("runModeless expects ACTION"); //$NON-NLS-1$
         }
         PlatformGIS.run(new ISafeRunnable(){
             public void run() throws Exception {

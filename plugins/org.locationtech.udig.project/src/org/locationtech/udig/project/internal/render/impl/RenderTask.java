@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import  org.locationtech.udig.project.ILayer;
-
 import org.locationtech.jts.geom.Envelope;
+import  org.locationtech.udig.project.ILayer;
 
 public class RenderTask{
     

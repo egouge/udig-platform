@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.geotools.data.FeatureStore;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.objectproperty.ObjectPropertyCatalogListener;
@@ -22,11 +23,8 @@ import org.locationtech.udig.project.IBlackboard;
 import org.locationtech.udig.project.IBlackboardListener;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.ProjectBlackboardConstants;
-import org.locationtech.udig.ui.ProgressManager;
 import org.locationtech.udig.ui.operations.AbstractPropertyValue;
 import org.locationtech.udig.ui.operations.PropertyValue;
-
-import org.geotools.data.FeatureStore;
 
 /**
  * returns true if the layer has a FeatureStore as a resource.

@@ -11,18 +11,16 @@ package org.locationtech.udig.project.internal.command.navigation;
 
 import java.text.MessageFormat;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.internal.Messages;
 import org.locationtech.udig.project.internal.ProjectPlugin;
 import org.locationtech.udig.project.internal.render.ViewportModel;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.geotools.geometry.jts.JTS;
-import org.geotools.referencing.CRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
-import org.locationtech.jts.geom.Coordinate;
 
 /**
  * Sets the center of the viewport. The Coordinate must be in world coordinates. The

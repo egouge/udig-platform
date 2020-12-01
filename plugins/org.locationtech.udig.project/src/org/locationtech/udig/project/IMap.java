@@ -12,15 +12,14 @@ package org.locationtech.udig.project;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.project.command.EditCommand;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.internal.LayerFactory;
 import org.locationtech.udig.project.render.IRenderManager;
 import org.locationtech.udig.project.render.IViewportModel;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 /**
  * The part of the model that represents a map.

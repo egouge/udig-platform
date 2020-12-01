@@ -143,12 +143,12 @@ public abstract class FilterViewerFactory {
      * @return id used to identify this viewer
      */
     public String getId(){
-        String id = config.getAttribute("id");
+        String id = config.getAttribute("id"); //$NON-NLS-1$
         return id;
     }
     
     public String getDisplayName() {
-        String name = config.getAttribute("name");
+        String name = config.getAttribute("name"); //$NON-NLS-1$
         return name;
     }
 
@@ -204,9 +204,9 @@ public abstract class FilterViewerFactory {
     // Factory and Extension Point Support
     //
     /** General purpose {@link IFilterViewer} suitable for use as a default */
-    public static final String CQL_FILTER_VIEWER = "org.locationtech.udig.ui.filter.cqlFilterViewer";
+    public static final String CQL_FILTER_VIEWER = "org.locationtech.udig.ui.filter.cqlFilterViewer"; //$NON-NLS-1$
 
     /** Extension point ID each "expressionViewer" will be processed into our {@link #factoryList()} */
-    public static final String FILTER_VIEWER_EXTENSION = "org.locationtech.udig.ui.filterViewer";
+    public static final String FILTER_VIEWER_EXTENSION = "org.locationtech.udig.ui.filterViewer"; //$NON-NLS-1$
 
 }

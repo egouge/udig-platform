@@ -155,7 +155,7 @@ public class ResourceSearchState extends State {
     }
 }
 class ImportPlaceholder implements IResolve {
-    private ID identifier = new ID("internal:///localhost/import","import");
+    private ID identifier = new ID("internal:///localhost/import","import"); //$NON-NLS-1$ //$NON-NLS-2$
     
     @Override
     public <T> T resolve(Class<T> adaptee, IProgressMonitor monitor) throws IOException {

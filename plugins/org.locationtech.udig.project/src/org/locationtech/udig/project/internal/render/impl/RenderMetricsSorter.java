@@ -81,7 +81,7 @@ public class RenderMetricsSorter implements Comparator<InternalRenderMetrics> {
             if (o1.getRenderMetricsFactory() == null) {
                 ProjectPlugin.log(o1
                         + " is not implemented correctly.  getRenderMetricsFactory returns null.  " //$NON-NLS-1$
-                        + "Consider extending AbstractRenderMetrics");
+                        + "Consider extending AbstractRenderMetrics"); //$NON-NLS-1$
                 return false;
             }
 

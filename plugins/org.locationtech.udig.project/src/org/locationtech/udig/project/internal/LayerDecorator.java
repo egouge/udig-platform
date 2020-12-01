@@ -17,16 +17,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IResolveChangeEvent;
-import org.locationtech.udig.project.IBlackboard;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.ILayerListener;
-import org.locationtech.udig.project.IMap;
-import org.locationtech.udig.project.Interaction;
-import org.locationtech.udig.project.LayerEvent;
-import org.locationtech.udig.ui.palette.ColourScheme;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,8 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Internal;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -47,12 +37,20 @@ import org.geotools.data.FeatureEvent;
 import org.geotools.data.Query;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.util.Range;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IResolveChangeEvent;
+import org.locationtech.udig.project.IBlackboard;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.ILayerListener;
+import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.Interaction;
+import org.locationtech.udig.project.LayerEvent;
+import org.locationtech.udig.ui.palette.ColourScheme;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
-
-import org.locationtech.jts.geom.Envelope;
 
 /**
  * Wraps a layer and delegates all the method calls to that layer. See the gang of four decorator

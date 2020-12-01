@@ -470,7 +470,7 @@ public class FeatureTypeEditor {
                     for (AttributeDescriptor at: ft.getAttributeDescriptors()) {
                         if (at.getLocalName().startsWith(Messages.FeatureTypeEditor_newAttributeTypeDefaultName)) {
                             try {
-                                usedIndices.add(Integer.valueOf(at.getLocalName().replace(Messages.FeatureTypeEditor_newAttributeTypeDefaultName, "")));
+                                usedIndices.add(Integer.valueOf(at.getLocalName().replace(Messages.FeatureTypeEditor_newAttributeTypeDefaultName, ""))); //$NON-NLS-1$
                             } catch (Exception e) {
                                 // ignore,  user has changed attribute
                             }
@@ -666,7 +666,7 @@ public class FeatureTypeEditor {
                     if(crs!=null){
                         return crs.getName().toString();
                     }else {
-                        return "Unspecified";
+                        return Messages.FeatureTypeEditor_UnknownCRS;
                     }
                 }
                 break;
@@ -763,7 +763,7 @@ public class FeatureTypeEditor {
                 return ((GeometryDescriptor)element).getCoordinateReferenceSystem();
             case LENGTH_COLUMN:
                 String lengthValue = getAttributeRestriction(editElement, "length", String.class); //$NON-NLS-1$
-                return lengthValue != null ? lengthValue : "";
+                return lengthValue != null ? lengthValue : ""; //$NON-NLS-1$
             case IS_NULL_COLUMN:
                 String nullValue = getAttributeRestriction(editElement, "nillable", String.class); //$NON-NLS-1$
                 return nullValue == null ? editElement.isNillable() : Boolean.getBoolean(nullValue);

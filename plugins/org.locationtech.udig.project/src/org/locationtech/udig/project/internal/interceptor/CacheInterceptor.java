@@ -23,12 +23,8 @@ import javax.xml.transform.TransformerException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.IMemento;
-import org.geotools.data.DataStore;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
-import org.geotools.feature.SchemaException;
-import org.geotools.xml.filter.FilterFilter;
-import org.geotools.xml.filter.FilterTransformer;
 import org.geotools.gml.GMLFilterDocument;
 import org.geotools.gml.GMLFilterGeometry;
 import org.geotools.xml.filter.FilterFilter;
@@ -61,7 +57,7 @@ public class CacheInterceptor
     /**
      * The key that is checked to see if a filter is on the Map Blackboard or the Layer Properties.
      */
-    public static final String KEY = "org.locationtech.udig.style.cache";
+    public static final String KEY = "org.locationtech.udig.style.cache"; //$NON-NLS-1$
 
     @SuppressWarnings("unchecked")
     public FeatureSource<SimpleFeatureType, SimpleFeature> run( ILayer layer,
@@ -74,16 +70,16 @@ public class CacheInterceptor
         }
         if (prop instanceof Boolean && Boolean.TRUE.equals(prop)) {
             try {
-                CachingFeatureSource cachingFeatureSource = (CachingFeatureSource) layer.getBlackboard().get("cache");
+                CachingFeatureSource cachingFeatureSource = (CachingFeatureSource) layer.getBlackboard().get("cache"); //$NON-NLS-1$
                 if( cachingFeatureSource != null ){
                     return cachingFeatureSource;
                 }                
                 cachingFeatureSource = new CachingFeatureSource(resource);
-                layer.getBlackboard().put("cache", cachingFeatureSource);
+                layer.getBlackboard().put("cache", cachingFeatureSource); //$NON-NLS-1$
                 return cachingFeatureSource;
             } catch (IOException e) {
                 if ( ProjectPlugin.getPlugin().isDebugging()){
-                    ProjectPlugin.getPlugin().log("Unable to cache "+resource+":"+e.getLocalizedMessage());
+                    ProjectPlugin.getPlugin().log("Unable to cache "+resource+":"+e.getLocalizedMessage()); //$NON-NLS-1$ //$NON-NLS-2$
                     e.printStackTrace();
                 }
             }
@@ -129,13 +125,13 @@ public class CacheInterceptor
      */
     public static class ViewStyleContent extends StyleContent {
 
-        private static final String CRS = "CRS";
-        private static final String REPOJECT = "REPOJECT";
-        private static final String HANDLE = "HANDLE";
-        private static final String MAX_FEATURES = "MAX_FEATURES";
-        private static final String NAMESPACE = "NAMESPACE";
-        private static final String TYPENAME = "TYPENAME";
-        private static final String PROPERTY_NAMES = "PROPERTY_NAMES";
+        private static final String CRS = "CRS"; //$NON-NLS-1$
+        private static final String REPOJECT = "REPOJECT"; //$NON-NLS-1$
+        private static final String HANDLE = "HANDLE"; //$NON-NLS-1$
+        private static final String MAX_FEATURES = "MAX_FEATURES"; //$NON-NLS-1$
+        private static final String NAMESPACE = "NAMESPACE"; //$NON-NLS-1$
+        private static final String TYPENAME = "TYPENAME"; //$NON-NLS-1$
+        private static final String PROPERTY_NAMES = "PROPERTY_NAMES"; //$NON-NLS-1$
 
         public ViewStyleContent() {
             super(KEY);
@@ -179,7 +175,7 @@ public class CacheInterceptor
             String propNameString = decode(memento.getString(PROPERTY_NAMES));
             String[] propertyNames;
             if (propNameString != null) {
-                propertyNames = propNameString.split(",");
+                propertyNames = propNameString.split(","); //$NON-NLS-1$
             } else {
                 propertyNames = Query.ALL_NAMES;
             }
@@ -199,7 +195,7 @@ public class CacheInterceptor
         }
 
         private Filter readFilter( String textData ) {
-            if ("all".equals(textData)) {
+            if ("all".equals(textData)) { //$NON-NLS-1$
                 return Filter.EXCLUDE;
             }
             InputSource input = new InputSource(new StringReader(textData));
@@ -230,7 +226,7 @@ public class CacheInterceptor
             Query viewRestriction;
             if (value instanceof Filter) {
                 Filter filter = (Filter) value;
-                viewRestriction = new Query("Feature", filter);
+                viewRestriction = new Query("Feature", filter); //$NON-NLS-1$
             } else {
                 viewRestriction = (Query) value;
             }
@@ -264,13 +260,13 @@ public class CacheInterceptor
 
                 try {
                     if (filter == Filter.EXCLUDE) {
-                        memento.putTextData("all");
+                        memento.putTextData("all"); //$NON-NLS-1$
                     } else {
                         memento.putTextData(encode(transformer.transform(filter)));
                     }
                 } catch (TransformerException e) {
                     throw new RuntimeException(
-                            "Unable to convert filter to string I couldn't save the view query");
+                            "Unable to convert filter to string I couldn't save the view query"); //$NON-NLS-1$
                 }
             }
             if (crs != null) {
@@ -302,7 +298,7 @@ public class CacheInterceptor
                 return null;
             }
             try {
-                return URLEncoder.encode(toEncode, "UTF-8");
+                return URLEncoder.encode(toEncode, "UTF-8"); //$NON-NLS-1$
             } catch (UnsupportedEncodingException e) {
                 return toEncode;
             }
@@ -313,7 +309,7 @@ public class CacheInterceptor
                 return null;
             }
             try {
-                return URLDecoder.decode(toDecode, "UTF-8");
+                return URLDecoder.decode(toDecode, "UTF-8"); //$NON-NLS-1$
             } catch (UnsupportedEncodingException e) {
                 return toDecode;
             }

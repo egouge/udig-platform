@@ -15,12 +15,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
-import org.locationtech.udig.project.command.Command;
-import org.locationtech.udig.project.internal.command.navigation.SetViewportCenterCommand;
-import org.locationtech.udig.project.ui.render.displayAdapter.MapMouseEvent;
-import org.locationtech.udig.project.ui.tool.AbstractTool;
-import org.locationtech.udig.project.ui.tool.IToolContext;
-import org.locationtech.udig.ui.PlatformGIS;
+
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.ContributionItem;
@@ -240,29 +235,29 @@ public class CursorPosition extends AbstractTool {
         if (tmp.length() != modifiedvalue.length())
             latlong = true;
 
-        modifiedvalue = StringUtils.removeStart(modifiedvalue.trim(), "(");
-        modifiedvalue = StringUtils.removeStart(modifiedvalue.trim(), "[");
-        modifiedvalue = StringUtils.removeEnd(modifiedvalue.trim(), ")");
-        modifiedvalue = StringUtils.removeEnd(modifiedvalue.trim(), "]");
+        modifiedvalue = StringUtils.removeStart(modifiedvalue.trim(), "("); //$NON-NLS-1$
+        modifiedvalue = StringUtils.removeStart(modifiedvalue.trim(), "["); //$NON-NLS-1$
+        modifiedvalue = StringUtils.removeEnd(modifiedvalue.trim(), ")"); //$NON-NLS-1$
+        modifiedvalue = StringUtils.removeEnd(modifiedvalue.trim(), "]"); //$NON-NLS-1$
 
-        String[] components = StringUtils.split(modifiedvalue, decimalSeparator == ',' ? " " : ","); //$NON-NLS-1$
+        String[] components = StringUtils.split(modifiedvalue, decimalSeparator == ',' ? " " : ","); //$NON-NLS-1$ //$NON-NLS-2$
         if (components.length == 1) {
             components = StringUtils.split(modifiedvalue, " "); //$NON-NLS-1$
         }
         if (components.length == 1) {
-            components = StringUtils.split(modifiedvalue, ",");
+            components = StringUtils.split(modifiedvalue, ","); //$NON-NLS-1$
         }
         if (components.length <= 1) {
             return null;
         }
 
         try {
-            components[0] = StringUtils.stripEnd(components[0].trim(), ", ");
-            double arg1 = components[0].contains(".") ? Double.parseDouble(components[0])
+            components[0] = StringUtils.stripEnd(components[0].trim(), ", "); //$NON-NLS-1$
+            double arg1 = components[0].contains(".") ? Double.parseDouble(components[0]) //$NON-NLS-1$
                     : NumberFormat.getInstance().parse(components[0]).doubleValue();
 
-            components[1] = StringUtils.stripEnd(components[1].trim(), ", ");
-            double arg0 = components[1].contains(".") ? Double.parseDouble(components[1])
+            components[1] = StringUtils.stripEnd(components[1].trim(), ", "); //$NON-NLS-1$
+            double arg0 = components[1].contains(".") ? Double.parseDouble(components[1]) //$NON-NLS-1$
                     : NumberFormat.getInstance().parse(components[1]).doubleValue();
             Coordinate coord = new Coordinate(arg1, arg0);
             if (latlong && crs != null) {
@@ -309,7 +304,7 @@ public class CursorPosition extends AbstractTool {
         format.setGroupingUsed(false);
         String string = format.format(value);
 
-        String[] parts = string.split("\\.");
+        String[] parts = string.split("\\."); //$NON-NLS-1$
         if (parts.length > 3) {
             string = parts[0];
         }

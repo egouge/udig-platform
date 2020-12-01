@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
+import org.locationtech.udig.project.edit.internal.Messages;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.ProjectPlugin;
@@ -515,7 +516,7 @@ public class LayerItemProvider extends ItemProviderAdapter implements IEditingDo
         int outOfScaleModifier = SWT.IMAGE_DISABLE;
 
         if (image == null) {
-            Object object2 = ProjectEditPlugin.INSTANCE.getImage("full/obj16/Layer");
+            Object object2 = ProjectEditPlugin.INSTANCE.getImage("full/obj16/Layer"); //$NON-NLS-1$
             if (object2 instanceof ImageDescriptor) {
                 image = (ImageDescriptor) object2;
             } else {
@@ -581,7 +582,7 @@ public class LayerItemProvider extends ItemProviderAdapter implements IEditingDo
         // Okay have a default
         //
         // return "Untitled";
-        return "Layer";
+        return Messages.LayerItemProvider_DefaultLayerName; 
     }
 
     /**
@@ -709,7 +710,7 @@ public class LayerItemProvider extends ItemProviderAdapter implements IEditingDo
             }
             return true;
         } catch (Throwable t) {
-            ProjectPlugin.log("Could not aquire scale range", t);
+            ProjectPlugin.log("Could not aquire scale range", t); //$NON-NLS-1$
             return false;
         }
     }

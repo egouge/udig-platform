@@ -58,8 +58,8 @@ public class AOILayerSelectionTool extends AbstractModalTool implements ModalToo
     private boolean selecting;
     private Point start;
 
-    private String CURSORPOINTID = "aoiSelectCursor";
-    private String CURSORBOXID = "aoiBoxSelectCursor";
+    private String CURSORPOINTID = "aoiSelectCursor"; //$NON-NLS-1$
+    private String CURSORBOXID = "aoiBoxSelectCursor"; //$NON-NLS-1$
 
     boolean showContextOnRightClick = false;
 
@@ -193,7 +193,7 @@ public class AOILayerSelectionTool extends AbstractModalTool implements ModalToo
 
         private ComboViewer comboViewer;
 
-        private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer";
+        private static String AOI_LAYER_ID = "org.locationtech.udig.tool.select.internal.aoiLayer"; //$NON-NLS-1$
 
         /**
          * Listens to the user and changes the global IAOIService to the indicated strategy.
@@ -237,7 +237,7 @@ public class AOILayerSelectionTool extends AbstractModalTool implements ModalToo
         protected IPreferenceStore fillFields( Composite parent ) {
 
             Button nav = new Button(parent, SWT.CHECK);
-            nav.setText("Navigate");
+            nav.setText(Messages.AOILayerSelectionTool_NavButton);
             addField(SelectionToolPreferencePage.NAVIGATE_SELECTION, nav);
 
 //            Button zoom = new Button(parent, SWT.CHECK);

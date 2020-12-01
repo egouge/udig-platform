@@ -6,7 +6,6 @@
  */
 package org.locationtech.udig.project.internal.impl;
 
-import java.io.Serializable;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -19,6 +18,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ui.XMLMemento;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
 import org.locationtech.udig.core.internal.ExtensionPointUtil;
 import org.locationtech.udig.project.BlackboardEvent;
@@ -30,23 +41,6 @@ import org.locationtech.udig.project.internal.Blackboard;
 import org.locationtech.udig.project.internal.BlackboardEntry;
 import org.locationtech.udig.project.internal.ProjectPackage;
 import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.ui.PlatformGIS;
-
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ui.XMLMemento;
-import org.osgi.framework.Bundle;
 
 /**
  * A blackboard that saves its state out as an EObject.
@@ -506,7 +500,7 @@ public class BlackboardImpl extends EObjectImpl implements Blackboard {
             }
             Class objectClass = entry.getObjectClass();
             if (objectClass == null && memento != null) {
-                String className = memento.getString("internalObjectClassStorage");
+                String className = memento.getString("internalObjectClassStorage"); //$NON-NLS-1$
                 if (className.equals(persistenceTarget)) {
                     possible.add(persister);
                     continue; // we are good on this one
@@ -522,7 +516,7 @@ public class BlackboardImpl extends EObjectImpl implements Blackboard {
                             possible.add(persister);
                         }
                     } catch (Exception e) {
-                        if (ProjectPlugin.isDebugging("blackboard")) {
+                        if (ProjectPlugin.isDebugging("blackboard")) { //$NON-NLS-1$
                             ProjectPlugin.trace(BlackboardImpl.class, persister.getExtension()
                                     .getExtensionPointUniqueIdentifier()
                                     + "unable to load " + className, e); //$NON-NLS-1$

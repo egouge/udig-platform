@@ -161,7 +161,7 @@ public class SimpleGridConfigurator extends AbstractSimpleConfigurator {
         
         fts.rules().add(rule);
         style.featureTypeStyles().add(fts);
-        style.setName("simpleStyle");        
+        style.setName("simpleStyle");         //$NON-NLS-1$
         
         return style;
     }

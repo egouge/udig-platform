@@ -88,7 +88,7 @@ public class GeomPropertySource implements IPropertySource2 {
     private Object geomToText() {
         WKTWriter writer = new WKTWriter();
         String text = writer.write(geom);
-        text = text.replaceAll("[\\n\\r\\t]", " ");
+        text = text.replaceAll("[\\n\\r\\t]", " "); //$NON-NLS-1$ //$NON-NLS-2$
         return text;
     }
     /**

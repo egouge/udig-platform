@@ -69,8 +69,8 @@ public class MenuToolCategory extends ToolCategory {
         Collection<String> active = (Collection<String> )contextService.getActiveContextIds();
         
         MenuManager actionMenu = new MenuManager(name, id);
-        final String actionExt = "action.ext";
-		actionMenu.add(new GroupMarker(actionExt)); //$NON-NLS-1$
+        final String actionExt = "action.ext"; //$NON-NLS-1$
+		actionMenu.add(new GroupMarker(actionExt)); 
         actionMenu.add(new GroupMarker("modal.ext")); //$NON-NLS-1$
         for( ModalItem item : this ) {
             ToolProxy tool = (ToolProxy) item;
@@ -90,7 +90,7 @@ public class MenuToolCategory extends ToolCategory {
                     String groupName = menuPath.substring(
                             menuPath.lastIndexOf("/") + 1, menuPath.length()); //$NON-NLS-1$
                     if( groupName.equals( Constants.M_TOOL)){
-                        groupName = "map";
+                        groupName = "map"; //$NON-NLS-1$
                     }
                     IMenuManager targetMenu = manager.findMenuUsingPath(root);
                     if (targetMenu != null) {
@@ -104,9 +104,9 @@ public class MenuToolCategory extends ToolCategory {
                             targetMenu.setVisible(true);
                         }
                     } else
-                        actionMenu.appendToGroup(actionExt, tool.getAction()); //$NON-NLS-1$
+                        actionMenu.appendToGroup(actionExt, tool.getAction()); 
                 } else {
-                    actionMenu.appendToGroup(actionExt, tool.getAction()); //$NON-NLS-1$
+                    actionMenu.appendToGroup(actionExt, tool.getAction());
                 }
             }
             if (tool.getType() == ToolProxy.MODAL) {
@@ -117,18 +117,18 @@ public class MenuToolCategory extends ToolCategory {
         }
         if (actionMenu.getItems().length > 0) {
             // Handle left over tools! Place them in the map menu?
-            String menuPath = "map"; // was Constants.M_TOOL
+            String menuPath = "map"; // was Constants.M_TOOL //$NON-NLS-1$
             IMenuManager toolManager = manager.findMenuUsingPath( menuPath ); 
             if( toolManager==null ){
                 toolManager=new MenuManager(Messages.MenuToolCategory_menu_manager_title,"tools"); //$NON-NLS-1$
                 manager.add(toolManager);
-                toolManager.add(new GroupMarker(actionExt)); //$NON-NLS-1$
+                toolManager.add(new GroupMarker(actionExt)); 
                 toolManager.add(new GroupMarker("modal.ext")); //$NON-NLS-1$
             }
             if( toolManager.find(actionExt)==null ){
-            	toolManager.add(new GroupMarker(actionExt)); //$NON-NLS-1$
+            	toolManager.add(new GroupMarker(actionExt)); 
             }
-            toolManager.appendToGroup(actionExt, actionMenu); //$NON-NLS-1$
+            toolManager.appendToGroup(actionExt, actionMenu); 
             toolManager.setVisible(true);
         }
     }
@@ -179,7 +179,7 @@ public class MenuToolCategory extends ToolCategory {
         
         public void setSelection( boolean checked, ModalItem proxy ) {
             if (proxy != tool)
-                throw new AssertionError("Tool not provided for MenuCurrentToolItem");
+                throw new AssertionError("Tool not provided for MenuCurrentToolItem"); //$NON-NLS-1$
             if (!menuItem.isDisposed())
                 menuItem.setSelection(checked);
         }

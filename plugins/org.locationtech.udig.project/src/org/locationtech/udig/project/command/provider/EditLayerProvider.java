@@ -3,13 +3,11 @@
  */
 package org.locationtech.udig.project.command.provider;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.core.IBlockingProvider;
 import org.locationtech.udig.project.ILayer;
 import org.locationtech.udig.project.IMap;
 import org.locationtech.udig.project.command.MapCommand;
-import org.locationtech.udig.project.internal.commands.edit.SetAttributeCommand;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 public class EditLayerProvider implements IBlockingProvider<ILayer> {
 

@@ -13,11 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.project.IStyleBlackboard;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.project.IStyleBlackboard;
 
 /**
  * Provides persistence, storage for Style information and shared collaboration between renderers

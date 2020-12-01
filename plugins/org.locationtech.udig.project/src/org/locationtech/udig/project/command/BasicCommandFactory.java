@@ -16,7 +16,6 @@ import org.locationtech.udig.project.internal.Map;
 import org.locationtech.udig.project.internal.commands.AddLayerCommand;
 import org.locationtech.udig.project.internal.commands.ChangeCRSCommand;
 import org.locationtech.udig.project.internal.commands.DeleteLayerCommand;
-
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**

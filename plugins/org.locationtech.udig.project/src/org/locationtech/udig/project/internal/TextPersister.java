@@ -9,9 +9,8 @@
  */
 package org.locationtech.udig.project.internal;
 
-import org.locationtech.udig.project.IPersister;
-
 import org.eclipse.ui.IMemento;
+import org.locationtech.udig.project.IPersister;
 
 /**
  * Persister for persisting text on blackboard.

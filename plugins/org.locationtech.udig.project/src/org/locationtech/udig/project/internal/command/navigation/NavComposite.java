@@ -12,15 +12,14 @@ package org.locationtech.udig.project.internal.command.navigation;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.command.NavCommand;
 import org.locationtech.udig.project.command.PostDeterminedEffectCommand;
 import org.locationtech.udig.project.command.UndoableCommand;
 import org.locationtech.udig.project.command.UndoableComposite;
 import org.locationtech.udig.project.internal.render.ViewportModel;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.command.navigation

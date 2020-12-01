@@ -11,17 +11,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.locationtech.udig.catalog.URLUtils;
-import org.locationtech.udig.project.IProject;
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.Project;
-import org.locationtech.udig.project.internal.ProjectElement;
-import org.locationtech.udig.project.internal.ProjectFactory;
-import org.locationtech.udig.project.internal.ProjectPackage;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.ProjectRegistry;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Adapter;
@@ -32,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -41,6 +29,15 @@ import org.eclipse.emf.ecore.resource.Resource.Internal;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.locationtech.udig.catalog.URLUtils;
+import org.locationtech.udig.project.IProject;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.Project;
+import org.locationtech.udig.project.internal.ProjectFactory;
+import org.locationtech.udig.project.internal.ProjectPackage;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.ProjectRegistry;
+import org.locationtech.udig.ui.PlatformGIS;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.impl
@@ -221,8 +218,8 @@ public class ProjectRegistryImpl extends EObjectImpl implements ProjectRegistry 
                     File file = new File(projectURI.toFileString());
                     if (file.exists()) {
                         if (!file.delete())
-                            throw new NullPointerException("Unable to load " + uri
-                                    + " file was empty");
+                            throw new NullPointerException("Unable to load " + uri //$NON-NLS-1$
+                                    + " file was empty"); //$NON-NLS-1$
                     }
                 }
                 // creating a new project from the new project wizard
@@ -240,8 +237,8 @@ public class ProjectRegistryImpl extends EObjectImpl implements ProjectRegistry 
                 if (incomingProject == null) {
                     // this project was not saved with a project file?
                     // (does it represent an individial map? we are not sure)
-                    throw new NullPointerException("Unable to load " + uri
-                            + " - does not contain a project");
+                    throw new NullPointerException("Unable to load " + uri //$NON-NLS-1$
+                            + " - does not contain a project"); //$NON-NLS-1$
                 }
                 //                if (incomingProject == null) {
                 //                    incomingProject = createProject(uri, resource);
@@ -333,7 +330,7 @@ public class ProjectRegistryImpl extends EObjectImpl implements ProjectRegistry 
             try {
                 url = new URL(projectPath); // actually already a URL!
             } catch (MalformedURLException e) {
-                System.err.println("Unable to turn " + projectPath + " into a URL to load");
+                System.err.println("Unable to turn " + projectPath + " into a URL to load"); //$NON-NLS-1$ //$NON-NLS-2$
                 return null; // not a project                
             }
         } else {

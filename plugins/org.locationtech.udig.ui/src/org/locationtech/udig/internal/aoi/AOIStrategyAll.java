@@ -21,7 +21,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public class AOIStrategyAll extends IAOIStrategy {
 
-	private static String name = "All";
+	private static String name = "All"; //$NON-NLS-1$
 	
 	@Override
 	public ReferencedEnvelope getExtent() {

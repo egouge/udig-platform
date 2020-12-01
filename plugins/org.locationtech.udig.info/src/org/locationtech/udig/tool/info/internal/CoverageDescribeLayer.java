@@ -12,10 +12,7 @@ package org.locationtech.udig.tool.info.internal;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.text.DecimalFormat;
-
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.tool.info.CoveragePointInfo;
+import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.geotools.coverage.grid.GridCoordinates2D;
@@ -32,6 +29,10 @@ import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.parameter.Parameter;
 import org.geotools.referencing.CRS;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.tool.info.CoveragePointInfo;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.grid.GridCoverageReader;
 import org.opengis.geometry.Envelope;
@@ -40,8 +41,6 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-
-import org.locationtech.jts.geom.Coordinate;
 
 /**
  * Coverage click info gathering class.
@@ -55,7 +54,7 @@ public class CoverageDescribeLayer {
 
         final Coordinate envelopeCenterOrig = bbox.centre();
         CoordinateReferenceSystem sourceCRS = bbox.getCoordinateReferenceSystem();
-        final DecimalFormat formatter = new DecimalFormat("0.####");
+        final DecimalFormat formatter = new DecimalFormat("0.####"); //$NON-NLS-1$
         IGeoResource geoResource = layer.getGeoResource();
 
         GridCoverage2D coverage = null;
@@ -109,7 +108,7 @@ public class CoverageDescribeLayer {
 
         final StringBuilder sb = new StringBuilder();
         if (hasProblem) {
-            sb.append("The coverage information could not be read.");
+            sb.append(Messages.CoverageDescribeLayer_NoCoverageInfo);
         } else if (isOnGrid) {
             int bands = coverage.getSampleDimensions().length;
             final double[] evaluated = new double[bands];
@@ -119,29 +118,33 @@ public class CoverageDescribeLayer {
                 e.printStackTrace();
             }
             final GridCoordinates2D gridCoord = gridGeometry.worldToGrid(new DirectPosition2D(p));
-            sb.append("Coverage info:\n\n");
+            sb.append(Messages.CoverageDescribeLayer_CoverageInfo);
+            sb.append("\n\n"); //$NON-NLS-1$
             int length = evaluated.length;
             if (length > 1) {
                 for( int i = 0; i < evaluated.length; i++ ) {
-                    sb.append("Band ").append(i);
-                    sb.append(" = ").append(evaluated[i]).append("\n");
+                	sb.append(MessageFormat.format(Messages.CoverageDescribeLayer_BandInfo, i, evaluated[i]));
+                	sb.append("\n"); //$NON-NLS-1$
                 }
             } else if (length == 1) {
-                sb.append("\tValue");
-                sb.append(" = ").append(evaluated[0]).append("\n\n");
+            	sb.append("\t"); //$NON-NLS-1$
+            	sb.append(MessageFormat.format(Messages.CoverageDescribeLayer_ValueLabel, evaluated[0]));
+            	sb.append("\n\n"); //$NON-NLS-1$
             }
-            sb.append("\tin coordinates (easting, northing):\n");
-            sb.append("\t").append(formatter.format(envelopeCenterOrig.x));
-            sb.append(", ");
+            sb.append("\t"); //$NON-NLS-1$
+            sb.append(Messages.CoverageDescribeLayer_label1);
+            sb.append("\n\t"); //$NON-NLS-1$
+            sb.append(formatter.format(envelopeCenterOrig.x));
+            sb.append(", "); //$NON-NLS-1$
             sb.append(formatter.format(envelopeCenterOrig.y));
-            sb.append("\n\n");
-            sb.append("\tand grid coordinates (col, row):\n");
-            sb.append("\t").append(gridCoord.x);
-            sb.append(", ");
+            sb.append("\n\n\t"); //$NON-NLS-1$
+            sb.append(Messages.CoverageDescribeLayer_label2);
+            sb.append("\n\t").append(gridCoord.x); //$NON-NLS-1$
+            sb.append(", "); //$NON-NLS-1$
             sb.append(gridCoord.y);
-            sb.append("\n");
+            sb.append("\n"); //$NON-NLS-1$
         } else {
-            sb.append("Selected point is outside of coverage region.");
+            sb.append(Messages.CoverageDescribeLayer_OutsideArea);
         }
         CoveragePointInfo info = new CoveragePointInfo(layer){
             public String getInfo() {

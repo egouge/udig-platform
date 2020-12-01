@@ -61,7 +61,6 @@ import org.opengis.parameter.ParameterDescriptor;
  * @author mleslie
  * @since 0.6.0
  */
-@SuppressWarnings("deprecation")
 public abstract class AbstractRasterGeoResource extends IGeoResource {
 	private volatile SoftReference<GridCoverage> coverage;
 

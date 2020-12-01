@@ -9,10 +9,9 @@
  */
 package org.locationtech.udig.project.internal.command.navigation;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.locationtech.udig.project.command.MapCommand;
 import org.locationtech.udig.project.internal.Messages;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * A command for making the viewport zoom out fully so the entire map is displayed.

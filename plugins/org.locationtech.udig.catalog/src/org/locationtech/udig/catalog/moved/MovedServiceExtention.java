@@ -69,7 +69,7 @@ public class MovedServiceExtention extends AbstractServiceExtention {
             }
         }
         catch (ClassCastException huh){
-            return "ID and FORWARD are required to be URLs";
+            return "ID and FORWARD are required to be URLs"; //$NON-NLS-1$
         }
         return null;
     }

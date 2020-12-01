@@ -85,7 +85,7 @@ public abstract class DefaultMapViewPart extends ViewPart implements MapPart, ID
 			createResources(resources, monitor);
 			IProject activeProject = ApplicationGIS.getActiveProject();
 
-			CreateMapCommand command = new CreateMapCommand("NewMap",resources , activeProject);
+			CreateMapCommand command = new CreateMapCommand(Messages.DefaultMapViewPart_NewMapName,resources , activeProject);
 			activeProject.sendSync(command);
 			Map createdMap = (Map) command.getCreatedMap();
 			viewer.setMap(createdMap);

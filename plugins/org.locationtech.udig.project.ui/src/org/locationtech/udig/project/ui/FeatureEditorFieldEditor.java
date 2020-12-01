@@ -90,7 +90,7 @@ public class FeatureEditorFieldEditor extends FieldEditor {
     @Override
     protected void doStore() {
         int selectionIndex = combo.getSelectionIndex();
-        String defaultEditorID = "";
+        String defaultEditorID = ""; //$NON-NLS-1$
         if(selectionIndex != -1)
             defaultEditorID = this.ids.get(selectionIndex);
         getPreferenceStore().setValue(PreferenceConstants.P_DEFAULT_FEATURE_EDITOR, defaultEditorID);

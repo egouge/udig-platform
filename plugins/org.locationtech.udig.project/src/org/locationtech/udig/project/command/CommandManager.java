@@ -16,15 +16,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.locationtech.udig.project.internal.Messages;
-import org.locationtech.udig.project.internal.ProjectPlugin;
-import org.locationtech.udig.project.internal.commands.edit.RollbackCommand;
-import org.locationtech.udig.project.internal.commands.selection.CommitCommand;
-import org.locationtech.udig.project.internal.impl.MapImpl.MapCommandListener;
-import org.locationtech.udig.project.preferences.PreferenceConstants;
-import org.locationtech.udig.ui.PlatformGIS;
-import org.locationtech.udig.ui.ProgressMonitorTaskNamer;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -35,6 +26,14 @@ import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.locationtech.udig.project.internal.Messages;
+import org.locationtech.udig.project.internal.ProjectPlugin;
+import org.locationtech.udig.project.internal.commands.edit.RollbackCommand;
+import org.locationtech.udig.project.internal.commands.selection.CommitCommand;
+import org.locationtech.udig.project.internal.impl.MapImpl.MapCommandListener;
+import org.locationtech.udig.project.preferences.PreferenceConstants;
+import org.locationtech.udig.ui.PlatformGIS;
+import org.locationtech.udig.ui.ProgressMonitorTaskNamer;
 
 /**
  * A commands Manager executes commands in a seperate thread, either synchronously or a

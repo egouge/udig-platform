@@ -13,7 +13,7 @@ import net.miginfocom.swt.MigLayout;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.catalog.IGeoResourceInfo;
 import org.locationtech.udig.catalog.IService;
-
+import org.locationtech.udig.catalog.ui.internal.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -51,20 +51,20 @@ public class ServicePropertyPage extends PropertyPage implements IWorkbenchPrope
         page.setLayout(new MigLayout(layoutConst, colConst, rowConst));
         
         Label label = new Label(page, SWT.NONE);
-        label.setText("ID:");
+        label.setText(Messages.ServicePropertyPage_IdLabel);
         
         Text text = new Text( page, SWT.SINGLE | SWT.BORDER );
         text.setText( service.getID().toString() );
         text.setEditable(false);
-        text.setLayoutData("width 100:300:,wrap");
+        text.setLayoutData("width 100:300:,wrap"); //$NON-NLS-1$
         
         label = new Label(page, SWT.NONE);
-        label.setText("Title:");
+        label.setText(Messages.ServicePropertyPage_TitleLabel);
         
         text = new Text( page, SWT.SINGLE | SWT.BORDER );
         
         String title = service.getTitle();
-        text.setText( title != null ? title : "(automaticly generated)" );
+        text.setText( title != null ? title : Messages.ServicePropertyPage_AutoGen );
         text.setEditable(false);
         
         return page;

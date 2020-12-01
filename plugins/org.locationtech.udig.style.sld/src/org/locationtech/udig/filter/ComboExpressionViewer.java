@@ -146,7 +146,7 @@ public class ComboExpressionViewer extends Viewer {
                 } catch (CQLException e1) {
                     expr = Expression.NIL; // no valid expression right now
                     // set warning on associated feedback label
-                    feedback( "Could not understand expression", e1 );
+                    feedback( "Could not understand expression", e1 ); //$NON-NLS-1$
                 }
             }
         }
@@ -201,7 +201,7 @@ public class ComboExpressionViewer extends Viewer {
         }
         Control control = getControl();
         if( control != null && !control.isDisposed() ){
-            control.setToolTipText("");
+            control.setToolTipText(""); //$NON-NLS-1$
         }
     }
     /**
@@ -231,7 +231,7 @@ public class ComboExpressionViewer extends Viewer {
     public void feedback( String error, Exception eek ){
         Control control = getControl();
         if( control != null && !control.isDisposed() ){
-            control.setToolTipText( error +":"+ eek );
+            control.setToolTipText( error +":"+ eek ); //$NON-NLS-1$
         }
     }
     /**

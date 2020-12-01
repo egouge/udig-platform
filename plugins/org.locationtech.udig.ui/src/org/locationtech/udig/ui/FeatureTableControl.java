@@ -986,18 +986,18 @@ public class FeatureTableControl implements ISelectionProvider {
 
     private Pattern compilePattern( final String text ) {
 
-        String[] parts = text.split("\\|");
+        String[] parts = text.split("\\|"); //$NON-NLS-1$
 
         StringBuilder builder = new StringBuilder();
 
         for( String string : parts ) {
-            String pre = ".*";
-            String post = ".*";
-            if (string.startsWith("^") || string.startsWith(".") || string.startsWith("\\A")) {
-                pre = "";
+            String pre = ".*"; //$NON-NLS-1$
+            String post = ".*"; //$NON-NLS-1$
+            if (string.startsWith("^") || string.startsWith(".") || string.startsWith("\\A")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                pre = ""; //$NON-NLS-1$
             }
-            if (string.startsWith("&") || string.startsWith("\\Z") || string.startsWith("\\z")) {
-                post = "";
+            if (string.startsWith("&") || string.startsWith("\\Z") || string.startsWith("\\z")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                post = ""; //$NON-NLS-1$
             }
             builder.append(pre);
             builder.append(string);
@@ -1059,7 +1059,7 @@ public class FeatureTableControl implements ISelectionProvider {
 
     private boolean matches( Pattern pattern, Object attribute ) {
         if (attribute == null) {
-            attribute = "";
+            attribute = ""; //$NON-NLS-1$
         }
         String stringValue = attribute.toString();
         return pattern.matcher(stringValue).matches();

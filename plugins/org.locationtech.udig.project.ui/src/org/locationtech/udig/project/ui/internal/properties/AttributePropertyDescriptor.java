@@ -111,7 +111,7 @@ public class AttributePropertyDescriptor extends PropertyDescriptor {
             }
             return super.createPropertyEditor(parent);
         }catch(Throwable t){
-            ProjectUIPlugin.log("error converting attribute to string", t);
+            ProjectUIPlugin.log("error converting attribute to string", t); //$NON-NLS-1$
             return null;
         }
     }

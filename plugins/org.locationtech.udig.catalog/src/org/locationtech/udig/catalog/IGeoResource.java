@@ -380,8 +380,8 @@ public abstract class IGeoResource implements IResolve {
     public String getDisplayID() {
         String userInfo = getIdentifier().getUserInfo();
         if (userInfo != null) {
-            userInfo = userInfo.substring(0, userInfo.indexOf(":")+1);
-            userInfo = userInfo.concat("******");
+            userInfo = userInfo.substring(0, userInfo.indexOf(":")+1); //$NON-NLS-1$
+            userInfo = userInfo.concat("******"); //$NON-NLS-1$
             return new ID(getIdentifier().toString().replace(getIdentifier().getUserInfo(), userInfo), null).toString();
         }
         return getID().toString();

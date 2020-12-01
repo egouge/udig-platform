@@ -12,10 +12,9 @@ package org.locationtech.udig.project.render;
 import java.awt.Rectangle;
 import java.util.List;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.project.internal.render.RenderingCoordinator;
 import org.locationtech.udig.project.render.displayAdapter.IMapDisplay;
-
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 /**
  * A listener that listeners for the current state of rendering.  

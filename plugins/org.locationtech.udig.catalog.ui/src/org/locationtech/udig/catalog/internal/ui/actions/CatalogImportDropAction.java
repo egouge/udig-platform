@@ -148,15 +148,15 @@ public class CatalogImportDropAction extends IDropAction {
     protected URL extractURL( String data ) {
         String decoded = data;
         try {
-            decoded = URLDecoder.decode(decoded, "UTF-8");
+            decoded = URLDecoder.decode(decoded, "UTF-8"); //$NON-NLS-1$
         } catch (UnsupportedEncodingException e2) {
             // so ignore...
         }
-        decoded = decoded.replaceAll("amp;", "&");
+        decoded = decoded.replaceAll("amp;", "&"); //$NON-NLS-1$ //$NON-NLS-2$
 
         URL result = null;
 
-        String line = decoded.replace("\\S+", ""); //$NON-NLS-1$
+        String line = decoded.replace("\\S+", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
         result = matchAnchorTag(line);
 
@@ -180,7 +180,7 @@ public class CatalogImportDropAction extends IDropAction {
             result = new URL(line);
         } catch (MalformedURLException e) {
         }
-        if (result == null && !line.contains(":/")) {
+        if (result == null && !line.contains(":/")) { //$NON-NLS-1$
             // maybe its a file?
 //            try {
                 result = URLUtils.fileToURL(new File(line));
@@ -234,7 +234,7 @@ public class CatalogImportDropAction extends IDropAction {
                     group = group.substring(0, index);
                 result = new URL(group);
             } catch (MalformedURLException e) {
-                UiPlugin.trace(Trace.DND, CatalogImportDropAction.class,"failure to create url from "+group, e);
+                UiPlugin.trace(Trace.DND, CatalogImportDropAction.class,"failure to create url from "+group, e); //$NON-NLS-1$
             }
         }
         return result;
@@ -300,7 +300,7 @@ public class CatalogImportDropAction extends IDropAction {
                     // get the id
                     IConfigurationElement[] elements = extension.getConfigurationElements();
                     for( int i = 0; i < elements.length; i++ ) {
-                        if( elements[i].getAttribute("id") != null){
+                        if( elements[i].getAttribute("id") != null){ //$NON-NLS-1$
                             ids.add(elements[i].getAttribute("id")); //$NON-NLS-1$
                         }
                     }

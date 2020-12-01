@@ -44,7 +44,7 @@ public class BasicFeatureMetrics extends AbstractRenderMetrics {
         styleIds.add(SLDContent.ID);
         styleIds.add(ProjectBlackboardConstants.LAYER__DATA_QUERY);
         styleIds.add(ProjectBlackboardConstants.LAYER__STYLE_FILTER);
-        styleIds.add("org.locationtech.udig.style.cache");
+        styleIds.add("org.locationtech.udig.style.cache"); //$NON-NLS-1$
         
         return styleIds;
     }
@@ -63,7 +63,7 @@ public class BasicFeatureMetrics extends AbstractRenderMetrics {
         }
         // DATA SOURCE PERFORMANCE INDICATORS
         ID id = context.getGeoResource().getID();
-        Boolean memory = (Boolean) context.getLayer().getStyleBlackboard().get("org.locationtech.udig.style.cache");
+        Boolean memory = (Boolean) context.getLayer().getStyleBlackboard().get("org.locationtech.udig.style.cache"); //$NON-NLS-1$
         
         if( id.isMemory() ){
             this.latencyMetric = LATENCY_MEMORY;
@@ -107,7 +107,7 @@ public class BasicFeatureMetrics extends AbstractRenderMetrics {
             return MinMaxScaleCalculator.getValidScaleRanges(style);
         }
         else {
-            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);            
+            System.out.println("Unexpected "+value.getClass()+" for "+SLDContent.ID+":"+value);             //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             return new HashSet<Range<Double>>();
         }
     }

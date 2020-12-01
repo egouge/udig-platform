@@ -21,6 +21,7 @@ import org.geotools.data.Query;
 import org.locationtech.udig.project.ProjectBlackboardConstants;
 import org.locationtech.udig.project.internal.Layer;
 import org.locationtech.udig.project.internal.StyleBlackboard;
+import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.ui.filter.FilterInput;
 import org.locationtech.udig.ui.filter.FilterViewer;
 import org.locationtech.udig.ui.filter.IFilterViewer;
@@ -69,15 +70,15 @@ public class LayerQueryPropertyPage extends UDIGPropertyPage implements IWorkben
             // disable!
         }
         Composite page = new Composite(parent, SWT.NONE);
-        page.setLayout( new MigLayout("insets panel", "[][fill]", "[fill][]") );
+        page.setLayout( new MigLayout("insets panel", "[][fill]", "[fill][]") ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
         Label label = new Label(page, SWT.SINGLE );
-        label.setText("Data Filter");
-        label.setLayoutData("cell 0 0,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration
+        label.setText(Messages.LayerQueryPropertyPage_DataFilter);
+        label.setLayoutData("cell 0 0,aligny top, gapx 0 unrelated"); // unrelated spacing after to leave room for label decoration //$NON-NLS-1$
 
         ControlDecoration decoration = new ControlDecoration(label, SWT.RIGHT | SWT.TOP );
         filter = new FilterViewer(page, SWT.MULTI );
-        filter.getControl().setLayoutData("cell 1 0,grow,width 200:100%:100%,height 60:100%:100%");
+        filter.getControl().setLayoutData("cell 1 0,grow,width 200:100%:100%,height 60:100%:100%"); //$NON-NLS-1$
         
         FilterInput input = new FilterInput();
         input.setFeedback(decoration);

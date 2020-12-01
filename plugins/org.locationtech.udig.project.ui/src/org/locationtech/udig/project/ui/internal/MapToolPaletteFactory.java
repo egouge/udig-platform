@@ -68,7 +68,7 @@ public class MapToolPaletteFactory {
         // Normal GEF Tools (SelectionTool etc...)
         // PaletteContainer controlGroup = createControlGroup(root);
         // categories.add(controlGroup);
-        PaletteToolbar navigation = new PaletteToolbar("Navigation");
+        PaletteToolbar navigation = new PaletteToolbar(Messages.MapToolPaletteFactory_NavigationGroup);
 //        navigation.setInitialState(PaletteDrawer.INITIAL_STATE_OPEN);
 //        navigation.setDrawerType(ToolEntry.PALETTE_TYPE_TOOL);
         navigation.setUserModificationPermission(PaletteContainer.PERMISSION_NO_MODIFICATION);
@@ -81,8 +81,8 @@ public class MapToolPaletteFactory {
             String name = fixLabel(category.getName());
             
             PaletteContainer container;
-            if( category.getId().equals("org.locationtech.udig.tool.category.zoom") ||
-                    category.getId().equals("org.locationtech.udig.tool.category.pan")){
+            if( category.getId().equals("org.locationtech.udig.tool.category.zoom") || //$NON-NLS-1$
+                    category.getId().equals("org.locationtech.udig.tool.category.pan")){ //$NON-NLS-1$
                 container = navigation;
             }
             else {
@@ -98,7 +98,7 @@ public class MapToolPaletteFactory {
                 drawer.setUserModificationPermission(PaletteContainer.PERMISSION_NO_MODIFICATION);
                 drawer.setShowDefaultIcon(false);
                 if( shortcut != null ){
-                    drawer.setDescription( "("+shortcut+")" );
+                    drawer.setDescription( "("+shortcut+")" ); //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 container = drawer;
             }
@@ -122,15 +122,15 @@ public class MapToolPaletteFactory {
 
         Comparator<PaletteContainer> sorter = new Comparator<PaletteContainer>(){
             List<String> preferredOrder = Arrays.asList(new String[]{
-                    "org.locationtech.udig.tool.category.zoom",
-                    "org.locationtech.udig.tool.category.pan",
-                    "org.locationtech.udig.tool.category.info",
-                    "org.locationtech.udig.tool.category.measure",
-                    "org.locationtech.udig.tool.category.selection"
+                    "org.locationtech.udig.tool.category.zoom", //$NON-NLS-1$
+                    "org.locationtech.udig.tool.category.pan", //$NON-NLS-1$
+                    "org.locationtech.udig.tool.category.info", //$NON-NLS-1$
+                    "org.locationtech.udig.tool.category.measure", //$NON-NLS-1$
+                    "org.locationtech.udig.tool.category.selection" //$NON-NLS-1$
             });
             int order( String id ){
                 int index = preferredOrder.indexOf(id);
-                if ("Other".equals(id)) {
+                if ("Other".equals(id)) { //$NON-NLS-1$
                     // Other will be -2 after everything else
                     return -2;
                 }
@@ -170,16 +170,16 @@ public class MapToolPaletteFactory {
     }
     
     static String shortcut( String label ){
-        int cut = label.indexOf("&");
+        int cut = label.indexOf("&"); //$NON-NLS-1$
         String shortcut = cut == -1 ? null : label.substring(cut+1,cut+2);
         return shortcut;
     }
 
     /** Trim funny symbols as the world tool from the label displayed */
     static String fixLabel( String label ) {
-        label = label.replace("&", ""); // remove reference to keyboard short cut
-        label = label.replace("Tools", "");
-        label = label.replace("Tool", "");
+        label = label.replace("&", ""); // remove reference to keyboard short cut //$NON-NLS-1$ //$NON-NLS-2$
+        label = label.replace("Tools", ""); //$NON-NLS-1$ //$NON-NLS-2$
+        label = label.replace("Tool", ""); //$NON-NLS-1$ //$NON-NLS-2$
         return label;
     }
 
@@ -192,7 +192,7 @@ public class MapToolPaletteFactory {
      * @return container of the usual GEF suspects
      */
     private static PaletteContainer createControlGroup( PaletteRoot root ) {
-        PaletteGroup controlGroup = new PaletteGroup("Actions");
+        PaletteGroup controlGroup = new PaletteGroup(Messages.MapToolPaletteFactory_ActionsGroup);
 
         List<ToolEntry> entries = new ArrayList<ToolEntry>();
 

@@ -33,7 +33,6 @@ import org.opengis.util.InternationalString;
  * 
  * @author Jody Garnett
  */
-@SuppressWarnings("deprecation")
 public class GeoToolsAdapters {
 
     static public IGeoResourceInfo info( final ResourceInfo info ){

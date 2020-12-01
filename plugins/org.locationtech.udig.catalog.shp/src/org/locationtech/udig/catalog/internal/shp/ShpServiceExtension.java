@@ -37,7 +37,7 @@ public class ShpServiceExtension extends AbstractDataStoreServiceExtension imple
 
     //name of system variable to hold the charset encoding to be used during
     //shp service creation. Should be defined as a system variable during startup
-    public static String SHP_CHARSET_PARAM_NAME = "shp.encoding";
+    public static String SHP_CHARSET_PARAM_NAME = "shp.encoding"; //$NON-NLS-1$
 
     // this is for backwards compatibility with 1.1.x.  The parameter key was 
     // changed in geotools since 2.2
@@ -76,8 +76,8 @@ public class ShpServiceExtension extends AbstractDataStoreServiceExtension imple
             }
             String file=url.getFile();
             file=file.toLowerCase();
-            if (!(file.endsWith(".shp") || file.endsWith(".shx") || file.endsWith(".qix") || file
-                    .endsWith(".dbf"))) {
+            if (!(file.endsWith(".shp") || file.endsWith(".shx") || file.endsWith(".qix") || file //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                    .endsWith(".dbf"))) { //$NON-NLS-1$
                 return null;
             }
             

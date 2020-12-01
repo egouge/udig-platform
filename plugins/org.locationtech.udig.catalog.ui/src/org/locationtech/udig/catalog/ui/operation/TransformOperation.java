@@ -73,14 +73,12 @@ public class TransformOperation implements IOp {
         SimpleFeature feature;
         final FeatureCollection<SimpleFeatureType, SimpleFeature> collection = featureSource
                 .getFeatures();
-        FeatureIterator<SimpleFeature> iterator = collection.features();
-        try {
+        
+        try(FeatureIterator<SimpleFeature> iterator = collection.features()) {
             if (!iterator.hasNext()) {
                 return; // no contents ... ignore
             }
             feature = iterator.next();
-        } finally {
-            iterator.close();
         }
         final SimpleFeature sample = feature;
         PlatformGIS.asyncInDisplayThread( new Runnable(){
@@ -151,7 +149,7 @@ public class TransformOperation implements IOp {
                         store.addFeatures(DataUtilities.collection(feature));
                     } catch (Throwable t) {
                         if (warning) {
-                            System.out.println( "Process "+fid+":"+t);
+                            System.out.println( "Process "+fid+":"+t); //$NON-NLS-1$ //$NON-NLS-2$
                             t.printStackTrace();
                             warning = false;
                         }

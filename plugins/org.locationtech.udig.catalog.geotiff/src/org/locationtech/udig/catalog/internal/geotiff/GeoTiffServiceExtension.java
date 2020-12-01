@@ -18,14 +18,13 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.geotools.gce.geotiff.GeoTiffFormat;
+import org.geotools.gce.geotiff.GeoTiffFormatFactorySpi;
 import org.locationtech.udig.catalog.ID;
 import org.locationtech.udig.catalog.IService;
 import org.locationtech.udig.catalog.ServiceExtension2;
 import org.locationtech.udig.catalog.URLUtils;
 import org.locationtech.udig.catalog.geotiff.internal.Messages;
-
-import org.geotools.gce.geotiff.GeoTiffFormat;
-import org.geotools.gce.geotiff.GeoTiffFormatFactorySpi;
 
 
 /**

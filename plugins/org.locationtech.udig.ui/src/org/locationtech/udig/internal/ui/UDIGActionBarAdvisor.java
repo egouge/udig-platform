@@ -528,8 +528,8 @@ public class UDIGActionBarAdvisor extends ActionBarAdvisor {
             IProduct product = Platform.getProduct();
             String productName;
             if( product == null ){
-            	UiPlugin.log("there is no product so default to uDig", null);
-            	productName = "uDig";
+            	UiPlugin.log("there is no product so default to uDig", null); //$NON-NLS-1$
+            	productName = "uDig"; //$NON-NLS-1$
             }else{
             	productName = product.getName();
             }

@@ -42,7 +42,6 @@ import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
 import org.locationtech.udig.catalog.rasterings.GridCoverageLoader;
 import org.locationtech.udig.catalog.rasterings.RasteringsPlugin;
 import org.locationtech.udig.internal.ui.UiPlugin;
-import org.locationtech.udig.ui.PlatformGIS;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.geometry.Envelope;

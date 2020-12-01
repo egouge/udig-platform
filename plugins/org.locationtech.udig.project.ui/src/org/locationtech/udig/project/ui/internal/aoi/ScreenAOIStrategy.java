@@ -28,7 +28,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 public class ScreenAOIStrategy extends IAOIStrategy {
 
-	private static String name = "Screen";
+	private static String name = "Screen"; //$NON-NLS-1$
 	
     protected IViewportModelListener watcher = new IViewportModelListener(){
         @Override

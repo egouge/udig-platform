@@ -13,13 +13,12 @@ package org.locationtech.udig.tool.info.internal.display;
 
 import java.io.IOException;
 
-import org.locationtech.udig.tool.info.InfoDisplay;
-import org.locationtech.udig.tool.info.LayerPointInfo;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.locationtech.udig.tool.info.InfoDisplay;
+import org.locationtech.udig.tool.info.LayerPointInfo;
 
 /**
  * Nested browser used to display LayerPointInfo.

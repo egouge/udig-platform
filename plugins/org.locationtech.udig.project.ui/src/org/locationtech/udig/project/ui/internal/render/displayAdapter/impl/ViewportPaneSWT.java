@@ -271,7 +271,7 @@ public class ViewportPaneSWT extends Canvas implements ViewportPane {
     			viewportTrsf = worldToScreenTrsf;
     			viewportTrsf.concatenate(this.swtImageTrsf.createInverse());
     		} catch (NoninvertibleTransformException ex) {
-    			UiPlugin.getDefault().log("Viewport transform was not invertible.", ex);
+    			UiPlugin.getDefault().log("Viewport transform was not invertible.", ex); //$NON-NLS-1$
     			//just return the default transform.
     		}
     	}

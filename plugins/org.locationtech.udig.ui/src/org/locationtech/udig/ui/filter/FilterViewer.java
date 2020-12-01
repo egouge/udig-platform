@@ -18,7 +18,7 @@ import java.util.List;
 
 import net.miginfocom.swt.MigLayout;
 import org.locationtech.udig.internal.ui.UiPlugin;
-
+import org.locationtech.udig.ui.internal.Messages;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -168,13 +168,13 @@ public class FilterViewer extends IFilterViewer {
                 }
             }
         };
-        control.setLayout(new MigLayout("insets 0", "[fill][]", "[fill]"));
+        control.setLayout(new MigLayout("insets 0", "[fill][]", "[fill]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         
         pageBook = new PageBook(control, SWT.NO_SCROLL);
-        pageBook.setLayoutData("cell 0 0,grow,width 200:100%:100%,height 18:75%:100%");
+        pageBook.setLayoutData("cell 0 0,grow,width 200:100%:100%,height 18:75%:100%"); //$NON-NLS-1$
         
         placeholder = new Label( pageBook, SWT.SINGLE );
-        placeholder.setText("Choose filter editor");
+        placeholder.setText(Messages.FilterViewer_FilterEditor);
         
         delegate = new CQLFilterViewer(pageBook, style);
         delegate.addSelectionChangedListener(listener);
@@ -185,7 +185,7 @@ public class FilterViewer extends IFilterViewer {
         
         config = new Label(control, SWT.SINGLE);
         config.setImage(JFaceResources.getImage(PopupDialog.POPUP_IMG_MENU));
-        config.setLayoutData("cell 1 0,aligny top,height 16!, width 16!");
+        config.setLayoutData("cell 1 0,aligny top,height 16!, width 16!"); //$NON-NLS-1$
         
         createContextMenu( config );
 
@@ -352,7 +352,7 @@ public class FilterViewer extends IFilterViewer {
                         current = category;
                     }
                     else if( current != category ){
-                        menuManager.add( new Separator("appropriate "+current));
+                        menuManager.add( new Separator("appropriate "+current)); //$NON-NLS-1$
                         current = category;
                     }
                     FilterViewerFactoryContributionItem contributionItem = new FilterViewerFactoryContributionItem(factory);
@@ -393,7 +393,7 @@ public class FilterViewer extends IFilterViewer {
     // Factory and Extension Point Support
     //
     /** Extension point ID */
-    public static final String FILTER_VIEWER_EXTENSION = "org.locationtech.udig.ui.filterViewer";
+    public static final String FILTER_VIEWER_EXTENSION = "org.locationtech.udig.ui.filterViewer"; //$NON-NLS-1$
 
     private static List<FilterViewerFactory> filterViewerFactoryList;
     
@@ -419,10 +419,10 @@ public class FilterViewer extends IFilterViewer {
             
             IConfigurationElement[] configurationElements = extensionPoint.getConfigurationElements();
             for (IConfigurationElement configuration : configurationElements) {
-                if ("filterViewer".equals(configuration.getName())) {
+                if ("filterViewer".equals(configuration.getName())) { //$NON-NLS-1$
                     try {
                         FilterViewerFactory factory;
-                        factory = (FilterViewerFactory) configuration.createExecutableExtension("class");
+                        factory = (FilterViewerFactory) configuration.createExecutableExtension("class"); //$NON-NLS-1$
                         factory.init(configuration);
 
                         list.add(factory);

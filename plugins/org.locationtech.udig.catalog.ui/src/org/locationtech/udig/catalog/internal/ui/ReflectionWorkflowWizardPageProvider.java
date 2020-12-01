@@ -40,7 +40,7 @@ public class ReflectionWorkflowWizardPageProvider implements WorkflowWizardPageP
             // make sure that the contructor works.
             constructor.newInstance();
         } catch (Exception e) {
-            throw new IllegalArgumentException("The class parameter must have a *public* 0 parameter constructor", e);
+            throw new IllegalArgumentException("The class parameter must have a *public* 0 parameter constructor", e); //$NON-NLS-1$
         }
     }
 

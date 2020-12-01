@@ -18,12 +18,11 @@ import java.awt.image.BufferedImage;
 
 import javax.media.jai.TileCache;
 
+import org.geotools.data.Query;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.project.IAbstractContext;
 import org.locationtech.udig.project.ILayer;
-
-import org.geotools.data.Query;
-import org.geotools.geometry.jts.ReferencedEnvelope;
 
 /**
  * Simplifies access of resource data and output image for renderers.  

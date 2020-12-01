@@ -30,7 +30,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.locationtech.udig.catalog.internal.CatalogImpl;
 import org.locationtech.udig.catalog.internal.Messages;
-import org.locationtech.udig.catalog.internal.ResolveManager;
 import org.locationtech.udig.catalog.internal.ResolveManager2;
 import org.locationtech.udig.catalog.internal.ServiceFactoryImpl;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
@@ -62,7 +61,7 @@ import org.osgi.service.prefs.BackingStoreException;
  */
 public class CatalogPlugin extends Plugin {
 
-    private static final String EXTENSION_POINT_ICATALOG = "org.locationtech.udig.catalog.ICatalog";
+    private static final String EXTENSION_POINT_ICATALOG = "org.locationtech.udig.catalog.ICatalog"; //$NON-NLS-1$
 
     public static final String ID = "org.locationtech.udig.catalog"; //$NON-NLS-1$
 
@@ -125,15 +124,15 @@ public class CatalogPlugin extends Plugin {
         resolveManager = new ResolveManager2();
         
         // ensure a preference store is around so we can save to it in the shutdown hook
-        preferenceStore = new ScopedPreferenceStore(new InstanceScope(), getBundle().getSymbolicName());
+        preferenceStore = new ScopedPreferenceStore(InstanceScope.INSTANCE, getBundle().getSymbolicName());
 
         try {
             if (Display.getCurrent() != null) {
-                CatalogPlugin.trace("Restoring Local Catalog", null);
+                CatalogPlugin.trace("Restoring Local Catalog", null); //$NON-NLS-1$
             }
             plugin.restoreFromPreferences();
         } catch (Throwable e) {
-            CatalogPlugin.log("Unable to restore catalog:"+e, e);
+            CatalogPlugin.log("Unable to restore catalog:"+e, e); //$NON-NLS-1$
             handlerLoadingError(e);
         }
         addSaveLocalCatalogShutdownHook();
@@ -193,14 +192,19 @@ public class CatalogPlugin extends Plugin {
     }
 
     private void copy( File file, File backup ) throws IOException {
-        FileChannel in = new FileInputStream(file).getChannel(), out = new FileOutputStream(backup)
-                .getChannel();
-        final int BSIZE = 1024;
-        ByteBuffer buffer = ByteBuffer.allocate(BSIZE);
-        while( in.read(buffer) != -1 ) {
-            buffer.flip(); // Prepare for writing
-            out.write(buffer);
-            buffer.clear(); // Prepare for reading
+    	try(FileInputStream inputstream = new FileInputStream(file);
+    			FileOutputStream outputstream = new FileOutputStream(backup)){
+        
+    		FileChannel in = inputstream.getChannel(); 
+        	FileChannel out = outputstream.getChannel();
+        	
+	        final int BSIZE = 1024;
+	        ByteBuffer buffer = ByteBuffer.allocate(BSIZE);
+	        while( in.read(buffer) != -1 ) {
+	            buffer.flip(); // Prepare for writing
+	            out.write(buffer);
+	            buffer.clear(); // Prepare for reading
+	        }
         }
     }
 
@@ -231,13 +235,13 @@ public class CatalogPlugin extends Plugin {
                 localCatalog.loadFromFile(catalogFile, serviceFactory);
             }
         } catch (Throwable t) {
-            CatalogPlugin.log("Trouble restoring local catalog:"+t, t);
+            CatalogPlugin.log("Trouble restoring local catalog:"+t, t); //$NON-NLS-1$
         }
         try {
             loadCatalogs();
         }
         catch (Throwable t) {
-            CatalogPlugin.log("Trouble connectin remote catalogs:"+t, t);
+            CatalogPlugin.log("Trouble connectin remote catalogs:"+t, t); //$NON-NLS-1$
         }
     }
     /**
@@ -250,8 +254,8 @@ public class CatalogPlugin extends Plugin {
             EXTENSION_POINT_ICATALOG, new ExtensionPointProcessor(){
                 public void process( IExtension extension, IConfigurationElement element )
                         throws Exception {
-                    ISearch externalCatalog = (ISearch) element.createExecutableExtension("class");
-                    availableCatalogs.add(externalCatalog); //$NON-NLS-1$                 
+                    ISearch externalCatalog = (ISearch) element.createExecutableExtension("class"); //$NON-NLS-1$
+                    availableCatalogs.add(externalCatalog); 
                 }
             }
         );
@@ -408,7 +412,7 @@ public class CatalogPlugin extends Plugin {
             if( registered.containsKey(id)){
                 ServiceExtension existing = registered.get(id);
                 String exsistingName = existing != null ? existing.getClass().getSimpleName() : null;
-                throw new IllegalStateException("ServiceExtension "+id+" already registered with "+exsistingName );
+                throw new IllegalStateException("ServiceExtension "+id+" already registered with "+exsistingName ); //$NON-NLS-1$ //$NON-NLS-2$
             }
             
             registered.put( id, extension );
@@ -428,14 +432,14 @@ public class CatalogPlugin extends Plugin {
                 //
                 registered = new HashMap<String, ServiceExtension>();
                 ExtensionPointUtil.process(CatalogPlugin.getDefault(),
-                        ServiceExtension.EXTENSION_ID, new ExtensionPointProcessor() { //$NON-NLS-1$
+                        ServiceExtension.EXTENSION_ID, new ExtensionPointProcessor() { 
                             public void process(IExtension extension, IConfigurationElement element) throws Exception {
                                 // extentionIdentifier used to report any problems;
                                 // in the event of failure we want to be able to report
                                 // who had the problem
                                 // String extensionId = extension.getUniqueIdentifier();
-                                String id = element.getAttribute("id");
-                                ServiceExtension se = (ServiceExtension) element.createExecutableExtension("class");
+                                String id = element.getAttribute("id"); //$NON-NLS-1$
+                                ServiceExtension se = (ServiceExtension) element.createExecutableExtension("class"); //$NON-NLS-1$
                                 if (id == null || id.length() == 0) {
                                     id = se.getClass().getSimpleName();
                                 }
@@ -506,7 +510,7 @@ public class CatalogPlugin extends Plugin {
      * @param t Throwable causing the message; if this is an exception an error will be logged
      */
     public static void log( String message, Throwable t ) {
-        String msg = message == null ? "" : message;
+        String msg = message == null ? "" : message; //$NON-NLS-1$
         int status = t instanceof Exception || message != null ? IStatus.ERROR : IStatus.INFO;
         getDefault().getLog().log(new Status(status, ID, IStatus.OK, msg, t));
     }

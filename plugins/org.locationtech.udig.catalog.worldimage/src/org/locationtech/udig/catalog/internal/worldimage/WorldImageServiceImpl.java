@@ -20,14 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.geotools.gce.image.WorldImageFormatFactory;
 import org.locationtech.udig.catalog.URLUtils;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterGeoResource;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterService;
 import org.locationtech.udig.catalog.rasterings.AbstractRasterServiceInfo;
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.geotools.gce.image.WorldImageFormatFactory;
 
 /**
  * Provides a handle to a world image service allowing the service to be lazily loaded.
@@ -77,7 +76,7 @@ public class WorldImageServiceImpl extends AbstractRasterService {
     protected AbstractRasterServiceInfo createInfo( IProgressMonitor monitor ) throws IOException {
         if (monitor == null)
             monitor = new NullProgressMonitor();
-        monitor.beginTask("world image", 2);
+        monitor.beginTask("world image", 2); //$NON-NLS-1$
         try {
             monitor.worked(1);
             return new AbstractRasterServiceInfo(this,

@@ -13,6 +13,9 @@ package org.locationtech.udig.project.internal.render.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
 import org.locationtech.udig.project.internal.Layer;
@@ -22,9 +25,6 @@ import org.locationtech.udig.project.internal.render.SelectionLayer;
 import org.locationtech.udig.project.internal.render.impl.InternalRenderMetricsFactory.InternalRenderMetrics;
 import org.locationtech.udig.project.render.IMultiLayerRenderer;
 import org.locationtech.udig.project.render.IRenderMetricsFactory;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
 
 /**
  * Processes the org.locationtech.udig.project.renderer extension point adding the RendererMetricsFactories that apply to the layer to 

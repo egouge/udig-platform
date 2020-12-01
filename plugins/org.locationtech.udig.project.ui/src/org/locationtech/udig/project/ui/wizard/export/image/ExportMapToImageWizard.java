@@ -105,7 +105,7 @@ public class ExportMapToImageWizard extends Wizard implements IExportWizard {
                     if (currentPage == mapSelectorPage) {
                         String currentFormat = imageSettingsPage.getFormat().getName();
                         String description = MessageFormat.format(
-                                "Select map to export to {0} images", currentFormat);
+                                Messages.ExportMapToImageWizard_SelectMapLabel, currentFormat);
                         currentPage.setDescription(description);
                     }
                 }
@@ -148,13 +148,13 @@ public class ExportMapToImageWizard extends Wizard implements IExportWizard {
                                     + e.getLocalizedMessage());
                         } catch (TransformException e) {
                             errors
-                                    .add("Failed to create world file.  This image can not be used as a Raster file in uDig");
+                                    .add(Messages.ExportMapToImageWizard_WorldFileCreationFail);
                         } catch (NoninvertibleTransformException e) {
                             errors
-                                    .add("Failed to create world file.  This image can not be used as a Raster file in uDig");
+                                    .add(Messages.ExportMapToImageWizard_WorldFileCreationFail);
                         } catch (RuntimeException e) {
                             errors
-                                    .add("An unexpected failure occurred: "
+                                    .add(Messages.ExportMapToImageWizard_UnknownError
                                             + e.getLocalizedMessage());
                         }
                         renderedMaps.add(map);
@@ -236,7 +236,7 @@ public class ExportMapToImageWizard extends Wizard implements IExportWizard {
 
     private void addToCatalog( final File file ) throws IOException {
         if( !file.exists() ){
-            throw new FileNotFoundException("Expected "+file+" was not created");
+            throw new FileNotFoundException("Expected "+file+" was not created"); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
         // try if the file isn't a pdf
@@ -244,7 +244,7 @@ public class ExportMapToImageWizard extends Wizard implements IExportWizard {
             return;
         }
 
-        Job addToCatalog = new Job("Add "+file.getName() ){
+        Job addToCatalog = new Job("Add "+file.getName() ){ //$NON-NLS-1$
             @Override
             protected IStatus run(IProgressMonitor monitor) {
                 ICatalog localCatalog = CatalogPlugin.getDefault().getLocalCatalog();
@@ -255,7 +255,7 @@ public class ExportMapToImageWizard extends Wizard implements IExportWizard {
                 }
                 catch( IOException unepected ){
                 }
-                return service != null ? Status.OK_STATUS : new Status( IStatus.ERROR, ProjectUIPlugin.ID, "Failed to add "+file );
+                return service != null ? Status.OK_STATUS : new Status( IStatus.ERROR, ProjectUIPlugin.ID, "Failed to add "+file ); //$NON-NLS-1$
             }
         };
         addToCatalog.schedule();

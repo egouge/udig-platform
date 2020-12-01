@@ -11,10 +11,9 @@ package org.locationtech.udig.project;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.locationtech.udig.project.command.Command;
 import org.locationtech.udig.project.command.MapCommand;
-
-import org.eclipse.emf.common.util.URI;
 
 /**
  * A Project contains Maps and Pages.

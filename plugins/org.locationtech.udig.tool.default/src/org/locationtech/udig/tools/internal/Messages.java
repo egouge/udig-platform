@@ -25,6 +25,8 @@ public class Messages extends NLS {
     public static String Navigation_Title;
     public static String Navigation_Scale;
     public static String Navigation_Tiled;
+	public static String PanTool_ScaleButton;
+	public static String PanTool_TiledButton;
 	public static String ScrollZoom_scroll_zoom;
 
 

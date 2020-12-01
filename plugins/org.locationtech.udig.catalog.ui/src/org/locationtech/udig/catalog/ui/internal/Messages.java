@@ -21,6 +21,8 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.locationtech.udig.catalog.ui.internal.messages"; //$NON-NLS-1$
+	public static String AbstractUDIGImportPage_Cancelled;
+	public static String AbstractUDIGImportPage_ConnectError;
 	public static String action_remove_tooltip      ;
 	public static String action_remove_label        ;
 	public static String action_remove_image        ;
@@ -53,12 +55,18 @@ public class Messages extends NLS {
     public static String ConnectionFailurePage_selectChild;
     public static String ConnectionFailurePage_title;
     public static String ConnectionFailureState_name;
+	public static String ConnectionFailureState_NoConnection;
+	public static String ConnectionFailureState_NoData;
+	public static String ConnectionFailureState_WizardError;
     public static String ExportPage_Destination;
     public static String ExportPage_Browse;
     public static String ExportPage_ExportDir;
     public static String ExportPage_ResourceList;
     public static String ReprojectingFeatureCollection_transformationError;
-    public static String ReshapeOperation_2;
+    public static String ReshapeDialog_NotModified;
+	public static String ReshapeDialog_ResultMessage;
+	public static String ReshapeDialog_TransformLabel;
+	public static String ReshapeOperation_2;
     public static String ReshapeOperation_3;
     public static String ReshapeOperation_4;
     public static String ReshapeOperation_5;
@@ -68,7 +76,12 @@ public class Messages extends NLS {
     public static String ReshapeOperation_noAction;
     public static String ReshapeOperation_task;
     
-    public static String ResourceSelectionPage_brokenReportError;
+    public static String ResourcePropertyPage_AutoGeneratre;
+	public static String ResourcePropertyPage_IdLabel;
+	public static String ResourcePropertyPage_TitleLabel;
+	public static String ResourceSearchComposite_searchError;
+	public static String ResourceSearchComposite_searchHint;
+	public static String ResourceSelectionPage_brokenReportError;
     public static String ResourceSelectionPage_brokenUnknown;
     public static String ResourceSelectionPage_connectedButNoResources;
     public static String ResourceSelectionPage_description;
@@ -96,6 +109,9 @@ public class Messages extends NLS {
 	public static String SearchView_default       ;
 	public static String SearchView_bboxTooltip   ;
 	public static String SearchView_bbox          ;
+	public static String ServicePropertyPage_AutoGen;
+	public static String ServicePropertyPage_IdLabel;
+	public static String ServicePropertyPage_TitleLabel;
 	public static String ResourceSelectionState_taskName  ;
 	public static String ResourceSelectionState_stateName ;
 	public static String ResourceSelectionPage_title   ;
@@ -115,6 +131,12 @@ public class Messages extends NLS {
 	public static String NewFeatureTypeOp_shpTitle          ;
 	public static String NewFeatureTypeOp_shpMessage        ;
 	public static String NewFeatureTypeOp_message           ;
+	public static String FileConnectionFactory_FileTypeLabel;
+	public static String FileConnectionFactory_GeotoolsFiles;
+	public static String FileConnectionFactory_ProvidersLabel;
+	public static String FileConnectionPage_AllFilesOther;
+	public static String FileConnectionPage_AllFilesWindows;
+	public static String FileConnectionPage_SupportedFiles;
 	//public static String NewFeatureTypeOp_cantWriteTitle    ;
 	//public static String NewFeatureTypeOp_cantWriteMessage1 ;
 	public static String FileConnectionPage_taskname ;
@@ -181,6 +203,7 @@ public class Messages extends NLS {
 	//public static String CatalogImportWizard_importJobName         ;
 	public static String CatalogImportDelegateWizard_windowTitle ;
 	public static String CatalogImport_monitor_task                ;
+	public static String CatalogImportWizard_ImportWindowTitle;
     public static String NewServiceConnectionFactory_defaultGeom;
     public static String DependencyQueryPreferencePage_restartQuestion;
     public static String DependencyQueryPreferencePage_restartNeeded;
@@ -198,13 +221,17 @@ public class Messages extends NLS {
     //public static String CatalogExport_duplicate;
     public static String CatalogExport_layerFail;
     public static String CatalogExport_exportLayersTask;
+	public static String CatalogExport_LayersPage;
     //public static String CatalogExport_existsMulti;
     //public static String CatalogExport_exists;
     //public static String CatalogExport_save;
     public static String CatalogExport_taskName;
     public static String CountDownProgressMonitor_taskNamePart1;
     public static String CountDownProgressMonitor_taskNamePart2;
-    public static String LayerSelectionPage_message;
+    public static String IntermediateState_PageName;
+	public static String IServicePropertiesCommandHandler_PropertiesMessage;
+	public static String IServicePropertiesCommandHandler_PropertiesTitle;
+	public static String LayerSelectionPage_message;
     public static String LayerSelectionPage_title;
 
     
@@ -212,7 +239,18 @@ public class Messages extends NLS {
     public static String TransformDialog_Title;
 
 
-    static {
+    public static String TransformPanel_AddButton;
+	public static String TransformPanel_AttributeColumn;
+	public static String TransformPanel_DefinitionColumn;
+	public static String TransformPanel_DownButton;
+	public static String TransformPanel_ExpressionColumn;
+	public static String TransformPanel_RemoveButton;
+	public static String TransformPanel_Transform;
+	public static String TransformPanel_TypeColumn;
+	public static String TransformPanel_UpButton;
+
+
+	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}

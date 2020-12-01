@@ -52,13 +52,13 @@ public class NewServiceConnectionFactory extends UDIGConnectionFactory {
             }
             SimpleFeatureTypeBuilder build = new SimpleFeatureTypeBuilder();
             build.setName(typename+i);
-            build.setNamespaceURI( "http://udig.refractions.net");
+            build.setNamespaceURI( "http://udig.refractions.net");  //$NON-NLS-1$
             build.setAbstract(false);
             build.add(Messages.NewServiceConnectionFactory_defaultGeom,org.locationtech.jts.geom.Geometry.class);
             
             SimpleFeatureType schema = build.buildFeatureType(); 
             
-            ds.createSchema( schema ); //$NON-NLS-1$
+            ds.createSchema( schema );
         } catch (Exception e) {
             CatalogUIPlugin.log("Error creating MemoryDatastore or feature type", e); //$NON-NLS-1$
             return null;

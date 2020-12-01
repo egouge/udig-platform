@@ -301,24 +301,24 @@ public class FileConnectionPage extends AbstractUDIGImportPage implements UDIGCo
             extensions.add( fileExtensions );
          
             if( all.length() != 0 ){
-                all.append( ";" );    
+                all.append( ";" );     //$NON-NLS-1$
             }
             all.append( fileExtensions );
             
         }
         // default to all supported files
-        names.add(0,"Supported Files");
+        names.add(0,Messages.FileConnectionPage_SupportedFiles);
         extensions.add( 0, all.toString() );
         
         // provide an option to select any file
         String platform = SWT.getPlatform();
-        if (platform.equals("win32") || platform.equals("wpf")) {
-            names.add("All Files (*.*)");
-            extensions.add("*.*");
+        if (platform.equals("win32") || platform.equals("wpf")) { //$NON-NLS-1$ //$NON-NLS-2$
+            names.add(Messages.FileConnectionPage_AllFilesWindows);
+            extensions.add("*.*"); //$NON-NLS-1$
         }
         else {
-            names.add("All Files (*)");
-            extensions.add("*");
+            names.add(Messages.FileConnectionPage_AllFilesOther);
+            extensions.add("*"); //$NON-NLS-1$
         }
         fileDialog.setFilterExtensions(extensions.toArray(new String[0]));
         fileDialog.setFilterNames( names.toArray(new String[0]));

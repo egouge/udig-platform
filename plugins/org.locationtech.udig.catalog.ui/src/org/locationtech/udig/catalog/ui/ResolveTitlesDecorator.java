@@ -24,22 +24,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.locationtech.udig.catalog.CatalogPlugin;
-import org.locationtech.udig.catalog.IForward;
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IProcess;
-import org.locationtech.udig.catalog.IResolve;
-import org.locationtech.udig.catalog.IResolveChangeEvent;
-import org.locationtech.udig.catalog.IResolveChangeListener;
-import org.locationtech.udig.catalog.IResolveDelta;
-import org.locationtech.udig.catalog.IResolveFolder;
-import org.locationtech.udig.catalog.ISearch;
-import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.IResolveChangeEvent.Type;
-import org.locationtech.udig.catalog.IResolveDelta.Kind;
-import org.locationtech.udig.catalog.IServiceInfo;
-import org.locationtech.udig.catalog.ui.internal.Messages;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -59,6 +43,20 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
+import org.locationtech.udig.catalog.CatalogPlugin;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IProcess;
+import org.locationtech.udig.catalog.IResolve;
+import org.locationtech.udig.catalog.IResolveChangeEvent;
+import org.locationtech.udig.catalog.IResolveChangeEvent.Type;
+import org.locationtech.udig.catalog.IResolveChangeListener;
+import org.locationtech.udig.catalog.IResolveDelta;
+import org.locationtech.udig.catalog.IResolveDelta.Kind;
+import org.locationtech.udig.catalog.IResolveFolder;
+import org.locationtech.udig.catalog.ISearch;
+import org.locationtech.udig.catalog.IService;
+import org.locationtech.udig.catalog.IServiceInfo;
+import org.locationtech.udig.catalog.ui.internal.Messages;
 
 /**
  * Decorate labels with actual titles from the info objects.
@@ -235,7 +233,7 @@ public class ResolveTitlesDecorator implements ILabelDecorator, IColorDecorator,
             }
             if( resolve instanceof IService ){
                 if( resolve.getID().getTypeQualifier() != null ){
-                    return data.text + " ("+resolve.getID().getTypeQualifier() +")";
+                    return data.text + " ("+resolve.getID().getTypeQualifier() +")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
             }
             return data.text;            
@@ -248,7 +246,7 @@ public class ResolveTitlesDecorator implements ILabelDecorator, IColorDecorator,
             decorated.put(resolve, data);       
             if( resolve instanceof IService ){
                 if( resolve.getID().getTypeQualifier() != null ){
-                    return data.text + " ("+resolve.getID().getTypeQualifier() +")";
+                    return data.text + " ("+resolve.getID().getTypeQualifier() +")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
             }
             return data.text;            
@@ -397,14 +395,14 @@ public class ResolveTitlesDecorator implements ILabelDecorator, IColorDecorator,
                         		data.text = resource.getInfo(monitor).getTitle();
                         		IService service = resource.service(monitor);
                         		if( service != null ){
-                        		    service.getPersistentProperties().put(resource.getID() + "_title", data.text);
+                        		    service.getPersistentProperties().put(resource.getID() + "_title", data.text); //$NON-NLS-1$
                         		}
                         	} else if(element instanceof IService) {
                         		IService service = (IService) element;
                         		IServiceInfo info = service.getInfo(monitor);
                         		if( info != null ){
                         		    data.text = info.getTitle();
-                        		    service.getPersistentProperties().put("title", data.text);
+                        		    service.getPersistentProperties().put("title", data.text); //$NON-NLS-1$
                         		}
                         	} else if(element instanceof IProcess) {
                         		IProcess proc = (IProcess) element;

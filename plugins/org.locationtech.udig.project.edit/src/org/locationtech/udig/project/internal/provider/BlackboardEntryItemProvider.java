@@ -163,7 +163,7 @@ public class BlackboardEntryItemProvider extends ItemProviderAdapter implements
      */
     public String getText(Object object) {
         String label = ((BlackboardEntry) object).getKey();
-        return label == null || label.length() == 0 ? "Blackboard Entry" : label;
+        return label == null || label.length() == 0 ? "Blackboard Entry" : label; //$NON-NLS-1$
     }
 
     /**

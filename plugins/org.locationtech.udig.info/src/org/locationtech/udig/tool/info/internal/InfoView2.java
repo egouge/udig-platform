@@ -44,15 +44,15 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.geotools.data.FeatureEvent;
 import org.geotools.data.FeatureEvent.Type;
 import org.geotools.data.FeatureSource;
-import org.geotools.ows.wms.Layer;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.util.factory.GeoTools;
 import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.ows.wms.Layer;
+import org.geotools.util.factory.GeoTools;
 import org.locationtech.udig.catalog.IGeoResource;
 import org.locationtech.udig.core.internal.FeatureUtils;
 import org.locationtech.udig.project.AdaptableFeature;
@@ -201,7 +201,7 @@ public class InfoView2 extends SearchPart {
             Image image = registry.get( key );
             if( image == null ){
                 ImageDescriptor icon;
-                icon = (ImageDescriptor) layer.getProperties().get("generated icon");
+                icon = (ImageDescriptor) layer.getProperties().get("generated icon"); //$NON-NLS-1$
                 if( icon == null ){
                     icon = layer.getIcon();
                 }
@@ -476,7 +476,6 @@ public class InfoView2 extends SearchPart {
     @Override
     protected IStructuredContentProvider createContentProvider() {
         return new ITreeContentProvider() {
-            @SuppressWarnings("unchecked")
             public Object[] getElements( Object inputElement ) {
                 if( inputElement instanceof List ) {
                     return ((List)inputElement).toArray();

@@ -3,9 +3,8 @@
  */
 package org.locationtech.udig.project.internal.render;
 
-import org.locationtech.udig.project.internal.render.impl.TiledCompositeRendererImpl;
-
 import org.eclipse.emf.ecore.EFactory;
+import org.locationtech.udig.project.internal.render.impl.TiledCompositeRendererImpl;
 
 /**
  * TODO Purpose of org.locationtech.udig.project.internal.render

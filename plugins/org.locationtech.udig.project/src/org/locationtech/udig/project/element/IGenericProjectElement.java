@@ -11,12 +11,11 @@ package org.locationtech.udig.project.element;
 
 import java.util.List;
 
-import org.locationtech.udig.project.IProjectElement;
-import org.locationtech.udig.project.internal.ProjectElement;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.ui.IMemento;
+import org.locationtech.udig.project.IProjectElement;
+import org.locationtech.udig.project.internal.ProjectElement;
 
 /**
  * Interface to objects that can be added to a project.  

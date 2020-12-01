@@ -138,7 +138,7 @@ public abstract class DatabaseServiceDialect {
     public URL toURL( String the_username, String the_host,
             Integer intPort, String the_database ) throws MalformedURLException {
         String the_spec = urlPrefix+"://" + the_username //$NON-NLS-1$
-                + "@" + the_host //$NON-NLS-1$ //$NON-NLS-2$
+                + "@" + the_host //$NON-NLS-1$ 
                 + ":" + intPort + "/" + the_database; //$NON-NLS-1$  //$NON-NLS-2$
         return toURL(the_spec);
     }
@@ -209,13 +209,13 @@ public abstract class DatabaseServiceDialect {
      * @return the vividsolutions class
      */
     public Class<? extends Geometry> toGeomClass(String geomName) {
-    	if(geomName.equalsIgnoreCase("GEOMETRYCOLLECTION") || geomName.equalsIgnoreCase("GEOMETRY")) return Geometry.class;
-    	if(geomName.equalsIgnoreCase("POINT")) return Point.class;
-    	if(geomName.equalsIgnoreCase("MULTIPOINT")) return MultiPoint.class;
-    	if(geomName.equalsIgnoreCase("POLYGON")) return Polygon.class;
-    	if(geomName.equalsIgnoreCase("MULTIPOLYGON")) return MultiPolygon.class;
-    	if(geomName.equalsIgnoreCase("LINESTRING")) return LineString.class;
-    	if(geomName.equalsIgnoreCase("MULTILINESTRING")) return MultiLineString.class;
+    	if(geomName.equalsIgnoreCase("GEOMETRYCOLLECTION") || geomName.equalsIgnoreCase("GEOMETRY")) return Geometry.class; //$NON-NLS-1$ //$NON-NLS-2$
+    	if(geomName.equalsIgnoreCase("POINT")) return Point.class; //$NON-NLS-1$
+    	if(geomName.equalsIgnoreCase("MULTIPOINT")) return MultiPoint.class; //$NON-NLS-1$
+    	if(geomName.equalsIgnoreCase("POLYGON")) return Polygon.class; //$NON-NLS-1$
+    	if(geomName.equalsIgnoreCase("MULTIPOLYGON")) return MultiPolygon.class; //$NON-NLS-1$
+    	if(geomName.equalsIgnoreCase("LINESTRING")) return LineString.class; //$NON-NLS-1$
+    	if(geomName.equalsIgnoreCase(Messages.DatabaseServiceDialect_7)) return MultiLineString.class;
     	return Geometry.class;
     }
     

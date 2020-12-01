@@ -111,7 +111,7 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
                     Id id = (Id) selectFilter;
                     where = id.getIDs().toString();
                 }
-                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:"
+                String msg = "Modify fetures (WHERE " + where + ") failed with invalid geometry:" //$NON-NLS-1$ //$NON-NLS-2$
                         + wkt;
                 ProjectPlugin.log(msg);
                 throw new IOException(msg);
@@ -142,7 +142,7 @@ public class UDIGFeatureStore implements FeatureStore<FeatureType,Feature>, UDIG
      */
     private void setTransactionInternal() {
         if (!layer.getInteraction(Interaction.EDIT)) {
-            String message = "Attempted to open a transaction on a non-editable layer (Aborted)";
+            String message = "Attempted to open a transaction on a non-editable layer (Aborted)"; //$NON-NLS-1$
             IllegalStateException illegalStateException = new IllegalStateException( message );
             ProjectPlugin.log(message, illegalStateException);
             throw illegalStateException;

@@ -341,7 +341,7 @@ public class NextGenRenderManager extends RenderManagerImpl {
                     ((ViewportPane) getMapDisplay()).renderDone();
                 }else{
 
-                    System.out.println("WRONG LOGIC IN RENDER TASK QUEUE JOB: no compressing was done..");
+                    System.out.println("WRONG LOGIC IN RENDER TASK QUEUE JOB: no compressing was done.."); //$NON-NLS-1$
                 }
 
 

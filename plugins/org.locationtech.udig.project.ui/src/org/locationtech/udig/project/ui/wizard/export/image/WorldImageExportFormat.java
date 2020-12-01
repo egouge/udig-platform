@@ -89,9 +89,9 @@ public class WorldImageExportFormat extends ImageExportFormat{
         try {
             final File prjFile = new File(new StringBuffer(baseFile).append(".prj") //$NON-NLS-1$
                     .toString());
-            BufferedWriter out = new BufferedWriter(new FileWriter(prjFile));
-            out.write(coordinateReferenceSystem.toWKT());
-            out.close();
+            try(BufferedWriter out = new BufferedWriter(new FileWriter(prjFile))){
+            	out.write(coordinateReferenceSystem.toWKT());
+            }
         }
         catch( Throwable ignore ){
             // projection cannot be represented in WKT
@@ -151,15 +151,14 @@ public class WorldImageExportFormat extends ImageExportFormat{
         final StringBuffer buff = new StringBuffer(baseFile);
         buff.append(".wld"); //$NON-NLS-1$
         final File worldFile = new File(buff.toString());
-        final PrintWriter out = new PrintWriter(new FileOutputStream(worldFile));
-        out.println(xPixelSize);
-        out.println(rotation1);
-        out.println(rotation2);
-        out.println(yPixelSize);
-        out.println(xLoc);
-        out.println(yLoc);
-        out.flush();
-        out.close();
-
+        try(final PrintWriter out = new PrintWriter(new FileOutputStream(worldFile))){
+	        out.println(xPixelSize);
+	        out.println(rotation1);
+	        out.println(rotation2);
+	        out.println(yPixelSize);
+	        out.println(xLoc);
+	        out.println(yLoc);
+	        out.flush();
+        }
     }
 }

@@ -13,16 +13,15 @@ package org.locationtech.udig.tools.internal;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.locationtech.udig.project.command.MapCommand;
-import org.locationtech.udig.project.ui.tool.AbstractActionTool;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.locationtech.udig.project.command.MapCommand;
+import org.locationtech.udig.project.ui.tool.AbstractActionTool;
+import org.locationtech.udig.ui.PlatformGIS;
 
 /**
  * Commit the current transaction

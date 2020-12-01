@@ -11,9 +11,8 @@ package org.locationtech.udig.project.internal;
 
 import java.awt.Color;
 
-import org.locationtech.udig.project.IPersister;
-
 import org.eclipse.ui.IMemento;
+import org.locationtech.udig.project.IPersister;
 
 /**
  * Persister for persisting colors on blackboard.

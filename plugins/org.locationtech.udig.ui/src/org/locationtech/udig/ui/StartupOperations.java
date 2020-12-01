@@ -65,7 +65,7 @@ public class StartupOperations implements IStartup {
         if( categoryElements == null || categoryElements.isEmpty() ) return;
         
         for( IConfigurationElement element : categoryElements ) {
-            final String ID = element.getAttribute("id");
+            final String ID = element.getAttribute("id"); //$NON-NLS-1$
             final String NAME = element.getName();
             final String DESCRIPTION = element.getName();
             List<IConfigurationElement> operationElements = listOperationsForCategory(list, ID );
@@ -83,16 +83,16 @@ public class StartupOperations implements IStartup {
                 // TODO: Create a Definition to Check the ActionSet
                 
                 // TODO: Create the MenuGroup
-                AbstractContributionFactory categoryAdditions = operationsMenu( menuService, operationElements, "menu:nav?after=layer.ext", ID);
+                AbstractContributionFactory categoryAdditions = operationsMenu( menuService, operationElements, "menu:nav?after=layer.ext", ID); //$NON-NLS-1$
                 menuService.addContributionFactory(categoryAdditions);
             } catch (Exception e) {
-                UiPlugin.log("Operation category "+ID+":"+e, e);
+                UiPlugin.log("Operation category "+ID+":"+e, e); //$NON-NLS-1$ //$NON-NLS-2$
             }
         }
 
         for( IConfigurationElement element : list ) {
             final String NAME = element.getName();
-            final String ID = element.getAttribute("id");            
+            final String ID = element.getAttribute("id");             //$NON-NLS-1$
             try {
                 if (NAME.equals("category")) {//$NON-NLS-1$
                     continue;
@@ -113,7 +113,7 @@ public class StartupOperations implements IStartup {
                               
             }
             catch (Exception e) {
-                UiPlugin.log("Operation "+ID+":"+e, e);
+                UiPlugin.log("Operation "+ID+":"+e, e); //$NON-NLS-1$ //$NON-NLS-2$
             }
         }
     }
@@ -144,11 +144,11 @@ public class StartupOperations implements IStartup {
         List<IConfigurationElement> results = new ArrayList<IConfigurationElement>();
         for( IConfigurationElement element : list ) {
             final String NAME = element.getName();
-            final String ID = element.getAttribute("id");            
+            final String ID = element.getAttribute("id");             //$NON-NLS-1$
             if (NAME.equals("category")) {//$NON-NLS-1$
                 continue;
             }
-            final String CATEGORY = element.getAttribute("categoryId");
+            final String CATEGORY = element.getAttribute("categoryId"); //$NON-NLS-1$
             if( CATEGORY != null && CATEGORY.equals(categoryId)){
                 results.add( element );
             }

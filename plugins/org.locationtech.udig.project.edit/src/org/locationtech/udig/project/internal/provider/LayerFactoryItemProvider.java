@@ -80,7 +80,7 @@ public class LayerFactoryItemProvider extends ItemProviderAdapter implements
      * @generated NOT
      */
     public String getText(Object object) {
-        return "Layer Factory";
+        return "Layer Factory"; //$NON-NLS-1$
     }
 
     /**

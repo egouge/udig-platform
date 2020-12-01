@@ -16,37 +16,31 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.locationtech.udig.catalog.CatalogPlugin;
-import org.locationtech.udig.catalog.ICatalog;
-import org.locationtech.udig.catalog.IGeoResource;
-import org.locationtech.udig.catalog.IRepository;
-import org.locationtech.udig.catalog.IResolve;
-import org.locationtech.udig.catalog.IService;
-import org.locationtech.udig.catalog.IServiceFactory;
-import org.locationtech.udig.catalog.ui.CatalogUIPlugin;
-import org.locationtech.udig.catalog.ui.UDIGConnectionFactory;
-import org.locationtech.udig.catalog.ui.UDIGConnectionFactoryDescriptor;
-import org.locationtech.udig.catalog.ui.internal.Messages;
-import org.locationtech.udig.core.Pair;
-import org.locationtech.udig.ui.PlatformGIS;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
+import org.locationtech.udig.catalog.CatalogPlugin;
+import org.locationtech.udig.catalog.ICatalog;
+import org.locationtech.udig.catalog.IGeoResource;
+import org.locationtech.udig.catalog.IResolve;
+import org.locationtech.udig.catalog.IService;
+import org.locationtech.udig.catalog.IServiceFactory;
+import org.locationtech.udig.catalog.ui.UDIGConnectionFactory;
+import org.locationtech.udig.catalog.ui.UDIGConnectionFactoryDescriptor;
+import org.locationtech.udig.catalog.ui.internal.Messages;
+import org.locationtech.udig.catalog.ui.wizard.CatalogImport;
+import org.locationtech.udig.core.Pair;
+import org.locationtech.udig.ui.PlatformGIS;
 
 /**
  * This is the "end of the line" when using an import wizard to add services
@@ -190,7 +184,7 @@ public class EndConnectionState extends State {
 
         IRunnableWithProgress runnable = new IRunnableWithProgress(){
             public void run(IProgressMonitor monitor) {
-                monitor.beginTask("Disposing dereferenced services", toDispose.size());
+                monitor.beginTask("Disposing dereferenced services", toDispose.size()); //$NON-NLS-1$
                 // dispose old services
                 for( IService service : toDispose ) {
                     if( service.parent(monitor)==null){

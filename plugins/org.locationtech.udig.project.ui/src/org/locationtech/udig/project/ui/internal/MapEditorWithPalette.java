@@ -725,7 +725,7 @@ public class MapEditorWithPalette extends GraphicalEditorWithFlyoutPalette imple
                 // kill rending now - even if it is moving
                 getRenderManager().dispose();
             } catch (Throwable t) {
-                ProjectUIPlugin.log("Shutting down rendering - " + t, null);
+                ProjectUIPlugin.log("Shutting down rendering - " + t, null); //$NON-NLS-1$
             }
             getMap().getEditManagerInternal().setEditFeature(null, null);
             try {
@@ -784,7 +784,7 @@ public class MapEditorWithPalette extends GraphicalEditorWithFlyoutPalette imple
         List<IConfigurationElement> interceptors = ExtensionPointList
                 .getExtensionPointList(MapInterceptor.MAP_INTERCEPTOR_EXTENSIONPOINT);
         for( IConfigurationElement element : interceptors ) {
-            if (!MapInterceptor.CLOSING_ID.equals(element.getName())) //$NON-NLS-1$
+            if (!MapInterceptor.CLOSING_ID.equals(element.getName()))
                 continue;
             try {
                 MapInterceptor interceptor = (MapInterceptor) element
@@ -831,7 +831,7 @@ public class MapEditorWithPalette extends GraphicalEditorWithFlyoutPalette imple
 
     @Override
     public void doSaveAs() {
-        throw new UnsupportedOperationException("Do Save As is not implemented yet");
+        throw new UnsupportedOperationException("Do Save As is not implemented yet"); //$NON-NLS-1$
     }
 
     @Override
@@ -1043,7 +1043,7 @@ public class MapEditorWithPalette extends GraphicalEditorWithFlyoutPalette imple
         List<IConfigurationElement> interceptors = ExtensionPointList
                 .getExtensionPointList(MapInterceptor.MAP_INTERCEPTOR_EXTENSIONPOINT);
         for( IConfigurationElement element : interceptors ) {
-            if (!MapInterceptor.OPENING_ID.equals(element.getName())) //$NON-NLS-1$
+            if (!MapInterceptor.OPENING_ID.equals(element.getName()))
                 continue;
             try {
                 MapInterceptor interceptor = (MapInterceptor) element

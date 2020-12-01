@@ -25,8 +25,11 @@ import java.util.TreeSet;
 import org.locationtech.udig.catalog.CatalogPlugin;
 import org.locationtech.udig.catalog.URLUtils;
 import org.locationtech.udig.catalog.service.FormatProvider;
+import org.locationtech.udig.catalog.ui.internal.Messages;
 import org.locationtech.udig.core.internal.ExtensionPointProcessor;
 import org.locationtech.udig.core.internal.ExtensionPointUtil;
+
+import com.ibm.icu.text.MessageFormat;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -102,8 +105,8 @@ public class FileConnectionFactory extends UDIGConnectionFactory {
             return extensions;
         }
         public List<String> getExtensionList(){
-            if( extensions.contains(";") ){
-                return Arrays.asList( extensions.split(";"));
+            if( extensions.contains(";") ){ //$NON-NLS-1$
+                return Arrays.asList( extensions.split(";")); //$NON-NLS-1$
             }
             else {
                 return Collections.singletonList( extensions );
@@ -134,36 +137,36 @@ public class FileConnectionFactory extends UDIGConnectionFactory {
                                 String name = element.getAttribute("name"); //$NON-NLS-1$
                                 String ext = element.getAttribute("fileExtension"); //$NON-NLS-1$
                                 
-                                if( name == null && ext.startsWith("*.")){
-                                    if( ext.contains(";") ){
+                                if( name == null && ext.startsWith("*.")){ //$NON-NLS-1$
+                                    if( ext.contains(";") ){ //$NON-NLS-1$
                                      // *.jpg;*.jpeg --> JPG Files
-                                        name = ext.substring(2,ext.lastIndexOf(';')).toUpperCase()+" Files";
+                                        name = MessageFormat.format(Messages.FileConnectionFactory_FileTypeLabel,ext.substring(2,ext.lastIndexOf(';')).toUpperCase());
                                     }
                                     else {
                                         // *.gif --> GIF Files
-                                        name =ext.substring(2).toUpperCase()+" Files";
+                                        name = MessageFormat.format(Messages.FileConnectionFactory_FileTypeLabel, ext.substring(2).toUpperCase());
                                     }
                                 }
-                                if( !name.contains("(")){
-                                    name += " ("+ext.replace(";",",")+")";
+                                if( !name.contains("(")){ //$NON-NLS-1$
+                                    name += " ("+ext.replace(";",",")+")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
                                 }
                                 FileType type = new FileType(name, ext );
                                 extensionSet.add( type );
                             }
-                            if ("provider".equals(element.getName())) {
+                            if ("provider".equals(element.getName())) { //$NON-NLS-1$
                                 FormatProvider provider = (FormatProvider) element
-                                        .createExecutableExtension("class");
+                                        .createExecutableExtension("class"); //$NON-NLS-1$
                                 
                                 String name = null;
                                 if( name == null ){
                                     name = provider.getClass().getSimpleName();
-                                    if( name.equals("FileDataStoreFormatProvider")){
-                                        name = "GeoTools DataStore Files";
+                                    if( name.equals("FileDataStoreFormatProvider")){ //$NON-NLS-1$
+                                        name = Messages.FileConnectionFactory_GeotoolsFiles;
                                     }
-                                    else if( name.endsWith("FormatProvider")){
+                                    else if( name.endsWith("FormatProvider")){ //$NON-NLS-1$
                                         name = name.substring(0,name.length()-14); // trim FormatProvider
                                         
-                                        name += "Files"; // GDALFormatProvider --> GDAL Files
+                                        name = MessageFormat.format(Messages.FileConnectionFactory_FileTypeLabel, name); // GDALFormatProvider --> GDAL Files
                                     }
                                 }
                                 StringBuilder ext = new StringBuilder();
@@ -171,18 +174,18 @@ public class FileConnectionFactory extends UDIGConnectionFactory {
                                 if( !providerExtensions.isEmpty() ){
                                     for( String fileExtension : providerExtensions ){
                                         if( ext.length() != 0 ){
-                                            ext.append(";");
+                                            ext.append(";"); //$NON-NLS-1$
                                         }
                                         ext.append(fileExtension);
                                     }
-                                    if( !name.contains("(")){
+                                    if( !name.contains("(")){ //$NON-NLS-1$
                                         if( providerExtensions.size() > 4 ){
                                             // Shorter name for providers supporting multiple formats 
                                             String first = providerExtensions.iterator().next();
-                                            name += " ( "+first+" and "+(providerExtensions.size()-1)+" more)";
+                                            name = MessageFormat.format(Messages.FileConnectionFactory_ProvidersLabel, name, first, (providerExtensions.size()-1));
                                         }
                                         else {
-                                            name += " ("+ext.toString().replace(";",",")+")";
+                                            name += " ("+ext.toString().replace(";",",")+")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
                                         }
                                     }
                                     FileType type = new FileType( name, ext.toString() );
