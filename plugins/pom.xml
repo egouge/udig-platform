@@ -93,6 +93,8 @@
             
             <modules>
                 
+                <module>org.locationtech.udig.libs</module>
+                
 	        <module>org.locationtech.udig.style.advanced.core</module>
 	        <module>org.locationtech.udig.style.advanced.feature</module>
 	        <module>org.locationtech.udig.style.advanced.raster</module>
@@ -109,7 +111,7 @@
 	        <module>org.locationtech.udig.core</module>
 	        <module>org.locationtech.udig.info</module>
 	        <module>org.locationtech.udig.legend</module>
-	        <module>org.locationtech.udig.libs</module>
+	        
 	        <module>org.locationtech.udig.location</module>
 	        <module>org.locationtech.udig.mapgraphic</module>
 	        <module>org.locationtech.udig.project</module>

@@ -21,7 +21,7 @@
 package org.locationtech.udig.style.sld.editor.internal;
 
 
-import org.eclipse.jface.util.Assert;
+import org.eclipse.core.runtime.Assert;
 
 /**
  * A page history entry.

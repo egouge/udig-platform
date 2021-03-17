@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 import org.locationtech.udig.ui.internal.Messages;
 import org.locationtech.udig.ui.operations.OpAction;
-
+import org.eclipse.jface.action.LegacyActionTools;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -74,6 +74,6 @@ public class OperationLabelProvider extends LabelProvider {
         } else if (element instanceof OperationCategory) {
             label = ((OperationCategory) element).getMenuText();
         }
-        return DialogUtil.removeAccel(label);
+        return LegacyActionTools.removeAcceleratorText(label);
     }
 }

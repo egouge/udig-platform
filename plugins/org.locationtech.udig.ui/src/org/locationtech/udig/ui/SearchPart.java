@@ -14,11 +14,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import org.locationtech.udig.ui.internal.Messages;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.Action;
@@ -45,7 +42,6 @@ import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPartListener2;
@@ -54,6 +50,7 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.part.ViewPart;
+import org.locationtech.udig.ui.internal.Messages;
 
 /**
  * A ViewPart with support for a background "search" process.
@@ -558,7 +555,7 @@ public class SearchPart extends ViewPart implements ISetSelectionTarget {
         
         viewer.setInput( null );
         filter = newFilter;        
-        searchMonitor=Platform.getJobManager().createProgressGroup();
+        searchMonitor=Job.getJobManager().createProgressGroup();
         searchMonitor.setTaskName( getPartName());           
         looking.setPriority( Job.BUILD );
         looking.setProgressGroup( searchMonitor, IProgressMonitor.UNKNOWN );

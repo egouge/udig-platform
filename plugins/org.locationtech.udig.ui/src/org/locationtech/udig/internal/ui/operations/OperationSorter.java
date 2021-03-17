@@ -10,16 +10,15 @@
  *******************************************************************************/
 package org.locationtech.udig.internal.ui.operations;
 
-import org.locationtech.udig.ui.operations.OpAction;
-
+import org.eclipse.jface.action.LegacyActionTools;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerSorter;
-import org.eclipse.ui.internal.dialogs.DialogUtil;
+import org.eclipse.jface.viewers.ViewerComparator;
+import org.locationtech.udig.ui.operations.OpAction;
 
 /**
  * This is used to sort views in a RunOperationDialog.
  */
-public class OperationSorter extends ViewerSorter {
+public class OperationSorter extends ViewerComparator {
 
     public OperationSorter() {
         super();
@@ -44,19 +43,19 @@ public class OperationSorter extends ViewerSorter {
         String str2 = null;
                 
         if (e1 instanceof OpAction) {
-            str1 = DialogUtil.removeAccel(((OpAction) e1)
+            str1 = LegacyActionTools.removeAcceleratorText(((OpAction) e1)
                     .getText());
         } else if (e1 instanceof OperationCategory) {
-            str1 = DialogUtil.removeAccel(((OperationCategory) e1).getMenuText());
+            str1 = LegacyActionTools.removeAcceleratorText(((OperationCategory) e1).getMenuText());
         }
         
         if (e2 instanceof OpAction) {
-            str2 = DialogUtil.removeAccel(((OpAction) e2)
+            str2 = LegacyActionTools.removeAcceleratorText(((OpAction) e2)
                     .getText());
         } else if (e2 instanceof OperationCategory) {
-            str2 = DialogUtil.removeAccel(((OperationCategory) e2).getMenuText());
+            str2 = LegacyActionTools.removeAcceleratorText(((OperationCategory) e2).getMenuText());
         }
         
-        return collator.compare(str1, str2);
+        return getComparator().compare(str1, str2);
     }
 }

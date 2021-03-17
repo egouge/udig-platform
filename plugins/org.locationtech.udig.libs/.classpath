@@ -38,13 +38,13 @@
 	<classpathentry exported="true" kind="lib" path="lib/gt-cql-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-css-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-epsg-hsql-23.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/gt-geojson-23.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/gt-geojson-23.0.jar" sourcepath="lib-src/gt-geojson-23.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-geopkg-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-geotiff-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-graph-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-grid-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-image-23.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/gt-main-23.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/gt-main-23.0.jar" sourcepath="lib-src/gt-main-23.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-mbtiles-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-metadata-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/gt-opengis-23.0.jar"/>
@@ -125,7 +125,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/jt-vectorbin-1.1.14.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jt-warp-1.1.14.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jt-zonal-1.1.14.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jts-core-1.16.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jts-core-1.16.1.jar" sourcepath="lib-src/jts-core-1.16.1-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/net.opengis.fes-23.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/net.opengis.ows-23.0.jar"/>

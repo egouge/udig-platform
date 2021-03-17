@@ -20,12 +20,14 @@ import javax.imageio.ImageIO;
 
 import org.eclipse.draw2d.geometry.Insets;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Image;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Rectangle;
-import com.lowagie.text.pdf.PdfWriter;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.geom.Rectangle;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 
 /**
  * @author Andrea Antonello - www.hydrologis.com
@@ -50,34 +52,32 @@ public class Image2Pdf {
         float imgHeightInPixel = imageSizeInPixel.getHeight();
         float imgWidthInPixel = imageSizeInPixel.getWidth();
 
-        final Document doc = new Document();
-        try {
-
-            PdfWriter.getInstance(doc, new FileOutputStream(pdfPath));
-            doc.open();
-
+        
+        
+        try(PdfDocument doc = new PdfDocument(new PdfWriter(new FileOutputStream(pdfPath)))) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image, "png", baos); //$NON-NLS-1$
-            Image iTextImage = Image.getInstance(baos.toByteArray());
+            
+            
+            ImageData iTextImage = ImageDataFactory.create(baos.toByteArray());
 
-            doc.setPageSize(documentPageSize);
-            doc.newPage(); // not needed for page 1, needed for >1
+
+            doc.addNewPage(new PageSize(documentPageSize)); // not needed for page 1, needed for >1
 
             // high in itext is measured from lower left
             int absoluteX = (marginBorder != null ? marginBorder.left : 0);
             int absoluteY = (marginBorder != null ? marginBorder.bottom : 0);
 
-            iTextImage.setAbsolutePosition(absoluteX, absoluteY);
-            iTextImage.scaleToFit(imgWidthInPixel, imgHeightInPixel);
-            doc.add(iTextImage);
-        } catch (DocumentException de) {
-            System.err.println(de.getMessage());
+            Image pdfImg = new Image(iTextImage).setFixedPosition(absoluteX, absoluteY)
+            		.scaleToFit(imgWidthInPixel, imgHeightInPixel);
+            
+            try(Document temp = new Document(doc)){
+            	temp.add(pdfImg);
+            }
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
 
-        // step 5: we close the document
-        doc.close();
     }
 
     /**

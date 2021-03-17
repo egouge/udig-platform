@@ -19,5 +19,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.locationtech.udig.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Import-Package: org.geotools.data.memory
 Automatic-Module-Name: org.locationtech.udig.catalog

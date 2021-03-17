@@ -53,7 +53,9 @@ Require-Bundle: org.locationtech.udig.style.sld,
  org.locationtech.udig.project.edit,
  org.eclipse.ui.cheatsheets,
  org.eclipse.core.expressions,
- com.lowagie.text
+ wrapped.com.itextpdf.kernel;bundle-version="7.1.14",
+ wrapped.com.itextpdf.io;bundle-version="7.1.14",
+ wrapped.com.itextpdf.layout;bundle-version="7.1.14"
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.media.jai,
  javax.media.jai.iterator,

@@ -143,7 +143,7 @@ public class RunOperationDialog extends Dialog implements
                 | SWT.BORDER);
         tree.setLabelProvider(new OperationLabelProvider());
         tree.setContentProvider(new OperationContentProvider());
-        tree.setSorter(new OperationSorter());
+        tree.setComparator(new OperationSorter());
         tree.setInput(opMenuFactory);
         tree.addSelectionChangedListener(this);
         tree.addDoubleClickListener(this);
