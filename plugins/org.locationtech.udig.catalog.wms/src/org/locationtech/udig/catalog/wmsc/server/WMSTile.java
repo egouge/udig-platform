@@ -23,17 +23,15 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.geotools.data.ows.AbstractOpenWebService;
 import org.geotools.data.ows.AbstractRequest;
-import org.geotools.data.ows.HTTPClient;
-import org.geotools.data.ows.HTTPResponse;
 import org.geotools.data.ows.Response;
+import org.geotools.http.HTTPClient;
+import org.geotools.http.HTTPResponse;
 import org.geotools.ows.ServiceException;
-
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.udig.catalog.internal.wms.WmsPlugin;
 
 /**
  * Represents one tile in a tileset from a WMS Server. Has a unique id, bounds, scale and a

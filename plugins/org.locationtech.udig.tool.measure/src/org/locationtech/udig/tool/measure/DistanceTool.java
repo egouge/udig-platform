@@ -17,12 +17,10 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.measure.MetricPrefix;
 import javax.measure.Quantity;
 import javax.measure.quantity.Length;
-import si.uom.SI;
-import systems.uom.common.USCustomary;
-import tec.uom.se.quantity.Quantities;
-import tec.uom.se.unit.MetricPrefix;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -41,6 +39,10 @@ import org.locationtech.udig.project.ui.tool.SimpleTool;
 import org.locationtech.udig.tool.measure.internal.MeasurementToolPlugin;
 import org.locationtech.udig.tool.measure.internal.Messages;
 import org.opengis.referencing.operation.TransformException;
+
+import si.uom.SI;
+import systems.uom.common.USCustomary;
+import tech.units.indriya.quantity.Quantities;
 
 public class DistanceTool extends SimpleTool implements KeyListener {
     public DistanceTool() {
