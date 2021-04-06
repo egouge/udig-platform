@@ -7,7 +7,7 @@ Bundle-Activator: org.locationtech.udig.catalog.rasterings.RasteringsPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.locationtech.udig.catalog,
- org.locationtech.udig.libs,
+ org.locationtech.udig.libs;bundle-version="3.0.0",
  org.locationtech.udig.ui,
  org.locationtech.udig.catalog.shp;resolution:=optional
 Bundle-ActivationPolicy: lazy

@@ -16,7 +16,7 @@ Export-Package: org.locationtech.udig.core,
  org.locationtech.udig.core.opengis
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.locationtech.udig.libs;visibility:=reexport
+ org.locationtech.udig.libs;bundle-version="3.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.common.cache;version="12.0.0"

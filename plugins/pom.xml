@@ -112,7 +112,6 @@
 	        <module>org.locationtech.udig.info</module>
 	        <module>org.locationtech.udig.legend</module>
 	        
-	        <module>org.locationtech.udig.location</module>
 	        <module>org.locationtech.udig.mapgraphic</module>
 	        <module>org.locationtech.udig.project</module>
 	        <module>org.locationtech.udig.project.edit</module>
