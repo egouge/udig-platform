@@ -1343,7 +1343,7 @@ public class StyleThemePage extends StyleEditorPage {
                     }
                     
 					if (createClassifier) {
-						function = (ClassificationFunction) ff.function(fn.getFunctionName(), new Expression[fn.getArgumentCount()]);
+						function = (ClassificationFunction) ff.function(fn.getFunctionName(), new Expression[Math.abs(fn.getArgumentCount())]);
 						
 						ProgressListener cancelProgress = ((StyleEditorDialog) getContainer()).getProgressListener();
 						function.setProgressListener(cancelProgress);
