@@ -44,10 +44,7 @@ public class ColorEditor extends ColorSelector {
     }
     
     public void setColor( java.awt.Color color ){
-        if( color == null ){
-            setColorValue( null );
-        }
-        else {
+        if( color != null ){
             RGB rgb = new RGB(color.getRed(), color.getGreen(), color.getBlue() );
             setColorValue( rgb );    
         }                
