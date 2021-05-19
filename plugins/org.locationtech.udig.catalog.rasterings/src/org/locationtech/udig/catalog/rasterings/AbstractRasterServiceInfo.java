@@ -87,8 +87,8 @@ public class AbstractRasterServiceInfo extends IServiceInfo {
             if (!(env.isEmpty() || env.isNull() || env.isInfinite()))
                 numberOfAvailableInfoFields++;
 
-            completeness = (double) numberOfexpectedInfoFields
-                    / (double) numberOfAvailableInfoFields;
+            completeness = (double) numberOfAvailableInfoFields
+                    / (double) numberOfexpectedInfoFields;
 
         } finally {
             reader.dispose();//clean up render.
