@@ -18,21 +18,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import si.uom.SI;
 import javax.measure.Unit;
 
-import org.locationtech.udig.mapgraphic.MapGraphic;
-import org.locationtech.udig.mapgraphic.MapGraphicContext;
-import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
-import org.locationtech.udig.mapgraphic.internal.Messages;
-import org.locationtech.udig.mapgraphic.style.FontStyle;
-import org.locationtech.udig.project.ILayer;
-import org.locationtech.udig.project.internal.Layer;
-import org.locationtech.udig.ui.graphics.ViewportGraphics;
-import org.eclipse.swt.graphics.Path;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
@@ -41,6 +28,16 @@ import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.grid.Grids;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.util.CRSUtilities;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.udig.mapgraphic.MapGraphic;
+import org.locationtech.udig.mapgraphic.MapGraphicContext;
+import org.locationtech.udig.mapgraphic.MapGraphicPlugin;
+import org.locationtech.udig.mapgraphic.internal.Messages;
+import org.locationtech.udig.mapgraphic.style.FontStyle;
+import org.locationtech.udig.project.ILayer;
+import org.locationtech.udig.project.internal.Layer;
+import org.locationtech.udig.ui.graphics.ViewportGraphics;
 import org.opengis.filter.Filter;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.geometry.DirectPosition;
@@ -49,8 +46,7 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
+import si.uom.SI;
 
 /**
  * <b>Graticule Graphic class</b>
@@ -62,10 +58,6 @@ import org.locationtech.jts.geom.Geometry;
  * </p>
  */
 public class GraticuleGraphic implements MapGraphic {
-
-    private static final String DELIM = "-"; //$NON-NLS-1$
-
-    private static final String EMPTY = ""; //$NON-NLS-1$
 
     private static final String GEOM = "element"; //$NON-NLS-1$
 
@@ -112,16 +104,10 @@ public class GraticuleGraphic implements MapGraphic {
             graticule.setStatusMessage(Messages.GraticuleGraphic_Illegal_CRS);
             return;
         }
-        final IWorkbench workbench = PlatformUI.getWorkbench();
-        if (workbench == null)
-            return;
 
         // Start working on layer
         graticule.setStatus(ILayer.WORKING);
         graticule.setStatusMessage(null);
-
-        // Get display to work on
-        final Display display = workbench.getDisplay();
 
         // Set styles
         Font plain = GraticuleStyle.getFontStyle(context).getFont();
@@ -194,11 +180,12 @@ public class GraticuleGraphic implements MapGraphic {
 
                 // Get y-coordinate label from lower left corner
                 String ty = getLabel(coords[2].y, size, unit, style);
-
+                
                 // Insert gap with label?
                 boolean vgap = isGap(tx, unit, style);
                 boolean hgap = isGap(ty, unit, style);
 
+                
                 // Transform coordinates into Map CRS
                 coords = JTS.transform(geom, transform).getCoordinates();
 
@@ -214,7 +201,7 @@ public class GraticuleGraphic implements MapGraphic {
                         // -----------------------
 
                         // Create line path
-                        current = vert(display, g, sy, style.getLineWidth(), current,
+                        current = vert(g, sy, style.getLineWidth(), current,
                                 context.worldToPixel(c), isShowLabels & hgap, vgap, lines);
 
                         // Add xx label?
@@ -231,7 +218,7 @@ public class GraticuleGraphic implements MapGraphic {
                         // -----------------------
 
                         // Create line path
-                        current = horz(display, g, sx, style.getLineWidth(), current,
+                        current = horz(g, sx, style.getLineWidth(), current,
                                 context.worldToPixel(c), isShowLabels & vgap, hgap, lines);
 
                         // Add yy label?
@@ -497,16 +484,18 @@ public class GraticuleGraphic implements MapGraphic {
      * @return String
      */
     private String getLabel(double coordinate, double size, Unit<?> unit, GraticuleStyle style) {
-
-        // Set number of digits
-        int digits = 2;
-
-        // Calculate offset
-        int offset = Math.max(1, 3 - String.valueOf(Math.round(size / 1000)).length());
-
-        // Finished
-        return (Math.signum(coordinate) == -1 ? DELIM : EMPTY)
-                + cf.format(Math.abs(coordinate)).substring(offset, offset + digits);
+    	String x = String.valueOf((int)(coordinate / size));
+    	return x;
+    	
+    	//assuming only 2 digits doesn't work well for many coordinate systems
+//        // Set number of digits
+//        int digits = 2;
+//
+//        // Calculate offset
+//        int offset = Math.max(1, 3 - String.valueOf(Math.round(size / 1000)).length());
+//        // Finished
+//        return (Math.signum(coordinate) == -1 ? DELIM : EMPTY)
+//                + cf.format(Math.abs(coordinate)).substring(offset, offset + digits);
     }
 
     /**
@@ -544,7 +533,6 @@ public class GraticuleGraphic implements MapGraphic {
     /**
      * Create vertical line
      * 
-     * @param display - active {@link Display}
      * @param g - active {@link ViewportGraphics}
      * @param sy - Square height
      * @param lw - line width
@@ -555,17 +543,13 @@ public class GraticuleGraphic implements MapGraphic {
      * @param lines - already created square lines
      * @return 'next' coordinate
      */
-    private Point vert(Display display, ViewportGraphics g, int sy, int lw, Point current,
+    private Point vert(ViewportGraphics g, int sy, int lw, Point current,
             Point next, boolean gap, boolean bold, List<Line> lines) {
 
         // Initialize
-        List<Path> paths = new ArrayList<Path>(2);
+        List<Point[]> paths = new ArrayList<Point[]>(2);
 
-        // Create first segment
-        Path path = new Path(display);
-
-        // Move to last point
-        path.moveTo(current.x, current.y - (bold ? 2 * lw : lw));
+        Point p1 = new Point(current.x, current.y - (bold ? 2 * lw : lw));
 
         // Insert gap?
         if (gap) {
@@ -575,21 +559,16 @@ public class GraticuleGraphic implements MapGraphic {
 
             // End first segment before mid-point
             Point p = offset(current, next, -offset);
-            path.lineTo(p.x, p.y);
-            paths.add(path);
-
-            // Create second segment
-            path = new Path(display);
+            paths.add(new Point[] {p1, p});
 
             // Move past mid-point
-            p = offset(current, next, offset);
-            path.moveTo(p.x, p.y);
-
+            p1 = offset(current, next, offset);
         }
 
         // Close path
-        path.lineTo(next.x, next.y + (bold ? 0 : lw));
-        paths.add(path);
+        Point p2 = new Point(next.x, next.y + (bold ? 0 : lw));
+        paths.add(new Point[] {p1, p2});
+        
         lines.add(new Line(paths, bold ? 2 * lw : lw));
 
         // Finished
@@ -599,7 +578,6 @@ public class GraticuleGraphic implements MapGraphic {
     /**
      * Create horizontal line
      * 
-     * @param display - active {@link Display}
      * @param g - active {@link ViewportGraphics}
      * @param sx - Square width
      * @param lw - line width
@@ -610,18 +588,13 @@ public class GraticuleGraphic implements MapGraphic {
      * @param lines - already created square lines
      * @return 'next' coordinate
      */
-    private Point horz(Display display, ViewportGraphics g, int sx, int lw, Point current,
+    private Point horz(ViewportGraphics g, int sx, int lw, Point current,
             Point next, boolean gap, boolean bold, List<Line> lines) {
 
         // Initialize
-        List<Path> paths = new ArrayList<Path>(2);
+        List<Point[]> paths = new ArrayList<Point[]>(2);
 
-        // Create first segment
-        Path path = new Path(display);
-
-        // Move to last point
-        path.moveTo(current.x, current.y);
-
+        Point p1 = new Point(current.x, current.y);
         // Insert gap?
         if (gap) {
 
@@ -630,21 +603,18 @@ public class GraticuleGraphic implements MapGraphic {
 
             // End first segment before mid-point
             Point p = offset(current, next, -offset);
-            path.lineTo(p.x, p.y);
-            paths.add(path);
+            paths.add(new Point[] {p1, p});
 
             // Create second segment
-            path = new Path(display);
-
             // Move past mid-point
             p = offset(current, next, offset);
-            path.moveTo(p.x, p.y);
-
+            p1 = p;
         }
 
         // Close path
-        path.lineTo(next.x - (bold ? 2 * lw : lw), next.y);
-        paths.add(path);
+        Point p2 = new Point(next.x - (bold ? 2 * lw : lw), next.y);
+        paths.add(new Point[] {p1, p2});
+
         lines.add(new Line(paths, bold ? 2 * lw : lw));
 
         // Finished
@@ -658,9 +628,9 @@ public class GraticuleGraphic implements MapGraphic {
 
         int w;
 
-        List<Path> paths;
+        List<Point[]> paths;
 
-        public Line(List<Path> paths, int w) {
+        public Line(List<Point[]> paths, int w) {
             this.w = w;
             this.paths = paths;
         }
@@ -668,8 +638,11 @@ public class GraticuleGraphic implements MapGraphic {
         public void draw(ViewportGraphics g, GraticuleStyle style) {
             g.setColor(style.getLineColor());
             g.setStroke(style.getLineStyle(), w);
-            for (Path path : paths)
-                g.drawPath(path);
+            for (Point[] path : paths) {
+            	for (int i = 1; i < path.length; i ++) {
+            		g.drawLine(path[i-1].x, path[i-1].y, path[i].x, path[i].y);
+            	}
+            }
         }
     }
 
