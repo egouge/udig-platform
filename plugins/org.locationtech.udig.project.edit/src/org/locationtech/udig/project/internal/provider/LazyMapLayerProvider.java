@@ -73,8 +73,8 @@ public class LazyMapLayerProvider extends AbstractLazyLoadingItemProvider
             super(layer);
         }
 
-        public Image getImage() {
-            return getIcon().createImage();
+        public ImageDescriptor getImage() {
+            return getIcon();
         }
 
         public String getText() {

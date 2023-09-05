@@ -10,6 +10,8 @@
  */
 package org.locationtech.udig.project.ui.wizard.export.image;
 
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -20,14 +22,12 @@ import javax.imageio.ImageIO;
 
 import org.eclipse.draw2d.geometry.Insets;
 
-import com.itextpdf.io.image.ImageData;
-import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.geom.Rectangle;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Image;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfTemplate;
+import com.lowagie.text.pdf.PdfWriter;
 
 /**
  * @author Andrea Antonello - www.hydrologis.com
@@ -44,86 +44,54 @@ public class Image2Pdf {
      * @param marginBorder margins for left, right, top and bottom
      * @param lanscape true if the document should be in landscape mode
      */
-    public static void write(BufferedImage image, String pdfPath, Paper paper,
-            Insets marginBorder, boolean landscape) {
-        Rectangle documentPageSize = calculateSize(landscape, paper, null);
-        Rectangle imageSizeInPixel = calculateSize(landscape, paper, marginBorder);
+	public static void write(BufferedImage image, String pdfPath, Paper paper,
+			int widthBorder, int heightBorder, boolean landscape, int dpi) {
+		
+    	Dimension printPageSize = null;
+		printPageSize = new Dimension(paper.getPixelWidth(landscape, dpi), paper.getPixelHeight(landscape, dpi));
 
-        float imgHeightInPixel = imageSizeInPixel.getHeight();
-        float imgWidthInPixel = imageSizeInPixel.getWidth();
+		// step 1: creation of a document-object
+		Document document = new Document(new Rectangle(printPageSize.width,
+				printPageSize.height));
 
-        
-        
-        try(PdfDocument doc = new PdfDocument(new PdfWriter(new FileOutputStream(pdfPath)))) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", baos); //$NON-NLS-1$
-            
-            
-            ImageData iTextImage = ImageDataFactory.create(baos.toByteArray());
+		try {
 
+			// step 2:
+			// we create a writer that listens to the document
+			// and directs a PDF-stream to a file
+			PdfWriter writer = PdfWriter.getInstance(document,
+					new FileOutputStream(pdfPath));
 
-            doc.addNewPage(new PageSize(documentPageSize)); // not needed for page 1, needed for >1
+			// step 3: we open the document
+			document.open();
 
-            // high in itext is measured from lower left
-            int absoluteX = (marginBorder != null ? marginBorder.left : 0);
-            int absoluteY = (marginBorder != null ? marginBorder.bottom : 0);
+			// step 4: we create a template and a Graphics2D object that
+			// corresponds with it
+			int w = printPageSize.width;
+			int h = printPageSize.height;
+			PdfContentByte cb = writer.getDirectContent();
+			PdfTemplate tp = cb.createTemplate(w, h);
+			Graphics2D g2 = tp.createGraphics(w, h);
+			tp.setWidth(w);
+			tp.setHeight(h);
 
-            Image pdfImg = new Image(iTextImage).setFixedPosition(absoluteX, absoluteY)
-            		.scaleToFit(imgWidthInPixel, imgHeightInPixel);
-            
-            try(Document temp = new Document(doc)){
-            	temp.add(pdfImg);
-            }
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
-        }
+			g2.drawImage(image, null, widthBorder, heightBorder);
+
+			g2.dispose();
+			cb.addTemplate(tp, 0, 0);
+
+		} catch (DocumentException de) {
+			System.err.println(de.getMessage());
+		} catch (IOException ioe) {
+			System.err.println(ioe.getMessage());
+		}
+
+		// step 5: we close the document
+		document.close();
 
     }
 
-    /**
-     * @param landscape if the image is in landscape format
-     * @param paper paper definition
-     * @param marginBorder margins for left, right, top and bottom
-     * @return final image size to render
-     */
-    private static Rectangle calculateSize(boolean landscape, Paper paper, Insets marginBorder) {
-        Rectangle rectangle = null;
-        switch (paper) {
-        case LETTER:
-            rectangle = PageSize.LETTER;
-            break;
-        case LEGAL:
-            rectangle = PageSize.LEGAL;
-            break;
-        case A4:
-            rectangle = PageSize.A4;
-            break;
-        case A3:
-            rectangle = PageSize.A3;
-            break;
-        case A2:
-            rectangle = PageSize.A2;
-            break;
-        case A1:
-            rectangle = PageSize.A1;
-            break;
-        case A0:
-            rectangle = PageSize.A0;
-            break;
-        default:
-            System.err.println("Cannot handle Paper to PageSize"); //$NON-NLS-1$
-        }
-
-        if (landscape) {
-            rectangle = new Rectangle(rectangle.getHeight(), rectangle.getWidth());
-        }
-
-        // apply margins for the border
-        int marginWidth = (marginBorder != null ? marginBorder.left + marginBorder.right : 0);
-        int marginHeigth = (marginBorder != null ? marginBorder.top + marginBorder.bottom : 0);
-        return new Rectangle(rectangle.getWidth() - marginWidth,
-                rectangle.getHeight() - marginHeigth);
-    }
+   
 
     public static void main(String[] args) {
 
@@ -134,7 +102,7 @@ public class Image2Pdf {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        write(b, path + ".pdf", Paper.A1, new Insets(10, 10, 10, 10), false); //$NON-NLS-1$
+		write(b, path + ".pdf", Paper.A1, 10, 10, false, 100); //$NON-NLS-1$
         System.out.println("finished"); //$NON-NLS-1$
     }
 

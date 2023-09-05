@@ -10,7 +10,7 @@
  */
 package org.locationtech.udig.project.internal.provider;
 
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
  * Placeholder that will show up in viewers while the contentProvider is loading the data.
@@ -20,5 +20,5 @@ import org.eclipse.swt.graphics.Image;
  */
 public interface LoadingPlaceHolder {
     String getText();
-    Image getImage();
+    ImageDescriptor getImage();
 }

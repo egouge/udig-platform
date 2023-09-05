@@ -40,7 +40,7 @@ import org.locationtech.udig.project.internal.provider.LoadingPlaceHolder;
 public class AdapterFactoryLabelProviderDecorator extends DecoratingLabelProvider  {
 
     StructuredViewer viewer;
-
+    Image placeholder = null;
     public AdapterFactoryLabelProviderDecorator( AdapterFactory factory, StructuredViewer viewer ) {
         super(new LabelProvider(factory), getWorkbenchDecorators() );
         this.viewer=viewer;
@@ -67,7 +67,10 @@ public class AdapterFactoryLabelProviderDecorator extends DecoratingLabelProvide
     @Override
     public Image getImage( Object element ) {
         if( element instanceof LoadingPlaceHolder ){
-            return ((LoadingPlaceHolder)element).getImage();
+        	if (placeholder == null && ((LoadingPlaceHolder)element).getImage() != null) {
+        		placeholder = ((LoadingPlaceHolder)element).getImage().createImage();
+        	}
+            return placeholder;
         }
         if( !viewer.getControl().isDisposed() )
             return super.getImage(element);
@@ -76,6 +79,7 @@ public class AdapterFactoryLabelProviderDecorator extends DecoratingLabelProvide
     
     @Override
     public void dispose() {
+    	if (placeholder != null && !placeholder.isDisposed()) placeholder.dispose();
         getLabelProvider().dispose();
         super.dispose();
     }

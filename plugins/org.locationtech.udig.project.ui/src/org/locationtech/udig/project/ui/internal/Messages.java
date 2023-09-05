@@ -619,7 +619,9 @@ public class Messages extends NLS {
     public static String ImageExportPage_landscapeLabel;
 
     public static String ImageExportPage_leftMargin;
-
+    
+    public static String ImageExportPage_lowerMargin;
+    
     public static String ImageExportPage_bottomMargin;
 
     public static String ImageExportPage_marginsGroup;

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -117,7 +118,7 @@ public class AbstractLazyLoadingItemProvider extends ItemProviderAdapter {
     
     private static final LoadingPlaceHolder LOADING_PLACEHOLDER = new LoadingPlaceHolder(){
         
-        public Image getImage() {
+        public ImageDescriptor getImage() {
             return null;
         }
 

@@ -28,7 +28,7 @@ import org.geotools.data.ResourceInfo;
 import org.geotools.data.ServiceInfo;
 import org.geotools.data.ows.AbstractGetCapabilitiesRequest;
 import org.geotools.data.ows.AbstractOpenWebService;
-import org.geotools.data.ows.HTTPResponse;
+import org.geotools.http.HTTPResponse;
 import org.geotools.data.ows.Response;
 import org.geotools.data.ows.Specification;
 import org.geotools.ows.wms.WMS1_1_1;

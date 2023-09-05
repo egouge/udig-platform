@@ -70,8 +70,8 @@ public class MapItemProvider extends AbstractLazyLoadingItemProvider implements
             super(layer);
         }
 
-        public Image getImage() {
-            return getIcon().createImage();
+        public ImageDescriptor getImage() {
+            return getIcon();
         }
 
         public String getText() {
