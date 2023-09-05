@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.locationtech.udig.catalog.geotiff; singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
 Eclipse-BuddyPolicy: ext
@@ -10,10 +10,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.locationtech.udig.catalog.ui,
  org.locationtech.udig.catalog,
- org.locationtech.udig.libs;bundle-version="3.0.0",
+ org.locationtech.udig.libs;bundle-version="3.1.0",
  org.locationtech.udig.catalog.rasterings
 Bundle-ActivationPolicy: lazy
 Export-Package: org.locationtech.udig.catalog.internal.geotiff;x-frien
  ds:="org.locationtech.udig.catalog.test.geotiff"
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.locationtech.udig.catalog.geotiff

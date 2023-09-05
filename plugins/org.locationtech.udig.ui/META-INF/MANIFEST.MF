@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-SymbolicName: org.locationtech.udig.ui; singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.locationtech.udig.internal.ui.UiPlugin
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
@@ -10,7 +11,7 @@ Eclipse-ExtensibleAPI: true
 Eclipse-BuddyPolicy: ext
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.runtime,
- org.locationtech.udig.libs;bundle-version="3.0.0";visibility:=reexport,
+ org.locationtech.udig.libs;bundle-version="3.1.0";visibility:=reexport,
  org.locationtech.udig.core;visibility:=reexport,
  org.eclipse.core.expressions;visibility:=reexport
 Bundle-ActivationPolicy: lazy

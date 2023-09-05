@@ -1,143 +1,222 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="4.10"?>
-<target name="SMART - 2020 -12" sequenceNumber="41">
+<target name="SMART - 2022 -03" sequenceNumber="41">
     <locations>
         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
             <unit id="javax.media.jai_imageio-feature.feature.group" version="1.1.3"/>
             <repository location="http://udig.refractions.net/files/update-jai/"/>
+        </location>		    
+         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+            <unit id="openjfx.standard.feature.feature.group" version="0.0.0"/>
+            <unit id="openjfx.swt.feature.feature.group" version="0.0.0"/>
+            <repository location="https://downloads.efxclipse.bestsolution.at/p2-repos/openjfx-17.0.2/"/>
         </location>
         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-            <repository location="http://download.eclipse.org/nebula/releases/2.4.3"/>
-            <unit id="org.eclipse.nebula.widgets.tablecombo" version="1.2.0.202011020719"/>
-        </location>
-         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-            <repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20210223232630/repository"/>
-	         <unit id="com.google.inject" version="3.0.0.v201605172100"/>
-            <unit id="net.miginfocom.layout" version="3.7.1.v200911230030"/>
-            <unit id="net.miginfocom.layout.swt" version="3.7.1.v201505121915"/>
-            <unit id="org.hamcrest.core" version="1.3.0.v20180420-1519"/>
-            <unit id="org.hamcrest.library" version="1.3.0.v20180524-2246"/>
-            <unit id="org.junit" version="4.13.0.v20200204-1500"/>
-            <unit id="org.apache.batik.anim" version="1.13.0.v20201130-1756"/>
-            <unit id="org.apache.batik.anim.source" version="1.13.0.v20201130-1756"/>
-            <unit id="org.apache.batik.awt.util" version="1.13.0.v20201124-1832"/>
-            <unit id="org.apache.batik.awt.util.source" version="1.13.0.v20201124-1832"/>
-            <unit id="org.apache.batik.bridge" version="1.13.0.v20201124-1840"/>
-            <unit id="org.apache.batik.bridge.source" version="1.13.0.v20201124-1840"/>
-            <unit id="org.apache.batik.codec" version="1.13.0.v20201124-1841"/>
-            <unit id="org.apache.batik.codec.source" version="1.13.0.v20201124-1841"/>
-            <unit id="org.apache.batik.constants" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.constants.source" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.css" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.css.source" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.dom" version="1.13.0.v20201124-1839"/>
-            <unit id="org.apache.batik.dom.source" version="1.13.0.v20201124-1839"/>
-            <unit id="org.apache.batik.dom.svg" version="1.13.0.v20201124-1839"/>
-            <unit id="org.apache.batik.dom.svg.source" version="1.13.0.v20201124-1839"/>
-            <unit id="org.apache.batik.ext" version="1.13.0.v20201124-1832"/>
-            <unit id="org.apache.batik.ext.source" version="1.13.0.v20201124-1832"/>
-            <unit id="org.apache.batik.gvt" version="1.13.0.v20201124-1835"/>
-            <unit id="org.apache.batik.gvt.source" version="1.13.0.v20201124-1835"/>
-            <unit id="org.apache.batik.i18n" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.i18n.source" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.parser" version="1.13.0.v20201124-1833"/>
-            <unit id="org.apache.batik.parser.source" version="1.13.0.v20201124-1833"/>
-            <unit id="org.apache.batik.script" version="1.13.0.v20201124-1840"/>
-            <unit id="org.apache.batik.script.source" version="1.13.0.v20201124-1840"/>
-            <unit id="org.apache.batik.shared.resources" version="1.13.0.v20201124-1831"/>
-            <unit id="org.apache.batik.shared.resources.source" version="1.13.0.v20201124-1831"/>
-            <unit id="org.apache.batik.svggen" version="1.13.0.v20201124-1836"/>
-            <unit id="org.apache.batik.svggen.source" version="1.13.0.v20201124-1836"/>
-            <unit id="org.apache.batik.transcoder" version="1.13.0.v20201124-1841"/>
-            <unit id="org.apache.batik.transcoder.source" version="1.13.0.v20201124-1841"/>
-            <unit id="org.apache.batik.util" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.util.source" version="1.13.0.v20200622-2037"/>
-            <unit id="org.apache.batik.xml" version="1.13.0.v20201124-1831"/>
-            <unit id="org.apache.batik.xml.source" version="1.13.0.v20201124-1831"/>
-            <unit id="org.apache.xerces" version="2.12.1.v20210115-0812"/>
-            <unit id="org.apache.xml.resolver" version="1.2.0.v201005080400"/>
-            <unit id="org.apache.xalan" version="2.7.2.v20201124-1837"/>
-	         <unit id="com.google.inject.multibindings" version="3.0.0.v201605172100"/>
-	         <unit id="com.google.guava" version="30.1.0.v20210127-2300"/>
-	         <unit id="org.apache.httpcomponents.httpclient" version="4.5.13.v20210128-2225"/>
-	         <unit id="org.apache.httpcomponents.httpcore" version="4.4.14.v20210128-2225"/>
-         </location>
-        <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-          
-            <unit id="org.eclipse.ecf.core.feature.feature.group" version="1.5.701.v20201027-0550"/>
-            <unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="1.1.500.v20200812-2314"/>
-            <unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="3.14.1702.v20201025-2315"/>
-            <unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="1.1.400.v20200812-2314"/>
-            <unit id="org.eclipse.equinox.p2.sdk.feature.group" version="3.11.1000.v20201106-1246"/>
-            <unit id="org.eclipse.equinox.core.sdk.feature.group" version="3.21.0.v20201107-1818"/>
-            <unit id="org.eclipse.help.feature.group" version="2.3.400.v20201202-1800"/>
-            <unit id="org.eclipse.platform.feature.group" version="4.18.0.v20201202-1800"/>
-            <unit id="org.eclipse.rcp.feature.group" version="4.18.0.v20201202-1800"/>
-            <repository location="https://download.eclipse.org/eclipse/updates/4.18/"/>
-	        <unit id="org.eclipse.equinox.sdk.feature.group" version="3.21.0.v20201128-0731"/>
-	        <unit id="org.eclipse.ecf.filetransfer.httpclient45.feature.feature.group" version="1.0.702.v20201025-2303"/>
-        </location>
-         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-            <unit id="org.eclipse.ecf.remoteservice.sdk.feature.feature.group" version="3.14.18.v20201102-0420"/>
-            <unit id="org.eclipse.datatools.sdk.feature.feature.group" version="1.14.102.201911250848"/>
-            <unit id="org.eclipse.datatools.connectivity.feature.feature.group" version="1.14.102.201911250848"/>
-            <unit id="org.eclipse.datatools.connectivity.oda.feature.feature.group" version="1.14.102.201911250848"/>
-            <unit id="org.eclipse.datatools.connectivity.oda.designer.core.feature.feature.group" version="1.14.102.201911250848"/>
-            <unit id="org.eclipse.datatools.modelbase.feature.feature.group" version="1.14.102.201911250848"/>
-            <unit id="org.eclipse.emf.sdk.feature.group" version="2.24.0.v20200917-1439"/>
-            <unit id="org.eclipse.gef.sdk.feature.group" version="3.11.0.201606061308"/>
-            <unit id="org.eclipse.xsd.sdk.feature.group" version="2.24.0.v20200917-1343"/>
-            <unit id="org.eclipse.e4.core.tools.feature.source.feature.group" version="4.18.0.v20201026-0947"/>
-            <repository location="http://download.eclipse.org/releases/2020-12/"/>
-	         <unit id="org.eclipse.zest.sdk.feature.group" version="1.7.0.201606061308"/>
-         </location>
-        
-         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-            <unit id="openjfx.standard.feature.feature.group" version="11.0.0.201901231300"/>
-            <unit id="openjfx.swt.feature.feature.group" version="11.0.0.201901231300"/>
-            <repository location="http://downloads.efxclipse.bestsolution.at/p2-repos/openjfx-11/repository/"/>
-        </location>
-        <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-            <repository location="https://download.eclipse.org/efxclipse/runtime-released/3.7.0/site"/>
-            <unit id="org.eclipse.fx.runtime.min.feature.feature.group" version="3.7.0.202010120720"/>
+            <repository location="https://download.eclipse.org/efxclipse/runtime-released/3.9.0/site/"/>
+            <unit id="org.eclipse.fx.runtime.min.feature.feature.group" version="3.9.0.202210162353"/>
         </location>
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 		    <repository location="http://download.eclipse.org/e4/snapshots/org.eclipse.e4.tools/latest/"/>
 		    <unit id="org.eclipse.e4.tools.spies.feature.feature.group" version="0.18.0.v20200923-1237"/>
 	    </location>
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-		    <repository location="jar:file:/C:/data/SMART/Source/Trunk/svn/source/java/org.wcs.smart.target/birt-source-4.18.0-20210317.zip!/"/>
-		    <unit id="org.eclipse.birt.feature.group" version="4.18.0.v202103171650"/>
+		    <repository location="http://download.eclipse.org/nebula/releases/2.7.2"/>
+		    <unit id="org.eclipse.nebula.widgets.tablecombo" version="1.2.0.202208171809"/>
 	    </location>
-	    <location includeSource="true" missingManifest="generate" type="Maven">
-		    <groupId>com.itextpdf</groupId>
-		    <artifactId>kernel</artifactId>
-		    <version>7.1.14</version>
-		    <type>jar</type>
+	    
+	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/datatools/updates/1.14.300-SNAPSHOT/repository/"/>
+			<unit id="org.eclipse.datatools.common.doc.user.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.connectivity.doc.user.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.connectivity.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.connectivity.oda.designer.core.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.connectivity.oda.designer.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.connectivity.oda.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.apache.derby.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.hsqldb.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.ibm.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.ingres.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.jdbc.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.jdt.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.msft.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.mysql.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.oda.designer.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.oda.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.oracle.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.postgresql.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.sap.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.sqlite.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.enablement.sybase.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.intro.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.sqldevtools.data.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.sqldevtools.ddl.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.datatools.sqltools.doc.user.feature.group" version="0.0.0"/>
+		</location>
+	    
+	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/eclipse/updates/4.25/"/>
+
+			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
+			<unit id="org.eclipse.rcp.configuration.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.ecf.core.feature.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.ecf.core.ssl.feature.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.ecf.filetransfer.httpclient5.feature.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
+		    
+		    <unit id="org.eclipse.equinox.core.sdk.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.equinox.p2.sdk.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
+		</location>
+		
+		<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.32"/>
+			<unit id="org.eclipse.emf.base.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.emf.ecore.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.emf.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.xsd.edit.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.xsd.feature.group" version="0.0.0"/>
+		</location>
+		
+		<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20220302172233/repository"/>
+			<unit id="javax.xml.stream" version="1.0.1.v201004272200"/>
+			<unit id="javax.wsdl" version="1.6.2.v201012040545"/>
+			<unit id="jakarta.servlet" version="5.0.0.v20210105-0527"/>
+			<unit id="javax.transaction" version="1.1.1.v201105210645"/>
+			<unit id="org.apache.commons.codec" version="1.14.0.v20200818-1422"/>
+			<unit id="org.dom4j" version="2.1.1.v20190321-1528"/>
+			<unit id="org.apache.poi" version="4.1.1.v20200604-1524"/>
+			<unit id="org.apache.poi.ooxml" version="4.1.1.v20200820-1148"/>
+			<unit id="org.apache.poi.ooxml.schemas" version="4.1.1.v20200922-2105"/>
+			<unit id="org.apache.commons.collections4" version="4.4.0.v20200420-1700"/>
+			<unit id="org.apache.commons.compress" version="1.21.0.v20211103-2100"/>
+			<unit id="org.apache.xmlbeans" version="3.1.0.v20200922-1359"/>
+			<unit id="jakarta.servlet.source" version="5.0.0.v20210105-0527"/>
+			<unit id="org.apache.batik.anim" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.anim.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.awt.util" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.awt.util.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.bridge" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.bridge.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.codec" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.codec.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.dom" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.dom.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.dom.svg" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.dom.svg.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.ext" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.ext.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.gvt" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.gvt.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.parser" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.parser.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.script" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.script.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.shared.resources" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.shared.resources.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.svggen" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.svggen.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.transcoder" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.transcoder.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.xml" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.xml.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.commons.codec.source" version="1.14.0.v20200818-1422"/>
+			<unit id="org.apache.commons.collections4.source" version="4.4.0.v20200420-1700"/>
+			<unit id="org.apache.commons.compress.source" version="1.21.0.v20211103-2100"/>
+			<unit id="org.apache.poi.source" version="4.1.1.v20200604-1524"/>
+			<unit id="org.dom4j.source" version="2.1.1.v20190321-1528"/>
+			<unit id="org.apache.batik.util" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.batik.util.source" version="1.14.0.v20210324-0332"/>
+			<unit id="org.apache.commons.jxpath" version="1.3.0.v200911051830"/>
+			<unit id="org.apache.commons.jxpath.source" version="1.3.0.v200911051830"/>
+			<unit id="org.apache.xalan" version="2.7.2.v20201124-1837"/>
+			<unit id="org.apache.xalan.source" version="2.7.2.v20201124-1837"/>
+			<unit id="com.google.guava" version="30.1.0.v20210127-2300"/>
+			<unit id="com.google.guava.source" version="30.1.0.v20210127-2300"/>
+			<unit id="com.google.inject" version="5.0.1.v20210324-2015"/>
+			<unit id="com.google.inject.source" version="5.0.1.v20210324-2015"/>
+			<unit id="net.miginfocom.layout" version="3.7.1.v200911230030"/>
+			<unit id="net.miginfocom.layout.source" version="3.7.1.v200911230030"/>
+			<unit id="org.apache.logging.log4j" version="2.17.1.v20220106-2156"/>
+			<unit id="org.apache.logging.log4j.source" version="2.17.1.v20220106-2156"/>
+			<unit id="net.miginfocom.layout.swt" version="3.7.1.v201505121915"/>
+			<unit id="net.miginfocom.layout.swt.source" version="3.7.1.v201505121915"/>
+			<unit id="org.apache.log4j" version="1.2.19.v20220208-1728"/>
+			<unit id="org.apache.log4j.source" version="1.2.19.v20220208-1728"/>
+			<unit id="com.google.gson" version="2.8.9.v20220111-1409"/>
+			<unit id="com.google.gson.source" version="2.8.9.v20220111-1409"/>
+			<unit id="org.apache.commons.exec" version="1.1.0.v201301240602"/>
+			<unit id="org.apache.commons.exec.source" version="1.1.0.v201301240602"/>
+			<unit id="org.apache.commons.io" version="2.8.0.v20210415-0900"/>
+			<unit id="org.apache.commons.io.source" version="2.8.0.v20210415-0900"/>
+			<unit id="com.ibm.icu" version="67.1.0.v20200706-1749"/>
+			<unit id="com.ibm.icu.source" version="67.1.0.v20200706-1749"/>
+		</location>
+		
+		
+		<!--https://github.com/diffplug/osgiX-->
+	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+		    <repository location="https://download.eclipse.org/birt/update-site/4.13.0/"/>
+		    <unit id="org.eclipse.birt.chart.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.chart.osgi.runtime.sdk.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.cshelp.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.doc.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.engine.runtime.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.nl.feature.group" version="4.13.0.v202303021806"/>
+		    <unit id="org.eclipse.birt.osgi.runtime.sdk.feature.group" version="4.13.0.v202303021806"/>
 	    </location>
-	    <location includeSource="true" missingManifest="generate" type="Maven">
-		    <groupId>com.itextpdf</groupId>
-		    <artifactId>hyph</artifactId>
-		    <version>7.1.14</version>
-		    <type>jar</type>
+	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+		    <repository location="https://download.eclipse.org/tools/gef/classic/releases/3.14.0"/>
+		    <unit id="org.eclipse.gef.feature.group" version="3.14.0.202206170857"/>
+		    <unit id="org.eclipse.zest.feature.group" version="3.14.0.202206170857"/>
 	    </location>
-	    <location includeSource="true" missingManifest="generate" type="Maven">
-		    <groupId>com.itextpdf</groupId>
-		    <artifactId>io</artifactId>
-		    <version>7.1.14</version>
-		    <type>jar</type>
+	    
+	    
+	    
+	    
+	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+		    <repository location="https://download.eclipse.org/technology/babel/update-site/R0.20.0/2022-09/"/>
+		    <unit id="org.eclipse.babel.nls_datatools_ar.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_es.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_fr.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_hi.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_id.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_mn.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_pt.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_ru.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_th.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_uk.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_datatools_zh.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_ar.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_es.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_fr.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_hi.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_id.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_ml.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_mn.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_pt.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_ru.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_th.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_uk.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_vi.feature.group" version="4.25.0.v20230221050449"/>
+		    <unit id="org.eclipse.babel.nls_eclipse_zh.feature.group" version="4.25.0.v20230221050449"/>
 	    </location>
-	    <location includeSource="true" missingManifest="generate" type="Maven">
-		    <groupId>com.itextpdf</groupId>
-		    <artifactId>font-asian</artifactId>
-		    <version>7.1.14</version>
-		    <type>jar</type>
-	    </location>
-	    <location includeSource="true" missingManifest="generate" type="Maven">
-		    <groupId>com.itextpdf</groupId>
-		    <artifactId>layout</artifactId>
-		    <version>7.1.14</version>
-		    <type>jar</type>
+	    <location includeDependencyDepth="infinite" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
+		    <dependencies>
+			    <dependency>
+				    <groupId>com.diffplug.osgi</groupId>
+				    <artifactId>com.diffplug.osgi.extension.sun.misc</artifactId>
+				    <version>0.0.0</version>
+				    <type>jar</type>
+			    </dependency>
+		    </dependencies>
 	    </location>
     </locations>
 </target>

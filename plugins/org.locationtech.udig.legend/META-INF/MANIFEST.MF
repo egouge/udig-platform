@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Legend Plug-in
 Bundle-SymbolicName: org.locationtech.udig.legend; singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.locationtech.udig.legend.LegendPlugin
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Export-Package: org.locationtech.udig.legend,org.locationtech.udig.leg
  end.ui,org.locationtech.udig.legend.ui.actions
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: udig.refractions.net
 Automatic-Module-Name: org.locationtech.udig.legend
