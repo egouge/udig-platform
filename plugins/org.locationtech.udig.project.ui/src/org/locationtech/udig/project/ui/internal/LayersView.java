@@ -235,7 +235,6 @@ public class LayersView extends ViewPart
     /**
      * @param currentMap The currentMap to set.
      */
-    @SuppressWarnings("unchecked")
     public synchronized void setCurrentMap( final Map currentMap ) {
 
         if (this.currentMap != null) {
@@ -245,7 +244,7 @@ public class LayersView extends ViewPart
         }
 
         this.currentMap = currentMap;
-        if (viewer != null)
+        if (viewer != null && !viewer.getControl().isDisposed())
             viewer.setInput(currentMap == null ? placeholder : currentMap);
 
         if (editManagerListener == null)
