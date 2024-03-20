@@ -80,6 +80,8 @@ import org.locationtech.udig.project.render.displayAdapter.MapDisplayEvent;
 import org.locationtech.udig.project.ui.commands.OpenProjectElementCommand;
 import org.locationtech.udig.project.ui.internal.ActiveMapTracker;
 import org.locationtech.udig.project.ui.internal.ApplicationGISInternal;
+import org.locationtech.udig.project.ui.internal.DialogMap;
+import org.locationtech.udig.project.ui.internal.MapPart;
 import org.locationtech.udig.project.ui.internal.Messages;
 import org.locationtech.udig.project.ui.internal.ProjectUIPlugin;
 import org.locationtech.udig.project.ui.internal.UDIGEditorInputDescriptor;
@@ -130,6 +132,9 @@ public class ApplicationGIS {
     }
 
 
+    public static ActiveMapTracker getActiveMapTracker() {
+    	return activeMapTracker;
+    }
     /**
      * Returns the active map.  Returns {@link #NO_MAP} if there is no open map.
      * 
@@ -157,6 +162,16 @@ public class ApplicationGIS {
         return activeMapTracker.getVisibleMaps();
     }
 
+    /**
+     * Adds map in a dialog to the map tracker so editing tools work
+     * 
+     * @param dialog
+     */
+    public static void mapDialogOpen(DialogMap dialog) {
+    	activeMapTracker.addOpenMap(dialog.getMapPart());
+    	dialog.addDisposeListener(l->activeMapTracker.removePart(dialog.getMapPart()));
+    }
+    
     /**
      * Opens a Map editor for the provided map, This is a non-blocking call.
      * Equivalent to openMap(map, false);

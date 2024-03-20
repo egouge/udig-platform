@@ -17,5 +17,5 @@ Require-Bundle: org.locationtech.udig.project;visibility:=reexport,
  org.locationtech.udig.catalog.ui,
  org.eclipse.emf.ecore.edit
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: org.locationtech.udig.project.edit

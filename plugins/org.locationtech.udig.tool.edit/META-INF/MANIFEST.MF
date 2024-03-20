@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.locationtech.udig.tools.edit; singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.locationtech.udig.tools.edit.EditPlugin
 Bundle-Vendor: udig.refractions.net
 Bundle-Localization: plugin
@@ -23,5 +23,5 @@ Export-Package: org.locationtech.udig.tool.edit,org.locationtech.udig.
  locationtech.udig.tools.edit.impl,org.locationtech.udig.tools.edit.pr
  eferences,org.locationtech.udig.tools.edit.support,org.locationtech.u
  dig.tools.edit.validator
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: org.locationtech.udig.tools.edit

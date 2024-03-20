@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Export-Package: org.locationtech.udig.legend,org.locationtech.udig.leg
  end.ui,org.locationtech.udig.legend.ui.actions
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: udig.refractions.net
 Automatic-Module-Name: org.locationtech.udig.legend

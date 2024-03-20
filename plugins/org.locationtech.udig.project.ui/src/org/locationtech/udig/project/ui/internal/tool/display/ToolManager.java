@@ -529,6 +529,10 @@ public class ToolManager implements IToolManager {
     
     MapPart currentEditor;
 
+    public MapPart getCurrentEditor() {
+    	return this.currentEditor;
+    }
+    
     /**
      * This method is called to perform tools initialisation when
      * the map editor is selected.

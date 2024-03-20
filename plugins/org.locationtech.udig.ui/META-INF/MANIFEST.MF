@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.locationtech.udig.ui; singleton:=true
 Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.locationtech.udig.internal.ui.UiPlugin

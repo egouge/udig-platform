@@ -156,15 +156,16 @@ public class ActiveMapTracker implements IPartListener2, IWindowListener, IPageL
 		activeParts.add(0,part);
 	}
 
-    private void removePart(IWorkbenchPart part) {
+	public void removePart(MapPart part) {
         while(activeParts.remove(part));
         visibleMaps.remove(part);
         openMaps.remove(part);
 	}
 
-	private boolean addOpenMap(IWorkbenchPart part) {
-		return openMaps.add((MapPart) part);
+	public boolean addOpenMap(MapPart part) {
+		return openMaps.add(part);
 	}
+
 
     public void windowClosed( IWorkbenchWindow window ) {
         // stop listening to pages and parts
@@ -228,7 +229,7 @@ public class ActiveMapTracker implements IPartListener2, IWindowListener, IPageL
     public void partClosed( IWorkbenchPartReference partRef ) {
         // if active map then make previous map be the active map
         IWorkbenchPart part = partRef.getPart(false);
-        removePart(part);
+        if (part instanceof MapPart) removePart((MapPart) part);
     }
 
 	public void partVisible( IWorkbenchPartReference partRef ) {
@@ -252,7 +253,7 @@ public class ActiveMapTracker implements IPartListener2, IWindowListener, IPageL
     public void partOpened( IWorkbenchPartReference partRef ) {
         IWorkbenchPart part = partRef.getPart(false);
         if( part instanceof MapPart){
-            addOpenMap(part);
+        	addOpenMap((MapPart) part);
         }
     }
 
