@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="4.10"?>
-<target name="SMART - 2023-12" sequenceNumber="41">
-        <locations>
+<target name="SMART - 2024-03" sequenceNumber="41">
+    <locations>
         <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
             <unit id="javax.media.jai_imageio-feature.feature.group" version="1.1.3"/>
             <repository location="http://udig.refractions.net/files/update-jai/"/>
@@ -22,11 +22,11 @@
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 		    <repository location="https://download.eclipse.org/nebula/archive/releases/3.1.1"/>
 		    <unit id="org.eclipse.nebula.widgets.tablecombo" version="1.2.0.202402011804"/>
+		    <unit id="org.eclipse.nebula.widgets.chips.feature.feature.group" version="1.0.0.202402011804"/>
 	    </location>
 	    
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/eclipse/updates/4.30"/>
-
+			<repository location="https://download.eclipse.org/eclipse/updates/4.31"/>
 			<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.rcp.configuration.feature.group" version="0.0.0"/>
@@ -36,10 +36,11 @@
 		    <unit id="org.eclipse.ecf.filetransfer.feature.feature.group" version="0.0.0"/>
 		    <unit id="org.eclipse.ecf.filetransfer.httpclient5.feature.feature.group" version="0.0.0"/>
 		    <unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
-		    
 		    <unit id="org.eclipse.equinox.core.sdk.feature.group" version="0.0.0"/>
 		    <unit id="org.eclipse.equinox.p2.sdk.feature.group" version="0.0.0"/>
 		    <unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
+		    
+		    <unit id="org.eclipse.orbit.xml-apis-ext" version="0.0.0"/>
 		</location>
 		
 		<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -85,15 +86,16 @@
 		
 		<!--https://github.com/diffplug/osgiX-->
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-		    <repository location="https://download.eclipse.org/birt/updates/release/4.14.0"/>
-		    <unit id="org.eclipse.birt.chart.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.chart.osgi.runtime.sdk.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.cshelp.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.doc.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.engine.runtime.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.nl.feature.group" version="4.14.0.v202311210608"/>
-		    <unit id="org.eclipse.birt.osgi.runtime.sdk.feature.group" version="4.14.0.v202311210608"/>
+			<repository location="https://download.eclipse.org/birt/updates/release/4.15.0"/>
+		     
+		    <unit id="org.eclipse.birt.chart.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.chart.osgi.runtime.sdk.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.cshelp.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.doc.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.engine.runtime.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.nl.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.birt.osgi.runtime.sdk.feature.group" version="0.0.0"/>
 	    </location>
 	    <location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 		    <repository location="https://archive.eclipse.org/tools/gef/classic/releases/3.18.0"/>
@@ -151,10 +153,6 @@
 				    <version>3.7.4</version>
 				    <type>jar</type>
 			    </dependency>
-			</dependencies>
-		</location>
-		<location includeDependencyDepth="none" includeSource="true" missingManifest="generate" type="Maven">
-		    <dependencies>
 			    <dependency>
 				    <groupId>com.miglayout</groupId>
 				    <artifactId>miglayout-swt</artifactId>
