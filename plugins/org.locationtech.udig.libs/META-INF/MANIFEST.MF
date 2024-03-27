@@ -436,7 +436,11 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.apache.commons.logging,
  com.ibm.icu;visibility:=reexport,
  org.apache.xmlgraphics;visibility:=reexport,
- org.apache.log4j;bundle-version="1.2.24"
+ org.apache.log4j;bundle-version="1.2.24",
+ org.apache.batik.util;bundle-version="1.17.0",
+ org.apache.batik.anim;bundle-version="1.17.0",
+ org.apache.batik.bridge;bundle-version="1.17.0",
+ org.apache.batik.gvt;bundle-version="1.17.0"
 Bundle-Activator: org.locationtech.udig.libs.internal.Activator
 Bundle-ClassPath: .,
  lib/aircompressor-0.20.jar,
