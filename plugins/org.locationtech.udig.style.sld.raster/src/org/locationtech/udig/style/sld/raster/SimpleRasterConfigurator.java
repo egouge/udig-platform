@@ -260,9 +260,13 @@ public class SimpleRasterConfigurator extends AbstractSimpleConfigurator {
         Rule r = (SLD.rules(s))[0];
         if (minScale.isEnabled()) {
             r.setMinScaleDenominator(minScale.getScale());
+        }else {
+        	r.setMinScaleDenominator(0.0);
         }
         if (maxScale.isEnabled()) {
             r.setMaxScaleDenominator(maxScale.getScale());
+        }else {
+        	r.setMaxScaleDenominator(Double.POSITIVE_INFINITY);
         }
 
         // setup opacity

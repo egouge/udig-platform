@@ -233,7 +233,7 @@ public class RGBChannelViewer  {
                 setEnabled(false);
             }else{
                 SelectedChannelType[] sct = cs.getRGBChannels();
-                if (sct[0] == null && sct[1] == null && sct[2] == null) {
+                if (sct == null || (sct[0] == null && sct[1] == null && sct[2] == null)) {
                     setEnabled(false);
                 }else{
                     setEnabled(true);
