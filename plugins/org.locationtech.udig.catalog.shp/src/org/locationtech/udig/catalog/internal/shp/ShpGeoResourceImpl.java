@@ -13,8 +13,13 @@ package org.locationtech.udig.catalog.internal.shp;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -85,11 +90,11 @@ public class ShpGeoResourceImpl extends IGeoResource {
         this.parent = parent;
         this.typename = typename;
         try {
-            identifier = new URL(parent.getIdentifier().toString() + "#" + typename); //$NON-NLS-1$
+            identifier =  (new URI(parent.getIdentifier().toString() + "#" + URLEncoder.encode(typename, StandardCharsets.UTF_8.name()))).toURL(); //$NON-NLS-1$            
             id = new ID(parent.getID(), typename);
-        } catch (MalformedURLException e) {
-            identifier = parent.getIdentifier();
-        }
+        } catch (URISyntaxException | MalformedURLException | UnsupportedEncodingException e) {
+            identifier = parent.getIdentifier();        
+		}
     }
 
     public URL getIdentifier() {

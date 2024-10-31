@@ -14,10 +14,13 @@ package org.locationtech.udig.catalog;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import org.geotools.util.URLs;
 import org.locationtech.udig.core.internal.CorePlugin;
@@ -218,6 +221,12 @@ public class ID implements Serializable {
     public ID( ID parent, String child ) {
         String extension;
 
+        try {
+        	child = URLEncoder.encode(child, StandardCharsets.UTF_8.name());
+        }catch (UnsupportedEncodingException ex) {
+        	child = URLEncoder.encode(child);
+        }
+        
         if (parent.id.contains("#")) { //$NON-NLS-1$
             extension = "/" + child; //$NON-NLS-1$
         } else {
