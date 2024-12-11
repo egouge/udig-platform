@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
+import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteToolbar;
@@ -63,7 +64,7 @@ public class MapToolPaletteFactory {
         PaletteRoot root = new PaletteRoot();
         IToolManager toolManager = ApplicationGIS.getToolManager();
 
-        List<PaletteContainer> categories = new ArrayList<PaletteContainer>();
+        List<PaletteEntry> categories = new ArrayList<PaletteEntry>();
 
         // Normal GEF Tools (SelectionTool etc...)
         // PaletteContainer controlGroup = createControlGroup(root);
@@ -120,7 +121,7 @@ public class MapToolPaletteFactory {
             categories.add(container);
         }
 
-        Comparator<PaletteContainer> sorter = new Comparator<PaletteContainer>(){
+        Comparator<PaletteEntry> sorter = new Comparator<PaletteEntry>(){
             List<String> preferredOrder = Arrays.asList(new String[]{
                     "org.locationtech.udig.tool.category.zoom", //$NON-NLS-1$
                     "org.locationtech.udig.tool.category.pan", //$NON-NLS-1$
@@ -143,7 +144,7 @@ public class MapToolPaletteFactory {
                 }
             }
             
-            public int compare( PaletteContainer o1, PaletteContainer o2 ) {
+            public int compare( PaletteEntry o1, PaletteEntry o2 ) {
                 String s1 = o1.getId();
                 String s2 = o2.getId();
                 int order1 = order(s1);
@@ -161,7 +162,7 @@ public class MapToolPaletteFactory {
                 // return order1-order2; // is this the fast way? I am not good a C
             }
         };
-        Collections.sort(categories,sorter );
+        Collections.sort(categories, sorter );
         categories.add(0,navigation);
         // try and prevent tool category order from changing
         root.setUserModificationPermission( PaletteContainer.PERMISSION_NO_MODIFICATION );
